@@ -1,26 +1,43 @@
 {
-	"name": "vscode-css-languageservice",
-	"version": "0.0.1",
-	"private": false,
-	"description": "Language service for CSS, LESS and SCSS",
-	"homepage": "https://github.com/CodeEditorLand/Foundation#readme",
+	"author": {
+		"email": "Hello@Playform.Cloud",
+		"name": "Playform",
+		"url": "https://playform.cloud"
+	},
 	"bugs": {
 		"url": "https://github.com/CodeEditorLand/Foundation/issues"
+	},
+	"dependencies": {
+		"@vscode/l10n": "0.0.18",
+		"vscode-languageserver-textdocument": "1.0.11",
+		"vscode-languageserver-types": "3.17.5",
+		"vscode-uri": "3.0.8"
+	},
+	"description": "Language service for CSS, LESS and SCSS",
+	"devDependencies": {
+		"@types/mocha": "10.0.6",
+		"@types/node": "20.x",
+		"@vscode/web-custom-data": "0.4.9",
+		"js-beautify": "1.15.1",
+		"mocha": "10.3.0",
+		"rimraf": "5.0.5",
+		"source-map-support": "0.5.21",
+		"typescript": "5.4.2",
+		"typescript-esbuild": ""
+	},
+	"homepage": "https://github.com/CodeEditorLand/Foundation#readme",
+	"license": "SEE LICENSE IN LICENSE",
+	"main": "./lib/umd/cssLanguageService.js",
+	"module": "./lib/esm/cssLanguageService.js",
+	"name": "vscode-css-languageservice",
+	"private": false,
+	"publishConfig": {
+		"access": "public"
 	},
 	"repository": {
 		"type": "git",
 		"url": "git+https://github.com/CodeEditorLand/Foundation.git"
 	},
-	"license": "SEE LICENSE IN LICENSE",
-	"author": {
-		"name": "Playform",
-		"email": "Hello@Playform.Cloud",
-		"url": "https://playform.cloud"
-	},
-	"type": "module",
-	"main": "./lib/umd/cssLanguageService.js",
-	"module": "./lib/esm/cssLanguageService.js",
-	"typings": "./lib/umd/cssLanguageService",
 	"scripts": {
 		"clean": "rimraf lib",
 		"compile": "tsc -p ./src && npm run copy-jsbeautify && npm run lint ",
@@ -37,24 +54,7 @@
 		"update-jsbeautify-next": "npm install js-beautify@next && node ./build/update-jsbeautify.js",
 		"watch": "npm run copy-jsbeautify && tsc -w -p ./src"
 	},
-	"dependencies": {
-		"@vscode/l10n": "0.0.18",
-		"vscode-languageserver-textdocument": "1.0.11",
-		"vscode-languageserver-types": "3.17.5",
-		"vscode-uri": "3.0.8"
-	},
-	"devDependencies": {
-		"@types/mocha": "10.0.6",
-		"@types/node": "20.x",
-		"@vscode/web-custom-data": "0.4.9",
-		"js-beautify": "1.15.1",
-		"mocha": "10.3.0",
-		"rimraf": "5.0.5",
-		"source-map-support": "0.5.21",
-		"typescript": "5.4.2",
-		"typescript-esbuild": "0.4.5"
-	},
-	"publishConfig": {
-		"access": "public"
-	}
+	"type": "module",
+	"typings": "./lib/umd/cssLanguageService",
+	"version": "0.0.1"
 }
