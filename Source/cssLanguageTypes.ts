@@ -310,7 +310,7 @@ export interface CSSFormatConfiguration {
 	/** add indenting whitespace to empty lines. Default: false */
 	indentEmptyLines?: boolean;
 	
-	/** @deprecated Use newlineBetweenSelectors instead*/
+	
 	selectorSeparatorNewline?: boolean;
 
 }
