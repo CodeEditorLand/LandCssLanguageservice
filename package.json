@@ -21,8 +21,8 @@
 	"dependencies": {},
 	"devDependencies": {
 		"@types/node": "16.x",
-		"js-beautify": "^1.15.1",
-		"rimraf": "^5.0.7",
-		"source-map-support": "^0.5.21"
+		"js-beautify": "1.15.1",
+		"rimraf": "5.0.7",
+		"source-map-support": "0.5.21"
 	}
 }
