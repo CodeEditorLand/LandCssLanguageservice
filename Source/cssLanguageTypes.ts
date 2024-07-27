@@ -2,37 +2,87 @@
  *  Copyright (c) Microsoft Corporation. All rights reserved.
  *  Licensed under the MIT License. See License.txt in the project root for license information.
  *--------------------------------------------------------------------------------------------*/
-'use strict';
+"use strict";
 
 import {
-	Range, Position, DocumentUri, MarkupContent, MarkupKind,
-	Color, ColorInformation, ColorPresentation,
-	FoldingRange, FoldingRangeKind, SelectionRange,
-	Diagnostic, DiagnosticSeverity,
-	CompletionItem, CompletionItemKind, CompletionList, CompletionItemTag,
-	InsertTextFormat, DefinitionLink,
-	SymbolInformation, SymbolKind, DocumentSymbol, Location, Hover, MarkedString,
-	CodeActionContext, Command, CodeAction,
-	DocumentHighlight, DocumentLink, WorkspaceEdit,
-	TextEdit, CodeActionKind,
-	TextDocumentEdit, VersionedTextDocumentIdentifier, DocumentHighlightKind
-} from 'vscode-languageserver-types';
+	Range,
+	Position,
+	DocumentUri,
+	MarkupContent,
+	MarkupKind,
+	Color,
+	ColorInformation,
+	ColorPresentation,
+	FoldingRange,
+	FoldingRangeKind,
+	SelectionRange,
+	Diagnostic,
+	DiagnosticSeverity,
+	CompletionItem,
+	CompletionItemKind,
+	CompletionList,
+	CompletionItemTag,
+	InsertTextFormat,
+	DefinitionLink,
+	SymbolInformation,
+	SymbolKind,
+	DocumentSymbol,
+	Location,
+	Hover,
+	MarkedString,
+	CodeActionContext,
+	Command,
+	CodeAction,
+	DocumentHighlight,
+	DocumentLink,
+	WorkspaceEdit,
+	TextEdit,
+	CodeActionKind,
+	TextDocumentEdit,
+	VersionedTextDocumentIdentifier,
+	DocumentHighlightKind,
+} from "vscode-languageserver-types";
 
-import { TextDocument } from 'vscode-languageserver-textdocument';
+import { TextDocument } from "vscode-languageserver-textdocument";
 
 export {
 	TextDocument,
-	Range, Position, DocumentUri, MarkupContent, MarkupKind,
-	Color, ColorInformation, ColorPresentation,
-	FoldingRange, FoldingRangeKind, SelectionRange,
-	Diagnostic, DiagnosticSeverity,
-	CompletionItem, CompletionItemKind, CompletionList, CompletionItemTag,
-	InsertTextFormat, DefinitionLink,
-	SymbolInformation, SymbolKind, DocumentSymbol, Location, Hover, MarkedString,
-	CodeActionContext, Command, CodeAction,
-	DocumentHighlight, DocumentLink, WorkspaceEdit,
-	TextEdit, CodeActionKind,
-	TextDocumentEdit, VersionedTextDocumentIdentifier, DocumentHighlightKind
+	Range,
+	Position,
+	DocumentUri,
+	MarkupContent,
+	MarkupKind,
+	Color,
+	ColorInformation,
+	ColorPresentation,
+	FoldingRange,
+	FoldingRangeKind,
+	SelectionRange,
+	Diagnostic,
+	DiagnosticSeverity,
+	CompletionItem,
+	CompletionItemKind,
+	CompletionList,
+	CompletionItemTag,
+	InsertTextFormat,
+	DefinitionLink,
+	SymbolInformation,
+	SymbolKind,
+	DocumentSymbol,
+	Location,
+	Hover,
+	MarkedString,
+	CodeActionContext,
+	Command,
+	CodeAction,
+	DocumentHighlight,
+	DocumentLink,
+	WorkspaceEdit,
+	TextEdit,
+	CodeActionKind,
+	TextDocumentEdit,
+	VersionedTextDocumentIdentifier,
+	DocumentHighlightKind,
 };
 
 export type LintSettings = { [key: string]: any };
@@ -56,7 +106,7 @@ export interface AliasSettings {
 
 export interface HoverSettings {
 	documentation?: boolean;
-	references?: boolean
+	references?: boolean;
 }
 
 export interface PropertyCompletionContext {
@@ -122,7 +172,6 @@ export interface ClientCapabilities {
 				 */
 				documentationFormat?: MarkupKind[];
 			};
-
 		};
 		/**
 		 * Capabilities specific to hovers.
@@ -142,13 +191,16 @@ export namespace ClientCapabilities {
 		textDocument: {
 			completion: {
 				completionItem: {
-					documentationFormat: [MarkupKind.Markdown, MarkupKind.PlainText]
-				}
+					documentationFormat: [
+						MarkupKind.Markdown,
+						MarkupKind.PlainText,
+					],
+				},
 			},
 			hover: {
-				contentFormat: [MarkupKind.Markdown, MarkupKind.PlainText]
-			}
-		}
+				contentFormat: [MarkupKind.Markdown, MarkupKind.PlainText],
+			},
+		},
 	};
 }
 
@@ -178,7 +230,11 @@ export interface LanguageServiceOptions {
 	clientCapabilities?: ClientCapabilities;
 }
 
-export type EntryStatus = 'standard' | 'experimental' | 'nonstandard' | 'obsolete';
+export type EntryStatus =
+	| "standard"
+	| "experimental"
+	| "nonstandard"
+	| "obsolete";
 
 export interface IReference {
 	name: string;
@@ -258,7 +314,7 @@ export enum FileType {
 	/**
 	 * A symbolic link to a file.
 	 */
-	SymbolicLink = 64
+	SymbolicLink = 64,
 }
 
 export interface FileStat {
@@ -301,7 +357,7 @@ export interface CSSFormatConfiguration {
 	/** ensure space around selector separators:  '>', '+', '~' (e.g. "a>b" -> "a > b"): Default: false */
 	spaceAroundSelectorSeparator?: boolean;
 	/** put braces on the same line as rules (`collapse`), or put braces on own line, Allman / ANSI style (`expand`). Default `collapse` */
-	braceStyle?: 'collapse' | 'expand';
+	braceStyle?: "collapse" | "expand";
 	/** whether existing line breaks before elements should be preserved. Default: true */
 	preserveNewLines?: boolean;
 	/** maximum number of line breaks to be preserved in one chunk. Default: unlimited */
@@ -313,5 +369,4 @@ export interface CSSFormatConfiguration {
 
 	/** @deprecated Use newlineBetweenSelectors instead*/
 	selectorSeparatorNewline?: boolean;
-
 }
