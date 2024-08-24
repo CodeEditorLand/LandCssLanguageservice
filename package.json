@@ -1,15 +1,9 @@
 {
-	"dependencies": {},
+	"name": "vscode-css-languageservice",
 	"description": "Language service for CSS, LESS and SCSS",
-	"devDependencies": {
-		"@types/node": "16.x",
-		"js-beautify": "^1.15.1",
-		"rimraf": "^5.0.7",
-		"source-map-support": "^0.5.21"
-	},
 	"main": "./lib/umd/cssLanguageService.js",
 	"module": "./lib/esm/cssLanguageService.js",
-	"name": "vscode-css-languageservice",
+	"typings": "./lib/umd/cssLanguageService",
 	"scripts": {
 		"clean": "rimraf lib",
 		"compile": "tsc -p ./src && npm run copy-jsbeautify && npm run lint ",
@@ -24,5 +18,11 @@
 		"update-jsbeautify": "npm install js-beautify && node ./build/update-jsbeautify.js",
 		"update-jsbeautify-next": "npm install js-beautify@next && node ./build/update-jsbeautify.js"
 	},
-	"typings": "./lib/umd/cssLanguageService"
+	"dependencies": {},
+	"devDependencies": {
+		"@types/node": "22.4",
+		"js-beautify": "1.15.1",
+		"rimraf": "6.0.1",
+		"source-map-support": "0.5.21"
+	}
 }
