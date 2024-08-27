@@ -26,7 +26,7 @@ LESS and SCSS editing experience of Visual Studio Code and the Monaco editor.
 -   _prepareRename_ the range of the node that can be renamed
 -   _getFoldingRanges_ returns folding ranges in the given document.
 
-## Installation
+## 🚀 Installation
 
     npm install --save vscode-css-languageservice
 
