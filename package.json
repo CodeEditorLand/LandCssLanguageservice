@@ -3,9 +3,9 @@
 	"description": "Language service for CSS, LESS and SCSS",
 	"devDependencies": {
 		"@types/node": "16.x",
-		"js-beautify": "^1.15.1",
-		"rimraf": "^5.0.10",
-		"source-map-support": "^0.5.21"
+		"js-beautify": "1.15.1",
+		"rimraf": "5.0.10",
+		"source-map-support": "0.5.21"
 	},
 	"main": "./lib/umd/cssLanguageService.js",
 	"module": "./lib/esm/cssLanguageService.js",
