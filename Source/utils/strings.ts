@@ -2,7 +2,7 @@
  *  Copyright (c) Microsoft Corporation. All rights reserved.
  *  Licensed under the MIT License. See License.txt in the project root for license information.
  *--------------------------------------------------------------------------------------------*/
-'use strict';
+"use strict";
 
 export function startsWith(haystack: string, needle: string): boolean {
 	if (haystack.length < needle.length) {
@@ -42,7 +42,11 @@ export function endsWith(haystack: string, needle: string): boolean {
  * @param first a string
  * @param second a string
  */
-export function difference(first: string, second: string, maxLenDelta: number = 4): number {
+export function difference(
+	first: string,
+	second: string,
+	maxLenDelta: number = 4,
+): number {
 	let lengthDifference = Math.abs(first.length - second.length);
 	// We only compute score if length of the currentWord and length of entry.name are similar.
 	if (lengthDifference > maxLenDelta) {
@@ -75,12 +79,12 @@ export function difference(first: string, second: string, maxLenDelta: number = 
  */
 export function getLimitedString(str: string, ellipsis = true): string {
 	if (!str) {
-		return '';
+		return "";
 	}
 	if (str.length < 140) {
 		return str;
 	}
-	return str.slice(0, 140) + (ellipsis ? '\u2026' : '');
+	return str.slice(0, 140) + (ellipsis ? "\u2026" : "");
 }
 
 /**
@@ -95,7 +99,7 @@ export function trim(str: string, regexp: RegExp): string {
 }
 
 export function repeat(value: string, count: number) {
-	let s = '';
+	let s = "";
 	while (count > 0) {
 		if ((count & 1) === 1) {
 			s += value;
@@ -107,6 +111,7 @@ export function repeat(value: string, count: number) {
 }
 
 export function convertSimple2RegExpPattern(pattern: string): string {
-	return pattern.replace(/[\-\\\{\}\+\?\|\^\$\.\,\[\]\(\)\#\s]/g, '\\$&').replace(/[\*]/g, '.*');
+	return pattern
+		.replace(/[\-\\\{\}\+\?\|\^\$\.\,\[\]\(\)\#\s]/g, "\\$&")
+		.replace(/[\*]/g, ".*");
 }
-

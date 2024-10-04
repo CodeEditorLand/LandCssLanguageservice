@@ -3,18 +3,34 @@
  *  Licensed under the MIT License. See License.txt in the project root for license information.
  *--------------------------------------------------------------------------------------------*/
 
-import { DocumentUri } from 'vscode-languageserver-types';
-import { ICompletionParticipant, URILiteralCompletionContext, ImportPathCompletionContext, FileType, DocumentContext, TextDocument, CompletionList, CompletionItemKind, CompletionItem, TextEdit, Range, Position } from '../cssLanguageTypes';
+import { DocumentUri } from "vscode-languageserver-types";
 
-import { startsWith, endsWith } from '../utils/strings';
-import { joinPath } from '../utils/resources';
+import {
+	CompletionItem,
+	CompletionItemKind,
+	CompletionList,
+	DocumentContext,
+	FileType,
+	ICompletionParticipant,
+	ImportPathCompletionContext,
+	Position,
+	Range,
+	TextDocument,
+	TextEdit,
+	URILiteralCompletionContext,
+} from "../cssLanguageTypes";
+import { joinPath } from "../utils/resources";
+import { endsWith, startsWith } from "../utils/strings";
 
 export class PathCompletionParticipant implements ICompletionParticipant {
 	private literalCompletions: URILiteralCompletionContext[] = [];
 	private importCompletions: ImportPathCompletionContext[] = [];
 
-	constructor(private readonly readDirectory: (uri: DocumentUri) => Promise<[string, FileType][]>) {
-	}
+	constructor(
+		private readonly readDirectory: (
+			uri: DocumentUri,
+		) => Promise<[string, FileType][]>,
+	) {}
 
 	public onCssURILiteralValue(context: URILiteralCompletionContext) {
 		this.literalCompletions.push(context);
@@ -24,15 +40,24 @@ export class PathCompletionParticipant implements ICompletionParticipant {
 		this.importCompletions.push(context);
 	}
 
-	public async computeCompletions(document: TextDocument, documentContext: DocumentContext): Promise<CompletionList> {
+	public async computeCompletions(
+		document: TextDocument,
+		documentContext: DocumentContext,
+	): Promise<CompletionList> {
 		const result: CompletionList = { items: [], isIncomplete: false };
 		for (const literalCompletion of this.literalCompletions) {
 			const uriValue = literalCompletion.uriValue;
 			const fullValue = stripQuotes(uriValue);
-			if (fullValue === '.' || fullValue === '..') {
+			if (fullValue === "." || fullValue === "..") {
 				result.isIncomplete = true;
 			} else {
-				const items = await this.providePathSuggestions(uriValue, literalCompletion.position, literalCompletion.range, document, documentContext);
+				const items = await this.providePathSuggestions(
+					uriValue,
+					literalCompletion.position,
+					literalCompletion.range,
+					document,
+					documentContext,
+				);
 				for (let item of items) {
 					result.items.push(item);
 				}
@@ -41,14 +66,23 @@ export class PathCompletionParticipant implements ICompletionParticipant {
 		for (const importCompletion of this.importCompletions) {
 			const pathValue = importCompletion.pathValue;
 			const fullValue = stripQuotes(pathValue);
-			if (fullValue === '.' || fullValue === '..') {
+			if (fullValue === "." || fullValue === "..") {
 				result.isIncomplete = true;
 			} else {
-				let suggestions = await this.providePathSuggestions(pathValue, importCompletion.position, importCompletion.range, document, documentContext);
+				let suggestions = await this.providePathSuggestions(
+					pathValue,
+					importCompletion.position,
+					importCompletion.range,
+					document,
+					documentContext,
+				);
 
-				if (document.languageId === 'scss') {
-					suggestions.forEach(s => {
-						if (startsWith(s.label, '_') && endsWith(s.label, '.scss')) {
+				if (document.languageId === "scss") {
+					suggestions.forEach((s) => {
+						if (
+							startsWith(s.label, "_") &&
+							endsWith(s.label, ".scss")
+						) {
 							if (s.textEdit) {
 								s.textEdit.newText = s.label.slice(1, -5);
 							} else {
@@ -65,29 +99,59 @@ export class PathCompletionParticipant implements ICompletionParticipant {
 		return result;
 	}
 
-	private async providePathSuggestions(pathValue: string, position: Position, range: Range, document: TextDocument, documentContext: DocumentContext): Promise<CompletionItem[]> {
+	private async providePathSuggestions(
+		pathValue: string,
+		position: Position,
+		range: Range,
+		document: TextDocument,
+		documentContext: DocumentContext,
+	): Promise<CompletionItem[]> {
 		const fullValue = stripQuotes(pathValue);
-		const isValueQuoted = startsWith(pathValue, `'`) || startsWith(pathValue, `"`);
+		const isValueQuoted =
+			startsWith(pathValue, `'`) || startsWith(pathValue, `"`);
 		const valueBeforeCursor = isValueQuoted
-			? fullValue.slice(0, position.character - (range.start.character + 1))
+			? fullValue.slice(
+					0,
+					position.character - (range.start.character + 1),
+				)
 			: fullValue.slice(0, position.character - range.start.character);
 
 		const currentDocUri = document.uri;
 
 		const fullValueRange = isValueQuoted ? shiftRange(range, 1, -1) : range;
-		const replaceRange = pathToReplaceRange(valueBeforeCursor, fullValue, fullValueRange);
+		const replaceRange = pathToReplaceRange(
+			valueBeforeCursor,
+			fullValue,
+			fullValueRange,
+		);
 
-		const valueBeforeLastSlash = valueBeforeCursor.substring(0, valueBeforeCursor.lastIndexOf('/') + 1); // keep the last slash
+		const valueBeforeLastSlash = valueBeforeCursor.substring(
+			0,
+			valueBeforeCursor.lastIndexOf("/") + 1,
+		); // keep the last slash
 
-		let parentDir = documentContext.resolveReference(valueBeforeLastSlash || '.', currentDocUri);
+		let parentDir = documentContext.resolveReference(
+			valueBeforeLastSlash || ".",
+			currentDocUri,
+		);
 		if (parentDir) {
 			try {
 				const result: CompletionItem[] = [];
 				const infos = await this.readDirectory(parentDir);
 				for (const [name, type] of infos) {
 					// Exclude paths that start with `.`
-					if (name.charCodeAt(0) !== CharCode_dot && (type === FileType.Directory || joinPath(parentDir, name) !== currentDocUri)) {
-						result.push(createCompletionItem(name, type === FileType.Directory, replaceRange));
+					if (
+						name.charCodeAt(0) !== CharCode_dot &&
+						(type === FileType.Directory ||
+							joinPath(parentDir, name) !== currentDocUri)
+					) {
+						result.push(
+							createCompletionItem(
+								name,
+								type === FileType.Directory,
+								replaceRange,
+							),
+						);
 					}
 				}
 				return result;
@@ -99,7 +163,7 @@ export class PathCompletionParticipant implements ICompletionParticipant {
 	}
 }
 
-const CharCode_dot = '.'.charCodeAt(0);
+const CharCode_dot = ".".charCodeAt(0);
 
 function stripQuotes(fullValue: string) {
 	if (startsWith(fullValue, `'`) || startsWith(fullValue, `"`)) {
@@ -109,18 +173,25 @@ function stripQuotes(fullValue: string) {
 	}
 }
 
-function pathToReplaceRange(valueBeforeCursor: string, fullValue: string, fullValueRange: Range) {
+function pathToReplaceRange(
+	valueBeforeCursor: string,
+	fullValue: string,
+	fullValueRange: Range,
+) {
 	let replaceRange: Range;
-	const lastIndexOfSlash = valueBeforeCursor.lastIndexOf('/');
+	const lastIndexOfSlash = valueBeforeCursor.lastIndexOf("/");
 	if (lastIndexOfSlash === -1) {
 		replaceRange = fullValueRange;
 	} else {
 		// For cases where cursor is in the middle of attribute value, like <script src="./s|rc/test.js">
 		// Find the last slash before cursor, and calculate the start of replace range from there
 		const valueAfterLastSlash = fullValue.slice(lastIndexOfSlash + 1);
-		const startPos = shiftPosition(fullValueRange.end, -valueAfterLastSlash.length);
+		const startPos = shiftPosition(
+			fullValueRange.end,
+			-valueAfterLastSlash.length,
+		);
 		// If whitespace exists, replace until it
-		const whitespaceIndex = valueAfterLastSlash.indexOf(' ');
+		const whitespaceIndex = valueAfterLastSlash.indexOf(" ");
 		let endPos;
 		if (whitespaceIndex !== -1) {
 			endPos = shiftPosition(startPos, whitespaceIndex);
@@ -133,37 +204,44 @@ function pathToReplaceRange(valueBeforeCursor: string, fullValue: string, fullVa
 	return replaceRange;
 }
 
-function createCompletionItem(name: string, isDir: boolean, replaceRange: Range): CompletionItem {
+function createCompletionItem(
+	name: string,
+	isDir: boolean,
+	replaceRange: Range,
+): CompletionItem {
 	if (isDir) {
-		name = name + '/';
+		name = name + "/";
 		return {
 			label: escapePath(name),
 			kind: CompletionItemKind.Folder,
 			textEdit: TextEdit.replace(replaceRange, escapePath(name)),
 			command: {
-				title: 'Suggest',
-				command: 'editor.action.triggerSuggest'
-			}
+				title: "Suggest",
+				command: "editor.action.triggerSuggest",
+			},
 		};
 	} else {
 		return {
 			label: escapePath(name),
 			kind: CompletionItemKind.File,
-			textEdit: TextEdit.replace(replaceRange, escapePath(name))
+			textEdit: TextEdit.replace(replaceRange, escapePath(name)),
 		};
 	}
 }
 
 // Escape https://www.w3.org/TR/CSS1/#url
 function escapePath(p: string) {
-	return p.replace(/(\s|\(|\)|,|"|')/g, '\\$1');
+	return p.replace(/(\s|\(|\)|,|"|')/g, "\\$1");
 }
 function shiftPosition(pos: Position, offset: number): Position {
 	return Position.create(pos.line, pos.character + offset);
 }
-function shiftRange(range: Range, startOffset: number, endOffset: number): Range {
+function shiftRange(
+	range: Range,
+	startOffset: number,
+	endOffset: number,
+): Range {
 	const start = shiftPosition(range.start, startOffset);
 	const end = shiftPosition(range.end, endOffset);
 	return Range.create(start, end);
 }
-

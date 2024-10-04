@@ -2,20 +2,32 @@
  *  Copyright (c) Microsoft Corporation. All rights reserved.
  *  Licensed under the MIT License. See License.txt in the project root for license information.
  *--------------------------------------------------------------------------------------------*/
-'use strict';
+"use strict";
 
-import { Range, Position, SelectionRange, TextDocument } from '../cssLanguageTypes';
-import { Stylesheet, NodeType } from '../parser/cssNodes';
+import {
+	Position,
+	Range,
+	SelectionRange,
+	TextDocument,
+} from "../cssLanguageTypes";
+import { NodeType, Stylesheet } from "../parser/cssNodes";
 
-export function getSelectionRanges(document: TextDocument, positions: Position[], stylesheet: Stylesheet): SelectionRange[] {
+export function getSelectionRanges(
+	document: TextDocument,
+	positions: Position[],
+	stylesheet: Stylesheet,
+): SelectionRange[] {
 	function getSelectionRange(position: Position): SelectionRange {
 		const applicableRanges = getApplicableRanges(position);
 		let current: SelectionRange | undefined = undefined;
 		for (let index = applicableRanges.length - 1; index >= 0; index--) {
-			current = SelectionRange.create(Range.create(
-				document.positionAt(applicableRanges[index][0]),
-				document.positionAt(applicableRanges[index][1])
-			), current);
+			current = SelectionRange.create(
+				Range.create(
+					document.positionAt(applicableRanges[index][0]),
+					document.positionAt(applicableRanges[index][1]),
+				),
+				current,
+			);
 		}
 		if (!current) {
 			current = SelectionRange.create(Range.create(position, position));

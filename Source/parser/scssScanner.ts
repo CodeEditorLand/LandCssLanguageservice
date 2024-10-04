@@ -2,24 +2,24 @@
  *  Copyright (c) Microsoft Corporation. All rights reserved.
  *  Licensed under the MIT License. See License.txt in the project root for license information.
  *--------------------------------------------------------------------------------------------*/
-'use strict';
+"use strict";
 
-import { TokenType, Scanner, IToken } from './cssScanner';
+import { IToken, Scanner, TokenType } from "./cssScanner";
 
-const _FSL = '/'.charCodeAt(0);
-const _NWL = '\n'.charCodeAt(0);
-const _CAR = '\r'.charCodeAt(0);
-const _LFD = '\f'.charCodeAt(0);
+const _FSL = "/".charCodeAt(0);
+const _NWL = "\n".charCodeAt(0);
+const _CAR = "\r".charCodeAt(0);
+const _LFD = "\f".charCodeAt(0);
 
-const _DLR = '$'.charCodeAt(0);
-const _HSH = '#'.charCodeAt(0);
-const _CUL = '{'.charCodeAt(0);
-const _EQS = '='.charCodeAt(0);
-const _BNG = '!'.charCodeAt(0);
-const _LAN = '<'.charCodeAt(0);
-const _RAN = '>'.charCodeAt(0);
-const _DOT = '.'.charCodeAt(0);
-const _ATS = '@'.charCodeAt(0);
+const _DLR = "$".charCodeAt(0);
+const _HSH = "#".charCodeAt(0);
+const _CUL = "{".charCodeAt(0);
+const _EQS = "=".charCodeAt(0);
+const _BNG = "!".charCodeAt(0);
+const _LAN = "<".charCodeAt(0);
+const _RAN = ">".charCodeAt(0);
+const _DOT = ".".charCodeAt(0);
+const _ATS = "@".charCodeAt(0);
 
 let customTokenValue = TokenType.CustomToken;
 
@@ -34,14 +34,12 @@ export const Ellipsis: TokenType = customTokenValue++;
 export const Module: TokenType = customTokenValue++;
 
 export class SCSSScanner extends Scanner {
-
 	protected scanNext(offset: number): IToken {
-
 		// scss variable
 		if (this.stream.advanceIfChar(_DLR)) {
-			const content = ['$'];
+			const content = ["$"];
 			if (this.ident(content)) {
-				return this.finishToken(offset, VariableName, content.join(''));
+				return this.finishToken(offset, VariableName, content.join(""));
 			} else {
 				this.stream.goBackTo(offset);
 			}

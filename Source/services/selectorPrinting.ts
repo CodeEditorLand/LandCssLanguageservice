@@ -2,14 +2,15 @@
  *  Copyright (c) Microsoft Corporation. All rights reserved.
  *  Licensed under the MIT License. See License.txt in the project root for license information.
  *--------------------------------------------------------------------------------------------*/
-'use strict';
+"use strict";
 
-import * as nodes from '../parser/cssNodes';
-import { MarkedString } from '../cssLanguageTypes';
-import { Scanner } from '../parser/cssScanner';
-import * as l10n from '@vscode/l10n';
-import { CSSDataManager } from '../languageFacts/dataManager';
-import { Parser } from '../parser/cssParser';
+import * as l10n from "@vscode/l10n";
+
+import { MarkedString } from "../cssLanguageTypes";
+import { CSSDataManager } from "../languageFacts/dataManager";
+import * as nodes from "../parser/cssNodes";
+import { Parser } from "../parser/cssParser";
+import { Scanner } from "../parser/cssScanner";
 
 export class Element {
 	public parent: Element | null = null;
@@ -76,7 +77,7 @@ export class Element {
 		}
 		for (const attribute of this.attributes) {
 			if (attribute.name === name) {
-				attribute.value += ' ' + value;
+				attribute.value += " " + value;
 				return;
 			}
 		}
@@ -110,12 +111,12 @@ export class Element {
 	}
 }
 
-export class RootElement extends Element { }
+export class RootElement extends Element {}
 
 export class LabelElement extends Element {
 	constructor(label: string) {
 		super();
-		this.addAttr('name', label);
+		this.addAttr("name", label);
 	}
 }
 
@@ -126,7 +127,10 @@ class MarkedStringPrinter {
 		// empty
 	}
 
-	public print(element: Element, flagOpts?: { isMedia: boolean; text: string }): MarkedString[] {
+	public print(
+		element: Element,
+		flagOpts?: { isMedia: boolean; text: string },
+	): MarkedString[] {
 		this.result = [];
 		if (element instanceof RootElement) {
 			if (element.children) {
@@ -137,11 +141,11 @@ class MarkedStringPrinter {
 		}
 		let value;
 		if (flagOpts) {
-			value = `${flagOpts.text}\n … ` + this.result.join('\n');
+			value = `${flagOpts.text}\n … ` + this.result.join("\n");
 		} else {
-			value = this.result.join('\n');
+			value = this.result.join("\n");
 		}
-		return [{ language: 'html', value }];
+		return [{ language: "html", value }];
 	}
 
 	private doPrint(elements: Element[], indent: number) {
@@ -154,46 +158,46 @@ class MarkedStringPrinter {
 	}
 
 	private writeLine(level: number, content: string) {
-		const indent = new Array(level + 1).join('  ');
+		const indent = new Array(level + 1).join("  ");
 		this.result.push(indent + content);
 	}
 
 	private doPrintElement(element: Element, indent: number) {
-		const name = element.findAttribute('name');
+		const name = element.findAttribute("name");
 
 		// special case: a simple label
-		if (element instanceof LabelElement || name === '\u2026') {
+		if (element instanceof LabelElement || name === "\u2026") {
 			this.writeLine(indent, name!);
 			return;
 		}
 
 		// the real deal
-		const content = ['<'];
+		const content = ["<"];
 
 		// element name
 		if (name) {
 			content.push(name);
 		} else {
-			content.push('element');
+			content.push("element");
 		}
 
 		// attributes
 		if (element.attributes) {
 			for (const attr of element.attributes) {
-				if (attr.name !== 'name') {
-					content.push(' ');
+				if (attr.name !== "name") {
+					content.push(" ");
 					content.push(attr.name);
 					const value = attr.value;
 					if (value) {
-						content.push('=');
+						content.push("=");
 						content.push(quotes.ensure(value, this.quote));
 					}
 				}
 			}
 		}
-		content.push('>');
+		content.push(">");
 
-		this.writeLine(indent, content.join(''));
+		this.writeLine(indent, content.join(""));
 	}
 }
 
@@ -220,16 +224,19 @@ class Specificity {
 	public tag = 0;
 }
 
-export function toElement(node: nodes.SimpleSelector, parentElement?: Element | null): Element {
+export function toElement(
+	node: nodes.SimpleSelector,
+	parentElement?: Element | null,
+): Element {
 	let result = new Element();
 	for (const child of node.getChildren()) {
 		switch (child.type) {
 			case nodes.NodeType.SelectorCombinator:
 				if (parentElement) {
-					const segments = child.getText().split('&');
+					const segments = child.getText().split("&");
 					if (segments.length === 1) {
 						// should not happen
-						result.addAttr('name', segments[0]);
+						result.addAttr("name", segments[0]);
 						break;
 					}
 					result = parentElement.cloneWithParent();
@@ -248,25 +255,31 @@ export function toElement(node: nodes.SimpleSelector, parentElement?: Element | 
 				}
 				break;
 			case nodes.NodeType.SelectorPlaceholder:
-				if (child.matches('@at-root')) {
+				if (child.matches("@at-root")) {
 					return result;
 				}
 			// fall through
 			case nodes.NodeType.ElementNameSelector:
 				const text = child.getText();
-				result.addAttr('name', text === '*' ? 'element' : unescape(text));
+				result.addAttr(
+					"name",
+					text === "*" ? "element" : unescape(text),
+				);
 				break;
 			case nodes.NodeType.ClassSelector:
-				result.addAttr('class', unescape(child.getText().substring(1)));
+				result.addAttr("class", unescape(child.getText().substring(1)));
 				break;
 			case nodes.NodeType.IdentifierSelector:
-				result.addAttr('id', unescape(child.getText().substring(1)));
+				result.addAttr("id", unescape(child.getText().substring(1)));
 				break;
 			case nodes.NodeType.MixinDeclaration:
-				result.addAttr('class', (<nodes.MixinDeclaration>child).getName());
+				result.addAttr(
+					"class",
+					(<nodes.MixinDeclaration>child).getName(),
+				);
 				break;
 			case nodes.NodeType.PseudoSelector:
-				result.addAttr(unescape(child.getText()), '');
+				result.addAttr(unescape(child.getText()), "");
 				break;
 			case nodes.NodeType.AttributeSelector:
 				const selector = <nodes.AttributeSelector>child;
@@ -277,28 +290,30 @@ export function toElement(node: nodes.SimpleSelector, parentElement?: Element | 
 					let value: string;
 					if (expression && operator) {
 						switch (unescape(operator.getText())) {
-							case '|=':
+							case "|=":
 								// excatly or followed by -words
 								value = `${quotes.remove(unescape(expression.getText()))}-\u2026`;
 								break;
-							case '^=':
+							case "^=":
 								// prefix
 								value = `${quotes.remove(unescape(expression.getText()))}\u2026`;
 								break;
-							case '$=':
+							case "$=":
 								// suffix
 								value = `\u2026${quotes.remove(unescape(expression.getText()))}`;
 								break;
-							case '~=':
+							case "~=":
 								// one of a list of words
 								value = ` \u2026 ${quotes.remove(unescape(expression.getText()))} \u2026 `;
 								break;
-							case '*=':
+							case "*=":
 								// substring
 								value = `\u2026${quotes.remove(unescape(expression.getText()))}\u2026`;
 								break;
 							default:
-								value = quotes.remove(unescape(expression.getText()));
+								value = quotes.remove(
+									unescape(expression.getText()),
+								);
 								break;
 						}
 					}
@@ -321,12 +336,18 @@ function unescape(content: string) {
 }
 
 export class SelectorPrinting {
-	constructor(private cssDataManager: CSSDataManager) { }
+	constructor(private cssDataManager: CSSDataManager) {}
 
-	public selectorToMarkedString(node: nodes.Selector, flagOpts?: { isMedia: boolean; text: string }): MarkedString[] {
+	public selectorToMarkedString(
+		node: nodes.Selector,
+		flagOpts?: { isMedia: boolean; text: string },
+	): MarkedString[] {
 		const root = selectorToElement(node);
 		if (root) {
-			const markedStrings = new MarkedStringPrinter('"').print(root, flagOpts);
+			const markedStrings = new MarkedStringPrinter('"').print(
+				root,
+				flagOpts,
+			);
 			markedStrings.push(this.selectorToSpecificityMarkedString(node));
 			return markedStrings;
 		} else {
@@ -334,7 +355,9 @@ export class SelectorPrinting {
 		}
 	}
 
-	public simpleSelectorToMarkedString(node: nodes.SimpleSelector): MarkedString[] {
+	public simpleSelectorToMarkedString(
+		node: nodes.SimpleSelector,
+	): MarkedString[] {
 		const element = toElement(node);
 		const markedStrings = new MarkedStringPrinter('"').print(element);
 		markedStrings.push(this.selectorToSpecificityMarkedString(node));
@@ -348,11 +371,13 @@ export class SelectorPrinting {
 			return false;
 		}
 
-		return !!this.cssDataManager.getPseudoElement('::' + match[1]);
+		return !!this.cssDataManager.getPseudoElement("::" + match[1]);
 	}
 
 	private selectorToSpecificityMarkedString(node: nodes.Node): MarkedString {
-		const calculateMostSpecificListItem = (childElements: Array<nodes.Node>): Specificity => {
+		const calculateMostSpecificListItem = (
+			childElements: Array<nodes.Node>,
+		): Specificity => {
 			const specificity = new Specificity();
 
 			let mostSpecificListItem = new Specificity();
@@ -370,7 +395,9 @@ export class SelectorPrinting {
 					if (itemSpecificity.attr > mostSpecificListItem.attr) {
 						mostSpecificListItem = itemSpecificity;
 						continue;
-					} else if (itemSpecificity.attr < mostSpecificListItem.attr) {
+					} else if (
+						itemSpecificity.attr < mostSpecificListItem.attr
+					) {
 						continue;
 					}
 
@@ -405,7 +432,7 @@ export class SelectorPrinting {
 
 					case nodes.NodeType.ElementNameSelector:
 						//ignore universal selector
-						if (element.matches('*')) {
+						if (element.matches("*")) {
 							break;
 						}
 
@@ -417,13 +444,19 @@ export class SelectorPrinting {
 						const childElements = element.getChildren();
 
 						if (this.isPseudoElementIdentifier(text)) {
-							if (text.match(/^::slotted/i) && childElements.length > 0) {
+							if (
+								text.match(/^::slotted/i) &&
+								childElements.length > 0
+							) {
 								// The specificity of ::slotted() is that of a pseudo-element, plus the specificity of its argument.
 								// ::slotted() does not allow a selector list as its argument, but this isn't the right place to give feedback on validity.
 								// Reporting the most specific child will be correct for correct CSS and will be forgiving in case of mistakes.
 								specificity.tag++;
 
-								let mostSpecificListItem = calculateMostSpecificListItem(childElements);
+								let mostSpecificListItem =
+									calculateMostSpecificListItem(
+										childElements,
+									);
 
 								specificity.id += mostSpecificListItem.id;
 								specificity.attr += mostSpecificListItem.attr;
@@ -441,8 +474,12 @@ export class SelectorPrinting {
 						}
 
 						// the most specific child selector
-						if (text.match(/^:(?:not|has|is)/i) && childElements.length > 0) {
-							let mostSpecificListItem = calculateMostSpecificListItem(childElements);
+						if (
+							text.match(/^:(?:not|has|is)/i) &&
+							childElements.length > 0
+						) {
+							let mostSpecificListItem =
+								calculateMostSpecificListItem(childElements);
 
 							specificity.id += mostSpecificListItem.id;
 							specificity.attr += mostSpecificListItem.attr;
@@ -450,12 +487,16 @@ export class SelectorPrinting {
 							continue elementLoop;
 						}
 
-						if (text.match(/^:(?:host|host-context)/i) && childElements.length > 0) {
+						if (
+							text.match(/^:(?:host|host-context)/i) &&
+							childElements.length > 0
+						) {
 							// The specificity of :host() is that of a pseudo-class, plus the specificity of its argument.
 							// The specificity of :host-context() is that of a pseudo-class, plus the specificity of its argument.
 							specificity.attr++;
 
-							let mostSpecificListItem = calculateMostSpecificListItem(childElements);
+							let mostSpecificListItem =
+								calculateMostSpecificListItem(childElements);
 
 							specificity.id += mostSpecificListItem.id;
 							specificity.attr += mostSpecificListItem.attr;
@@ -463,14 +504,23 @@ export class SelectorPrinting {
 							continue elementLoop;
 						}
 
-						if (text.match(/^:(?:nth-child|nth-last-child)/i) && childElements.length > 0) {
+						if (
+							text.match(/^:(?:nth-child|nth-last-child)/i) &&
+							childElements.length > 0
+						) {
 							/* The specificity of the :nth-child(An+B [of S]?) pseudo-class is the specificity of a single pseudo-class plus, if S is specified, the specificity of the most specific complex selector in S */
 							// https://www.w3.org/TR/selectors-4/#the-nth-child-pseudo
 							specificity.attr++;
 
 							// 23 = Binary Expression.
-							if (childElements.length === 3 && childElements[1].type === 23) {
-								let mostSpecificListItem = calculateMostSpecificListItem(childElements[2].getChildren());
+							if (
+								childElements.length === 3 &&
+								childElements[1].type === 23
+							) {
+								let mostSpecificListItem =
+									calculateMostSpecificListItem(
+										childElements[2].getChildren(),
+									);
 
 								specificity.id += mostSpecificListItem.id;
 								specificity.attr += mostSpecificListItem.attr;
@@ -481,24 +531,40 @@ export class SelectorPrinting {
 
 							// Edge case: 'n' without integer prefix A, with B integer non-existent, is not regarded as a binary expression token.
 							const parser = new Parser();
-							const pseudoSelectorText = childElements[1].getText();
+							const pseudoSelectorText =
+								childElements[1].getText();
 							parser.scanner.setSource(pseudoSelectorText);
 							const firstToken = parser.scanner.scan();
 							const secondToken = parser.scanner.scan();
 
-							if (firstToken.text === 'n' || (firstToken.text === '-n' && secondToken.text === 'of')) {
-								const complexSelectorListNodes: nodes.Node[] = [];
-								const complexSelectorText = pseudoSelectorText.slice(secondToken.offset + 2);
-								const complexSelectorArray = complexSelectorText.split(',');
+							if (
+								firstToken.text === "n" ||
+								(firstToken.text === "-n" &&
+									secondToken.text === "of")
+							) {
+								const complexSelectorListNodes: nodes.Node[] =
+									[];
+								const complexSelectorText =
+									pseudoSelectorText.slice(
+										secondToken.offset + 2,
+									);
+								const complexSelectorArray =
+									complexSelectorText.split(",");
 
 								for (const selector of complexSelectorArray) {
-									const node = parser.internalParse(selector, parser._parseSelector);
+									const node = parser.internalParse(
+										selector,
+										parser._parseSelector,
+									);
 									if (node) {
 										complexSelectorListNodes.push(node);
 									}
 								}
 
-								let mostSpecificListItem = calculateMostSpecificListItem(complexSelectorListNodes);
+								let mostSpecificListItem =
+									calculateMostSpecificListItem(
+										complexSelectorListNodes,
+									);
 
 								specificity.id += mostSpecificListItem.id;
 								specificity.attr += mostSpecificListItem.attr;
@@ -525,7 +591,7 @@ export class SelectorPrinting {
 		};
 
 		const specificity = calculateScore(node);
-		return `[${l10n.t('Selector Specificity')}](https://developer.mozilla.org/docs/Web/CSS/Specificity): (${specificity.id}, ${specificity.attr}, ${specificity.tag})`;
+		return `[${l10n.t("Selector Specificity")}](https://developer.mozilla.org/docs/Web/CSS/Specificity): (${specificity.id}, ${specificity.attr}, ${specificity.tag})`;
 	}
 }
 
@@ -542,7 +608,16 @@ class SelectorElementBuilder {
 		let parentElement: Element | null = null;
 
 		if (!(this.element instanceof RootElement)) {
-			if (selector.getChildren().some((c) => c.hasChildren() && c.getChild(0)!.type === nodes.NodeType.SelectorCombinator)) {
+			if (
+				selector
+					.getChildren()
+					.some(
+						(c) =>
+							c.hasChildren() &&
+							c.getChild(0)!.type ===
+								nodes.NodeType.SelectorCombinator,
+					)
+			) {
 				const curr = this.element.findRoot();
 				if (curr.parent instanceof RootElement) {
 					parentElement = this.element;
@@ -557,18 +632,25 @@ class SelectorElementBuilder {
 		for (const selectorChild of selector.getChildren()) {
 			if (selectorChild instanceof nodes.SimpleSelector) {
 				if (this.prev instanceof nodes.SimpleSelector) {
-					const labelElement = new LabelElement('\u2026');
+					const labelElement = new LabelElement("\u2026");
 					this.element.addChild(labelElement);
 					this.element = labelElement;
-				} else if (this.prev && (this.prev.matches('+') || this.prev.matches('~')) && this.element.parent) {
+				} else if (
+					this.prev &&
+					(this.prev.matches("+") || this.prev.matches("~")) &&
+					this.element.parent
+				) {
 					this.element = <Element>this.element.parent;
 				}
 
-				if (this.prev && this.prev.matches('~')) {
-					this.element.addChild(new LabelElement('\u22EE'));
+				if (this.prev && this.prev.matches("~")) {
+					this.element.addChild(new LabelElement("\u22EE"));
 				}
 
-				const thisElement = toElement(<nodes.SimpleSelector>selectorChild, parentElement);
+				const thisElement = toElement(
+					<nodes.SimpleSelector>selectorChild,
+					parentElement,
+				);
 				const root = thisElement.findRoot();
 
 				this.element.addChild(root);
@@ -576,10 +658,14 @@ class SelectorElementBuilder {
 			}
 			if (
 				selectorChild instanceof nodes.SimpleSelector ||
-				selectorChild.type === nodes.NodeType.SelectorCombinatorParent ||
-				selectorChild.type === nodes.NodeType.SelectorCombinatorShadowPiercingDescendant ||
-				selectorChild.type === nodes.NodeType.SelectorCombinatorSibling ||
-				selectorChild.type === nodes.NodeType.SelectorCombinatorAllSiblings
+				selectorChild.type ===
+					nodes.NodeType.SelectorCombinatorParent ||
+				selectorChild.type ===
+					nodes.NodeType.SelectorCombinatorShadowPiercingDescendant ||
+				selectorChild.type ===
+					nodes.NodeType.SelectorCombinatorSibling ||
+				selectorChild.type ===
+					nodes.NodeType.SelectorCombinatorAllSiblings
 			) {
 				this.prev = selectorChild;
 			}
@@ -597,7 +683,7 @@ function isNewSelectorContext(node: nodes.Node): boolean {
 }
 
 export function selectorToElement(node: nodes.Selector): Element | null {
-	if (node.matches('@at-root')) {
+	if (node.matches("@at-root")) {
 		return null;
 	}
 	const root: Element = new RootElement();
@@ -608,7 +694,7 @@ export function selectorToElement(node: nodes.Selector): Element | null {
 		let parent = ruleSet.getParent(); // parent of the selector's ruleset
 		while (parent && !isNewSelectorContext(parent)) {
 			if (parent instanceof nodes.RuleSet) {
-				if (parent.getSelectors().matches('@at-root')) {
+				if (parent.getSelectors().matches("@at-root")) {
 					break;
 				}
 				parentRuleSets.push(<nodes.RuleSet>parent);
@@ -620,7 +706,9 @@ export function selectorToElement(node: nodes.Selector): Element | null {
 	const builder = new SelectorElementBuilder(root);
 
 	for (let i = parentRuleSets.length - 1; i >= 0; i--) {
-		const selector = <nodes.Selector>parentRuleSets[i].getSelectors().getChild(0);
+		const selector = <nodes.Selector>(
+			parentRuleSets[i].getSelectors().getChild(0)
+		);
 		if (selector) {
 			builder.processSelector(selector);
 		}

@@ -3,11 +3,21 @@
  *  Licensed under the MIT License. See License.txt in the project root for license information.
  *--------------------------------------------------------------------------------------------*/
 
-import { CSSFormatConfiguration, Range, TextEdit, Position, TextDocument } from '../cssLanguageTypes';
-import { css_beautify, IBeautifyCSSOptions } from '../beautify/beautify-css';
-import { repeat } from '../utils/strings';
+import { css_beautify, IBeautifyCSSOptions } from "../beautify/beautify-css";
+import {
+	CSSFormatConfiguration,
+	Position,
+	Range,
+	TextDocument,
+	TextEdit,
+} from "../cssLanguageTypes";
+import { repeat } from "../utils/strings";
 
-export function format(document: TextDocument, range: Range | undefined, options: CSSFormatConfiguration): TextEdit[] {
+export function format(
+	document: TextDocument,
+	range: Range | undefined,
+	options: CSSFormatConfiguration,
+): TextEdit[] {
 	let value = document.getText();
 	let includesEnd = true;
 	let initialIndentLevel = 0;
@@ -39,7 +49,10 @@ export function format(document: TextDocument, range: Range | undefined, options
 		if (extendedEnd === value.length || isEOL(value, extendedEnd)) {
 			endOffset = extendedEnd;
 		}
-		range = Range.create(document.positionAt(startOffset), document.positionAt(endOffset));
+		range = Range.create(
+			document.positionAt(startOffset),
+			document.positionAt(endOffset),
+		);
 
 		// Test if inside a rule
 		inRule = isInRule(value, startOffset);
@@ -47,28 +60,55 @@ export function format(document: TextDocument, range: Range | undefined, options
 		includesEnd = endOffset === value.length;
 		value = value.substring(startOffset, endOffset);
 		if (startOffset !== 0) {
-			const startOfLineOffset = document.offsetAt(Position.create(range.start.line, 0));
-			initialIndentLevel = computeIndentLevel(document.getText(), startOfLineOffset, options);
+			const startOfLineOffset = document.offsetAt(
+				Position.create(range.start.line, 0),
+			);
+			initialIndentLevel = computeIndentLevel(
+				document.getText(),
+				startOfLineOffset,
+				options,
+			);
 		}
 		if (inRule) {
 			value = `{\n${trimLeft(value)}`;
 		}
 	} else {
-		range = Range.create(Position.create(0, 0), document.positionAt(value.length));
+		range = Range.create(
+			Position.create(0, 0),
+			document.positionAt(value.length),
+		);
 	}
 	const cssOptions: IBeautifyCSSOptions = {
 		indent_size: tabSize,
-		indent_char: options.insertSpaces ? ' ' : '\t',
-		end_with_newline: includesEnd && getFormatOption(options, 'insertFinalNewline', false),
-		selector_separator_newline: getFormatOption(options, 'newlineBetweenSelectors', true),
-		newline_between_rules: getFormatOption(options, 'newlineBetweenRules', true),
-		space_around_selector_separator: getFormatOption(options, 'spaceAroundSelectorSeparator', false),
-		brace_style: getFormatOption(options, 'braceStyle', 'collapse'),
-		indent_empty_lines: getFormatOption(options, 'indentEmptyLines', false),
-		max_preserve_newlines: getFormatOption(options, 'maxPreserveNewLines', undefined),
-		preserve_newlines: getFormatOption(options, 'preserveNewLines', true),
-		wrap_line_length: getFormatOption(options, 'wrapLineLength', undefined),
-		eol: '\n'
+		indent_char: options.insertSpaces ? " " : "\t",
+		end_with_newline:
+			includesEnd &&
+			getFormatOption(options, "insertFinalNewline", false),
+		selector_separator_newline: getFormatOption(
+			options,
+			"newlineBetweenSelectors",
+			true,
+		),
+		newline_between_rules: getFormatOption(
+			options,
+			"newlineBetweenRules",
+			true,
+		),
+		space_around_selector_separator: getFormatOption(
+			options,
+			"spaceAroundSelectorSeparator",
+			false,
+		),
+		brace_style: getFormatOption(options, "braceStyle", "collapse"),
+		indent_empty_lines: getFormatOption(options, "indentEmptyLines", false),
+		max_preserve_newlines: getFormatOption(
+			options,
+			"maxPreserveNewLines",
+			undefined,
+		),
+		preserve_newlines: getFormatOption(options, "preserveNewLines", true),
+		wrap_line_length: getFormatOption(options, "wrapLineLength", undefined),
+		eol: "\n",
 	};
 
 	let result = css_beautify(value, cssOptions);
@@ -76,24 +116,28 @@ export function format(document: TextDocument, range: Range | undefined, options
 		result = trimLeft(result.substring(2));
 	}
 	if (initialIndentLevel > 0) {
-		const indent = options.insertSpaces ? repeat(' ', tabSize * initialIndentLevel) : repeat('\t', initialIndentLevel);
-		result = result.split('\n').join('\n' + indent);
+		const indent = options.insertSpaces
+			? repeat(" ", tabSize * initialIndentLevel)
+			: repeat("\t", initialIndentLevel);
+		result = result.split("\n").join("\n" + indent);
 		if (range.start.character === 0) {
 			result = indent + result; // keep the indent
 		}
 	}
-	return [{
-		range: range,
-		newText: result
-	}];
+	return [
+		{
+			range: range,
+			newText: result,
+		},
+	];
 }
 
 function trimLeft(str: string) {
-	return str.replace(/^\s+/, '');
+	return str.replace(/^\s+/, "");
 }
 
-const _CUL = '{'.charCodeAt(0);
-const _CUR = '}'.charCodeAt(0);
+const _CUL = "{".charCodeAt(0);
+const _CUR = "}".charCodeAt(0);
 
 function isInRule(str: string, offset: number) {
 	while (offset >= 0) {
@@ -108,7 +152,11 @@ function isInRule(str: string, offset: number) {
 	return false;
 }
 
-function getFormatOption(options: CSSFormatConfiguration, key: keyof CSSFormatConfiguration, dflt: any): any {
+function getFormatOption(
+	options: CSSFormatConfiguration,
+	key: keyof CSSFormatConfiguration,
+	dflt: any,
+): any {
 	if (options && options.hasOwnProperty(key)) {
 		const value = options[key];
 		if (value !== null) {
@@ -118,15 +166,19 @@ function getFormatOption(options: CSSFormatConfiguration, key: keyof CSSFormatCo
 	return dflt;
 }
 
-function computeIndentLevel(content: string, offset: number, options: CSSFormatConfiguration): number {
+function computeIndentLevel(
+	content: string,
+	offset: number,
+	options: CSSFormatConfiguration,
+): number {
 	let i = offset;
 	let nChars = 0;
 	const tabSize = options.tabSize || 4;
 	while (i < content.length) {
 		const ch = content.charAt(i);
-		if (ch === ' ') {
+		if (ch === " ") {
 			nChars++;
-		} else if (ch === '\t') {
+		} else if (ch === "\t") {
 			nChars += tabSize;
 		} else {
 			break;
@@ -137,9 +189,9 @@ function computeIndentLevel(content: string, offset: number, options: CSSFormatC
 }
 
 function isEOL(text: string, offset: number) {
-	return '\r\n'.indexOf(text.charAt(offset)) !== -1;
+	return "\r\n".indexOf(text.charAt(offset)) !== -1;
 }
 
 function isWhitespace(text: string, offset: number) {
-	return ' \t'.indexOf(text.charAt(offset)) !== -1;
+	return " \t".indexOf(text.charAt(offset)) !== -1;
 }

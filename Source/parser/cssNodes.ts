@@ -2,7 +2,7 @@
  *  Copyright (c) Microsoft Corporation. All rights reserved.
  *  Licensed under the MIT License. See License.txt in the project root for license information.
  *--------------------------------------------------------------------------------------------*/
-'use strict';
+"use strict";
 
 import { trim } from "../utils/strings";
 
@@ -113,13 +113,10 @@ export enum ReferenceType {
 	Module,
 	Forward,
 	ForwardVisibility,
-	Property
+	Property,
 }
 
-
-
 export function getNodeAtOffset(node: Node, offset: number): Node | null {
-
 	let candidate: Node | null = null;
 	if (!node || offset < node.offset || offset > node.end) {
 		return null;
@@ -144,7 +141,6 @@ export function getNodeAtOffset(node: Node, offset: number): Node | null {
 }
 
 export function getNodePath(node: Node, offset: number): Node[] {
-
 	let candidate = getNodeAtOffset(node, offset);
 	const path: Node[] = [];
 
@@ -169,16 +165,16 @@ export interface ITextProvider {
 	(offset: number, length: number): string;
 }
 
-
 export class Node {
-
 	public parent: Node | null;
 
 	public offset: number;
 	public length: number;
-	public get end() { return this.offset + this.length; }
+	public get end() {
+		return this.offset + this.length;
+	}
 
-	public options: { [name: string]: any; } | undefined;
+	public options: { [name: string]: any } | undefined;
 
 	public textProvider: ITextProvider | undefined; // only set on the root node
 
@@ -212,7 +208,9 @@ export class Node {
 		if (node) {
 			return node.textProvider!;
 		}
-		return () => { return 'unknown'; };
+		return () => {
+			return "unknown";
+		};
 	}
 
 	public getText(): string {
@@ -220,15 +218,24 @@ export class Node {
 	}
 
 	public matches(str: string): boolean {
-		return this.length === str.length && this.getTextProvider()(this.offset, this.length) === str;
+		return (
+			this.length === str.length &&
+			this.getTextProvider()(this.offset, this.length) === str
+		);
 	}
 
 	public startsWith(str: string): boolean {
-		return this.length >= str.length && this.getTextProvider()(this.offset, str.length) === str;
+		return (
+			this.length >= str.length &&
+			this.getTextProvider()(this.offset, str.length) === str
+		);
 	}
 
 	public endsWith(str: string): boolean {
-		return this.length >= str.length && this.getTextProvider()(this.end - str.length, str.length) === str;
+		return (
+			this.length >= str.length &&
+			this.getTextProvider()(this.end - str.length, str.length) === str
+		);
 	}
 
 	public accept(visitor: IVisitorFunction): void {
@@ -284,17 +291,28 @@ export class Node {
 	}
 
 	public hasIssue(rule: IRule): boolean {
-		return Array.isArray(this.issues) && this.issues.some(i => i.getRule() === rule);
+		return (
+			Array.isArray(this.issues) &&
+			this.issues.some((i) => i.getRule() === rule)
+		);
 	}
 
 	public isErroneous(recursive: boolean = false): boolean {
 		if (this.issues && this.issues.length > 0) {
 			return true;
 		}
-		return recursive && Array.isArray(this.children) && this.children.some(c => c.isErroneous(true));
+		return (
+			recursive &&
+			Array.isArray(this.children) &&
+			this.children.some((c) => c.isErroneous(true))
+		);
 	}
 
-	public setNode(field: keyof this, node: Node | null, index: number = -1): boolean {
+	public setNode(
+		field: keyof this,
+		node: Node | null,
+		index: number = -1,
+	): boolean {
 		if (node) {
 			node.attachTo(this, index);
 			(<any>this)[field] = node;
@@ -320,7 +338,7 @@ export class Node {
 			this.offset = node.offset;
 		}
 		const nodeEnd = node.end;
-		if ((nodeEnd > this.end) || this.length === -1) {
+		if (nodeEnd > this.end || this.length === -1) {
 			this.length = nodeEnd - this.offset;
 		}
 	}
@@ -372,7 +390,10 @@ export class Node {
 	}
 
 	public encloses(candidate: Node): boolean {
-		return this.offset <= candidate.offset && this.offset + this.length >= candidate.offset + candidate.length;
+		return (
+			this.offset <= candidate.offset &&
+			this.offset + this.length >= candidate.offset + candidate.length
+		);
 	}
 
 	public getParent(): Node | null {
@@ -393,7 +414,7 @@ export class Node {
 
 	public findAParent(...types: NodeType[]): Node | null {
 		let result: Node | null = this;
-		while (result && !types.some(t => result!.type === t)) {
+		while (result && !types.some((t) => result!.type === t)) {
 			result = result.parent;
 		}
 		return result;
@@ -415,7 +436,7 @@ export class Node {
 }
 
 export interface NodeConstructor<T> {
-	new(offset: number, len: number): T;
+	new (offset: number, len: number): T;
 }
 
 export class Nodelist extends Node {
@@ -430,7 +451,6 @@ export class Nodelist extends Node {
 }
 
 export class UnicodeRange extends Node {
-
 	public rangeStart?: Node;
 	public rangeEnd?: Node;
 
@@ -443,7 +463,7 @@ export class UnicodeRange extends Node {
 	}
 
 	public setRangeStart(rangeStart: Node | null): rangeStart is Node {
-		return this.setNode('rangeStart', rangeStart);
+		return this.setNode("rangeStart", rangeStart);
 	}
 
 	public getRangeStart(): Node | undefined {
@@ -451,7 +471,7 @@ export class UnicodeRange extends Node {
 	}
 
 	public setRangeEnd(rangeEnd: Node | null): rangeEnd is Node {
-		return this.setNode('rangeEnd', rangeEnd);
+		return this.setNode("rangeEnd", rangeEnd);
 	}
 
 	public getRangeEnd(): Node | undefined {
@@ -460,7 +480,6 @@ export class UnicodeRange extends Node {
 }
 
 export class Identifier extends Node {
-
 	public referenceTypes?: ReferenceType[];
 	public isCustomProperty = false;
 
@@ -478,7 +497,6 @@ export class Identifier extends Node {
 }
 
 export class Stylesheet extends Node {
-
 	constructor(offset: number, length: number) {
 		super(offset, length);
 	}
@@ -501,7 +519,6 @@ export class Declarations extends Node {
 }
 
 export class BodyDeclaration extends Node {
-
 	public declarations?: Declarations;
 
 	constructor(offset: number, length: number) {
@@ -513,13 +530,11 @@ export class BodyDeclaration extends Node {
 	}
 
 	public setDeclarations(decls: Declarations | null): decls is Declarations {
-		return this.setNode('declarations', decls);
+		return this.setNode("declarations", decls);
 	}
-
 }
 
 export class RuleSet extends BodyDeclaration {
-
 	private selectors?: Nodelist;
 
 	constructor(offset: number, length: number) {
@@ -538,12 +553,14 @@ export class RuleSet extends BodyDeclaration {
 	}
 
 	public isNested(): boolean {
-		return !!this.parent && this.parent.findParent(NodeType.Declarations) !== null;
+		return (
+			!!this.parent &&
+			this.parent.findParent(NodeType.Declarations) !== null
+		);
 	}
 }
 
 export class Selector extends Node {
-
 	private _selector!: void; // workaround for https://github.com/Microsoft/TypeScript/issues/12083
 
 	constructor(offset: number, length: number) {
@@ -553,11 +570,9 @@ export class Selector extends Node {
 	public get type(): NodeType {
 		return NodeType.Selector;
 	}
-
 }
 
 export class SimpleSelector extends Node {
-
 	private _simpleSelector!: void; // workaround for https://github.com/Microsoft/TypeScript/issues/12083
 
 	constructor(offset: number, length: number) {
@@ -570,7 +585,6 @@ export class SimpleSelector extends Node {
 }
 
 export class AtApplyRule extends Node {
-
 	public identifier?: Identifier;
 
 	constructor(offset: number, length: number) {
@@ -582,7 +596,7 @@ export class AtApplyRule extends Node {
 	}
 
 	public setIdentifier(node: Identifier | null): node is Identifier {
-		return this.setNode('identifier', node, 0);
+		return this.setNode("identifier", node, 0);
 	}
 
 	public getIdentifier(): Identifier | undefined {
@@ -590,12 +604,11 @@ export class AtApplyRule extends Node {
 	}
 
 	public getName(): string {
-		return this.identifier ? this.identifier.getText() : '';
+		return this.identifier ? this.identifier.getText() : "";
 	}
 }
 
 export abstract class AbstractDeclaration extends Node {
-
 	// positions for code assist
 	public colonPosition: number | undefined;
 	public semicolonPosition: number | undefined; // semicolon following the declaration
@@ -616,7 +629,6 @@ export class CustomPropertySet extends BodyDeclaration {
 }
 
 export class Declaration extends AbstractDeclaration {
-
 	public property: Property | null = null;
 	public value?: Expression;
 	public nestedProperties?: NestedProperties;
@@ -630,7 +642,7 @@ export class Declaration extends AbstractDeclaration {
 	}
 
 	public setProperty(node: Property | null): node is Property {
-		return this.setNode('property', node);
+		return this.setNode("property", node);
 	}
 
 	public getProperty(): Property | null {
@@ -638,11 +650,19 @@ export class Declaration extends AbstractDeclaration {
 	}
 
 	public getFullPropertyName(): string {
-		const propertyName = this.property ? this.property.getName() : 'unknown';
-		if (this.parent instanceof Declarations && this.parent.getParent() instanceof NestedProperties) {
+		const propertyName = this.property
+			? this.property.getName()
+			: "unknown";
+		if (
+			this.parent instanceof Declarations &&
+			this.parent.getParent() instanceof NestedProperties
+		) {
 			const parentDecl = this.parent.getParent()!.getParent();
 			if (parentDecl instanceof Declaration) {
-				return (<Declaration>parentDecl).getFullPropertyName() + propertyName;
+				return (
+					(<Declaration>parentDecl).getFullPropertyName() +
+					propertyName
+				);
 			}
 		}
 		return propertyName;
@@ -650,8 +670,8 @@ export class Declaration extends AbstractDeclaration {
 
 	public getNonPrefixedPropertyName(): string {
 		const propertyName = this.getFullPropertyName();
-		if (propertyName && propertyName.charAt(0) === '-') {
-			const vendorPrefixEnd = propertyName.indexOf('-', 1);
+		if (propertyName && propertyName.charAt(0) === "-") {
+			const vendorPrefixEnd = propertyName.indexOf("-", 1);
 			if (vendorPrefixEnd !== -1) {
 				return propertyName.substring(vendorPrefixEnd + 1);
 			}
@@ -660,15 +680,17 @@ export class Declaration extends AbstractDeclaration {
 	}
 
 	public setValue(value: Expression | null): value is Expression {
-		return this.setNode('value', value);
+		return this.setNode("value", value);
 	}
 
 	public getValue(): Expression | undefined {
 		return this.value;
 	}
 
-	public setNestedProperties(value: NestedProperties | null): value is NestedProperties {
-		return this.setNode('nestedProperties', value);
+	public setNestedProperties(
+		value: NestedProperties | null,
+	): value is NestedProperties {
+		return this.setNode("nestedProperties", value);
 	}
 
 	public getNestedProperties(): NestedProperties | undefined {
@@ -687,8 +709,10 @@ export class CustomPropertyDeclaration extends Declaration {
 		return NodeType.CustomPropertyDeclaration;
 	}
 
-	public setPropertySet(value: CustomPropertySet | null): value is CustomPropertySet {
-		return this.setNode('propertySet', value);
+	public setPropertySet(
+		value: CustomPropertySet | null,
+	): value is CustomPropertySet {
+		return this.setNode("propertySet", value);
 	}
 
 	public getPropertySet(): CustomPropertySet | undefined {
@@ -696,7 +720,6 @@ export class CustomPropertyDeclaration extends Declaration {
 	}
 }
 export class Property extends Node {
-
 	public identifier?: Identifier;
 
 	constructor(offset: number, length: number) {
@@ -708,7 +731,7 @@ export class Property extends Node {
 	}
 
 	public setIdentifier(value: Identifier | null): value is Identifier {
-		return this.setNode('identifier', value);
+		return this.setNode("identifier", value);
 	}
 
 	public getIdentifier(): Identifier | undefined {
@@ -725,7 +748,6 @@ export class Property extends Node {
 }
 
 export class Invocation extends Node {
-
 	private arguments?: Nodelist;
 
 	constructor(offset: number, length: number) {
@@ -745,7 +767,6 @@ export class Invocation extends Node {
 }
 
 export class Function extends Invocation {
-
 	public identifier?: Identifier;
 
 	constructor(offset: number, length: number) {
@@ -757,7 +778,7 @@ export class Function extends Invocation {
 	}
 
 	public setIdentifier(node: Identifier | null): node is Identifier {
-		return this.setNode('identifier', node, 0);
+		return this.setNode("identifier", node, 0);
 	}
 
 	public getIdentifier(): Identifier | undefined {
@@ -765,13 +786,11 @@ export class Function extends Invocation {
 	}
 
 	public getName(): string {
-		return this.identifier ? this.identifier.getText() : '';
+		return this.identifier ? this.identifier.getText() : "";
 	}
-
 }
 
 export class FunctionParameter extends Node {
-
 	public identifier?: Node;
 	public defaultValue?: Node;
 
@@ -784,7 +803,7 @@ export class FunctionParameter extends Node {
 	}
 
 	public setIdentifier(node: Node | null): node is Node {
-		return this.setNode('identifier', node, 0);
+		return this.setNode("identifier", node, 0);
 	}
 
 	public getIdentifier(): Node | undefined {
@@ -792,11 +811,11 @@ export class FunctionParameter extends Node {
 	}
 
 	public getName(): string {
-		return this.identifier ? this.identifier.getText() : '';
+		return this.identifier ? this.identifier.getText() : "";
 	}
 
 	public setDefaultValue(node: Node | null): node is Node {
-		return this.setNode('defaultValue', node, 0);
+		return this.setNode("defaultValue", node, 0);
 	}
 
 	public getDefaultValue(): Node | undefined {
@@ -805,7 +824,6 @@ export class FunctionParameter extends Node {
 }
 
 export class FunctionArgument extends Node {
-
 	public identifier?: Node;
 	public value?: Node;
 
@@ -818,7 +836,7 @@ export class FunctionArgument extends Node {
 	}
 
 	public setIdentifier(node: Node | null): node is Node {
-		return this.setNode('identifier', node, 0);
+		return this.setNode("identifier", node, 0);
 	}
 
 	public getIdentifier(): Node | undefined {
@@ -826,11 +844,11 @@ export class FunctionArgument extends Node {
 	}
 
 	public getName(): string {
-		return this.identifier ? this.identifier.getText() : '';
+		return this.identifier ? this.identifier.getText() : "";
 	}
 
 	public setValue(node: Node | null): node is Node {
-		return this.setNode('value', node, 0);
+		return this.setNode("value", node, 0);
 	}
 
 	public getValue(): Node | undefined {
@@ -851,11 +869,13 @@ export class IfStatement extends BodyDeclaration {
 	}
 
 	public setExpression(node: Expression | null): node is Expression {
-		return this.setNode('expression', node, 0);
+		return this.setNode("expression", node, 0);
 	}
 
-	public setElseClause(elseClause: BodyDeclaration | null): elseClause is BodyDeclaration {
-		return this.setNode('elseClause', elseClause);
+	public setElseClause(
+		elseClause: BodyDeclaration | null,
+	): elseClause is BodyDeclaration {
+		return this.setNode("elseClause", elseClause);
 	}
 }
 
@@ -871,7 +891,7 @@ export class ForStatement extends BodyDeclaration {
 	}
 
 	public setVariable(node: Variable | null): node is Variable {
-		return this.setNode('variable', node, 0);
+		return this.setNode("variable", node, 0);
 	}
 }
 
@@ -927,7 +947,7 @@ export class FunctionDeclaration extends BodyDeclaration {
 	}
 
 	public setIdentifier(node: Identifier | null): node is Identifier {
-		return this.setNode('identifier', node, 0);
+		return this.setNode("identifier", node, 0);
 	}
 
 	public getIdentifier(): Identifier | undefined {
@@ -935,7 +955,7 @@ export class FunctionDeclaration extends BodyDeclaration {
 	}
 
 	public getName(): string {
-		return this.identifier ? this.identifier.getText() : '';
+		return this.identifier ? this.identifier.getText() : "";
 	}
 
 	public getParameters(): Nodelist {
@@ -964,7 +984,6 @@ export class FontFace extends BodyDeclaration {
 	public get type(): NodeType {
 		return NodeType.FontFace;
 	}
-
 }
 
 export class NestedProperties extends BodyDeclaration {
@@ -978,7 +997,6 @@ export class NestedProperties extends BodyDeclaration {
 }
 
 export class Keyframe extends BodyDeclaration {
-
 	public keyword?: Node;
 	public identifier?: Identifier;
 
@@ -991,7 +1009,7 @@ export class Keyframe extends BodyDeclaration {
 	}
 
 	public setKeyword(keyword: Node | null): keyword is Node {
-		return this.setNode('keyword', keyword, 0);
+		return this.setNode("keyword", keyword, 0);
 	}
 
 	public getKeyword(): Node | undefined {
@@ -999,7 +1017,7 @@ export class Keyframe extends BodyDeclaration {
 	}
 
 	public setIdentifier(node: Node | null): node is Node {
-		return this.setNode('identifier', node, 0);
+		return this.setNode("identifier", node, 0);
 	}
 
 	public getIdentifier(): Node | undefined {
@@ -1007,7 +1025,7 @@ export class Keyframe extends BodyDeclaration {
 	}
 
 	public getName(): string {
-		return this.identifier ? this.identifier.getText() : '';
+		return this.identifier ? this.identifier.getText() : "";
 	}
 }
 
@@ -1022,7 +1040,6 @@ export class KeyframeSelector extends BodyDeclaration {
 }
 
 export class Import extends Node {
-
 	constructor(offset: number, length: number) {
 		super(offset, length);
 	}
@@ -1041,7 +1058,6 @@ export class Import extends Node {
 }
 
 export class Use extends Node {
-
 	public identifier?: Identifier;
 	public parameters?: Node;
 
@@ -1049,8 +1065,8 @@ export class Use extends Node {
 		return NodeType.Use;
 	}
 
-	public setParameters(value: Node | null): value is Node{
-		return this.setNode('parameters', value);
+	public setParameters(value: Node | null): value is Node {
+		return this.setNode("parameters", value);
 	}
 
 	public getParameters(): Node | undefined {
@@ -1058,7 +1074,7 @@ export class Use extends Node {
 	}
 
 	public setIdentifier(node: Identifier | null): node is Identifier {
-		return this.setNode('identifier', node, 0);
+		return this.setNode("identifier", node, 0);
 	}
 
 	public getIdentifier(): Identifier | undefined {
@@ -1067,7 +1083,6 @@ export class Use extends Node {
 }
 
 export class ModuleConfiguration extends Node {
-
 	public identifier?: Node;
 	public value?: Node;
 
@@ -1076,7 +1091,7 @@ export class ModuleConfiguration extends Node {
 	}
 
 	public setIdentifier(node: Node | null): node is Node {
-		return this.setNode('identifier', node, 0);
+		return this.setNode("identifier", node, 0);
 	}
 
 	public getIdentifier(): Node | undefined {
@@ -1084,11 +1099,11 @@ export class ModuleConfiguration extends Node {
 	}
 
 	public getName(): string {
-		return this.identifier ? this.identifier.getText() : '';
+		return this.identifier ? this.identifier.getText() : "";
 	}
 
 	public setValue(node: Node | null): node is Node {
-		return this.setNode('value', node, 0);
+		return this.setNode("value", node, 0);
 	}
 
 	public getValue(): Node | undefined {
@@ -1097,7 +1112,6 @@ export class ModuleConfiguration extends Node {
 }
 
 export class Forward extends Node {
-
 	public identifier?: Node;
 	public parameters?: Node;
 
@@ -1106,25 +1120,23 @@ export class Forward extends Node {
 	}
 
 	public setIdentifier(node: Node | null): node is Node {
-		return this.setNode('identifier', node, 0);
+		return this.setNode("identifier", node, 0);
 	}
 
 	public getIdentifier(): Node | undefined {
 		return this.identifier;
 	}
 
-	public setParameters(value: Node | null): value is Node{
-		return this.setNode('parameters', value);
+	public setParameters(value: Node | null): value is Node {
+		return this.setNode("parameters", value);
 	}
 
 	public getParameters(): Node | undefined {
 		return this.parameters;
 	}
-
 }
 
 export class ForwardVisibility extends Node {
-
 	public identifier?: Node;
 
 	public get type(): NodeType {
@@ -1132,17 +1144,15 @@ export class ForwardVisibility extends Node {
 	}
 
 	public setIdentifier(node: Node | null): node is Node {
-		return this.setNode('identifier', node, 0);
+		return this.setNode("identifier", node, 0);
 	}
 
 	public getIdentifier(): Node | undefined {
 		return this.identifier;
 	}
-
 }
 
 export class Namespace extends Node {
-
 	constructor(offset: number, length: number) {
 		super(offset, length);
 	}
@@ -1150,11 +1160,9 @@ export class Namespace extends Node {
 	public get type(): NodeType {
 		return NodeType.Namespace;
 	}
-
 }
 
 export class Media extends BodyDeclaration {
-
 	constructor(offset: number, length: number) {
 		super(offset, length);
 	}
@@ -1165,7 +1173,6 @@ export class Media extends BodyDeclaration {
 }
 
 export class Supports extends BodyDeclaration {
-
 	constructor(offset: number, length: number) {
 		super(offset, length);
 	}
@@ -1176,7 +1183,6 @@ export class Supports extends BodyDeclaration {
 }
 
 export class Layer extends BodyDeclaration {
-
 	public names?: Node;
 
 	constructor(offset: number, length: number) {
@@ -1188,17 +1194,15 @@ export class Layer extends BodyDeclaration {
 	}
 
 	public setNames(names: Node | null): names is Node {
-		return this.setNode('names', names);
+		return this.setNode("names", names);
 	}
 
 	public getNames(): Node | undefined {
 		return this.names;
 	}
-
 }
 
 export class PropertyAtRule extends BodyDeclaration {
-
 	private name: Identifier | undefined;
 
 	constructor(offset: number, length: number) {
@@ -1221,11 +1225,9 @@ export class PropertyAtRule extends BodyDeclaration {
 	public getName(): Identifier | undefined {
 		return this.name;
 	}
-
 }
 
 export class Document extends BodyDeclaration {
-
 	constructor(offset: number, length: number) {
 		super(offset, length);
 	}
@@ -1236,7 +1238,6 @@ export class Document extends BodyDeclaration {
 }
 
 export class Container extends BodyDeclaration {
-
 	constructor(offset: number, length: number) {
 		super(offset, length);
 	}
@@ -1253,7 +1254,6 @@ export class Medialist extends Node {
 }
 
 export class MediaQuery extends Node {
-
 	constructor(offset: number, length: number) {
 		super(offset, length);
 	}
@@ -1264,7 +1264,6 @@ export class MediaQuery extends Node {
 }
 
 export class MediaCondition extends Node {
-
 	constructor(offset: number, length: number) {
 		super(offset, length);
 	}
@@ -1275,7 +1274,6 @@ export class MediaCondition extends Node {
 }
 
 export class MediaFeature extends Node {
-
 	constructor(offset: number, length: number) {
 		super(offset, length);
 	}
@@ -1286,7 +1284,6 @@ export class MediaFeature extends Node {
 }
 
 export class SupportsCondition extends Node {
-
 	public lParent?: number;
 	public rParent?: number;
 
@@ -1299,9 +1296,7 @@ export class SupportsCondition extends Node {
 	}
 }
 
-
 export class Page extends BodyDeclaration {
-
 	constructor(offset: number, length: number) {
 		super(offset, length);
 	}
@@ -1309,11 +1304,9 @@ export class Page extends BodyDeclaration {
 	public get type(): NodeType {
 		return NodeType.Page;
 	}
-
 }
 
 export class PageBoxMarginBox extends BodyDeclaration {
-
 	constructor(offset: number, length: number) {
 		super(offset, length);
 	}
@@ -1321,11 +1314,9 @@ export class PageBoxMarginBox extends BodyDeclaration {
 	public get type(): NodeType {
 		return NodeType.PageBoxMarginBox;
 	}
-
 }
 
 export class Expression extends Node {
-
 	private _expression!: void; // workaround for https://github.com/Microsoft/TypeScript/issues/12083
 
 	constructor(offset: number, length: number) {
@@ -1338,7 +1329,6 @@ export class Expression extends Node {
 }
 
 export class BinaryExpression extends Node {
-
 	public left?: Node;
 	public right?: Node;
 	public operator?: Node;
@@ -1352,7 +1342,7 @@ export class BinaryExpression extends Node {
 	}
 
 	public setLeft(left: Node | null): left is Node {
-		return this.setNode('left', left);
+		return this.setNode("left", left);
 	}
 
 	public getLeft(): Node | undefined {
@@ -1360,7 +1350,7 @@ export class BinaryExpression extends Node {
 	}
 
 	public setRight(right: Node | null): right is Node {
-		return this.setNode('right', right);
+		return this.setNode("right", right);
 	}
 
 	public getRight(): Node | undefined {
@@ -1368,7 +1358,7 @@ export class BinaryExpression extends Node {
 	}
 
 	public setOperator(value: Node | null): value is Node {
-		return this.setNode('operator', value);
+		return this.setNode("operator", value);
 	}
 
 	public getOperator(): Node | undefined {
@@ -1377,7 +1367,6 @@ export class BinaryExpression extends Node {
 }
 
 export class Term extends Node {
-
 	public operator?: Node;
 	public expression?: Node;
 
@@ -1390,7 +1379,7 @@ export class Term extends Node {
 	}
 
 	public setOperator(value: Node | null): value is Node {
-		return this.setNode('operator', value);
+		return this.setNode("operator", value);
 	}
 
 	public getOperator(): Node | undefined {
@@ -1398,7 +1387,7 @@ export class Term extends Node {
 	}
 
 	public setExpression(value: Node | null): value is Node {
-		return this.setNode('expression', value);
+		return this.setNode("expression", value);
 	}
 
 	public getExpression(): Node | undefined {
@@ -1407,7 +1396,6 @@ export class Term extends Node {
 }
 
 export class AttributeSelector extends Node {
-
 	public namespacePrefix?: Node;
 	public identifier?: Identifier;
 	public operator?: Operator;
@@ -1422,7 +1410,7 @@ export class AttributeSelector extends Node {
 	}
 
 	public setNamespacePrefix(value: Node | null): value is Node {
-		return this.setNode('namespacePrefix', value);
+		return this.setNode("namespacePrefix", value);
 	}
 
 	public getNamespacePrefix(): Node | undefined {
@@ -1430,7 +1418,7 @@ export class AttributeSelector extends Node {
 	}
 
 	public setIdentifier(value: Identifier | null): value is Identifier {
-		return this.setNode('identifier', value);
+		return this.setNode("identifier", value);
 	}
 
 	public getIdentifier(): Identifier | undefined {
@@ -1438,7 +1426,7 @@ export class AttributeSelector extends Node {
 	}
 
 	public setOperator(operator: Operator | null): operator is Operator {
-		return this.setNode('operator', operator);
+		return this.setNode("operator", operator);
 	}
 
 	public getOperator(): Operator | undefined {
@@ -1446,7 +1434,7 @@ export class AttributeSelector extends Node {
 	}
 
 	public setValue(value: BinaryExpression | null): value is BinaryExpression {
-		return this.setNode('value', value);
+		return this.setNode("value", value);
 	}
 
 	public getValue(): BinaryExpression | undefined {
@@ -1455,7 +1443,6 @@ export class AttributeSelector extends Node {
 }
 
 export class Operator extends Node {
-
 	constructor(offset: number, length: number) {
 		super(offset, length);
 	}
@@ -1463,7 +1450,6 @@ export class Operator extends Node {
 	public get type(): NodeType {
 		return NodeType.Operator;
 	}
-
 }
 
 export class HexColorValue extends Node {
@@ -1476,11 +1462,9 @@ export class HexColorValue extends Node {
 	public get type(): NodeType {
 		return NodeType.HexColorValue;
 	}
-
 }
 
 export class RatioValue extends Node {
-
 	constructor(offset: number, length: number) {
 		super(offset, length);
 	}
@@ -1488,15 +1472,13 @@ export class RatioValue extends Node {
 	public get type(): NodeType {
 		return NodeType.RatioValue;
 	}
-
 }
 
-const _dot = '.'.charCodeAt(0),
-	_0 = '0'.charCodeAt(0),
-	_9 = '9'.charCodeAt(0);
+const _dot = ".".charCodeAt(0),
+	_0 = "0".charCodeAt(0),
+	_9 = "9".charCodeAt(0);
 
 export class NumericValue extends Node {
-
 	constructor(offset: number, length: number) {
 		super(offset, length);
 	}
@@ -1511,20 +1493,19 @@ export class NumericValue extends Node {
 		let code: number;
 		for (let i = 0, len = raw.length; i < len; i++) {
 			code = raw.charCodeAt(i);
-			if (!(_0 <= code && code <= _9 || code === _dot)) {
+			if (!((_0 <= code && code <= _9) || code === _dot)) {
 				break;
 			}
 			unitIdx += 1;
 		}
 		return {
 			value: raw.substring(0, unitIdx),
-			unit: unitIdx < raw.length ? raw.substring(unitIdx) : undefined
+			unit: unitIdx < raw.length ? raw.substring(unitIdx) : undefined,
 		};
 	}
 }
 
 export class VariableDeclaration extends AbstractDeclaration {
-
 	private variable: Variable | undefined;
 	private value: Node | undefined;
 	public needsSemicolon: boolean = true;
@@ -1551,7 +1532,7 @@ export class VariableDeclaration extends AbstractDeclaration {
 	}
 
 	public getName(): string {
-		return this.variable ? this.variable.getName() : '';
+		return this.variable ? this.variable.getName() : "";
 	}
 
 	public setValue(node: Node | undefined | null): node is Node {
@@ -1569,7 +1550,6 @@ export class VariableDeclaration extends AbstractDeclaration {
 }
 
 export class Interpolation extends Node {
-
 	// private _interpolations: void; // workaround for https://github.com/Microsoft/TypeScript/issues/18276
 
 	constructor(offset: number, length: number) {
@@ -1582,7 +1562,6 @@ export class Interpolation extends Node {
 }
 
 export class Variable extends Node {
-
 	public module?: Module;
 
 	constructor(offset: number, length: number) {
@@ -1596,7 +1575,6 @@ export class Variable extends Node {
 	public getName(): string {
 		return this.getText();
 	}
-
 }
 
 export class ExtendsReference extends Node {
@@ -1616,7 +1594,6 @@ export class ExtendsReference extends Node {
 		}
 		return this.selectors;
 	}
-
 }
 
 export class MixinContentReference extends Node {
@@ -1657,8 +1634,6 @@ export class MixinContentDeclaration extends BodyDeclaration {
 	}
 }
 
-
-
 export class MixinReference extends Node {
 	public namespaces?: Nodelist;
 	public identifier?: Identifier;
@@ -1681,7 +1656,7 @@ export class MixinReference extends Node {
 	}
 
 	public setIdentifier(node: Identifier | null): node is Identifier {
-		return this.setNode('identifier', node, 0);
+		return this.setNode("identifier", node, 0);
 	}
 
 	public getIdentifier(): Identifier | undefined {
@@ -1689,7 +1664,7 @@ export class MixinReference extends Node {
 	}
 
 	public getName(): string {
-		return this.identifier ? this.identifier.getText() : '';
+		return this.identifier ? this.identifier.getText() : "";
 	}
 
 	public getArguments(): Nodelist {
@@ -1699,18 +1674,18 @@ export class MixinReference extends Node {
 		return this.arguments;
 	}
 
-	public setContent(node: MixinContentDeclaration | null): node is MixinContentDeclaration {
-		return this.setNode('content', node);
+	public setContent(
+		node: MixinContentDeclaration | null,
+	): node is MixinContentDeclaration {
+		return this.setNode("content", node);
 	}
 
 	public getContent(): MixinContentDeclaration | undefined {
 		return this.content;
 	}
-
 }
 
 export class MixinDeclaration extends BodyDeclaration {
-
 	public identifier?: Identifier;
 	private parameters?: Nodelist;
 	private guard?: LessGuard;
@@ -1724,7 +1699,7 @@ export class MixinDeclaration extends BodyDeclaration {
 	}
 
 	public setIdentifier(node: Identifier | null): node is Identifier {
-		return this.setNode('identifier', node, 0);
+		return this.setNode("identifier", node, 0);
 	}
 
 	public getIdentifier(): Identifier | undefined {
@@ -1732,7 +1707,7 @@ export class MixinDeclaration extends BodyDeclaration {
 	}
 
 	public getName(): string {
-		return this.identifier ? this.identifier.getText() : '';
+		return this.identifier ? this.identifier.getText() : "";
 	}
 
 	public getParameters(): Nodelist {
@@ -1771,7 +1746,6 @@ export class UnknownAtRule extends BodyDeclaration {
 }
 
 export class ListEntry extends Node {
-
 	public key?: Node;
 	public value?: Node;
 
@@ -1780,16 +1754,15 @@ export class ListEntry extends Node {
 	}
 
 	public setKey(node: Node | null): node is Node {
-		return this.setNode('key', node, 0);
+		return this.setNode("key", node, 0);
 	}
 
 	public setValue(node: Node | null): node is Node {
-		return this.setNode('value', node, 1);
+		return this.setNode("value", node, 1);
 	}
 }
 
 export class LessGuard extends Node {
-
 	private conditions?: Nodelist;
 
 	public getConditions(): Nodelist {
@@ -1801,7 +1774,6 @@ export class LessGuard extends Node {
 }
 
 export class GuardCondition extends Node {
-
 	public isNegated?: boolean;
 	public variable?: Node;
 	public isEquals?: boolean;
@@ -1811,12 +1783,11 @@ export class GuardCondition extends Node {
 	public isEqualsLess?: boolean;
 
 	public setVariable(node: Node | null): node is Node {
-		return this.setNode('variable', node);
+		return this.setNode("variable", node);
 	}
 }
 
 export class Module extends Node {
-
 	public identifier?: Identifier;
 
 	public get type(): NodeType {
@@ -1824,13 +1795,12 @@ export class Module extends Node {
 	}
 
 	public setIdentifier(node: Identifier | null): node is Identifier {
-		return this.setNode('identifier', node, 0);
+		return this.setNode("identifier", node, 0);
 	}
 
 	public getIdentifier(): Identifier | undefined {
 		return this.identifier;
 	}
-
 }
 
 export interface IRule {
@@ -1838,11 +1808,10 @@ export interface IRule {
 	message: string;
 }
 
-
 export enum Level {
 	Ignore = 1,
 	Warning = 2,
-	Error = 4
+	Error = 4,
 }
 
 export interface IMarker {
@@ -1855,7 +1824,6 @@ export interface IMarker {
 }
 
 export class Marker implements IMarker {
-
 	private node: Node;
 	private rule: IRule;
 	private level: Level;
@@ -1863,7 +1831,14 @@ export class Marker implements IMarker {
 	private offset: number;
 	private length: number;
 
-	constructor(node: Node, rule: IRule, level: Level, message?: string, offset: number = node.offset, length: number = node.length) {
+	constructor(
+		node: Node,
+		rule: IRule,
+		level: Level,
+		message?: string,
+		offset: number = node.offset,
+		length: number = node.length,
+	) {
 		this.node = node;
 		this.rule = rule;
 		this.level = level;
@@ -2065,7 +2040,6 @@ export class DefaultVisitor implements IVisitor {
 }
 */
 export class ParseErrorCollector implements IVisitor {
-
 	static entries(node: Node): IMarker[] {
 		const visitor = new ParseErrorCollector();
 		node.acceptVisitor(visitor);
@@ -2079,7 +2053,6 @@ export class ParseErrorCollector implements IVisitor {
 	}
 
 	public visitNode(node: Node): boolean {
-
 		if (node.isErroneous()) {
 			node.collectIssues(this.entries);
 		}
