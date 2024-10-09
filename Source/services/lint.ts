@@ -2,21 +2,21 @@
  *  Copyright (c) Microsoft Corporation. All rights reserved.
  *  Licensed under the MIT License. See License.txt in the project root for license information.
  *--------------------------------------------------------------------------------------------*/
-'use strict';
+"use strict";
 
-import * as l10n from '@vscode/l10n';
-import { TextDocument } from '../cssLanguageTypes';
-import { CSSDataManager } from '../languageFacts/dataManager';
-import * as languageFacts from '../languageFacts/facts';
-import * as nodes from '../parser/cssNodes';
-import { union } from '../utils/arrays';
-import { LintConfigurationSettings, Rule, Rules, Settings } from './lintRules';
-import calculateBoxModel, { Element } from './lintUtil';
+import * as l10n from "@vscode/l10n";
 
-
+import { TextDocument } from "../cssLanguageTypes";
+import { CSSDataManager } from "../languageFacts/dataManager";
+import * as languageFacts from "../languageFacts/facts";
+import * as nodes from "../parser/cssNodes";
+import { union } from "../utils/arrays";
+import { LintConfigurationSettings, Rule, Rules, Settings } from "./lintRules";
+import calculateBoxModel, { Element } from "./lintUtil";
 
 class NodesByRootMap {
-	public data: { [name: string]: { nodes: nodes.Node[]; names: string[] } } = {};
+	public data: { [name: string]: { nodes: nodes.Node[]; names: string[] } } =
+		{};
 
 	public add(root: string, name: string, node?: nodes.Node | null): void {
 		let entry = this.data[root];
@@ -32,8 +32,13 @@ class NodesByRootMap {
 }
 
 export class LintVisitor implements nodes.IVisitor {
-
-	static entries(node: nodes.Node, document: TextDocument, settings: LintConfigurationSettings, cssDataManager: CSSDataManager, entryFilter?: number): nodes.IMarker[] {
+	static entries(
+		node: nodes.Node,
+		document: TextDocument,
+		settings: LintConfigurationSettings,
+		cssDataManager: CSSDataManager,
+		entryFilter?: number,
+	): nodes.IMarker[] {
 		const visitor = new LintVisitor(document, settings, cssDataManager);
 		node.acceptVisitor(visitor);
 		visitor.completeValidations();
@@ -41,7 +46,10 @@ export class LintVisitor implements nodes.IVisitor {
 	}
 
 	static prefixes = [
-		'-ms-', '-moz-', '-o-', '-webkit-', // Quite common
+		"-ms-",
+		"-moz-",
+		"-o-",
+		"-webkit-", // Quite common
 		//		'-xv-', '-atsc-', '-wap-', '-khtml-', 'mso-', 'prince-', '-ah-', '-hp-', '-ro-', '-rim-', '-tc-' // Quite un-common
 	];
 
@@ -52,7 +60,11 @@ export class LintVisitor implements nodes.IVisitor {
 
 	private validProperties: { [name: string]: boolean };
 
-	private constructor(document: TextDocument, settings: LintConfigurationSettings, private cssDataManager: CSSDataManager) {
+	private constructor(
+		document: TextDocument,
+		settings: LintConfigurationSettings,
+		private cssDataManager: CSSDataManager,
+	) {
 		this.settings = settings;
 		this.documentText = document.getText();
 		this.keyframes = new NodesByRootMap();
@@ -61,7 +73,7 @@ export class LintVisitor implements nodes.IVisitor {
 		const properties = settings.getSetting(Settings.ValidProperties);
 		if (Array.isArray(properties)) {
 			properties.forEach((p) => {
-				if (typeof p === 'string') {
+				if (typeof p === "string") {
 					const name = p.trim().toLowerCase();
 					if (name.length) {
 						this.validProperties[name] = true;
@@ -101,9 +113,12 @@ export class LintVisitor implements nodes.IVisitor {
 		return elements;
 	}
 
-	private findValueInExpression(expression: nodes.Expression, v: string): boolean {
+	private findValueInExpression(
+		expression: nodes.Expression,
+		v: string,
+	): boolean {
 		let found = false;
-		expression.accept(node => {
+		expression.accept((node) => {
 			if (node.type === nodes.NodeType.Identifier && node.matches(v)) {
 				found = true;
 			}
@@ -112,19 +127,28 @@ export class LintVisitor implements nodes.IVisitor {
 		return found;
 	}
 
-
-	public getEntries(filter: number = (nodes.Level.Warning | nodes.Level.Error)): nodes.IMarker[] {
-		return this.warnings.filter(entry => {
+	public getEntries(
+		filter: number = nodes.Level.Warning | nodes.Level.Error,
+	): nodes.IMarker[] {
+		return this.warnings.filter((entry) => {
 			return (entry.getLevel() & filter) !== 0;
 		});
 	}
 
 	private addEntry(node: nodes.Node, rule: Rule, details?: string): void {
-		const entry = new nodes.Marker(node, rule, this.settings.getRule(rule), details);
+		const entry = new nodes.Marker(
+			node,
+			rule,
+			this.settings.getRule(rule),
+			details,
+		);
 		this.warnings.push(entry);
 	}
 
-	private getMissingNames(expected: string[], actual: string[]): string | null {
+	private getMissingNames(
+		expected: string[],
+		actual: string[],
+	): string | null {
 		const expectedClone: (string | null)[] = expected.slice(0); // clone
 
 		for (let i = 0; i < actual.length; i++) {
@@ -185,12 +209,18 @@ export class LintVisitor implements nodes.IVisitor {
 			return false;
 		}
 
-		const atDirective = this.cssDataManager.getAtDirective(atRuleName.getText());
+		const atDirective = this.cssDataManager.getAtDirective(
+			atRuleName.getText(),
+		);
 		if (atDirective) {
 			return false;
 		}
 
-		this.addEntry(atRuleName, Rules.UnknownAtRules, `Unknown at rule ${atRuleName.getText()}`);
+		this.addEntry(
+			atRuleName,
+			Rules.UnknownAtRules,
+			`Unknown at rule ${atRuleName.getText()}`,
+		);
 		return true;
 	}
 
@@ -201,31 +231,51 @@ export class LintVisitor implements nodes.IVisitor {
 		}
 
 		const text = keyword.getText();
-		this.keyframes.add(node.getName(), text, (text !== '@keyframes') ? keyword : null);
+		this.keyframes.add(
+			node.getName(),
+			text,
+			text !== "@keyframes" ? keyword : null,
+		);
 		return true;
 	}
 
 	private validateKeyframes(): boolean {
 		// @keyframe and it's vendor specific alternatives
 		// @keyframe should be included
-		const expected = ['@-webkit-keyframes', '@-moz-keyframes', '@-o-keyframes'];
+		const expected = [
+			"@-webkit-keyframes",
+			"@-moz-keyframes",
+			"@-o-keyframes",
+		];
 
 		for (const name in this.keyframes.data) {
 			const actual = this.keyframes.data[name].names;
-			const needsStandard = (actual.indexOf('@keyframes') === -1);
+			const needsStandard = actual.indexOf("@keyframes") === -1;
 			if (!needsStandard && actual.length === 1) {
 				continue; // only the non-vendor specific keyword is used, that's fine, no warning
 			}
 
-			const missingVendorSpecific = this.getMissingNames(expected, actual);
+			const missingVendorSpecific = this.getMissingNames(
+				expected,
+				actual,
+			);
 			if (missingVendorSpecific || needsStandard) {
 				for (const node of this.keyframes.data[name].nodes) {
 					if (needsStandard) {
-						const message = l10n.t("Always define standard rule '@keyframes' when defining keyframes.");
-						this.addEntry(node, Rules.IncludeStandardPropertyWhenUsingVendorPrefix, message);
+						const message = l10n.t(
+							"Always define standard rule '@keyframes' when defining keyframes.",
+						);
+						this.addEntry(
+							node,
+							Rules.IncludeStandardPropertyWhenUsingVendorPrefix,
+							message,
+						);
 					}
 					if (missingVendorSpecific) {
-						const message = l10n.t("Always include all vendor specific rules: Missing: {0}", missingVendorSpecific);
+						const message = l10n.t(
+							"Always include all vendor specific rules: Missing: {0}",
+							missingVendorSpecific,
+						);
 						this.addEntry(node, Rules.AllVendorPrefixes, message);
 					}
 				}
@@ -241,7 +291,7 @@ export class LintVisitor implements nodes.IVisitor {
 		/////////////////////////////////////////////////////////////
 		const firstChar = this.documentText.charAt(node.offset);
 
-		if (node.length === 1 && firstChar === '*') {
+		if (node.length === 1 && firstChar === "*") {
 			this.addEntry(node, Rules.UniversalSelector);
 		}
 
@@ -273,7 +323,6 @@ export class LintVisitor implements nodes.IVisitor {
 			// syntax error
 			return false;
 		}
-
 
 		if (!declarations.hasChildren()) {
 			this.addEntry(node.getSelectors(), Rules.EmptyRuleSet);
@@ -330,24 +379,40 @@ export class LintVisitor implements nodes.IVisitor {
 		/////////////////////////////////////////////////////////////
 
 		// With 'display: inline-block', 'float' has no effect
-		let displayElems = this.fetchWithValue(propertyTable, 'display', 'inline-block');
+		let displayElems = this.fetchWithValue(
+			propertyTable,
+			"display",
+			"inline-block",
+		);
 		if (displayElems.length > 0) {
-			const elem = this.fetch(propertyTable, 'float');
+			const elem = this.fetch(propertyTable, "float");
 			for (let index = 0; index < elem.length; index++) {
 				const node = elem[index].node;
 				const value = node.getValue();
-				if (value && !value.matches('none')) {
-					this.addEntry(node, Rules.PropertyIgnoredDueToDisplay, l10n.t("inline-block is ignored due to the float. If 'float' has a value other than 'none', the box is floated and 'display' is treated as 'block'"));
+				if (value && !value.matches("none")) {
+					this.addEntry(
+						node,
+						Rules.PropertyIgnoredDueToDisplay,
+						l10n.t(
+							"inline-block is ignored due to the float. If 'float' has a value other than 'none', the box is floated and 'display' is treated as 'block'",
+						),
+					);
 				}
 			}
 		}
 
 		// With 'display: block', 'vertical-align' has no effect
-		displayElems = this.fetchWithValue(propertyTable, 'display', 'block');
+		displayElems = this.fetchWithValue(propertyTable, "display", "block");
 		if (displayElems.length > 0) {
-			const elem = this.fetch(propertyTable, 'vertical-align');
+			const elem = this.fetch(propertyTable, "vertical-align");
 			for (let index = 0; index < elem.length; index++) {
-				this.addEntry(elem[index].node, Rules.PropertyIgnoredDueToDisplay, l10n.t("Property is ignored due to the display. With 'display: block', vertical-align should not be used."));
+				this.addEntry(
+					elem[index].node,
+					Rules.PropertyIgnoredDueToDisplay,
+					l10n.t(
+						"Property is ignored due to the display. With 'display: block', vertical-align should not be used.",
+					),
+				);
 			}
 		}
 
@@ -355,7 +420,7 @@ export class LintVisitor implements nodes.IVisitor {
 		//	Avoid 'float'
 		/////////////////////////////////////////////////////////////
 
-		const elements: Element[] = this.fetch(propertyTable, 'float');
+		const elements: Element[] = this.fetch(propertyTable, "float");
 		for (let index = 0; index < elements.length; index++) {
 			const element = elements[index];
 			if (!this.isValidPropertyDeclaration(element)) {
@@ -368,15 +433,29 @@ export class LintVisitor implements nodes.IVisitor {
 		/////////////////////////////////////////////////////////////
 		for (let i = 0; i < propertyTable.length; i++) {
 			const element = propertyTable[i];
-			if (element.fullPropertyName !== 'background' && !this.validProperties[element.fullPropertyName]) {
+			if (
+				element.fullPropertyName !== "background" &&
+				!this.validProperties[element.fullPropertyName]
+			) {
 				const value = element.node.getValue();
-				if (value && this.documentText.charAt(value.offset) !== '-') {
-					const elements = this.fetch(propertyTable, element.fullPropertyName);
+				if (value && this.documentText.charAt(value.offset) !== "-") {
+					const elements = this.fetch(
+						propertyTable,
+						element.fullPropertyName,
+					);
 					if (elements.length > 1) {
 						for (let k = 0; k < elements.length; k++) {
 							const value = elements[k].node.getValue();
-							if (value && this.documentText.charAt(value.offset) !== '-' && elements[k] !== element) {
-								this.addEntry(element.node, Rules.DuplicateDeclarations);
+							if (
+								value &&
+								this.documentText.charAt(value.offset) !==
+									"-" &&
+								elements[k] !== element
+							) {
+								this.addEntry(
+									element.node,
+									Rules.DuplicateDeclarations,
+								);
 							}
 						}
 					}
@@ -400,25 +479,50 @@ export class LintVisitor implements nodes.IVisitor {
 					let name = element.fullPropertyName;
 					const firstChar = name.charAt(0);
 
-					if (firstChar === '-') {
-						if (name.charAt(1) !== '-') { // avoid css variables
-							if (!this.cssDataManager.isKnownProperty(name) && !this.validProperties[name]) {
-								this.addEntry(decl.getProperty()!, Rules.UnknownVendorSpecificProperty);
+					if (firstChar === "-") {
+						if (name.charAt(1) !== "-") {
+							// avoid css variables
+							if (
+								!this.cssDataManager.isKnownProperty(name) &&
+								!this.validProperties[name]
+							) {
+								this.addEntry(
+									decl.getProperty()!,
+									Rules.UnknownVendorSpecificProperty,
+								);
 							}
-							const nonPrefixedName = decl.getNonPrefixedPropertyName();
-							propertiesBySuffix.add(nonPrefixedName, name, decl.getProperty());
+							const nonPrefixedName =
+								decl.getNonPrefixedPropertyName();
+							propertiesBySuffix.add(
+								nonPrefixedName,
+								name,
+								decl.getProperty(),
+							);
 						}
 					} else {
 						const fullName = name;
-						if (firstChar === '*' || firstChar === '_') {
-							this.addEntry(decl.getProperty()!, Rules.IEStarHack);
+						if (firstChar === "*" || firstChar === "_") {
+							this.addEntry(
+								decl.getProperty()!,
+								Rules.IEStarHack,
+							);
 							name = name.substr(1);
 						}
 
 						// _property and *property might be contributed via custom data
-						if (!this.cssDataManager.isKnownProperty(fullName) && !this.cssDataManager.isKnownProperty(name)) {
+						if (
+							!this.cssDataManager.isKnownProperty(fullName) &&
+							!this.cssDataManager.isKnownProperty(name)
+						) {
 							if (!this.validProperties[name]) {
-								this.addEntry(decl.getProperty()!, Rules.UnknownProperty, l10n.t("Unknown property: '{0}'", decl.getFullPropertyName()));
+								this.addEntry(
+									decl.getProperty()!,
+									Rules.UnknownProperty,
+									l10n.t(
+										"Unknown property: '{0}'",
+										decl.getFullPropertyName(),
+									),
+								);
 							}
 						}
 
@@ -429,12 +533,15 @@ export class LintVisitor implements nodes.IVisitor {
 				}
 			}
 
-			if (!containsUnknowns) { // don't perform this test if there are
+			if (!containsUnknowns) {
+				// don't perform this test if there are
 				for (const suffix in propertiesBySuffix.data) {
 					const entry = propertiesBySuffix.data[suffix];
 					const actual = entry.names;
 
-					const needsStandard = this.cssDataManager.isStandardProperty(suffix) && (actual.indexOf(suffix) === -1);
+					const needsStandard =
+						this.cssDataManager.isStandardProperty(suffix) &&
+						actual.indexOf(suffix) === -1;
 					if (!needsStandard && actual.length === 1) {
 						continue; // only the non-vendor specific rule is used, that's fine, no warning
 					}
@@ -445,43 +552,82 @@ export class LintVisitor implements nodes.IVisitor {
 					 *
 					 * (See https://github.com/microsoft/vscode/issues/164350)
 					 */
-					const entriesThatNeedStandard = new Set<nodes.Node>(needsStandard ? entry.nodes : []);
+					const entriesThatNeedStandard = new Set<nodes.Node>(
+						needsStandard ? entry.nodes : [],
+					);
 					if (needsStandard) {
-						const pseudoElements = this.getContextualVendorSpecificPseudoElements(node);
+						const pseudoElements =
+							this.getContextualVendorSpecificPseudoElements(
+								node,
+							);
 						for (const node of entry.nodes) {
-							const propertyName = (node as nodes.Property).getName();
-							const prefix = propertyName.substring(0, propertyName.length - suffix.length);
-							if (pseudoElements.some(x => x.startsWith(prefix))) {
+							const propertyName = (
+								node as nodes.Property
+							).getName();
+							const prefix = propertyName.substring(
+								0,
+								propertyName.length - suffix.length,
+							);
+							if (
+								pseudoElements.some((x) => x.startsWith(prefix))
+							) {
 								entriesThatNeedStandard.delete(node);
 							}
 						}
 					}
 
 					const expected: string[] = [];
-					for (let i = 0, len = LintVisitor.prefixes.length; i < len; i++) {
+					for (
+						let i = 0, len = LintVisitor.prefixes.length;
+						i < len;
+						i++
+					) {
 						const prefix = LintVisitor.prefixes[i];
-						if (this.cssDataManager.isStandardProperty(prefix + suffix)) {
+						if (
+							this.cssDataManager.isStandardProperty(
+								prefix + suffix,
+							)
+						) {
 							expected.push(prefix + suffix);
 						}
 					}
 
-					const missingVendorSpecific = this.getMissingNames(expected, actual);
+					const missingVendorSpecific = this.getMissingNames(
+						expected,
+						actual,
+					);
 					if (missingVendorSpecific || needsStandard) {
 						for (const node of entry.nodes) {
-							if (needsStandard && entriesThatNeedStandard.has(node)) {
-								const message = l10n.t("Also define the standard property '{0}' for compatibility", suffix);
-								this.addEntry(node, Rules.IncludeStandardPropertyWhenUsingVendorPrefix, message);
+							if (
+								needsStandard &&
+								entriesThatNeedStandard.has(node)
+							) {
+								const message = l10n.t(
+									"Also define the standard property '{0}' for compatibility",
+									suffix,
+								);
+								this.addEntry(
+									node,
+									Rules.IncludeStandardPropertyWhenUsingVendorPrefix,
+									message,
+								);
 							}
 							if (missingVendorSpecific) {
-								const message = l10n.t("Always include all vendor specific properties: Missing: {0}", missingVendorSpecific);
-								this.addEntry(node, Rules.AllVendorPrefixes, message);
+								const message = l10n.t(
+									"Always include all vendor specific properties: Missing: {0}",
+									missingVendorSpecific,
+								);
+								this.addEntry(
+									node,
+									Rules.AllVendorPrefixes,
+									message,
+								);
 							}
 						}
 					}
 				}
 			}
 		}
-
 
 		return true;
 	}
@@ -492,7 +638,9 @@ export class LintVisitor implements nodes.IVisitor {
 	 * @returns An array of vendor specific pseudo-elements; or empty if none
 	 * was found.
 	 */
-	private getContextualVendorSpecificPseudoElements(node: nodes.Node): string[] {
+	private getContextualVendorSpecificPseudoElements(
+		node: nodes.Node,
+	): string[] {
 		function walkDown(s: Set<string>, n: nodes.Node) {
 			for (const child of n.getChildren()) {
 				if (child.type === nodes.NodeType.PseudoSelector) {
@@ -506,7 +654,9 @@ export class LintVisitor implements nodes.IVisitor {
 		}
 		function walkUp(s: Set<string>, n: nodes.Node): undefined {
 			if (n.type === nodes.NodeType.Ruleset) {
-				for (const selector of (n as nodes.RuleSet).getSelectors().getChildren()) {
+				for (const selector of (n as nodes.RuleSet)
+					.getSelectors()
+					.getChildren()) {
 					walkDown(s, selector);
 				}
 			}
@@ -529,20 +679,33 @@ export class LintVisitor implements nodes.IVisitor {
 		/////////////////////////////////////////////////////////////
 		//	0 has no following unit
 		/////////////////////////////////////////////////////////////
-		const funcDecl = (node.findParent(nodes.NodeType.Function) as nodes.Function);
-		if (funcDecl && funcDecl.getName() === 'calc') {
+		const funcDecl = node.findParent(
+			nodes.NodeType.Function,
+		) as nodes.Function;
+		if (funcDecl && funcDecl.getName() === "calc") {
 			return true;
 		}
 
-		const decl = <nodes.Declaration>node.findParent(nodes.NodeType.Declaration);
+		const decl = <nodes.Declaration>(
+			node.findParent(nodes.NodeType.Declaration)
+		);
 		if (decl) {
 			const declValue = decl.getValue();
 			if (declValue) {
 				const value = node.getValue();
-				if (!value.unit || languageFacts.units.length.indexOf(value.unit.toLowerCase()) === -1) {
+				if (
+					!value.unit ||
+					languageFacts.units.length.indexOf(
+						value.unit.toLowerCase(),
+					) === -1
+				) {
 					return true;
 				}
-				if (parseFloat(value.value) === 0.0 && !!value.unit && !this.validProperties[decl.getFullPropertyName()]) {
+				if (
+					parseFloat(value.value) === 0.0 &&
+					!!value.unit &&
+					!this.validProperties[decl.getFullPropertyName()]
+				) {
 					this.addEntry(node, Rules.ZeroWithUnit);
 				}
 			}
@@ -557,13 +720,18 @@ export class LintVisitor implements nodes.IVisitor {
 			return false;
 		}
 
-		let definesSrc = false, definesFontFamily = false;
+		let definesSrc = false,
+			definesFontFamily = false;
 		let containsUnknowns = false;
 		for (const node of declarations.getChildren()) {
 			if (this.isCSSDeclaration(node)) {
 				const name = node.getProperty()!.getName().toLowerCase();
-				if (name === 'src') { definesSrc = true; }
-				if (name === 'font-family') { definesFontFamily = true; }
+				if (name === "src") {
+					definesSrc = true;
+				}
+				if (name === "font-family") {
+					definesFontFamily = true;
+				}
 			} else {
 				containsUnknowns = true;
 			}
@@ -604,24 +772,23 @@ export class LintVisitor implements nodes.IVisitor {
 	}
 
 	private visitFunction(node: nodes.Function): boolean {
-
 		const fnName = node.getName().toLowerCase();
 		let expectedAttrCount = -1;
 		let actualAttrCount = 0;
 
 		switch (fnName) {
-			case 'rgb(':
-			case 'hsl(':
+			case "rgb(":
+			case "hsl(":
 				expectedAttrCount = 3;
 				break;
-			case 'rgba(':
-			case 'hsla(':
+			case "rgba(":
+			case "hsla(":
 				expectedAttrCount = 4;
 				break;
 		}
 
 		if (expectedAttrCount !== -1) {
-			node.getArguments().accept(n => {
+			node.getArguments().accept((n) => {
 				if (n instanceof nodes.BinaryExpression) {
 					actualAttrCount += 1;
 					return false;

@@ -2,7 +2,7 @@
  *  Copyright (c) Microsoft Corporation. All rights reserved.
  *  Licensed under the MIT License. See License.txt in the project root for license information.
  *--------------------------------------------------------------------------------------------*/
-'use strict';
+"use strict";
 
 export enum TokenType {
 	Ident,
@@ -48,7 +48,7 @@ export enum TokenType {
 	SingleLineComment,
 	EOF,
 	ContainerQueryLength,
-	CustomToken // must be last token type
+	CustomToken, // must be last token type
 }
 
 export interface IToken {
@@ -59,7 +59,6 @@ export interface IToken {
 }
 
 export class MultiLineStream {
-
 	private source: string;
 	private len: number;
 	private position: number;
@@ -130,59 +129,62 @@ export class MultiLineStream {
 
 	public advanceWhileChar(condition: (ch: number) => boolean): number {
 		const posNow = this.position;
-		while (this.position < this.len && condition(this.source.charCodeAt(this.position))) {
+		while (
+			this.position < this.len &&
+			condition(this.source.charCodeAt(this.position))
+		) {
 			this.position++;
 		}
 		return this.position - posNow;
 	}
 }
 
-const _a = 'a'.charCodeAt(0);
-const _f = 'f'.charCodeAt(0);
-const _z = 'z'.charCodeAt(0);
-const _u = 'u'.charCodeAt(0);
-const _A = 'A'.charCodeAt(0);
-const _F = 'F'.charCodeAt(0);
-const _Z = 'Z'.charCodeAt(0);
-const _0 = '0'.charCodeAt(0);
-const _9 = '9'.charCodeAt(0);
-const _TLD = '~'.charCodeAt(0);
-const _HAT = '^'.charCodeAt(0);
-const _EQS = '='.charCodeAt(0);
-const _PIP = '|'.charCodeAt(0);
-const _MIN = '-'.charCodeAt(0);
-const _USC = '_'.charCodeAt(0);
-const _PRC = '%'.charCodeAt(0);
-const _MUL = '*'.charCodeAt(0);
-const _LPA = '('.charCodeAt(0);
-const _RPA = ')'.charCodeAt(0);
-const _LAN = '<'.charCodeAt(0);
-const _RAN = '>'.charCodeAt(0);
-const _ATS = '@'.charCodeAt(0);
-const _HSH = '#'.charCodeAt(0);
-const _DLR = '$'.charCodeAt(0);
-const _BSL = '\\'.charCodeAt(0);
-const _FSL = '/'.charCodeAt(0);
-const _NWL = '\n'.charCodeAt(0);
-const _CAR = '\r'.charCodeAt(0);
-const _LFD = '\f'.charCodeAt(0);
+const _a = "a".charCodeAt(0);
+const _f = "f".charCodeAt(0);
+const _z = "z".charCodeAt(0);
+const _u = "u".charCodeAt(0);
+const _A = "A".charCodeAt(0);
+const _F = "F".charCodeAt(0);
+const _Z = "Z".charCodeAt(0);
+const _0 = "0".charCodeAt(0);
+const _9 = "9".charCodeAt(0);
+const _TLD = "~".charCodeAt(0);
+const _HAT = "^".charCodeAt(0);
+const _EQS = "=".charCodeAt(0);
+const _PIP = "|".charCodeAt(0);
+const _MIN = "-".charCodeAt(0);
+const _USC = "_".charCodeAt(0);
+const _PRC = "%".charCodeAt(0);
+const _MUL = "*".charCodeAt(0);
+const _LPA = "(".charCodeAt(0);
+const _RPA = ")".charCodeAt(0);
+const _LAN = "<".charCodeAt(0);
+const _RAN = ">".charCodeAt(0);
+const _ATS = "@".charCodeAt(0);
+const _HSH = "#".charCodeAt(0);
+const _DLR = "$".charCodeAt(0);
+const _BSL = "\\".charCodeAt(0);
+const _FSL = "/".charCodeAt(0);
+const _NWL = "\n".charCodeAt(0);
+const _CAR = "\r".charCodeAt(0);
+const _LFD = "\f".charCodeAt(0);
 const _DQO = '"'.charCodeAt(0);
-const _SQO = '\''.charCodeAt(0);
-const _WSP = ' '.charCodeAt(0);
-const _TAB = '\t'.charCodeAt(0);
-const _SEM = ';'.charCodeAt(0);
-const _COL = ':'.charCodeAt(0);
-const _CUL = '{'.charCodeAt(0);
-const _CUR = '}'.charCodeAt(0);
-const _BRL = '['.charCodeAt(0);
-const _BRR = ']'.charCodeAt(0);
-const _CMA = ','.charCodeAt(0);
-const _DOT = '.'.charCodeAt(0);
-const _BNG = '!'.charCodeAt(0);
-const _QSM = '?'.charCodeAt(0);
-const _PLS = '+'.charCodeAt(0);
+const _SQO = "'".charCodeAt(0);
+const _WSP = " ".charCodeAt(0);
+const _TAB = "\t".charCodeAt(0);
+const _SEM = ";".charCodeAt(0);
+const _COL = ":".charCodeAt(0);
+const _CUL = "{".charCodeAt(0);
+const _CUR = "}".charCodeAt(0);
+const _BRL = "[".charCodeAt(0);
+const _BRR = "]".charCodeAt(0);
+const _CMA = ",".charCodeAt(0);
+const _DOT = ".".charCodeAt(0);
+const _BNG = "!".charCodeAt(0);
+const _QSM = "?".charCodeAt(0);
+const _PLS = "+".charCodeAt(0);
 
-const staticTokenTable: { [code: number]: TokenType; } = {};
+const staticTokenTable: { [code: number]: TokenType } = {};
 staticTokenTable[_SEM] = TokenType.SemiColon;
 staticTokenTable[_COL] = TokenType.Colon;
 staticTokenTable[_CUL] = TokenType.CurlyL;
@@ -193,36 +195,35 @@ staticTokenTable[_LPA] = TokenType.ParenthesisL;
 staticTokenTable[_RPA] = TokenType.ParenthesisR;
 staticTokenTable[_CMA] = TokenType.Comma;
 
-const staticUnitTable: { [code: string]: TokenType; } = {};
-staticUnitTable['em'] = TokenType.EMS;
-staticUnitTable['ex'] = TokenType.EXS;
-staticUnitTable['px'] = TokenType.Length;
-staticUnitTable['cm'] = TokenType.Length;
-staticUnitTable['mm'] = TokenType.Length;
-staticUnitTable['in'] = TokenType.Length;
-staticUnitTable['pt'] = TokenType.Length;
-staticUnitTable['pc'] = TokenType.Length;
-staticUnitTable['deg'] = TokenType.Angle;
-staticUnitTable['rad'] = TokenType.Angle;
-staticUnitTable['grad'] = TokenType.Angle;
-staticUnitTable['ms'] = TokenType.Time;
-staticUnitTable['s'] = TokenType.Time;
-staticUnitTable['hz'] = TokenType.Freq;
-staticUnitTable['khz'] = TokenType.Freq;
-staticUnitTable['%'] = TokenType.Percentage;
-staticUnitTable['fr'] = TokenType.Percentage;
-staticUnitTable['dpi'] = TokenType.Resolution;
-staticUnitTable['dpcm'] = TokenType.Resolution;
-staticUnitTable['cqw'] = TokenType.ContainerQueryLength;
-staticUnitTable['cqh'] = TokenType.ContainerQueryLength;
-staticUnitTable['cqi'] = TokenType.ContainerQueryLength;
-staticUnitTable['cqb'] = TokenType.ContainerQueryLength;
-staticUnitTable['cqmin'] = TokenType.ContainerQueryLength;
-staticUnitTable['cqmax'] = TokenType.ContainerQueryLength;
+const staticUnitTable: { [code: string]: TokenType } = {};
+staticUnitTable["em"] = TokenType.EMS;
+staticUnitTable["ex"] = TokenType.EXS;
+staticUnitTable["px"] = TokenType.Length;
+staticUnitTable["cm"] = TokenType.Length;
+staticUnitTable["mm"] = TokenType.Length;
+staticUnitTable["in"] = TokenType.Length;
+staticUnitTable["pt"] = TokenType.Length;
+staticUnitTable["pc"] = TokenType.Length;
+staticUnitTable["deg"] = TokenType.Angle;
+staticUnitTable["rad"] = TokenType.Angle;
+staticUnitTable["grad"] = TokenType.Angle;
+staticUnitTable["ms"] = TokenType.Time;
+staticUnitTable["s"] = TokenType.Time;
+staticUnitTable["hz"] = TokenType.Freq;
+staticUnitTable["khz"] = TokenType.Freq;
+staticUnitTable["%"] = TokenType.Percentage;
+staticUnitTable["fr"] = TokenType.Percentage;
+staticUnitTable["dpi"] = TokenType.Resolution;
+staticUnitTable["dpcm"] = TokenType.Resolution;
+staticUnitTable["cqw"] = TokenType.ContainerQueryLength;
+staticUnitTable["cqh"] = TokenType.ContainerQueryLength;
+staticUnitTable["cqi"] = TokenType.ContainerQueryLength;
+staticUnitTable["cqb"] = TokenType.ContainerQueryLength;
+staticUnitTable["cqmin"] = TokenType.ContainerQueryLength;
+staticUnitTable["cqmax"] = TokenType.ContainerQueryLength;
 
 export class Scanner {
-
-	public stream: MultiLineStream = new MultiLineStream('');
+	public stream: MultiLineStream = new MultiLineStream("");
 	public ignoreComment = true;
 	public ignoreWhitespace = true;
 	public inURL = false;
@@ -236,7 +237,7 @@ export class Scanner {
 			offset: offset,
 			len: this.stream.pos() - offset,
 			type: type,
-			text: text || this.stream.substring(offset)
+			text: text || this.stream.substring(offset),
 		};
 	}
 
@@ -256,7 +257,11 @@ export class Scanner {
 		const offset = this.stream.pos();
 		const content: string[] = [];
 		if (this._unquotedString(content)) {
-			return this.finishToken(offset, TokenType.UnquotedString, content.join(''));
+			return this.finishToken(
+				offset,
+				TokenType.UnquotedString,
+				content.join(""),
+			);
 		}
 		return null;
 	}
@@ -292,7 +297,6 @@ export class Scanner {
 	}
 
 	protected scanNext(offset: number): IToken {
-
 		// CDO <!--
 		if (this.stream.advanceIfChars([_LAN, _BNG, _MIN, _MIN])) {
 			return this.finishToken(offset, TokenType.CDO);
@@ -305,18 +309,26 @@ export class Scanner {
 
 		let content: string[] = [];
 		if (this.ident(content)) {
-			return this.finishToken(offset, TokenType.Ident, content.join(''));
+			return this.finishToken(offset, TokenType.Ident, content.join(""));
 		}
 
 		// at-keyword
 		if (this.stream.advanceIfChar(_ATS)) {
-			content = ['@'];
+			content = ["@"];
 			if (this._name(content)) {
-				const keywordText = content.join('');
-				if (keywordText === '@charset') {
-					return this.finishToken(offset, TokenType.Charset, keywordText);
+				const keywordText = content.join("");
+				if (keywordText === "@charset") {
+					return this.finishToken(
+						offset,
+						TokenType.Charset,
+						keywordText,
+					);
 				}
-				return this.finishToken(offset, TokenType.AtKeyword, keywordText);
+				return this.finishToken(
+					offset,
+					TokenType.AtKeyword,
+					keywordText,
+				);
 			} else {
 				return this.finishToken(offset, TokenType.Delim);
 			}
@@ -324,9 +336,13 @@ export class Scanner {
 
 		// hash
 		if (this.stream.advanceIfChar(_HSH)) {
-			content = ['#'];
+			content = ["#"];
 			if (this._name(content)) {
-				return this.finishToken(offset, TokenType.Hash, content.join(''));
+				return this.finishToken(
+					offset,
+					TokenType.Hash,
+					content.join(""),
+				);
 			} else {
 				return this.finishToken(offset, TokenType.Delim);
 			}
@@ -339,7 +355,6 @@ export class Scanner {
 
 		// Numbers
 		if (this._number()) {
-
 			const pos = this.stream.pos();
 			content = [this.stream.substring(offset, pos)];
 			if (this.stream.advanceIfChar(_PRC)) {
@@ -348,12 +363,20 @@ export class Scanner {
 			} else if (this.ident(content)) {
 				const dim = this.stream.substring(pos).toLowerCase();
 				const tokenType = <TokenType>staticUnitTable[dim];
-				if (typeof tokenType !== 'undefined') {
+				if (typeof tokenType !== "undefined") {
 					// Known dimension 43px
-					return this.finishToken(offset, tokenType, content.join(''));
+					return this.finishToken(
+						offset,
+						tokenType,
+						content.join(""),
+					);
 				} else {
 					// Unknown dimension 43ft
-					return this.finishToken(offset, TokenType.Dimension, content.join(''));
+					return this.finishToken(
+						offset,
+						TokenType.Dimension,
+						content.join(""),
+					);
 				}
 			}
 
@@ -364,42 +387,57 @@ export class Scanner {
 		content = [];
 		let tokenType = this._string(content);
 		if (tokenType !== null) {
-			return this.finishToken(offset, tokenType, content.join(''));
+			return this.finishToken(offset, tokenType, content.join(""));
 		}
 
 		// single character tokens
 		tokenType = <TokenType>staticTokenTable[this.stream.peekChar()];
-		if (typeof tokenType !== 'undefined') {
+		if (typeof tokenType !== "undefined") {
 			this.stream.advance(1);
 			return this.finishToken(offset, tokenType);
 		}
 
 		// includes ~=
-		if (this.stream.peekChar(0) === _TLD && this.stream.peekChar(1) === _EQS) {
+		if (
+			this.stream.peekChar(0) === _TLD &&
+			this.stream.peekChar(1) === _EQS
+		) {
 			this.stream.advance(2);
 			return this.finishToken(offset, TokenType.Includes);
 		}
 
 		// DashMatch |=
-		if (this.stream.peekChar(0) === _PIP && this.stream.peekChar(1) === _EQS) {
+		if (
+			this.stream.peekChar(0) === _PIP &&
+			this.stream.peekChar(1) === _EQS
+		) {
 			this.stream.advance(2);
 			return this.finishToken(offset, TokenType.Dashmatch);
 		}
 
 		// Substring operator *=
-		if (this.stream.peekChar(0) === _MUL && this.stream.peekChar(1) === _EQS) {
+		if (
+			this.stream.peekChar(0) === _MUL &&
+			this.stream.peekChar(1) === _EQS
+		) {
 			this.stream.advance(2);
 			return this.finishToken(offset, TokenType.SubstringOperator);
 		}
 
 		// Substring operator ^=
-		if (this.stream.peekChar(0) === _HAT && this.stream.peekChar(1) === _EQS) {
+		if (
+			this.stream.peekChar(0) === _HAT &&
+			this.stream.peekChar(1) === _EQS
+		) {
 			this.stream.advance(2);
 			return this.finishToken(offset, TokenType.PrefixOperator);
 		}
 
 		// Substring operator $=
-		if (this.stream.peekChar(0) === _DLR && this.stream.peekChar(1) === _EQS) {
+		if (
+			this.stream.peekChar(0) === _DLR &&
+			this.stream.peekChar(1) === _EQS
+		) {
 			this.stream.advance(2);
 			return this.finishToken(offset, TokenType.SuffixOperator);
 		}
@@ -428,7 +466,8 @@ export class Scanner {
 
 	protected comment(): boolean {
 		if (this.stream.advanceIfChars([_FSL, _MUL])) {
-			let success = false, hot = false;
+			let success = false,
+				hot = false;
 			this.stream.advanceWhileChar((ch) => {
 				if (hot && ch === _FSL) {
 					success = true;
@@ -447,7 +486,8 @@ export class Scanner {
 	}
 
 	private _number(): boolean {
-		let npeek = 0, ch: number;
+		let npeek = 0,
+			ch: number;
 		if (this.stream.peekChar() === _DOT) {
 			npeek = 1;
 		}
@@ -455,7 +495,7 @@ export class Scanner {
 		if (ch >= _0 && ch <= _9) {
 			this.stream.advance(npeek + 1);
 			this.stream.advanceWhileChar((ch) => {
-				return ch >= _0 && ch <= _9 || npeek === 0 && ch === _DOT;
+				return (ch >= _0 && ch <= _9) || (npeek === 0 && ch === _DOT);
 			});
 			return true;
 		}
@@ -471,11 +511,10 @@ export class Scanner {
 				this.stream.advance(1);
 				result.push(String.fromCharCode(ch));
 				if (ch === _CAR && this.stream.advanceIfChar(_NWL)) {
-					result.push('\n');
+					result.push("\n");
 				}
 				return true;
 		}
-
 
 		return false;
 	}
@@ -486,14 +525,22 @@ export class Scanner {
 			this.stream.advance(1);
 			ch = this.stream.peekChar();
 			let hexNumCount = 0;
-			while (hexNumCount < 6 && (ch >= _0 && ch <= _9 || ch >= _a && ch <= _f || ch >= _A && ch <= _F)) {
+			while (
+				hexNumCount < 6 &&
+				((ch >= _0 && ch <= _9) ||
+					(ch >= _a && ch <= _f) ||
+					(ch >= _A && ch <= _F))
+			) {
 				this.stream.advance(1);
 				ch = this.stream.peekChar();
 				hexNumCount++;
 			}
 			if (hexNumCount > 0) {
 				try {
-					const hexVal = parseInt(this.stream.substring(this.stream.pos() - hexNumCount), 16);
+					const hexVal = parseInt(
+						this.stream.substring(this.stream.pos() - hexNumCount),
+						16,
+					);
 					if (hexVal) {
 						result.push(String.fromCharCode(hexVal));
 					}
@@ -523,7 +570,14 @@ export class Scanner {
 	private _stringChar(closeQuote: number, result: string[]) {
 		// not closeQuote, not backslash, not newline
 		const ch = this.stream.peekChar();
-		if (ch !== 0 && ch !== closeQuote && ch !== _BSL && ch !== _CAR && ch !== _LFD && ch !== _NWL) {
+		if (
+			ch !== 0 &&
+			ch !== closeQuote &&
+			ch !== _BSL &&
+			ch !== _CAR &&
+			ch !== _LFD &&
+			ch !== _NWL
+		) {
 			this.stream.advance(1);
 			result.push(String.fromCharCode(ch));
 			return true;
@@ -532,11 +586,17 @@ export class Scanner {
 	}
 
 	private _string(result: string[]): TokenType | null {
-		if (this.stream.peekChar() === _SQO || this.stream.peekChar() === _DQO) {
+		if (
+			this.stream.peekChar() === _SQO ||
+			this.stream.peekChar() === _DQO
+		) {
 			const closeQuote = this.stream.nextChar();
 			result.push(String.fromCharCode(closeQuote));
 
-			while (this._stringChar(closeQuote, result) || this._escape(result, true)) {
+			while (
+				this._stringChar(closeQuote, result) ||
+				this._escape(result, true)
+			) {
 				// loop
 			}
 
@@ -554,14 +614,25 @@ export class Scanner {
 	private _unquotedChar(result: string[]): boolean {
 		// not closeQuote, not backslash, not newline
 		const ch = this.stream.peekChar();
-		if (ch !== 0 && ch !== _BSL && ch !== _SQO && ch !== _DQO && ch !== _LPA && ch !== _RPA && ch !== _WSP && ch !== _TAB && ch !== _NWL && ch !== _LFD && ch !== _CAR) {
+		if (
+			ch !== 0 &&
+			ch !== _BSL &&
+			ch !== _SQO &&
+			ch !== _DQO &&
+			ch !== _LPA &&
+			ch !== _RPA &&
+			ch !== _WSP &&
+			ch !== _TAB &&
+			ch !== _NWL &&
+			ch !== _LFD &&
+			ch !== _CAR
+		) {
 			this.stream.advance(1);
 			result.push(String.fromCharCode(ch));
 			return true;
 		}
 		return false;
 	}
-
 
 	protected _unquotedString(result: string[]): boolean {
 		let hasContent = false;
@@ -573,7 +644,13 @@ export class Scanner {
 
 	private _whitespace(): boolean {
 		const n = this.stream.advanceWhileChar((ch) => {
-			return ch === _WSP || ch === _TAB || ch === _NWL || ch === _LFD || ch === _CAR;
+			return (
+				ch === _WSP ||
+				ch === _TAB ||
+				ch === _NWL ||
+				ch === _LFD ||
+				ch === _CAR
+			);
 		});
 		return n > 0;
 	}
@@ -590,7 +667,11 @@ export class Scanner {
 		const pos = this.stream.pos();
 		const hasMinus = this._minus(result);
 		if (hasMinus) {
-			if (this._minus(result) /* -- */ || this._identFirstChar(result) || this._escape(result)) {
+			if (
+				this._minus(result) /* -- */ ||
+				this._identFirstChar(result) ||
+				this._escape(result)
+			) {
 				while (this._identChar(result) || this._escape(result)) {
 					// loop
 				}
@@ -608,17 +689,19 @@ export class Scanner {
 
 	private _identFirstChar(result: string[]): boolean {
 		const ch = this.stream.peekChar();
-		if (ch === _USC || // _
-			ch >= _a && ch <= _z || // a-z
-			ch >= _A && ch <= _Z || // A-Z
-			ch >= 0x80 && ch <= 0xFFFF) { // nonascii
+		if (
+			ch === _USC || // _
+			(ch >= _a && ch <= _z) || // a-z
+			(ch >= _A && ch <= _Z) || // A-Z
+			(ch >= 0x80 && ch <= 0xffff)
+		) {
+			// nonascii
 			this.stream.advance(1);
 			result.push(String.fromCharCode(ch));
 			return true;
 		}
 		return false;
 	}
-
 
 	private _minus(result: string[]): boolean {
 		const ch = this.stream.peekChar();
@@ -632,12 +715,15 @@ export class Scanner {
 
 	private _identChar(result: string[]): boolean {
 		const ch = this.stream.peekChar();
-		if (ch === _USC || // _
+		if (
+			ch === _USC || // _
 			ch === _MIN || // -
-			ch >= _a && ch <= _z || // a-z
-			ch >= _A && ch <= _Z || // A-Z
-			ch >= _0 && ch <= _9 || // 0/9
-			ch >= 0x80 && ch <= 0xFFFF) { // nonascii
+			(ch >= _a && ch <= _z) || // a-z
+			(ch >= _A && ch <= _Z) || // A-Z
+			(ch >= _0 && ch <= _9) || // 0/9
+			(ch >= 0x80 && ch <= 0xffff)
+		) {
+			// nonascii
 			this.stream.advance(1);
 			result.push(String.fromCharCode(ch));
 			return true;
@@ -650,9 +736,14 @@ export class Scanner {
 		// assume u has already been parsed
 
 		if (this.stream.advanceIfChar(_PLS)) {
-			const isHexDigit = (ch: number) => (ch >= _0 && ch <= _9 || ch >= _a && ch <= _f || ch >= _A && ch <= _F);
+			const isHexDigit = (ch: number) =>
+				(ch >= _0 && ch <= _9) ||
+				(ch >= _a && ch <= _f) ||
+				(ch >= _A && ch <= _F);
 
-			const codePoints = this.stream.advanceWhileChar(isHexDigit) + this.stream.advanceWhileChar(ch => ch === _QSM);
+			const codePoints =
+				this.stream.advanceWhileChar(isHexDigit) +
+				this.stream.advanceWhileChar((ch) => ch === _QSM);
 			if (codePoints >= 1 && codePoints <= 6) {
 				if (this.stream.advanceIfChar(_MIN)) {
 					const digits = this.stream.advanceWhileChar(isHexDigit);

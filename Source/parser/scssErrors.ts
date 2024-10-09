@@ -2,11 +2,11 @@
  *  Copyright (c) Microsoft Corporation. All rights reserved.
  *  Licensed under the MIT License. See License.txt in the project root for license information.
  *--------------------------------------------------------------------------------------------*/
-'use strict';
+"use strict";
 
-import * as nodes from './cssNodes';
+import * as l10n from "@vscode/l10n";
 
-import * as l10n from '@vscode/l10n';
+import * as nodes from "./cssNodes";
 
 export class SCSSIssueType implements nodes.IRule {
 	id: string;
@@ -19,7 +19,13 @@ export class SCSSIssueType implements nodes.IRule {
 }
 
 export const SCSSParseError = {
-	FromExpected: new SCSSIssueType('scss-fromexpected', l10n.t("'from' expected")),
-	ThroughOrToExpected: new SCSSIssueType('scss-throughexpected', l10n.t("'through' or 'to' expected")),
-	InExpected: new SCSSIssueType('scss-fromexpected', l10n.t("'in' expected")),
+	FromExpected: new SCSSIssueType(
+		"scss-fromexpected",
+		l10n.t("'from' expected"),
+	),
+	ThroughOrToExpected: new SCSSIssueType(
+		"scss-throughexpected",
+		l10n.t("'through' or 'to' expected"),
+	),
+	InExpected: new SCSSIssueType("scss-fromexpected", l10n.t("'in' expected")),
 };

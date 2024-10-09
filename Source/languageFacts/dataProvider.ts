@@ -2,9 +2,16 @@
  *  Copyright (c) Microsoft Corporation. All rights reserved.
  *  Licensed under the MIT License. See License.txt in the project root for license information.
  *--------------------------------------------------------------------------------------------*/
-'use strict';
+"use strict";
 
-import { CSSDataV1, ICSSDataProvider, IPropertyData, IAtDirectiveData, IPseudoClassData, IPseudoElementData } from '../cssLanguageTypes';
+import {
+	CSSDataV1,
+	IAtDirectiveData,
+	ICSSDataProvider,
+	IPropertyData,
+	IPseudoClassData,
+	IPseudoElementData,
+} from "../cssLanguageTypes";
 
 export class CSSDataProvider implements ICSSDataProvider {
 	private _properties: IPropertyData[] = [];
@@ -66,18 +73,18 @@ export class CSSDataProvider implements ICSSDataProvider {
 	}
 }
 
-function isPropertyData(d: any) : d is IPropertyData {
-	return typeof d.name === 'string';
+function isPropertyData(d: any): d is IPropertyData {
+	return typeof d.name === "string";
 }
 
-function isAtDirective(d: any) : d is IAtDirectiveData {
-	return typeof d.name === 'string';
+function isAtDirective(d: any): d is IAtDirectiveData {
+	return typeof d.name === "string";
 }
 
-function isPseudoClassData(d: any) : d is IPseudoClassData {
-	return typeof d.name === 'string';
+function isPseudoClassData(d: any): d is IPseudoClassData {
+	return typeof d.name === "string";
 }
 
-function isPseudoElementData(d: any) : d is IPseudoElementData {
-	return typeof d.name === 'string';
+function isPseudoElementData(d: any): d is IPseudoElementData {
+	return typeof d.name === "string";
 }

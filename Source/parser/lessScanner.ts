@@ -2,24 +2,22 @@
  *  Copyright (c) Microsoft Corporation. All rights reserved.
  *  Licensed under the MIT License. See License.txt in the project root for license information.
  *--------------------------------------------------------------------------------------------*/
-'use strict';
+"use strict";
 
-import * as scanner from './cssScanner';
+import * as scanner from "./cssScanner";
 
-const _FSL = '/'.charCodeAt(0);
-const _NWL = '\n'.charCodeAt(0);
-const _CAR = '\r'.charCodeAt(0);
-const _LFD = '\f'.charCodeAt(0);
-const _TIC = '`'.charCodeAt(0);
-const _DOT = '.'.charCodeAt(0);
+const _FSL = "/".charCodeAt(0);
+const _NWL = "\n".charCodeAt(0);
+const _CAR = "\r".charCodeAt(0);
+const _LFD = "\f".charCodeAt(0);
+const _TIC = "`".charCodeAt(0);
+const _DOT = ".".charCodeAt(0);
 
 let customTokenValue = scanner.TokenType.CustomToken;
 export const Ellipsis: scanner.TokenType = customTokenValue++;
 
 export class LESSScanner extends scanner.Scanner {
-
 	protected scanNext(offset: number): scanner.IToken {
-
 		// LESS: escaped JavaScript code `const a = "dddd"`
 		const tokenType = this.escapedJavaScript();
 		if (tokenType !== null) {
@@ -58,8 +56,12 @@ export class LESSScanner extends scanner.Scanner {
 		const ch = this.stream.peekChar();
 		if (ch === _TIC) {
 			this.stream.advance(1);
-			this.stream.advanceWhileChar((ch) => { return ch !== _TIC; });
-			return this.stream.advanceIfChar(_TIC) ? scanner.TokenType.EscapedJavaScript : scanner.TokenType.BadEscapedJavaScript;
+			this.stream.advanceWhileChar((ch) => {
+				return ch !== _TIC;
+			});
+			return this.stream.advanceIfChar(_TIC)
+				? scanner.TokenType.EscapedJavaScript
+				: scanner.TokenType.BadEscapedJavaScript;
 		}
 		return null;
 	}

@@ -2,19 +2,18 @@
  *  Copyright (c) Microsoft Corporation. All rights reserved.
  *  Licensed under the MIT License. See License.txt in the project root for license information.
  *--------------------------------------------------------------------------------------------*/
-'use strict';
+"use strict";
 
 import {
+	IAtDirectiveData,
 	ICSSDataProvider,
 	IPropertyData,
-	IAtDirectiveData,
 	IPseudoClassData,
 	IPseudoElementData,
-} from '../cssLanguageTypes';
-
-import * as objects from '../utils/objects';
-import { cssData } from '../data/webCustomData';
-import { CSSDataProvider } from './dataProvider';
+} from "../cssLanguageTypes";
+import { cssData } from "../data/webCustomData";
+import * as objects from "../utils/objects";
+import { CSSDataProvider } from "./dataProvider";
 
 export class CSSDataManager {
 	private dataProviders: ICSSDataProvider[] = [];
@@ -29,8 +28,14 @@ export class CSSDataManager {
 	private _pseudoClasses: IPseudoClassData[] = [];
 	private _pseudoElements: IPseudoElementData[] = [];
 
-	constructor(options?: { useDefaultDataProvider?: boolean, customDataProviders?: ICSSDataProvider[] }) {
-		this.setDataProviders(options?.useDefaultDataProvider !== false, options?.customDataProviders || []);
+	constructor(options?: {
+		useDefaultDataProvider?: boolean;
+		customDataProviders?: ICSSDataProvider[];
+	}) {
+		this.setDataProviders(
+			options?.useDefaultDataProvider !== false,
+			options?.customDataProviders || [],
+		);
 	}
 
 	setDataProviders(builtIn: boolean, providers: ICSSDataProvider[]) {
@@ -51,23 +56,23 @@ export class CSSDataManager {
 		this._pseudoClassSet = {};
 		this._pseudoElementSet = {};
 
-		this.dataProviders.forEach(provider => {
-			provider.provideProperties().forEach(p => {
+		this.dataProviders.forEach((provider) => {
+			provider.provideProperties().forEach((p) => {
 				if (!this._propertySet[p.name]) {
 					this._propertySet[p.name] = p;
 				}
 			});
-			provider.provideAtDirectives().forEach(p => {
+			provider.provideAtDirectives().forEach((p) => {
 				if (!this._atDirectiveSet[p.name]) {
 					this._atDirectiveSet[p.name] = p;
 				}
 			});
-			provider.providePseudoClasses().forEach(p => {
+			provider.providePseudoClasses().forEach((p) => {
 				if (!this._pseudoClassSet[p.name]) {
 					this._pseudoClassSet[p.name] = p;
 				}
 			});
-			provider.providePseudoElements().forEach(p => {
+			provider.providePseudoElements().forEach((p) => {
 				if (!this._pseudoElementSet[p.name]) {
 					this._pseudoElementSet[p.name] = p;
 				}
@@ -80,21 +85,29 @@ export class CSSDataManager {
 		this._pseudoElements = objects.values(this._pseudoElementSet);
 	}
 
-	getProperty(name: string) : IPropertyData | undefined { return this._propertySet[name]; }
-	getAtDirective(name: string) : IAtDirectiveData | undefined { return this._atDirectiveSet[name]; }
-	getPseudoClass(name: string) : IPseudoClassData | undefined { return this._pseudoClassSet[name]; }
-	getPseudoElement(name: string) : IPseudoElementData | undefined { return this._pseudoElementSet[name]; }
+	getProperty(name: string): IPropertyData | undefined {
+		return this._propertySet[name];
+	}
+	getAtDirective(name: string): IAtDirectiveData | undefined {
+		return this._atDirectiveSet[name];
+	}
+	getPseudoClass(name: string): IPseudoClassData | undefined {
+		return this._pseudoClassSet[name];
+	}
+	getPseudoElement(name: string): IPseudoElementData | undefined {
+		return this._pseudoElementSet[name];
+	}
 
-	getProperties() : IPropertyData[] {
+	getProperties(): IPropertyData[] {
 		return this._properties;
 	}
-	getAtDirectives() : IAtDirectiveData[] {
+	getAtDirectives(): IAtDirectiveData[] {
 		return this._atDirectives;
 	}
-	getPseudoClasses() : IPseudoClassData[]{
+	getPseudoClasses(): IPseudoClassData[] {
 		return this._pseudoClasses;
 	}
-	getPseudoElements() : IPseudoElementData[] {
+	getPseudoElements(): IPseudoElementData[] {
 		return this._pseudoElements;
 	}
 
@@ -103,7 +116,10 @@ export class CSSDataManager {
 	}
 
 	isStandardProperty(name: string): boolean {
-		return this.isKnownProperty(name) &&
-			(!this._propertySet[name.toLowerCase()].status || this._propertySet[name.toLowerCase()].status === 'standard');
+		return (
+			this.isKnownProperty(name) &&
+			(!this._propertySet[name.toLowerCase()].status ||
+				this._propertySet[name.toLowerCase()].status === "standard")
+		);
 	}
 }

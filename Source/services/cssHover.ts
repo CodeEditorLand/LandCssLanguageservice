@@ -2,15 +2,25 @@
  *  Copyright (c) Microsoft Corporation. All rights reserved.
  *  Licensed under the MIT License. See License.txt in the project root for license information.
  *--------------------------------------------------------------------------------------------*/
-'use strict';
+"use strict";
 
-import * as nodes from '../parser/cssNodes';
-import * as languageFacts from '../languageFacts/facts';
-import { SelectorPrinting } from './selectorPrinting';
-import { startsWith } from '../utils/strings';
-import { TextDocument, Range, Position, Hover, MarkedString, MarkupContent, MarkupKind, ClientCapabilities, HoverSettings } from '../cssLanguageTypes';
-import { isDefined } from '../utils/objects';
-import { CSSDataManager } from '../languageFacts/dataManager';
+import {
+	ClientCapabilities,
+	Hover,
+	HoverSettings,
+	MarkedString,
+	MarkupContent,
+	MarkupKind,
+	Position,
+	Range,
+	TextDocument,
+} from "../cssLanguageTypes";
+import { CSSDataManager } from "../languageFacts/dataManager";
+import * as languageFacts from "../languageFacts/facts";
+import * as nodes from "../parser/cssNodes";
+import { isDefined } from "../utils/objects";
+import { startsWith } from "../utils/strings";
+import { SelectorPrinting } from "./selectorPrinting";
 
 export class CSSHover {
 	private supportsMarkdown: boolean | undefined;
@@ -28,9 +38,17 @@ export class CSSHover {
 		this.defaultSettings = settings;
 	}
 
-	public doHover(document: TextDocument, position: Position, stylesheet: nodes.Stylesheet, settings = this.defaultSettings): Hover | null {
+	public doHover(
+		document: TextDocument,
+		position: Position,
+		stylesheet: nodes.Stylesheet,
+		settings = this.defaultSettings,
+	): Hover | null {
 		function getRange(node: nodes.Node) {
-			return Range.create(document.positionAt(node.offset), document.positionAt(node.end));
+			return Range.create(
+				document.positionAt(node.offset),
+				document.positionAt(node.end),
+			);
 		}
 		const offset = document.offsetAt(position);
 		const nodepath = nodes.getNodePath(stylesheet, offset);
@@ -56,7 +74,10 @@ export class CSSHover {
 
 			if (node instanceof nodes.Selector) {
 				hover = {
-					contents: this.selectorPrinting.selectorToMarkedString(<nodes.Selector>node, flagOpts!),
+					contents: this.selectorPrinting.selectorToMarkedString(
+						<nodes.Selector>node,
+						flagOpts!,
+					),
 					range: getRange(node),
 				};
 				break;
@@ -66,9 +87,12 @@ export class CSSHover {
 				/**
 				 * Some sass specific at rules such as `@at-root` are parsed as `SimpleSelector`
 				 */
-				if (!startsWith(node.getText(), '@')) {
+				if (!startsWith(node.getText(), "@")) {
 					hover = {
-						contents: this.selectorPrinting.simpleSelectorToMarkedString(<nodes.SimpleSelector>node),
+						contents:
+							this.selectorPrinting.simpleSelectorToMarkedString(
+								<nodes.SimpleSelector>node,
+							),
 						range: getRange(node),
 					};
 				}
@@ -79,7 +103,11 @@ export class CSSHover {
 				const propertyName = node.getFullPropertyName();
 				const entry = this.cssDataManager.getProperty(propertyName);
 				if (entry) {
-					const contents = languageFacts.getEntryDescription(entry, this.doesSupportMarkdown(), settings);
+					const contents = languageFacts.getEntryDescription(
+						entry,
+						this.doesSupportMarkdown(),
+						settings,
+					);
 					if (contents) {
 						hover = {
 							contents,
@@ -96,7 +124,11 @@ export class CSSHover {
 				const atRuleName = node.getText();
 				const entry = this.cssDataManager.getAtDirective(atRuleName);
 				if (entry) {
-					const contents = languageFacts.getEntryDescription(entry, this.doesSupportMarkdown(), settings);
+					const contents = languageFacts.getEntryDescription(
+						entry,
+						this.doesSupportMarkdown(),
+						settings,
+					);
 					if (contents) {
 						hover = {
 							contents,
@@ -109,11 +141,21 @@ export class CSSHover {
 				continue;
 			}
 
-			if (node instanceof nodes.Node && node.type === nodes.NodeType.PseudoSelector) {
+			if (
+				node instanceof nodes.Node &&
+				node.type === nodes.NodeType.PseudoSelector
+			) {
 				const selectorName = node.getText();
-				const entry = selectorName.slice(0, 2) === '::' ? this.cssDataManager.getPseudoElement(selectorName) : this.cssDataManager.getPseudoClass(selectorName);
+				const entry =
+					selectorName.slice(0, 2) === "::"
+						? this.cssDataManager.getPseudoElement(selectorName)
+						: this.cssDataManager.getPseudoClass(selectorName);
 				if (entry) {
-					const contents = languageFacts.getEntryDescription(entry, this.doesSupportMarkdown(), settings);
+					const contents = languageFacts.getEntryDescription(
+						entry,
+						this.doesSupportMarkdown(),
+						settings,
+					);
 					if (contents) {
 						hover = {
 							contents,
@@ -134,22 +176,24 @@ export class CSSHover {
 		return hover;
 	}
 
-	private convertContents(contents: MarkupContent | MarkedString | MarkedString[]): MarkupContent | MarkedString | MarkedString[] {
+	private convertContents(
+		contents: MarkupContent | MarkedString | MarkedString[],
+	): MarkupContent | MarkedString | MarkedString[] {
 		if (!this.doesSupportMarkdown()) {
-			if (typeof contents === 'string') {
+			if (typeof contents === "string") {
 				return contents;
 			}
 			// MarkupContent
-			else if ('kind' in contents) {
+			else if ("kind" in contents) {
 				return {
-					kind: 'plaintext',
+					kind: "plaintext",
 					value: contents.value,
 				};
 			}
 			// MarkedString[]
 			else if (Array.isArray(contents)) {
 				return contents.map((c) => {
-					return typeof c === 'string' ? c : c.value;
+					return typeof c === "string" ? c : c.value;
 				});
 			}
 			// MarkedString
@@ -168,8 +212,14 @@ export class CSSHover {
 				return this.supportsMarkdown;
 			}
 
-			const hover = this.clientCapabilities.textDocument && this.clientCapabilities.textDocument.hover;
-			this.supportsMarkdown = hover && hover.contentFormat && Array.isArray(hover.contentFormat) && hover.contentFormat.indexOf(MarkupKind.Markdown) !== -1;
+			const hover =
+				this.clientCapabilities.textDocument &&
+				this.clientCapabilities.textDocument.hover;
+			this.supportsMarkdown =
+				hover &&
+				hover.contentFormat &&
+				Array.isArray(hover.contentFormat) &&
+				hover.contentFormat.indexOf(MarkupKind.Markdown) !== -1;
 		}
 		return <boolean>this.supportsMarkdown;
 	}
