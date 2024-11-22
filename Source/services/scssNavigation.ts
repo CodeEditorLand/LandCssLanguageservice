@@ -36,6 +36,7 @@ export class SCSSNavigation extends CSSNavigation {
 	): Promise<string | undefined> {
 		if (this.fileSystemProvider && target && isRawLink) {
 			const pathVariations = toPathVariations(target);
+
 			for (const variation of pathVariations) {
 				if (await this.fileExists(variation)) {
 					return variation;
@@ -78,19 +79,24 @@ export class SCSSNavigation extends CSSNavigation {
 		documentContext: DocumentContext,
 	): Promise<string | undefined> {
 		const bareTarget = target.replace("pkg:", "");
+
 		const moduleName = bareTarget.includes("/")
 			? getModuleNameFromPath(bareTarget)
 			: bareTarget;
+
 		const rootFolderUri = documentContext.resolveReference(
 			"/",
 			documentUri,
 		);
+
 		const documentFolderUri = dirname(documentUri);
+
 		const modulePath = await this.resolvePathToModule(
 			moduleName,
 			documentFolderUri,
 			rootFolderUri,
 		);
+
 		if (!modulePath) {
 			return undefined;
 		}
@@ -99,14 +105,17 @@ export class SCSSNavigation extends CSSNavigation {
 		let packageJsonContent = await this.getContent(
 			joinPath(modulePath, "package.json"),
 		);
+
 		if (!packageJsonContent) {
 			return undefined;
 		}
 		let packageJson: {
 			style?: string;
 			sass?: string;
+
 			exports?: Record<string, string | Record<string, string>>;
 		};
+
 		try {
 			packageJson = JSON.parse(packageJsonContent);
 		} catch (e) {
@@ -115,6 +124,7 @@ export class SCSSNavigation extends CSSNavigation {
 		}
 
 		const subpath = bareTarget.substring(moduleName.length + 1);
+
 		if (packageJson.exports) {
 			if (!subpath) {
 				// exports may look like { "sass": "./_index.scss" } or { ".": { "sass": "./_index.scss" } }
@@ -130,6 +140,7 @@ export class SCSSNavigation extends CSSNavigation {
 				// the 'default' entry can be whatever, typically .js – confirm it looks like `scss`
 				if (entry && entry.endsWith(".scss")) {
 					const entryPath = joinPath(modulePath, entry);
+
 					return entryPath;
 				}
 			} else {
@@ -139,12 +150,15 @@ export class SCSSNavigation extends CSSNavigation {
 				const lookupSubpath = subpath.endsWith(".scss")
 					? `./${subpath.replace(".scss", "")}`
 					: `./${subpath}`;
+
 				const lookupSubpathScss = subpath.endsWith(".scss")
 					? `./${subpath}`
 					: `./${subpath}.scss`;
+
 				const subpathObject =
 					packageJson.exports[lookupSubpathScss] ||
 					packageJson.exports[lookupSubpath];
+
 				if (subpathObject) {
 					// @ts-expect-error If subpathObject is a string this just produces undefined
 					const entry =
@@ -154,6 +168,7 @@ export class SCSSNavigation extends CSSNavigation {
 					// the 'default' entry can be whatever, typically .js – confirm it looks like `scss`
 					if (entry && entry.endsWith(".scss")) {
 						const entryPath = joinPath(modulePath, entry);
+
 						return entryPath;
 					}
 				} else {
@@ -171,7 +186,9 @@ export class SCSSNavigation extends CSSNavigation {
 								maybePattern.replace(".scss", ""),
 							).replace(/\.\*/g, "(.*)"),
 						);
+
 						const match = re.exec(lookupSubpath);
+
 						if (match) {
 							// @ts-expect-error If subpathObject is a string this just produces undefined
 							const entry =
@@ -186,10 +203,12 @@ export class SCSSNavigation extends CSSNavigation {
 									"*",
 									match[1],
 								);
+
 								const entryPath = joinPath(
 									modulePath,
 									expandedPattern,
 								);
+
 								return entryPath;
 							}
 						}
@@ -199,8 +218,10 @@ export class SCSSNavigation extends CSSNavigation {
 		} else if (!subpath && (packageJson.sass || packageJson.style)) {
 			// Fall back to a direct lookup on `sass` and `style` on package root
 			const entry = packageJson.sass || packageJson.style;
+
 			if (entry) {
 				const entryPath = joinPath(modulePath, entry);
+
 				return entryPath;
 			}
 		}
@@ -220,8 +241,11 @@ function toPathVariations(target: string): DocumentUri[] {
 	}
 
 	const targetUri = URI.parse(target.replace(/\.scss$/, ""));
+
 	const basename = Utils.basename(targetUri);
+
 	const dirname = Utils.dirname(targetUri);
+
 	if (basename.startsWith("_")) {
 		// No variation for links such as _a
 		return [Utils.joinPath(dirname, basename + ".scss").toString(true)];

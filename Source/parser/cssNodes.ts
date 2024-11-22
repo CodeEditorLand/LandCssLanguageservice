@@ -118,6 +118,7 @@ export enum ReferenceType {
 
 export function getNodeAtOffset(node: Node, offset: number): Node | null {
 	let candidate: Node | null = null;
+
 	if (!node || offset < node.offset || offset > node.end) {
 		return null;
 	}
@@ -137,11 +138,13 @@ export function getNodeAtOffset(node: Node, offset: number): Node | null {
 		}
 		return false;
 	});
+
 	return candidate;
 }
 
 export function getNodePath(node: Node, offset: number): Node[] {
 	let candidate = getNodeAtOffset(node, offset);
+
 	const path: Node[] = [];
 
 	while (candidate) {
@@ -154,7 +157,9 @@ export function getNodePath(node: Node, offset: number): Node[] {
 
 export function getParentDeclaration(node: Node): Declaration | null {
 	const decl = <Declaration>node.findParent(NodeType.Declaration);
+
 	const value = decl && decl.getValue();
+
 	if (value && value.encloses(node)) {
 		return decl;
 	}
@@ -187,6 +192,7 @@ export class Node {
 		this.parent = null;
 		this.offset = offset;
 		this.length = len;
+
 		if (nodeType) {
 			this.nodeType = nodeType;
 		}
@@ -202,6 +208,7 @@ export class Node {
 
 	private getTextProvider(): ITextProvider {
 		let node: Node | null = this;
+
 		while (node && !node.textProvider) {
 			node = node.parent;
 		}
@@ -253,12 +260,15 @@ export class Node {
 	public adoptChild(node: Node, index: number = -1): Node {
 		if (node.parent && node.parent.children) {
 			const idx = node.parent.children.indexOf(node);
+
 			if (idx >= 0) {
 				node.parent.children.splice(idx, 1);
 			}
 		}
 		node.parent = this;
+
 		let children = this.children;
+
 		if (!children) {
 			children = this.children = [];
 		}
@@ -316,6 +326,7 @@ export class Node {
 		if (node) {
 			node.attachTo(this, index);
 			(<any>this)[field] = node;
+
 			return true;
 		}
 		return false;
@@ -328,6 +339,7 @@ export class Node {
 			}
 			node.attachTo(this);
 			this.updateOffsetAndLength(node);
+
 			return true;
 		}
 		return false;
@@ -338,6 +350,7 @@ export class Node {
 			this.offset = node.offset;
 		}
 		const nodeEnd = node.end;
+
 		if (nodeEnd > this.end || this.length === -1) {
 			this.length = nodeEnd - this.offset;
 		}
@@ -367,9 +380,11 @@ export class Node {
 	public findFirstChildBeforeOffset(offset: number): Node | null {
 		if (this.children) {
 			let current: Node | null = null;
+
 			for (let i = this.children.length - 1; i >= 0; i--) {
 				// iterate until we find a child that has a start offset smaller than the input offset
 				current = this.children[i];
+
 				if (current.offset <= offset) {
 					return current;
 				}
@@ -380,6 +395,7 @@ export class Node {
 
 	public findChildAtOffset(offset: number, goDeep: boolean): Node | null {
 		const current: Node | null = this.findFirstChildBeforeOffset(offset);
+
 		if (current && current.end >= offset) {
 			if (goDeep) {
 				return current.findChildAtOffset(offset, true) || current;
@@ -398,6 +414,7 @@ export class Node {
 
 	public getParent(): Node | null {
 		let result = this.parent;
+
 		while (result instanceof Nodelist) {
 			result = result.parent;
 		}
@@ -406,6 +423,7 @@ export class Node {
 
 	public findParent(type: NodeType): Node | null {
 		let result: Node | null = this;
+
 		while (result && result.type !== type) {
 			result = result.parent;
 		}
@@ -414,6 +432,7 @@ export class Node {
 
 	public findAParent(...types: NodeType[]): Node | null {
 		let result: Node | null = this;
+
 		while (result && !types.some((t) => result!.type === t)) {
 			result = result.parent;
 		}
@@ -653,11 +672,13 @@ export class Declaration extends AbstractDeclaration {
 		const propertyName = this.property
 			? this.property.getName()
 			: "unknown";
+
 		if (
 			this.parent instanceof Declarations &&
 			this.parent.getParent() instanceof NestedProperties
 		) {
 			const parentDecl = this.parent.getParent()!.getParent();
+
 			if (parentDecl instanceof Declaration) {
 				return (
 					(<Declaration>parentDecl).getFullPropertyName() +
@@ -670,8 +691,10 @@ export class Declaration extends AbstractDeclaration {
 
 	public getNonPrefixedPropertyName(): string {
 		const propertyName = this.getFullPropertyName();
+
 		if (propertyName && propertyName.charAt(0) === "-") {
 			const vendorPrefixEnd = propertyName.indexOf("-", 1);
+
 			if (vendorPrefixEnd !== -1) {
 				return propertyName.substring(vendorPrefixEnd + 1);
 			}
@@ -1051,6 +1074,7 @@ export class Import extends Node {
 	public setMedialist(node: Node | null): node is Node {
 		if (node) {
 			node.attachTo(this);
+
 			return true;
 		}
 		return false;
@@ -1217,6 +1241,7 @@ export class PropertyAtRule extends BodyDeclaration {
 		if (node) {
 			node.attachTo(this);
 			this.name = node;
+
 			return true;
 		}
 		return false;
@@ -1489,10 +1514,14 @@ export class NumericValue extends Node {
 
 	public getValue(): { value: string; unit?: string } {
 		const raw = this.getText();
+
 		let unitIdx = 0;
+
 		let code: number;
+
 		for (let i = 0, len = raw.length; i < len; i++) {
 			code = raw.charCodeAt(i);
+
 			if (!((_0 <= code && code <= _9) || code === _dot)) {
 				break;
 			}
@@ -1522,6 +1551,7 @@ export class VariableDeclaration extends AbstractDeclaration {
 		if (node) {
 			node.attachTo(this);
 			this.variable = node;
+
 			return true;
 		}
 		return false;
@@ -1539,6 +1569,7 @@ export class VariableDeclaration extends AbstractDeclaration {
 		if (node) {
 			node.attachTo(this);
 			this.value = node;
+
 			return true;
 		}
 		return false;
@@ -1816,10 +1847,15 @@ export enum Level {
 
 export interface IMarker {
 	getNode(): Node;
+
 	getMessage(): string;
+
 	getOffset(): number;
+
 	getLength(): number;
+
 	getRule(): IRule;
+
 	getLevel(): Level;
 }
 
@@ -1886,52 +1922,76 @@ export class DefaultVisitor implements IVisitor {
 		switch (node.type) {
 			case NodeType.Stylesheet:
 				return this.visitStylesheet(<Stylesheet> node);
+
 			case NodeType.FontFace:
 				return this.visitFontFace(<FontFace> node);
+
 			case NodeType.Ruleset:
 				return this.visitRuleSet(<RuleSet> node);
+
 			case NodeType.Selector:
 				return this.visitSelector(<Selector> node);
+
 			case NodeType.SimpleSelector:
 				return this.visitSimpleSelector(<SimpleSelector> node);
+
 			case NodeType.Declaration:
 				return this.visitDeclaration(<Declaration> node);
+
 			case NodeType.Function:
 				return this.visitFunction(<Function> node);
+
 			case NodeType.FunctionDeclaration:
 				return this.visitFunctionDeclaration(<FunctionDeclaration> node);
+
 			case NodeType.FunctionParameter:
 				return this.visitFunctionParameter(<FunctionParameter> node);
+
 			case NodeType.FunctionArgument:
 				return this.visitFunctionArgument(<FunctionArgument> node);
+
 			case NodeType.Term:
 				return this.visitTerm(<Term> node);
+
 			case NodeType.Declaration:
 				return this.visitExpression(<Expression> node);
+
 			case NodeType.NumericValue:
 				return this.visitNumericValue(<NumericValue> node);
+
 			case NodeType.Page:
 				return this.visitPage(<Page> node);
+
 			case NodeType.PageBoxMarginBox:
 				return this.visitPageBoxMarginBox(<PageBoxMarginBox> node);
+
 			case NodeType.Property:
 				return this.visitProperty(<Property> node);
+
 			case NodeType.NumericValue:
 				return this.visitNodelist(<Nodelist> node);
+
 			case NodeType.Import:
 				return this.visitImport(<Import> node);
+
 			case NodeType.Namespace:
 				return this.visitNamespace(<Namespace> node);
+
 			case NodeType.Keyframe:
 				return this.visitKeyframe(<Keyframe> node);
+
 			case NodeType.KeyframeSelector:
 				return this.visitKeyframeSelector(<KeyframeSelector> node);
+
 			case NodeType.MixinDeclaration:
 				return this.visitMixinDeclaration(<MixinDeclaration> node);
+
 			case NodeType.MixinReference:
 				return this.visitMixinReference(<MixinReference> node);
+
 			case NodeType.Variable:
 				return this.visitVariable(<Variable> node);
+
 			case NodeType.VariableDeclaration:
 				return this.visitVariableDeclaration(<VariableDeclaration> node);
 		}
@@ -2043,6 +2103,7 @@ export class ParseErrorCollector implements IVisitor {
 	static entries(node: Node): IMarker[] {
 		const visitor = new ParseErrorCollector();
 		node.acceptVisitor(visitor);
+
 		return visitor.entries;
 	}
 

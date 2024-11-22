@@ -7,10 +7,15 @@
 import * as scanner from "./cssScanner";
 
 const _FSL = "/".charCodeAt(0);
+
 const _NWL = "\n".charCodeAt(0);
+
 const _CAR = "\r".charCodeAt(0);
+
 const _LFD = "\f".charCodeAt(0);
+
 const _TIC = "`".charCodeAt(0);
+
 const _DOT = ".".charCodeAt(0);
 
 let customTokenValue = scanner.TokenType.CustomToken;
@@ -20,6 +25,7 @@ export class LESSScanner extends scanner.Scanner {
 	protected scanNext(offset: number): scanner.IToken {
 		// LESS: escaped JavaScript code `const a = "dddd"`
 		const tokenType = this.escapedJavaScript();
+
 		if (tokenType !== null) {
 			return this.finishToken(offset, tokenType);
 		}
@@ -42,10 +48,12 @@ export class LESSScanner extends scanner.Scanner {
 					case _CAR:
 					case _LFD:
 						return false;
+
 					default:
 						return true;
 				}
 			});
+
 			return true;
 		} else {
 			return false;
@@ -54,11 +62,13 @@ export class LESSScanner extends scanner.Scanner {
 
 	private escapedJavaScript(): scanner.TokenType | null {
 		const ch = this.stream.peekChar();
+
 		if (ch === _TIC) {
 			this.stream.advance(1);
 			this.stream.advanceWhileChar((ch) => {
 				return ch !== _TIC;
 			});
+
 			return this.stream.advanceIfChar(_TIC)
 				? scanner.TokenType.EscapedJavaScript
 				: scanner.TokenType.BadEscapedJavaScript;

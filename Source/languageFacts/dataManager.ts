@@ -40,6 +40,7 @@ export class CSSDataManager {
 
 	setDataProviders(builtIn: boolean, providers: ICSSDataProvider[]) {
 		this.dataProviders = [];
+
 		if (builtIn) {
 			this.dataProviders.push(new CSSDataProvider(cssData));
 		}

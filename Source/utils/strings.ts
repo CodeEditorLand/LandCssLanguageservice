@@ -23,6 +23,7 @@ export function startsWith(haystack: string, needle: string): boolean {
  */
 export function endsWith(haystack: string, needle: string): boolean {
 	let diff = haystack.length - needle.length;
+
 	if (diff > 0) {
 		return haystack.lastIndexOf(needle) === diff;
 	} else if (diff === 0) {
@@ -54,8 +55,11 @@ export function difference(
 	}
 	// Initialize LCS (largest common subsequence) matrix.
 	let LCS: number[][] = [];
+
 	let zeroArray: number[] = [];
+
 	let i: number, j: number;
+
 	for (i = 0; i < second.length + 1; ++i) {
 		zeroArray.push(0);
 	}
@@ -92,6 +96,7 @@ export function getLimitedString(str: string, ellipsis = true): string {
  */
 export function trim(str: string, regexp: RegExp): string {
 	const m = regexp.exec(str);
+
 	if (m && m[0].length) {
 		return str.substr(0, str.length - m[0].length);
 	}
@@ -100,6 +105,7 @@ export function trim(str: string, regexp: RegExp): string {
 
 export function repeat(value: string, count: number) {
 	let s = "";
+
 	while (count > 0) {
 		if ((count & 1) === 1) {
 			s += value;

@@ -426,6 +426,7 @@ export class LESSCompletion extends CSSCompletion {
 				insertTextFormat: InsertTextFormat.Snippet,
 				kind: CompletionItemKind.Function,
 			};
+
 			if (sortToEnd) {
 				item.sortText = "z";
 			}
@@ -440,6 +441,7 @@ export class LESSCompletion extends CSSCompletion {
 		result: CompletionList,
 	): CompletionList {
 		let functions = LESSCompletion.builtInProposals;
+
 		if (entry) {
 			functions = functions.filter(
 				(f) =>
@@ -449,6 +451,7 @@ export class LESSCompletion extends CSSCompletion {
 			);
 		}
 		this.createFunctionProposals(functions, existingNode, true, result);
+
 		return super.getTermProposals(entry, existingNode, result);
 	}
 
@@ -463,6 +466,7 @@ export class LESSCompletion extends CSSCompletion {
 			false,
 			result,
 		);
+
 		return super.getColorProposals(entry, existingNode, result);
 	}
 
@@ -471,6 +475,7 @@ export class LESSCompletion extends CSSCompletion {
 		result: CompletionList,
 	): CompletionList {
 		this.getCompletionsForSelector(null, true, result);
+
 		return super.getCompletionsForDeclarationProperty(declaration, result);
 	}
 }

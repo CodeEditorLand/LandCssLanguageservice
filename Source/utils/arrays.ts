@@ -12,11 +12,13 @@
 export function findFirst<T>(array: T[], p: (x: T) => boolean): number {
 	let low = 0,
 		high = array.length;
+
 	if (high === 0) {
 		return 0; // no children
 	}
 	while (low < high) {
 		let mid = Math.floor((low + high) / 2);
+
 		if (p(array[mid])) {
 			high = mid;
 		} else {
@@ -32,6 +34,7 @@ export function includes<T>(array: T[], item: T): boolean {
 
 export function union<T>(...arrays: T[][]): T[] {
 	const result: T[] = [];
+
 	for (const array of arrays) {
 		for (const item of array) {
 			if (!includes(result, item)) {

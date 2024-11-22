@@ -48,13 +48,16 @@ export class Scope {
 	private findInScope(offset: number, length: number = 0): Scope {
 		// find the first scope child that has an offset larger than offset + length
 		const end = offset + length;
+
 		const idx = findFirst(this.children, (s) => s.offset > end);
+
 		if (idx === 0) {
 			// all scopes have offsets larger than our end
 			return this;
 		}
 
 		const res = this.children[idx - 1];
+
 		if (
 			res.offset <= offset &&
 			res.offset + res.length >= offset + length
@@ -71,6 +74,7 @@ export class Scope {
 	public getSymbol(name: string, type: nodes.ReferenceType): Symbol | null {
 		for (let index = 0; index < this.symbols.length; index++) {
 			const symbol = this.symbols[index];
+
 			if (symbol.name === name && symbol.type === type) {
 				return symbol;
 			}
@@ -123,6 +127,7 @@ export class ScopeBuilder implements nodes.IVisitor {
 	): void {
 		if (node.offset !== -1) {
 			const current = this.scope.findScope(node.offset, node.length);
+
 			if (current) {
 				current.addSymbol(new Symbol(name, value, node, type));
 			}
@@ -132,6 +137,7 @@ export class ScopeBuilder implements nodes.IVisitor {
 	private addScope(node: nodes.Node): Scope | null {
 		if (node.offset !== -1) {
 			const current = this.scope.findScope(node.offset, node.length);
+
 			if (
 				current &&
 				(current.offset !== node.offset ||
@@ -140,6 +146,7 @@ export class ScopeBuilder implements nodes.IVisitor {
 				// scope already known?
 				const newScope = new Scope(node.offset, node.length);
 				current.addChild(newScope);
+
 				return newScope;
 			}
 			return current;
@@ -171,17 +178,22 @@ export class ScopeBuilder implements nodes.IVisitor {
 					void 0,
 					nodes.ReferenceType.Keyframe,
 				);
+
 				return true;
+
 			case nodes.NodeType.CustomPropertyDeclaration:
 				return this.visitCustomPropertyDeclarationNode(
 					<nodes.CustomPropertyDeclaration>node,
 				);
+
 			case nodes.NodeType.VariableDeclaration:
 				return this.visitVariableDeclarationNode(
 					<nodes.VariableDeclaration>node,
 				);
+
 			case nodes.NodeType.Ruleset:
 				return this.visitRuleSet(<nodes.RuleSet>node);
+
 			case nodes.NodeType.MixinDeclaration:
 				this.addSymbol(
 					node,
@@ -189,7 +201,9 @@ export class ScopeBuilder implements nodes.IVisitor {
 					void 0,
 					nodes.ReferenceType.Mixin,
 				);
+
 				return true;
+
 			case nodes.NodeType.FunctionDeclaration:
 				this.addSymbol(
 					node,
@@ -197,7 +211,9 @@ export class ScopeBuilder implements nodes.IVisitor {
 					void 0,
 					nodes.ReferenceType.Function,
 				);
+
 				return true;
+
 			case nodes.NodeType.FunctionParameter: {
 				return this.visitFunctionParameterNode(
 					<nodes.FunctionParameter>node,
@@ -205,10 +221,14 @@ export class ScopeBuilder implements nodes.IVisitor {
 			}
 			case nodes.NodeType.Declarations:
 				this.addScope(node);
+
 				return true;
+
 			case nodes.NodeType.For:
 				const forNode = <nodes.ForStatement>node;
+
 				const scopeNode = forNode.getDeclarations();
+
 				if (scopeNode && forNode.variable) {
 					this.addSymbolToChildScope(
 						scopeNode,
@@ -219,13 +239,17 @@ export class ScopeBuilder implements nodes.IVisitor {
 					);
 				}
 				return true;
+
 			case nodes.NodeType.Each: {
 				const eachNode = <nodes.EachStatement>node;
+
 				const scopeNode = eachNode.getDeclarations();
+
 				if (scopeNode) {
 					const variables = <nodes.Variable[]>(
 						eachNode.getVariables().getChildren()
 					);
+
 					for (const variable of variables) {
 						this.addSymbolToChildScope(
 							scopeNode,
@@ -244,6 +268,7 @@ export class ScopeBuilder implements nodes.IVisitor {
 
 	public visitRuleSet(node: nodes.RuleSet): boolean {
 		const current = this.scope.findScope(node.offset, node.length);
+
 		if (current) {
 			for (const child of node.getSelectors().getChildren()) {
 				if (child instanceof nodes.Selector) {
@@ -274,6 +299,7 @@ export class ScopeBuilder implements nodes.IVisitor {
 			value,
 			nodes.ReferenceType.Variable,
 		);
+
 		return true;
 	}
 
@@ -282,8 +308,10 @@ export class ScopeBuilder implements nodes.IVisitor {
 		const scopeNode = (<nodes.BodyDeclaration>(
 			node.getParent()
 		)).getDeclarations();
+
 		if (scopeNode) {
 			const valueNode = (<nodes.FunctionParameter>node).getDefaultValue();
+
 			const value = valueNode ? valueNode.getText() : void 0;
 			this.addSymbolToChildScope(
 				scopeNode,
@@ -306,6 +334,7 @@ export class ScopeBuilder implements nodes.IVisitor {
 			value,
 			nodes.ReferenceType.Variable,
 		);
+
 		return true;
 	}
 
@@ -334,12 +363,17 @@ export class Symbols {
 		referenceType: nodes.ReferenceType,
 	): Symbol[] {
 		let scope = this.global.findScope(offset, 0);
+
 		const result: Symbol[] = [];
+
 		const names: { [name: string]: boolean } = {};
+
 		while (scope) {
 			const symbols = scope.getSymbols();
+
 			for (let i = 0; i < symbols.length; i++) {
 				const symbol = symbols[i];
+
 				if (symbol.type === referenceType && !names[symbol.name]) {
 					result.push(symbol);
 					names[symbol.name] = true;
@@ -355,6 +389,7 @@ export class Symbols {
 		referenceTypes: nodes.ReferenceType[],
 	): Symbol | null {
 		let scopeNode: nodes.Node | undefined = node;
+
 		if (
 			node.parent instanceof nodes.FunctionParameter &&
 			node.parent.getParent() instanceof nodes.BodyDeclaration
@@ -370,10 +405,12 @@ export class Symbols {
 			const funcId = (<nodes.Function>(
 				node.parent.getParent()
 			)).getIdentifier();
+
 			if (funcId) {
 				const functionSymbol = this.internalFindSymbol(funcId, [
 					nodes.ReferenceType.Function,
 				]);
+
 				if (functionSymbol) {
 					scopeNode = (<nodes.FunctionDeclaration>(
 						functionSymbol.node
@@ -385,11 +422,15 @@ export class Symbols {
 			return null;
 		}
 		const name = node.getText();
+
 		let scope = this.global.findScope(scopeNode.offset, scopeNode.length);
+
 		while (scope) {
 			for (let index = 0; index < referenceTypes.length; index++) {
 				const type = referenceTypes[index];
+
 				const symbol = scope.getSymbol(name, type);
+
 				if (symbol) {
 					return symbol;
 				}
@@ -404,6 +445,7 @@ export class Symbols {
 	): nodes.ReferenceType[] | null {
 		if (node instanceof nodes.Identifier) {
 			const referenceTypes = (<nodes.Identifier>node).referenceTypes;
+
 			if (referenceTypes) {
 				return referenceTypes;
 			} else {
@@ -412,8 +454,10 @@ export class Symbols {
 				}
 				// are a reference to a keyframe?
 				const decl = nodes.getParentDeclaration(node);
+
 				if (decl) {
 					const propertyName = decl.getNonPrefixedPropertyName();
+
 					if (
 						(propertyName === "animation" ||
 							propertyName === "animation-name") &&
@@ -431,6 +475,7 @@ export class Symbols {
 			nodes.NodeType.Selector,
 			nodes.NodeType.ExtendsReference,
 		);
+
 		if (selector) {
 			return [nodes.ReferenceType.Rule];
 		}
@@ -446,6 +491,7 @@ export class Symbols {
 		}
 
 		const referenceTypes = this.evaluateReferenceTypes(node);
+
 		if (referenceTypes) {
 			return this.internalFindSymbol(node, referenceTypes);
 		}
@@ -464,11 +510,13 @@ export class Symbols {
 		}
 
 		const referenceTypes = this.evaluateReferenceTypes(node);
+
 		if (!referenceTypes || referenceTypes.indexOf(symbol.type) === -1) {
 			return false;
 		}
 
 		const nodeSymbol = this.internalFindSymbol(node, referenceTypes);
+
 		return nodeSymbol === symbol;
 	}
 
@@ -478,8 +526,10 @@ export class Symbols {
 		offset: number,
 	): Symbol | null {
 		let scope = this.global.findScope(offset);
+
 		while (scope) {
 			const symbol = scope.getSymbol(name, type);
+
 			if (symbol) {
 				return symbol;
 			}

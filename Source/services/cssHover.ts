@@ -51,6 +51,7 @@ export class CSSHover {
 			);
 		}
 		const offset = document.offsetAt(position);
+
 		const nodepath = nodes.getNodePath(stylesheet, offset);
 
 		/**
@@ -58,6 +59,7 @@ export class CSSHover {
 		 * Build up the hover by appending inner node's information
 		 */
 		let hover: Hover | null = null;
+
 		let flagOpts: { text: string; isMedia: boolean };
 
 		for (let i = 0; i < nodepath.length; i++) {
@@ -65,6 +67,7 @@ export class CSSHover {
 
 			if (node instanceof nodes.Media) {
 				const regex = /@media[^\{]+/g;
+
 				const matches = node.getText().match(regex);
 				flagOpts = {
 					isMedia: true,
@@ -80,6 +83,7 @@ export class CSSHover {
 					),
 					range: getRange(node),
 				};
+
 				break;
 			}
 
@@ -101,13 +105,16 @@ export class CSSHover {
 
 			if (node instanceof nodes.Declaration) {
 				const propertyName = node.getFullPropertyName();
+
 				const entry = this.cssDataManager.getProperty(propertyName);
+
 				if (entry) {
 					const contents = languageFacts.getEntryDescription(
 						entry,
 						this.doesSupportMarkdown(),
 						settings,
 					);
+
 					if (contents) {
 						hover = {
 							contents,
@@ -122,13 +129,16 @@ export class CSSHover {
 
 			if (node instanceof nodes.UnknownAtRule) {
 				const atRuleName = node.getText();
+
 				const entry = this.cssDataManager.getAtDirective(atRuleName);
+
 				if (entry) {
 					const contents = languageFacts.getEntryDescription(
 						entry,
 						this.doesSupportMarkdown(),
 						settings,
 					);
+
 					if (contents) {
 						hover = {
 							contents,
@@ -146,16 +156,19 @@ export class CSSHover {
 				node.type === nodes.NodeType.PseudoSelector
 			) {
 				const selectorName = node.getText();
+
 				const entry =
 					selectorName.slice(0, 2) === "::"
 						? this.cssDataManager.getPseudoElement(selectorName)
 						: this.cssDataManager.getPseudoClass(selectorName);
+
 				if (entry) {
 					const contents = languageFacts.getEntryDescription(
 						entry,
 						this.doesSupportMarkdown(),
 						settings,
 					);
+
 					if (contents) {
 						hover = {
 							contents,
@@ -209,6 +222,7 @@ export class CSSHover {
 		if (!isDefined(this.supportsMarkdown)) {
 			if (!isDefined(this.clientCapabilities)) {
 				this.supportsMarkdown = true;
+
 				return this.supportsMarkdown;
 			}
 

@@ -7,18 +7,29 @@
 import { IToken, Scanner, TokenType } from "./cssScanner";
 
 const _FSL = "/".charCodeAt(0);
+
 const _NWL = "\n".charCodeAt(0);
+
 const _CAR = "\r".charCodeAt(0);
+
 const _LFD = "\f".charCodeAt(0);
 
 const _DLR = "$".charCodeAt(0);
+
 const _HSH = "#".charCodeAt(0);
+
 const _CUL = "{".charCodeAt(0);
+
 const _EQS = "=".charCodeAt(0);
+
 const _BNG = "!".charCodeAt(0);
+
 const _LAN = "<".charCodeAt(0);
+
 const _RAN = ">".charCodeAt(0);
+
 const _DOT = ".".charCodeAt(0);
+
 const _ATS = "@".charCodeAt(0);
 
 let customTokenValue = TokenType.CustomToken;
@@ -38,6 +49,7 @@ export class SCSSScanner extends Scanner {
 		// scss variable
 		if (this.stream.advanceIfChar(_DLR)) {
 			const content = ["$"];
+
 			if (this.ident(content)) {
 				return this.finishToken(offset, VariableName, content.join(""));
 			} else {
@@ -95,10 +107,12 @@ export class SCSSScanner extends Scanner {
 					case _CAR:
 					case _LFD:
 						return false;
+
 					default:
 						return true;
 				}
 			});
+
 			return true;
 		} else {
 			return false;

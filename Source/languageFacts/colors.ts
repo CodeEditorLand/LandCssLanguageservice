@@ -331,12 +331,15 @@ const colorKeywordsRegExp = new RegExp(
 
 function getNumericValue(node: nodes.Node, factor: number) {
 	const val = node.getText();
+
 	const m = val.match(/^([-+]?[0-9]*\.?[0-9]+)(%?)$/);
+
 	if (m) {
 		if (m[2]) {
 			factor = 100.0;
 		}
 		const result = parseFloat(m[1]) / factor;
+
 		if (result >= 0 && result <= 1) {
 			return result;
 		}
@@ -346,17 +349,23 @@ function getNumericValue(node: nodes.Node, factor: number) {
 
 function getAngle(node: nodes.Node) {
 	const val = node.getText();
+
 	const m = val.match(/^([-+]?[0-9]*\.?[0-9]+)(deg|rad|grad|turn)?$/);
+
 	if (m) {
 		switch (m[2]) {
 			case "deg":
 				return parseFloat(val) % 360;
+
 			case "rad":
 				return ((parseFloat(val) * 180) / Math.PI) % 360;
+
 			case "grad":
 				return (parseFloat(val) * 0.9) % 360;
+
 			case "turn":
 				return (parseFloat(val) * 360) % 360;
+
 			default:
 				if ("undefined" === typeof m[2]) {
 					return parseFloat(val) % 360;
@@ -369,6 +378,7 @@ function getAngle(node: nodes.Node) {
 
 export function isColorConstructor(node: nodes.Function): boolean {
 	const name = node.getName();
+
 	if (!name) {
 		return false;
 	}
@@ -398,6 +408,7 @@ export function isColorValue(node: nodes.Node): boolean {
 			return false;
 		}
 		const candidateColor = node.getText().toLowerCase();
+
 		if (candidateColor === "none") {
 			return false;
 		}
@@ -409,10 +420,15 @@ export function isColorValue(node: nodes.Node): boolean {
 }
 
 const Digit0 = 48;
+
 const Digit9 = 57;
+
 const A = 65;
+
 const F = 70;
+
 const a = 97;
+
 const f = 102;
 
 export function hexDigit(charCode: number) {
@@ -443,6 +459,7 @@ export function colorFromHex(text: string): Color | null {
 				blue: (hexDigit(text.charCodeAt(3)) * 0x11) / 255.0,
 				alpha: 1,
 			};
+
 		case 5:
 			return {
 				red: (hexDigit(text.charCodeAt(1)) * 0x11) / 255.0,
@@ -450,6 +467,7 @@ export function colorFromHex(text: string): Color | null {
 				blue: (hexDigit(text.charCodeAt(3)) * 0x11) / 255.0,
 				alpha: (hexDigit(text.charCodeAt(4)) * 0x11) / 255.0,
 			};
+
 		case 7:
 			return {
 				red:
@@ -466,6 +484,7 @@ export function colorFromHex(text: string): Color | null {
 					255.0,
 				alpha: 1,
 			};
+
 		case 9:
 			return {
 				red:
@@ -510,6 +529,7 @@ export function colorFromHSL(
 	alpha: number = 1.0,
 ): Color {
 	hue = hue / 60.0;
+
 	if (sat === 0) {
 		return { red: light, green: light, blue: light, alpha };
 	} else {
@@ -532,8 +552,11 @@ export function colorFromHSL(
 			}
 			return t1;
 		};
+
 		const t2 = light <= 0.5 ? light * (sat + 1) : light + sat - light * sat;
+
 		const t1 = light * 2 - t2;
+
 		return {
 			red: hueToRgb(t1, t2, hue + 2),
 			green: hueToRgb(t1, t2, hue),
@@ -552,15 +575,23 @@ export interface HSLA {
 
 export function hslFromColor(rgba: Color): HSLA {
 	const r = rgba.red;
+
 	const g = rgba.green;
+
 	const b = rgba.blue;
+
 	const a = rgba.alpha;
 
 	const max = Math.max(r, g, b);
+
 	const min = Math.min(r, g, b);
+
 	let h = 0;
+
 	let s = 0;
+
 	const l = (min + max) / 2;
+
 	const chroma = max - min;
 
 	if (chroma > 0) {
@@ -569,12 +600,17 @@ export function hslFromColor(rgba: Color): HSLA {
 		switch (max) {
 			case r:
 				h = (g - b) / chroma + (g < b ? 6 : 0);
+
 				break;
+
 			case g:
 				h = (b - r) / chroma + 2;
+
 				break;
+
 			case b:
 				h = (r - g) / chroma + 4;
+
 				break;
 		}
 
@@ -592,10 +628,12 @@ export function colorFromHWB(
 ): Color {
 	if (white + black >= 1) {
 		const gray = white / (white + black);
+
 		return { red: gray, green: gray, blue: gray, alpha };
 	}
 
 	const rgb = colorFromHSL(hue, 1, 0.5, alpha);
+
 	let red = rgb.red;
 	red *= 1 - white - black;
 	red += white;
@@ -625,7 +663,9 @@ export interface HWBA {
 
 export function hwbFromColor(rgba: Color): HWBA {
 	const hsl = hslFromColor(rgba);
+
 	const white = Math.min(rgba.red, rgba.green, rgba.blue);
+
 	const black = 1 - Math.max(rgba.red, rgba.green, rgba.blue);
 
 	return {
@@ -639,24 +679,32 @@ export function hwbFromColor(rgba: Color): HWBA {
 export function getColorValue(node: nodes.Node): Color | null {
 	if (node.type === nodes.NodeType.HexColorValue) {
 		const text = node.getText();
+
 		return colorFromHex(text);
 	} else if (node.type === nodes.NodeType.Function) {
 		const functionNode = <nodes.Function>node;
+
 		const name = functionNode.getName();
+
 		let colorValues = functionNode.getArguments().getChildren();
+
 		if (colorValues.length === 1) {
 			const functionArg = colorValues[0].getChildren();
+
 			if (
 				functionArg.length === 1 &&
 				functionArg[0].type === nodes.NodeType.Expression
 			) {
 				colorValues = functionArg[0].getChildren();
+
 				if (colorValues.length === 3) {
 					const lastValue = colorValues[2];
+
 					if (lastValue instanceof nodes.BinaryExpression) {
 						const left = lastValue.getLeft(),
 							right = lastValue.getRight(),
 							operator = lastValue.getOperator();
+
 						if (
 							left &&
 							right &&
@@ -682,6 +730,7 @@ export function getColorValue(node: nodes.Node): Color | null {
 				colorValues.length === 4
 					? getNumericValue(colorValues[3], 1)
 					: 1;
+
 			if (name === "rgb" || name === "rgba") {
 				return {
 					red: getNumericValue(colorValues[0], 255.0),
@@ -691,13 +740,19 @@ export function getColorValue(node: nodes.Node): Color | null {
 				};
 			} else if (name === "hsl" || name === "hsla") {
 				const h = getAngle(colorValues[0]);
+
 				const s = getNumericValue(colorValues[1], 100.0);
+
 				const l = getNumericValue(colorValues[2], 100.0);
+
 				return colorFromHSL(h, s, l, alpha);
 			} else if (name === "hwb") {
 				const h = getAngle(colorValues[0]);
+
 				const w = getNumericValue(colorValues[1], 100.0);
+
 				const b = getNumericValue(colorValues[2], 100.0);
+
 				return colorFromHWB(h, w, b, alpha);
 			}
 		} catch (e) {
@@ -709,12 +764,14 @@ export function getColorValue(node: nodes.Node): Color | null {
 			return null;
 		}
 		const term = node.parent;
+
 		if (
 			term &&
 			term.parent &&
 			term.parent.type === nodes.NodeType.BinaryExpression
 		) {
 			const expression = term.parent;
+
 			if (
 				expression.parent &&
 				expression.parent.type === nodes.NodeType.ListEntry &&
@@ -725,10 +782,12 @@ export function getColorValue(node: nodes.Node): Color | null {
 		}
 
 		const candidateColor = node.getText().toLowerCase();
+
 		if (candidateColor === "none") {
 			return null;
 		}
 		const colorHex = colors[candidateColor];
+
 		if (colorHex) {
 			return colorFromHex(colorHex);
 		}

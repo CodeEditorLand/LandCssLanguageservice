@@ -48,6 +48,7 @@ type DocumentSymbolCollector = (
 ) => void;
 
 const startsWithSchemeRegex = /^\w+:\/\//;
+
 const startsWithData = /^data:/;
 
 export class CSSNavigation {
@@ -68,7 +69,9 @@ export class CSSNavigation {
 		stylesheet: nodes.Node,
 	): Location | null {
 		const symbols = new Symbols(stylesheet);
+
 		const offset = document.offsetAt(position);
+
 		const node = nodes.getNodeAtOffset(stylesheet, offset);
 
 		if (!node) {
@@ -76,6 +79,7 @@ export class CSSNavigation {
 		}
 
 		const symbol = symbols.findSymbolFromNode(node);
+
 		if (!symbol) {
 			return null;
 		}
@@ -96,6 +100,7 @@ export class CSSNavigation {
 			position,
 			stylesheet,
 		);
+
 		return highlights.map((h) => {
 			return {
 				uri: document.uri,
@@ -110,7 +115,9 @@ export class CSSNavigation {
 		stylesheet: nodes.Stylesheet,
 	): nodes.Node | undefined {
 		const offset = document.offsetAt(position);
+
 		let node = nodes.getNodeAtOffset(stylesheet, offset);
+
 		if (
 			!node ||
 			node.type === nodes.NodeType.Stylesheet ||
@@ -136,13 +143,17 @@ export class CSSNavigation {
 		stylesheet: nodes.Stylesheet,
 	): DocumentHighlight[] {
 		const result: DocumentHighlight[] = [];
+
 		const node = this.getHighlightNode(document, position, stylesheet);
+
 		if (!node) {
 			return result;
 		}
 
 		const symbols = new Symbols(stylesheet);
+
 		const symbol = symbols.findSymbolFromNode(node);
+
 		const name = node.getText();
 
 		stylesheet.accept((candidate) => {
@@ -152,6 +163,7 @@ export class CSSNavigation {
 						kind: getHighlightKind(candidate),
 						range: getRange(candidate, document),
 					});
+
 					return false;
 				}
 			} else if (
@@ -181,10 +193,14 @@ export class CSSNavigation {
 		documentContext: DocumentContext,
 	): DocumentLink[] {
 		const linkData = this.findUnresolvedLinks(document, stylesheet);
+
 		const resolvedLinks: DocumentLink[] = [];
+
 		for (let data of linkData) {
 			const link = data.link;
+
 			const target = link.target;
+
 			if (!target || startsWithData.test(target)) {
 				// no links for data:
 			} else if (startsWithSchemeRegex.test(target)) {
@@ -194,6 +210,7 @@ export class CSSNavigation {
 					target,
 					document.uri,
 				);
+
 				if (resolved) {
 					link.target = resolved;
 				}
@@ -209,10 +226,14 @@ export class CSSNavigation {
 		documentContext: DocumentContext,
 	): Promise<DocumentLink[]> {
 		const linkData = this.findUnresolvedLinks(document, stylesheet);
+
 		const resolvedLinks: DocumentLink[] = [];
+
 		for (let data of linkData) {
 			const link = data.link;
+
 			const target = link.target;
+
 			if (!target || startsWithData.test(target)) {
 				// no links for data:
 			} else if (startsWithSchemeRegex.test(target)) {
@@ -224,6 +245,7 @@ export class CSSNavigation {
 					documentContext,
 					data.isRawLink,
 				);
+
 				if (resolvedTarget !== undefined) {
 					link.target = resolvedTarget;
 					resolvedLinks.push(link);
@@ -241,6 +263,7 @@ export class CSSNavigation {
 
 		const collect = (uriStringNode: nodes.Node) => {
 			let rawUri = uriStringNode.getText();
+
 			const range = getRange(uriStringNode, document);
 			// Make sure the range is not empty
 			if (
@@ -263,6 +286,7 @@ export class CSSNavigation {
 		stylesheet.accept((candidate) => {
 			if (candidate.type === nodes.NodeType.URILiteral) {
 				const first = candidate.getChild(0);
+
 				if (first) {
 					collect(first);
 				}
@@ -278,6 +302,7 @@ export class CSSNavigation {
 				this.isRawStringDocumentLinkNode(candidate.parent)
 			) {
 				const rawText = candidate.getText();
+
 				if (startsWith(rawText, `'`) || startsWith(rawText, `"`)) {
 					collect(candidate);
 				}
@@ -305,6 +330,7 @@ export class CSSNavigation {
 				symbolNodeOrRange instanceof nodes.Node
 					? getRange(symbolNodeOrRange, document)
 					: symbolNodeOrRange;
+
 			const entry: SymbolInformation = {
 				name: name || l10n.t("<undefined>"),
 				kind,
@@ -337,10 +363,12 @@ export class CSSNavigation {
 				symbolNodeOrRange instanceof nodes.Node
 					? getRange(symbolNodeOrRange, document)
 					: symbolNodeOrRange;
+
 			let selectionRange =
 				nameNodeOrRange instanceof nodes.Node
 					? getRange(nameNodeOrRange, document)
 					: nameNodeOrRange;
+
 			if (!selectionRange || !containsRange(range, selectionRange)) {
 				selectionRange = Range.create(range.start, range.start);
 			}
@@ -351,12 +379,15 @@ export class CSSNavigation {
 				range,
 				selectionRange,
 			};
+
 			let top = parents.pop();
+
 			while (top && !containsRange(top[1], range)) {
 				top = parents.pop();
 			}
 			if (top) {
 				const topSymbol = top[0];
+
 				if (!topSymbol.children) {
 					topSymbol.children = [];
 				}
@@ -441,6 +472,7 @@ export class CSSNavigation {
 				);
 			} else if (node instanceof nodes.Media) {
 				const mediaList = node.getChild(0);
+
 				if (mediaList instanceof nodes.Medialist) {
 					const name = "@media " + mediaList.getText();
 					collect(
@@ -463,11 +495,13 @@ export class CSSNavigation {
 		const result: ColorInformation[] = [];
 		stylesheet.accept((node) => {
 			const colorInfo = getColorInformation(node, document);
+
 			if (colorInfo) {
 				result.push(colorInfo);
 			}
 			return true;
 		});
+
 		return result;
 	}
 
@@ -478,11 +512,13 @@ export class CSSNavigation {
 		range: Range,
 	): ColorPresentation[] {
 		const result: ColorPresentation[] = [];
+
 		const red256 = Math.round(color.red * 255),
 			green256 = Math.round(color.green * 255),
 			blue256 = Math.round(color.blue * 255);
 
 		let label;
+
 		if (color.alpha === 1) {
 			label = `rgb(${red256}, ${green256}, ${blue256})`;
 		} else {
@@ -498,6 +534,7 @@ export class CSSNavigation {
 		result.push({ label: label, textEdit: TextEdit.replace(range, label) });
 
 		const hsl = hslFromColor(color);
+
 		if (hsl.a === 1) {
 			label = `hsl(${hsl.h}, ${Math.round(hsl.s * 100)}%, ${Math.round(hsl.l * 100)}%)`;
 		} else {
@@ -506,6 +543,7 @@ export class CSSNavigation {
 		result.push({ label: label, textEdit: TextEdit.replace(range, label) });
 
 		const hwb = hwbFromColor(color);
+
 		if (hwb.a === 1) {
 			label = `hwb(${hwb.h} ${Math.round(hwb.w * 100)}% ${Math.round(hwb.b * 100)}%)`;
 		} else {
@@ -522,6 +560,7 @@ export class CSSNavigation {
 		stylesheet: nodes.Stylesheet,
 	): Range | undefined {
 		const node = this.getHighlightNode(document, position, stylesheet);
+
 		if (node) {
 			return Range.create(
 				document.positionAt(node.offset),
@@ -541,7 +580,9 @@ export class CSSNavigation {
 			position,
 			stylesheet,
 		);
+
 		const edits = highlights.map((h) => TextEdit.replace(h.range, newName));
+
 		return {
 			changes: { [document.uri]: edits },
 		};
@@ -554,21 +595,26 @@ export class CSSNavigation {
 	): Promise<string | undefined> {
 		if (startsWith(documentUri, "file://")) {
 			const moduleName = getModuleNameFromPath(ref);
+
 			if (moduleName && moduleName !== "." && moduleName !== "..") {
 				const rootFolderUri = documentContext.resolveReference(
 					"/",
 					documentUri,
 				);
+
 				const documentFolderUri = dirname(documentUri);
+
 				const modulePath = await this.resolvePathToModule(
 					moduleName,
 					documentFolderUri,
 					rootFolderUri,
 				);
+
 				if (modulePath) {
 					const pathWithinModule = ref.substring(
 						moduleName.length + 1,
 					);
+
 					return joinPath(modulePath, pathWithinModule);
 				}
 			}
@@ -596,6 +642,7 @@ export class CSSNavigation {
 		// *unless* it starts with "~/" as this refers to the user's home directory.
 		if (target[0] === "~" && target[1] !== "/" && this.fileSystemProvider) {
 			target = target.substring(1);
+
 			return this.mapReference(
 				await this.resolveModuleReference(
 					target,
@@ -628,6 +675,7 @@ export class CSSNavigation {
 				),
 				isRawLink,
 			);
+
 			if (moduleReference) {
 				return moduleReference;
 			}
@@ -639,6 +687,7 @@ export class CSSNavigation {
 				"/",
 				documentUri,
 			);
+
 			if (settings && rootFolderUri) {
 				// Specific file reference
 				if (target in settings) {
@@ -649,10 +698,14 @@ export class CSSNavigation {
 				}
 				// Reference folder
 				const firstSlash = target.indexOf("/");
+
 				const prefix = `${target.substring(0, firstSlash)}/`;
+
 				if (prefix in settings) {
 					const aliasPath = settings[prefix].slice(0, -1);
+
 					let newPath = joinPath(rootFolderUri, aliasPath);
+
 					return this.mapReference(
 						(newPath = joinPath(
 							newPath,
@@ -681,6 +734,7 @@ export class CSSNavigation {
 			_moduleName,
 			"package.json",
 		);
+
 		if (await this.fileExists(packPath)) {
 			return dirname(packPath);
 		} else if (
@@ -703,6 +757,7 @@ export class CSSNavigation {
 		}
 		try {
 			const stat = await this.fileSystemProvider.stat(uri);
+
 			if (stat.type === FileType.Unknown && stat.size === -1) {
 				return false;
 			}
@@ -730,8 +785,10 @@ function getColorInformation(
 	document: TextDocument,
 ): ColorInformation | null {
 	const color = getColorValue(node);
+
 	if (color) {
 		const range = getRange(node, document);
+
 		return { color, range };
 	}
 	return null;
@@ -750,6 +807,7 @@ function getRange(node: nodes.Node, document: TextDocument): Range {
 function containsRange(range: Range, otherRange: Range): boolean {
 	const otherStartLine = otherRange.start.line,
 		otherEndLine = otherRange.end.line;
+
 	const rangeStartLine = range.start.line,
 		rangeEndLine = range.end.line;
 
@@ -803,11 +861,13 @@ function getHighlightKind(node: nodes.Node): DocumentHighlightKind {
 
 function toTwoDigitHex(n: number): string {
 	const r = n.toString(16);
+
 	return r.length !== 2 ? "0" + r : r;
 }
 
 export function getModuleNameFromPath(path: string) {
 	const firstSlash = path.indexOf("/");
+
 	if (firstSlash === -1) {
 		return "";
 	}
@@ -815,6 +875,7 @@ export function getModuleNameFromPath(path: string) {
 	// If a scoped module (starts with @) then get up until second instance of '/', or to the end of the string for root-level imports.
 	if (path[0] === "@") {
 		const secondSlash = path.indexOf("/", firstSlash + 1);
+
 		if (secondSlash === -1) {
 			return path;
 		}

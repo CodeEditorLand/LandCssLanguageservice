@@ -102,6 +102,7 @@ export class SCSSParser extends cssParser.Parser {
 				// !important
 			} else {
 				this.consumeToken();
+
 				if (!this.peekRegExp(TokenType.Ident, /^(default|global)$/)) {
 					return this.finish(node, ParseError.UnknownKeyword);
 				}
@@ -157,11 +158,13 @@ export class SCSSParser extends cssParser.Parser {
 		}
 		const node = <nodes.Variable>this.create(nodes.Variable);
 		this.consumeToken();
+
 		return <nodes.Variable>node;
 	}
 
 	public _parseModuleMember(): nodes.Module | null {
 		const pos = this.mark();
+
 		const node = <nodes.Module>this.create(nodes.Module);
 
 		if (
@@ -176,6 +179,7 @@ export class SCSSParser extends cssParser.Parser {
 			this.hasWhitespace()
 		) {
 			this.restoreAtMark(pos);
+
 			return null;
 		}
 
@@ -200,16 +204,19 @@ export class SCSSParser extends cssParser.Parser {
 		const node = <nodes.Identifier>this.create(nodes.Identifier);
 		node.referenceTypes = referenceTypes;
 		node.isCustomProperty = this.peekRegExp(TokenType.Ident, /^--/);
+
 		let hasContent = false;
 
 		const indentInterpolation = () => {
 			const pos = this.mark();
+
 			if (this.acceptDelim("-")) {
 				if (!this.hasWhitespace()) {
 					this.acceptDelim("-");
 				}
 				if (this.hasWhitespace()) {
 					this.restoreAtMark(pos);
+
 					return null;
 				}
 			}
@@ -222,6 +229,7 @@ export class SCSSParser extends cssParser.Parser {
 			(hasContent && this.acceptRegexp(/^[\w-]/))
 		) {
 			hasContent = true;
+
 			if (this.hasWhitespace()) {
 				break;
 			}
@@ -243,6 +251,7 @@ export class SCSSParser extends cssParser.Parser {
 		if (this.peek(scssScanner.InterpolationFunction)) {
 			const node = this.create(nodes.Interpolation);
 			this.consumeToken();
+
 			if (
 				!node.addChild(this._parseExpr()) &&
 				!this._parseNestingSelector()
@@ -274,6 +283,7 @@ export class SCSSParser extends cssParser.Parser {
 		) {
 			const node = this.createNode(nodes.NodeType.Operator);
 			this.consumeToken();
+
 			return this.finish(node);
 		}
 		return super._parseOperator();
@@ -283,6 +293,7 @@ export class SCSSParser extends cssParser.Parser {
 		if (this.peekIdent("not")) {
 			const node = this.create(nodes.Node);
 			this.consumeToken();
+
 			return this.finish(node);
 		}
 		return super._parseUnaryOperator();
@@ -322,11 +333,13 @@ export class SCSSParser extends cssParser.Parser {
 	): nodes.Declaration | null {
 		const custonProperty =
 			this._tryParseCustomPropertyDeclaration(stopTokens);
+
 		if (custonProperty) {
 			return custonProperty;
 		}
 
 		const node = <nodes.Declaration>this.create(nodes.Declaration);
+
 		if (!node.setProperty(this._parseProperty())) {
 			return null;
 		}
@@ -344,6 +357,7 @@ export class SCSSParser extends cssParser.Parser {
 		}
 
 		let hasContent = false;
+
 		if (node.setValue(this._parseExpr())) {
 			hasContent = true;
 			node.addChild(this._parsePrio());
@@ -365,6 +379,7 @@ export class SCSSParser extends cssParser.Parser {
 		const node = <nodes.NestedProperties>(
 			this.create(nodes.NestedProperties)
 		);
+
 		return this._parseBody(node, this._parseDeclaration.bind(this));
 	}
 
@@ -374,6 +389,7 @@ export class SCSSParser extends cssParser.Parser {
 				this.create(nodes.ExtendsReference)
 			);
 			this.consumeToken();
+
 			if (!node.getSelectors().addChild(this._parseSimpleSelector())) {
 				return this.finish(node, ParseError.SelectorExpected);
 			}
@@ -400,6 +416,7 @@ export class SCSSParser extends cssParser.Parser {
 		if (this.peekDelim("&")) {
 			const node = this.createNode(nodes.NodeType.SelectorCombinator);
 			this.consumeToken();
+
 			while (
 				!this.hasWhitespace() &&
 				(this.acceptDelim("-") ||
@@ -420,10 +437,12 @@ export class SCSSParser extends cssParser.Parser {
 			const node = this.createNode(nodes.NodeType.SelectorPlaceholder);
 			this.consumeToken();
 			this._parseIdent();
+
 			return this.finish(node);
 		} else if (this.peekKeyword("@at-root")) {
 			const node = this.createNode(nodes.NodeType.SelectorPlaceholder);
 			this.consumeToken();
+
 			if (this.accept(TokenType.ParenthesisL)) {
 				if (!this.acceptIdent("with") && !this.acceptIdent("without")) {
 					return this.finish(node, ParseError.IdentifierExpected);
@@ -449,7 +468,9 @@ export class SCSSParser extends cssParser.Parser {
 
 	public _parseElementName(): nodes.Node | null {
 		const pos = this.mark();
+
 		const node = super._parseElementName();
+
 		if (
 			node &&
 			!this.hasWhitespace() &&
@@ -457,6 +478,7 @@ export class SCSSParser extends cssParser.Parser {
 		) {
 			// for #49589
 			this.restoreAtMark(pos);
+
 			return null;
 		}
 		return node;
@@ -514,6 +536,7 @@ export class SCSSParser extends cssParser.Parser {
 			return this.finish(node, ParseError.ExpressionExpected);
 		}
 		this._parseBody(node, parseStatement);
+
 		if (this.acceptKeyword("@else")) {
 			if (this.peekIdent("if")) {
 				node.setElseClause(
@@ -578,6 +601,7 @@ export class SCSSParser extends cssParser.Parser {
 		const node = <nodes.EachStatement>this.create(nodes.EachStatement);
 		this.consumeToken(); // @each
 		const variables = node.getVariables();
+
 		if (!variables.addChild(this._parseVariable())) {
 			return this.finish(node, ParseError.VariableNameExpected, [
 				TokenType.CurlyR,
@@ -591,6 +615,7 @@ export class SCSSParser extends cssParser.Parser {
 			}
 		}
 		this.finish(variables);
+
 		if (!this.acceptIdent("in")) {
 			return this.finish(node, SCSSParseError.InExpected, [
 				TokenType.CurlyR,
@@ -782,6 +807,7 @@ export class SCSSParser extends cssParser.Parser {
 		}
 		const node = this.create(nodes.MixinContentReference);
 		this.consumeToken();
+
 		if (this.accept(TokenType.ParenthesisL)) {
 			if (node.getArguments().addChild(this._parseFunctionArgument())) {
 				while (this.accept(TokenType.Comma)) {
@@ -815,6 +841,7 @@ export class SCSSParser extends cssParser.Parser {
 
 		// Could be module or mixin identifier, set as mixin as default.
 		const firstIdent = this._parseIdent([nodes.ReferenceType.Mixin]);
+
 		if (!node.setIdentifier(firstIdent)) {
 			return this.finish(node, ParseError.IdentifierExpected, [
 				TokenType.CurlyR,
@@ -876,6 +903,7 @@ export class SCSSParser extends cssParser.Parser {
 		const node = <nodes.MixinContentDeclaration>(
 			this.create(nodes.MixinContentDeclaration)
 		);
+
 		if (this.acceptIdent("using")) {
 			if (!this.accept(TokenType.ParenthesisL)) {
 				return this.finish(node, ParseError.LeftParenthesisExpected, [
@@ -932,12 +960,15 @@ export class SCSSParser extends cssParser.Parser {
 		);
 
 		const pos = this.mark();
+
 		const argument = this._parseVariable();
+
 		if (argument) {
 			if (!this.accept(TokenType.Colon)) {
 				if (this.accept(scssScanner.Ellipsis)) {
 					// optional
 					node.setValue(argument);
+
 					return this.finish(node);
 				} else {
 					this.restoreAtMark(pos);
@@ -960,12 +991,15 @@ export class SCSSParser extends cssParser.Parser {
 
 	public _parseURLArgument(): nodes.Node | null {
 		const pos = this.mark();
+
 		const node = super._parseURLArgument();
+
 		if (!node || !this.peek(TokenType.ParenthesisR)) {
 			this.restoreAtMark(pos);
 
 			const node = this.create(nodes.Node);
 			node.addChild(this._parseBinaryExpr());
+
 			return this.finish(node);
 		}
 		return node;
@@ -989,12 +1023,15 @@ export class SCSSParser extends cssParser.Parser {
 
 	public _parseListElement(): nodes.Node | null {
 		const node = <nodes.ListEntry>this.create(nodes.ListEntry);
+
 		const child = this._parseBinaryExpr();
+
 		if (!child) {
 			return null;
 		}
 		if (this.accept(TokenType.Colon)) {
 			node.setKey(child);
+
 			if (!node.setValue(this._parseBinaryExpr())) {
 				return this.finish(node, ParseError.ExpressionExpected);
 			}
@@ -1054,6 +1091,7 @@ export class SCSSParser extends cssParser.Parser {
 
 	public _parseModuleConfig(): nodes.Node | null {
 		const node = this.createNode(nodes.NodeType.ModuleConfig);
+
 		if (!this.accept(TokenType.ParenthesisL)) {
 			return null;
 		}
@@ -1123,6 +1161,7 @@ export class SCSSParser extends cssParser.Parser {
 
 		if (this.acceptIdent("as")) {
 			const identifier = this._parseIdent([nodes.ReferenceType.Forward]);
+
 			if (!node.setIdentifier(identifier)) {
 				return this.finish(node, ParseError.IdentifierExpected);
 			}

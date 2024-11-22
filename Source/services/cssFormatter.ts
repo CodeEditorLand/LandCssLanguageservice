@@ -19,15 +19,21 @@ export function format(
 	options: CSSFormatConfiguration,
 ): TextEdit[] {
 	let value = document.getText();
+
 	let includesEnd = true;
+
 	let initialIndentLevel = 0;
+
 	let inRule = false;
+
 	const tabSize = options.tabSize || 4;
+
 	if (range) {
 		let startOffset = document.offsetAt(range.start);
 
 		// include all leading whitespace iff at the beginning of the line
 		let extendedStart = startOffset;
+
 		while (extendedStart > 0 && isWhitespace(value, extendedStart - 1)) {
 			extendedStart--;
 		}
@@ -42,7 +48,9 @@ export function format(
 
 		// include all following whitespace until the end of the line
 		let endOffset = document.offsetAt(range.end);
+
 		let extendedEnd = endOffset;
+
 		while (extendedEnd < value.length && isWhitespace(value, extendedEnd)) {
 			extendedEnd++;
 		}
@@ -59,6 +67,7 @@ export function format(
 
 		includesEnd = endOffset === value.length;
 		value = value.substring(startOffset, endOffset);
+
 		if (startOffset !== 0) {
 			const startOfLineOffset = document.offsetAt(
 				Position.create(range.start.line, 0),
@@ -112,6 +121,7 @@ export function format(
 	};
 
 	let result = css_beautify(value, cssOptions);
+
 	if (inRule) {
 		result = trimLeft(result.substring(2));
 	}
@@ -120,6 +130,7 @@ export function format(
 			? repeat(" ", tabSize * initialIndentLevel)
 			: repeat("\t", initialIndentLevel);
 		result = result.split("\n").join("\n" + indent);
+
 		if (range.start.character === 0) {
 			result = indent + result; // keep the indent
 		}
@@ -137,11 +148,13 @@ function trimLeft(str: string) {
 }
 
 const _CUL = "{".charCodeAt(0);
+
 const _CUR = "}".charCodeAt(0);
 
 function isInRule(str: string, offset: number) {
 	while (offset >= 0) {
 		const ch = str.charCodeAt(offset);
+
 		if (ch === _CUL) {
 			return true;
 		} else if (ch === _CUR) {
@@ -159,6 +172,7 @@ function getFormatOption(
 ): any {
 	if (options && options.hasOwnProperty(key)) {
 		const value = options[key];
+
 		if (value !== null) {
 			return value;
 		}
@@ -172,10 +186,14 @@ function computeIndentLevel(
 	options: CSSFormatConfiguration,
 ): number {
 	let i = offset;
+
 	let nChars = 0;
+
 	const tabSize = options.tabSize || 4;
+
 	while (i < content.length) {
 		const ch = content.charAt(i);
+
 		if (ch === " ") {
 			nChars++;
 		} else if (ch === "\t") {

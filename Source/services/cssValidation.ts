@@ -50,6 +50,7 @@ export class CSSValidation {
 		);
 
 		const ruleIds: string[] = [];
+
 		for (const r in Rules) {
 			ruleIds.push(Rules[r as keyof typeof Rules].id);
 		}
@@ -59,6 +60,7 @@ export class CSSValidation {
 				document.positionAt(marker.getOffset()),
 				document.positionAt(marker.getOffset() + marker.getLength()),
 			);
+
 			const source = document.languageId;
 
 			return <Diagnostic>{

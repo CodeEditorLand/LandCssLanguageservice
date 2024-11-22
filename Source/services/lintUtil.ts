@@ -56,8 +56,11 @@ function setSide<K extends "top" | "right" | "bottom" | "left">(
 
 function setAllSides(model: BoxModel, value: boolean, property: Element): void {
 	setSide(model, "top", value, property);
+
 	setSide(model, "right", value, property);
+
 	setSide(model, "bottom", value, property);
+
 	setSide(model, "left", value, property);
 }
 
@@ -87,24 +90,31 @@ function updateModelWithList(
 	switch (values.length) {
 		case 1:
 			updateModelWithValue(model, undefined, values[0], property);
+
 			break;
+
 		case 2:
 			updateModelWithValue(model, "top", values[0], property);
 			updateModelWithValue(model, "bottom", values[0], property);
 			updateModelWithValue(model, "right", values[1], property);
 			updateModelWithValue(model, "left", values[1], property);
+
 			break;
+
 		case 3:
 			updateModelWithValue(model, "top", values[0], property);
 			updateModelWithValue(model, "right", values[1], property);
 			updateModelWithValue(model, "left", values[1], property);
 			updateModelWithValue(model, "bottom", values[2], property);
+
 			break;
+
 		case 4:
 			updateModelWithValue(model, "top", values[0], property);
 			updateModelWithValue(model, "right", values[1], property);
 			updateModelWithValue(model, "bottom", values[2], property);
 			updateModelWithValue(model, "left", values[3], property);
+
 			break;
 	}
 }
@@ -175,6 +185,7 @@ function checkBorderShorthand(node: nodes.Node): boolean {
 	// if either check returns false, the result is no border
 	if (children.length === 1) {
 		const value = children[0];
+
 		return checkLineWidth(value) && checkLineStyle(value);
 	}
 
@@ -182,6 +193,7 @@ function checkBorderShorthand(node: nodes.Node): boolean {
 	// if any child means no border, the result is no border
 	for (const child of children) {
 		const value = child;
+
 		if (
 			!checkLineWidth(value, /* allowsKeywords: */ false) ||
 			!checkLineStyle(value, /* allowsKeywords: */ false)
@@ -202,6 +214,7 @@ export default function calculateBoxModel(propertyTable: Element[]): BoxModel {
 
 	for (const property of propertyTable) {
 		const value = property.node.value;
+
 		if (typeof value === "undefined") {
 			continue;
 		}
@@ -215,14 +228,20 @@ export default function calculateBoxModel(propertyTable: Element[]): BoxModel {
 					bottom: { value: false, properties: [] },
 					left: { value: false, properties: [] },
 				};
+
 			case "width":
 				model.width = property;
+
 				break;
+
 			case "height":
 				model.height = property;
+
 				break;
+
 			default:
 				const segments = property.fullPropertyName.split("-");
+
 				switch (segments[0]) {
 					case "border":
 						switch (segments[1]) {
@@ -239,7 +258,9 @@ export default function calculateBoxModel(propertyTable: Element[]): BoxModel {
 											checkBorderShorthand(value),
 											property,
 										);
+
 										break;
+
 									case "width":
 										// the initial value of `border-width` is `medium`, not zero
 										updateModelWithValue(
@@ -248,7 +269,9 @@ export default function calculateBoxModel(propertyTable: Element[]): BoxModel {
 											checkLineWidth(value, false),
 											property,
 										);
+
 										break;
+
 									case "style":
 										// the initial value of `border-style` is `none`
 										updateModelWithValue(
@@ -257,9 +280,11 @@ export default function calculateBoxModel(propertyTable: Element[]): BoxModel {
 											checkLineStyle(value, true),
 											property,
 										);
+
 										break;
 								}
 								break;
+
 							case "width":
 								// the initial value of `border-width` is `medium`, not zero
 								updateModelWithList(
@@ -270,7 +295,9 @@ export default function calculateBoxModel(propertyTable: Element[]): BoxModel {
 									),
 									property,
 								);
+
 								break;
+
 							case "style":
 								// the initial value of `border-style` is `none`
 								updateModelWithList(
@@ -281,9 +308,11 @@ export default function calculateBoxModel(propertyTable: Element[]): BoxModel {
 									),
 									property,
 								);
+
 								break;
 						}
 						break;
+
 					case "padding":
 						if (segments.length === 1) {
 							// the initial value of `padding` is zero

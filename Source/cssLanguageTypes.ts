@@ -96,6 +96,7 @@ export interface LanguageSettings {
 	lint?: LintSettings;
 	completion?: CompletionSettings;
 	hover?: HoverSettings;
+
 	importAliases?: AliasSettings;
 }
 
@@ -339,6 +340,7 @@ export interface FileStat {
 export interface FileSystemProvider {
 	stat(uri: DocumentUri): Promise<FileStat>;
 	readDirectory?(uri: DocumentUri): Promise<[string, FileType][]>;
+
 	getContent?(uri: DocumentUri, encoding?: string): Promise<string>;
 }
 

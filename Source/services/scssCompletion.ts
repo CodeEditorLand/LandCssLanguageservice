@@ -657,6 +657,7 @@ export class SCSSCompletion extends CSSCompletion {
 
 	private createReplaceFunction() {
 		let tabStopCounter = 1;
+
 		return (_match: string, p1: string) => {
 			return (
 				"\\" +
@@ -681,7 +682,9 @@ export class SCSSCompletion extends CSSCompletion {
 				/\[?(\$\w+)\]?/g,
 				this.createReplaceFunction(),
 			);
+
 			const label = p.func.substr(0, p.func.indexOf("("));
+
 			const item: CompletionItem = {
 				label: label,
 				detail: p.func,
@@ -693,6 +696,7 @@ export class SCSSCompletion extends CSSCompletion {
 				insertTextFormat: InsertTextFormat.Snippet,
 				kind: CompletionItemKind.Function,
 			};
+
 			if (sortToEnd) {
 				item.sortText = "z";
 			}
@@ -712,6 +716,7 @@ export class SCSSCompletion extends CSSCompletion {
 			true,
 			result,
 		);
+
 		return super.getCompletionsForSelector(ruleSet, isNested, result);
 	}
 
@@ -721,6 +726,7 @@ export class SCSSCompletion extends CSSCompletion {
 		result: CompletionList,
 	): CompletionList {
 		let functions = SCSSCompletion.builtInFuncs;
+
 		if (entry) {
 			functions = functions.filter(
 				(f) =>
@@ -730,6 +736,7 @@ export class SCSSCompletion extends CSSCompletion {
 			);
 		}
 		this.createFunctionProposals(functions, existingNode, true, result);
+
 		return super.getTermProposals(entry, existingNode, result);
 	}
 
@@ -744,6 +751,7 @@ export class SCSSCompletion extends CSSCompletion {
 			false,
 			result,
 		);
+
 		return super.getColorProposals(entry, existingNode, result);
 	}
 
@@ -753,6 +761,7 @@ export class SCSSCompletion extends CSSCompletion {
 	): CompletionList {
 		this.getCompletionForAtDirectives(result);
 		this.getCompletionsForSelector(null, true, result);
+
 		return super.getCompletionsForDeclarationProperty(declaration, result);
 	}
 
@@ -765,6 +774,7 @@ export class SCSSCompletion extends CSSCompletion {
 			this.offset,
 			nodes.ReferenceType.Rule,
 		);
+
 		for (const symbol of symbols) {
 			const suggest: CompletionItem = {
 				label: symbol.name,
@@ -783,13 +793,16 @@ export class SCSSCompletion extends CSSCompletion {
 		result: CompletionList,
 	): CompletionList {
 		result.items.push(...SCSSCompletion.scssAtDirectives);
+
 		return result;
 	}
 
 	public getCompletionForTopLevel(result: CompletionList): CompletionList {
 		this.getCompletionForAtDirectives(result);
 		this.getCompletionForModuleLoaders(result);
+
 		super.getCompletionForTopLevel(result);
+
 		return result;
 	}
 
@@ -797,6 +810,7 @@ export class SCSSCompletion extends CSSCompletion {
 		result: CompletionList,
 	): CompletionList {
 		result.items.push(...SCSSCompletion.scssModuleLoaders);
+
 		return result;
 	}
 }

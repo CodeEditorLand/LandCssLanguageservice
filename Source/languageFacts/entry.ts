@@ -42,10 +42,13 @@ function getEntryStatus(status: EntryStatus) {
 	switch (status) {
 		case "experimental":
 			return "⚠️ Property is experimental. Be cautious when using it.️\n\n";
+
 		case "nonstandard":
 			return "🚨️ Property is nonstandard. Avoid using it.\n\n";
+
 		case "obsolete":
 			return "🚨️️️ Property is obsolete. Avoid using it.\n\n";
+
 		default:
 			return "";
 	}
@@ -103,6 +106,7 @@ function getEntryStringDescription(
 		result += entry.description;
 
 		const browserLabel = getBrowserLabel(entry.browsers);
+
 		if (browserLabel) {
 			result += "\n(" + browserLabel + ")";
 		}
@@ -137,6 +141,7 @@ function getEntryMarkdownDescription(
 	}
 
 	let result: string = "";
+
 	if (settings?.documentation !== false) {
 		if (entry.status) {
 			result += getEntryStatus(entry.status);
@@ -152,6 +157,7 @@ function getEntryMarkdownDescription(
 		}
 
 		const browserLabel = getBrowserLabel(entry.browsers);
+
 		if (browserLabel) {
 			result += "\n\n(" + textToMarkedString(browserLabel) + ")";
 		}
@@ -189,9 +195,11 @@ export function getBrowserLabel(browsers: string[] = []): string | null {
 	return browsers
 		.map((b) => {
 			let result = "";
+
 			const matches = b.match(/([A-Z]+)(\d+)?/)!;
 
 			const name = matches[1];
+
 			const version = matches[2];
 
 			if (name in browserNames) {

@@ -54,6 +54,7 @@ export class Element {
 
 	public findRoot(): Element {
 		let curr: Element = this;
+
 		while (curr.parent && !(curr.parent instanceof RootElement)) {
 			curr = curr.parent;
 		}
@@ -63,8 +64,10 @@ export class Element {
 	public removeChild(child: Element): boolean {
 		if (this.children) {
 			const index = this.children.indexOf(child);
+
 			if (index !== -1) {
 				this.children.splice(index, 1);
+
 				return true;
 			}
 		}
@@ -78,6 +81,7 @@ export class Element {
 		for (const attribute of this.attributes) {
 			if (attribute.name === name) {
 				attribute.value += " " + value;
+
 				return;
 			}
 		}
@@ -86,14 +90,17 @@ export class Element {
 
 	public clone(cloneChildren: boolean = true): Element {
 		const elem = new Element();
+
 		if (this.attributes) {
 			elem.attributes = [];
+
 			for (const attribute of this.attributes) {
 				elem.addAttr(attribute.name, attribute.value);
 			}
 		}
 		if (cloneChildren && this.children) {
 			elem.children = [];
+
 			for (let index = 0; index < this.children.length; index++) {
 				elem.addChild(this.children[index].clone());
 			}
@@ -103,6 +110,7 @@ export class Element {
 
 	public cloneWithParent(): Element {
 		const clone = this.clone(false);
+
 		if (this.parent && !(this.parent instanceof RootElement)) {
 			const parentClone = this.parent.cloneWithParent();
 			parentClone.addChild(clone);
@@ -132,6 +140,7 @@ class MarkedStringPrinter {
 		flagOpts?: { isMedia: boolean; text: string },
 	): MarkedString[] {
 		this.result = [];
+
 		if (element instanceof RootElement) {
 			if (element.children) {
 				this.doPrint(element.children, 0);
@@ -140,6 +149,7 @@ class MarkedStringPrinter {
 			this.doPrint([element], 0);
 		}
 		let value;
+
 		if (flagOpts) {
 			value = `${flagOpts.text}\n … ` + this.result.join("\n");
 		} else {
@@ -151,6 +161,7 @@ class MarkedStringPrinter {
 	private doPrint(elements: Element[], indent: number) {
 		for (const element of elements) {
 			this.doPrintElement(element, indent);
+
 			if (element.children) {
 				this.doPrint(element.children, indent + 1);
 			}
@@ -168,6 +179,7 @@ class MarkedStringPrinter {
 		// special case: a simple label
 		if (element instanceof LabelElement || name === "\u2026") {
 			this.writeLine(indent, name!);
+
 			return;
 		}
 
@@ -187,7 +199,9 @@ class MarkedStringPrinter {
 				if (attr.name !== "name") {
 					content.push(" ");
 					content.push(attr.name);
+
 					const value = attr.value;
+
 					if (value) {
 						content.push("=");
 						content.push(quotes.ensure(value, this.quote));
@@ -208,6 +222,7 @@ namespace quotes {
 
 	export function remove(value: string): string {
 		const match = value.match(/^['"](.*)["']$/);
+
 		if (match) {
 			return match[1];
 		}
@@ -229,17 +244,21 @@ export function toElement(
 	parentElement?: Element | null,
 ): Element {
 	let result = new Element();
+
 	for (const child of node.getChildren()) {
 		switch (child.type) {
 			case nodes.NodeType.SelectorCombinator:
 				if (parentElement) {
 					const segments = child.getText().split("&");
+
 					if (segments.length === 1) {
 						// should not happen
 						result.addAttr("name", segments[0]);
+
 						break;
 					}
 					result = parentElement.cloneWithParent();
+
 					if (segments[0]) {
 						const root = result.findRoot();
 						root.prepend(segments[0]);
@@ -254,6 +273,7 @@ export function toElement(
 					}
 				}
 				break;
+
 			case nodes.NodeType.SelectorPlaceholder:
 				if (child.matches("@at-root")) {
 					return result;
@@ -265,55 +285,81 @@ export function toElement(
 					"name",
 					text === "*" ? "element" : unescape(text),
 				);
+
 				break;
+
 			case nodes.NodeType.ClassSelector:
 				result.addAttr("class", unescape(child.getText().substring(1)));
+
 				break;
+
 			case nodes.NodeType.IdentifierSelector:
 				result.addAttr("id", unescape(child.getText().substring(1)));
+
 				break;
+
 			case nodes.NodeType.MixinDeclaration:
 				result.addAttr(
 					"class",
 					(<nodes.MixinDeclaration>child).getName(),
 				);
+
 				break;
+
 			case nodes.NodeType.PseudoSelector:
 				result.addAttr(unescape(child.getText()), "");
+
 				break;
+
 			case nodes.NodeType.AttributeSelector:
 				const selector = <nodes.AttributeSelector>child;
+
 				const identifier = selector.getIdentifier();
+
 				if (identifier) {
 					const expression = selector.getValue();
+
 					const operator = selector.getOperator();
+
 					let value: string;
+
 					if (expression && operator) {
 						switch (unescape(operator.getText())) {
 							case "|=":
 								// excatly or followed by -words
 								value = `${quotes.remove(unescape(expression.getText()))}-\u2026`;
+
 								break;
+
 							case "^=":
 								// prefix
 								value = `${quotes.remove(unescape(expression.getText()))}\u2026`;
+
 								break;
+
 							case "$=":
 								// suffix
 								value = `\u2026${quotes.remove(unescape(expression.getText()))}`;
+
 								break;
+
 							case "~=":
 								// one of a list of words
 								value = ` \u2026 ${quotes.remove(unescape(expression.getText()))} \u2026 `;
+
 								break;
+
 							case "*=":
 								// substring
 								value = `\u2026${quotes.remove(unescape(expression.getText()))}\u2026`;
+
 								break;
+
 							default:
 								value = quotes.remove(
 									unescape(expression.getText()),
 								);
+
 								break;
 						}
 					}
@@ -328,7 +374,9 @@ export function toElement(
 function unescape(content: string) {
 	const scanner = new Scanner();
 	scanner.setSource(content);
+
 	const token = scanner.scanUnquotedString();
+
 	if (token) {
 		return token.text;
 	}
@@ -343,12 +391,14 @@ export class SelectorPrinting {
 		flagOpts?: { isMedia: boolean; text: string },
 	): MarkedString[] {
 		const root = selectorToElement(node);
+
 		if (root) {
 			const markedStrings = new MarkedStringPrinter('"').print(
 				root,
 				flagOpts,
 			);
 			markedStrings.push(this.selectorToSpecificityMarkedString(node));
+
 			return markedStrings;
 		} else {
 			return [];
@@ -359,8 +409,10 @@ export class SelectorPrinting {
 		node: nodes.SimpleSelector,
 	): MarkedString[] {
 		const element = toElement(node);
+
 		const markedStrings = new MarkedStringPrinter('"').print(element);
 		markedStrings.push(this.selectorToSpecificityMarkedString(node));
+
 		return markedStrings;
 	}
 
@@ -385,8 +437,10 @@ export class SelectorPrinting {
 			for (const containerElement of childElements) {
 				for (const childElement of containerElement.getChildren()) {
 					const itemSpecificity = calculateScore(childElement);
+
 					if (itemSpecificity.id > mostSpecificListItem.id) {
 						mostSpecificListItem = itemSpecificity;
+
 						continue;
 					} else if (itemSpecificity.id < mostSpecificListItem.id) {
 						continue;
@@ -394,6 +448,7 @@ export class SelectorPrinting {
 
 					if (itemSpecificity.attr > mostSpecificListItem.attr) {
 						mostSpecificListItem = itemSpecificity;
+
 						continue;
 					} else if (
 						itemSpecificity.attr < mostSpecificListItem.attr
@@ -403,6 +458,7 @@ export class SelectorPrinting {
 
 					if (itemSpecificity.tag > mostSpecificListItem.tag) {
 						mostSpecificListItem = itemSpecificity;
+
 						continue;
 					}
 				}
@@ -423,11 +479,13 @@ export class SelectorPrinting {
 				switch (element.type) {
 					case nodes.NodeType.IdentifierSelector:
 						specificity.id++;
+
 						break;
 
 					case nodes.NodeType.ClassSelector:
 					case nodes.NodeType.AttributeSelector:
 						specificity.attr++;
+
 						break;
 
 					case nodes.NodeType.ElementNameSelector:
@@ -437,10 +495,12 @@ export class SelectorPrinting {
 						}
 
 						specificity.tag++;
+
 						break;
 
 					case nodes.NodeType.PseudoSelector:
 						const text = element.getText();
+
 						const childElements = element.getChildren();
 
 						if (this.isPseudoElementIdentifier(text)) {
@@ -461,6 +521,7 @@ export class SelectorPrinting {
 								specificity.id += mostSpecificListItem.id;
 								specificity.attr += mostSpecificListItem.attr;
 								specificity.tag += mostSpecificListItem.tag;
+
 								continue elementLoop;
 							}
 
@@ -484,6 +545,7 @@ export class SelectorPrinting {
 							specificity.id += mostSpecificListItem.id;
 							specificity.attr += mostSpecificListItem.attr;
 							specificity.tag += mostSpecificListItem.tag;
+
 							continue elementLoop;
 						}
 
@@ -501,6 +563,7 @@ export class SelectorPrinting {
 							specificity.id += mostSpecificListItem.id;
 							specificity.attr += mostSpecificListItem.attr;
 							specificity.tag += mostSpecificListItem.tag;
+
 							continue elementLoop;
 						}
 
@@ -531,10 +594,13 @@ export class SelectorPrinting {
 
 							// Edge case: 'n' without integer prefix A, with B integer non-existent, is not regarded as a binary expression token.
 							const parser = new Parser();
+
 							const pseudoSelectorText =
 								childElements[1].getText();
 							parser.scanner.setSource(pseudoSelectorText);
+
 							const firstToken = parser.scanner.scan();
+
 							const secondToken = parser.scanner.scan();
 
 							if (
@@ -544,10 +610,12 @@ export class SelectorPrinting {
 							) {
 								const complexSelectorListNodes: nodes.Node[] =
 									[];
+
 								const complexSelectorText =
 									pseudoSelectorText.slice(
 										secondToken.offset + 2,
 									);
+
 								const complexSelectorArray =
 									complexSelectorText.split(",");
 
@@ -556,6 +624,7 @@ export class SelectorPrinting {
 										selector,
 										parser._parseSelector,
 									);
+
 									if (node) {
 										complexSelectorListNodes.push(node);
 									}
@@ -569,6 +638,7 @@ export class SelectorPrinting {
 								specificity.id += mostSpecificListItem.id;
 								specificity.attr += mostSpecificListItem.attr;
 								specificity.tag += mostSpecificListItem.tag;
+
 								continue elementLoop;
 							}
 
@@ -591,6 +661,7 @@ export class SelectorPrinting {
 		};
 
 		const specificity = calculateScore(node);
+
 		return `[${l10n.t("Selector Specificity")}](https://developer.mozilla.org/docs/Web/CSS/Specificity): (${specificity.id}, ${specificity.attr}, ${specificity.tag})`;
 	}
 }
@@ -619,6 +690,7 @@ class SelectorElementBuilder {
 					)
 			) {
 				const curr = this.element.findRoot();
+
 				if (curr.parent instanceof RootElement) {
 					parentElement = this.element;
 
@@ -651,6 +723,7 @@ class SelectorElementBuilder {
 					<nodes.SimpleSelector>selectorChild,
 					parentElement,
 				);
+
 				const root = thisElement.findRoot();
 
 				this.element.addChild(root);
@@ -687,7 +760,9 @@ export function selectorToElement(node: nodes.Selector): Element | null {
 		return null;
 	}
 	const root: Element = new RootElement();
+
 	const parentRuleSets: nodes.RuleSet[] = [];
+
 	const ruleSet = node.getParent();
 
 	if (ruleSet instanceof nodes.RuleSet) {
@@ -709,11 +784,13 @@ export function selectorToElement(node: nodes.Selector): Element | null {
 		const selector = <nodes.Selector>(
 			parentRuleSets[i].getSelectors().getChild(0)
 		);
+
 		if (selector) {
 			builder.processSelector(selector);
 		}
 	}
 
 	builder.processSelector(node);
+
 	return root;
 }

@@ -62,9 +62,11 @@ export class CSSCompletion {
 	textDocument!: TextDocument;
 	styleSheet!: nodes.Stylesheet;
 	symbolContext!: Symbols;
+
 	defaultReplaceRange!: Range;
 	nodePath!: nodes.Node[];
 	completionParticipants: ICompletionParticipant[] = [];
+
 	documentSettings?: CompletionSettings;
 
 	constructor(
@@ -113,6 +115,7 @@ export class CSSCompletion {
 			new PathCompletionParticipant(
 				this.lsOptions.fileSystemProvider.readDirectory,
 			);
+
 		const contributedParticipants = this.completionParticipants;
 		this.completionParticipants = [
 			participant as ICompletionParticipant,
@@ -124,11 +127,13 @@ export class CSSCompletion {
 			styleSheet,
 			completionSettings,
 		);
+
 		try {
 			const pathCompletionResult = await participant.computeCompletions(
 				document,
 				documentContext,
 			);
+
 			return {
 				isIncomplete:
 					result.isIncomplete || pathCompletionResult.isIncomplete,
@@ -159,6 +164,7 @@ export class CSSCompletion {
 		this.textDocument = document;
 		this.styleSheet = styleSheet;
 		this.documentSettings = documentSettings;
+
 		try {
 			const result: CompletionList = {
 				isIncomplete: false,
@@ -178,6 +184,7 @@ export class CSSCompletion {
 
 			for (let i = this.nodePath.length - 1; i >= 0; i--) {
 				const node = this.nodePath[i];
+
 				if (node instanceof nodes.Property) {
 					this.getCompletionsForDeclarationProperty(
 						node.getParent() as nodes.Declaration,
@@ -197,6 +204,7 @@ export class CSSCompletion {
 						nodes.NodeType.ExtendsReference,
 						nodes.NodeType.Ruleset,
 					);
+
 					if (parentRef) {
 						if (
 							parentRef.type === nodes.NodeType.ExtendsReference
@@ -289,6 +297,7 @@ export class CSSCompletion {
 				}
 			}
 			this.getCompletionsForStylesheet(result);
+
 			if (result.items.length === 0) {
 				if (
 					this.variablePrefix &&
@@ -321,6 +330,7 @@ export class CSSCompletion {
 	private findInNodePath(...types: nodes.NodeType[]) {
 		for (let i = this.nodePath.length - 1; i >= 0; i--) {
 			const node = this.nodePath[i];
+
 			if (types.indexOf(node.type) !== -1) {
 				return node;
 			}
@@ -341,17 +351,23 @@ export class CSSCompletion {
 	): CompletionList {
 		const triggerPropertyValueCompletion =
 			this.isTriggerPropertyValueCompletionEnabled;
+
 		const completePropertyWithSemicolon =
 			this.isCompletePropertyWithSemicolonEnabled;
+
 		const properties = this.cssDataManager.getProperties();
 
 		properties.forEach((entry) => {
 			let range: Range;
+
 			let insertText: string;
+
 			let retrigger = false;
+
 			if (declaration) {
 				range = this.getCompletionRange(declaration.getProperty());
 				insertText = entry.name;
+
 				if (!isDefined(declaration.colonPosition)) {
 					insertText += ": ";
 					retrigger = true;
@@ -387,6 +403,7 @@ export class CSSCompletion {
 				insertTextFormat: InsertTextFormat.Snippet,
 				kind: CompletionItemKind.Property,
 			};
+
 			if (!entry.restrictions) {
 				retrigger = false;
 			}
@@ -397,7 +414,9 @@ export class CSSCompletion {
 				typeof entry.relevance === "number"
 					? Math.min(Math.max(entry.relevance, 0), 99)
 					: 50;
+
 			const sortTextSuffix = (255 - relevance).toString(16);
+
 			const sortTextPrefix = strings.startsWith(entry.name, "-")
 				? SortTexts.VendorPrefixed
 				: SortTexts.Normal;
@@ -413,6 +432,7 @@ export class CSSCompletion {
 				});
 			}
 		});
+
 		return result;
 	}
 
@@ -429,7 +449,9 @@ export class CSSCompletion {
 		result: CompletionList,
 	): CompletionList {
 		const propertyName = node.getFullPropertyName();
+
 		const entry = this.cssDataManager.getProperty(propertyName);
+
 		let existingNode: nodes.Node | null = node.getValue() || null;
 
 		while (existingNode && existingNode.hasChildren()) {
@@ -452,61 +474,80 @@ export class CSSCompletion {
 					switch (restriction) {
 						case "color":
 							this.getColorProposals(entry, existingNode, result);
+
 							break;
+
 						case "position":
 							this.getPositionProposals(
 								entry,
 								existingNode,
 								result,
 							);
+
 							break;
+
 						case "repeat":
 							this.getRepeatStyleProposals(
 								entry,
 								existingNode,
 								result,
 							);
+
 							break;
+
 						case "line-style":
 							this.getLineStyleProposals(
 								entry,
 								existingNode,
 								result,
 							);
+
 							break;
+
 						case "line-width":
 							this.getLineWidthProposals(
 								entry,
 								existingNode,
 								result,
 							);
+
 							break;
+
 						case "geometry-box":
 							this.getGeometryBoxProposals(
 								entry,
 								existingNode,
 								result,
 							);
+
 							break;
+
 						case "box":
 							this.getBoxProposals(entry, existingNode, result);
+
 							break;
+
 						case "image":
 							this.getImageProposals(entry, existingNode, result);
+
 							break;
+
 						case "timing-function":
 							this.getTimingFunctionProposals(
 								entry,
 								existingNode,
 								result,
 							);
+
 							break;
+
 						case "shape":
 							this.getBasicShapeProposals(
 								entry,
 								existingNode,
 								result,
 							);
+
 							break;
 					}
 				}
@@ -516,6 +557,7 @@ export class CSSCompletion {
 			this.getUnitProposals(entry, existingNode, result);
 		} else {
 			const existingValues = collectValues(this.styleSheet, node);
+
 			for (const existingValue of existingValues.getEntries()) {
 				result.items.push({
 					label: existingValue,
@@ -529,6 +571,7 @@ export class CSSCompletion {
 		}
 		this.getVariableProposals(existingNode, result);
 		this.getTermProposals(entry, existingNode, result);
+
 		return result;
 	}
 
@@ -540,9 +583,12 @@ export class CSSCompletion {
 		if (entry.values) {
 			for (const value of entry.values) {
 				let insertString = value.name;
+
 				let insertTextFormat: InsertTextFormat | undefined;
+
 				if (strings.endsWith(insertString, ")")) {
 					const from = insertString.lastIndexOf("(");
+
 					if (from !== -1) {
 						insertString =
 							insertString.substring(0, from + 1) +
@@ -552,6 +598,7 @@ export class CSSCompletion {
 					}
 				}
 				let sortText: string = SortTexts.Enums;
+
 				if (strings.startsWith(value.name, "-")) {
 					sortText += SortTexts.VendorPrefixed;
 				}
@@ -632,10 +679,12 @@ export class CSSCompletion {
 			this.offset,
 			nodes.ReferenceType.Variable,
 		);
+
 		for (const symbol of symbols) {
 			const insertText = strings.startsWith(symbol.name, "--")
 				? `var(${symbol.name})`
 				: symbol.name;
+
 			const completionItem: CompletionItem = {
 				label: symbol.name,
 				documentation: symbol.value
@@ -660,6 +709,7 @@ export class CSSCompletion {
 				const mixinNode = <nodes.MixinDeclaration>(
 					symbol.node.getParent()
 				);
+
 				if (mixinNode.type === nodes.NodeType.MixinDeclaration) {
 					completionItem.detail = l10n.t(
 						"argument from '{0}'",
@@ -685,6 +735,7 @@ export class CSSCompletion {
 			this.offset,
 			nodes.ReferenceType.Variable,
 		);
+
 		for (const symbol of symbols) {
 			if (strings.startsWith(symbol.name, "--")) {
 				const completionItem: CompletionItem = {
@@ -698,6 +749,7 @@ export class CSSCompletion {
 					),
 					kind: CompletionItemKind.Variable,
 				};
+
 				if (
 					typeof completionItem.documentation === "string" &&
 					languageFacts.isColorString(completionItem.documentation)
@@ -732,8 +784,10 @@ export class CSSCompletion {
 		result: CompletionList,
 	): CompletionList {
 		let currentWord = "0";
+
 		if (this.currentWord.length > 0) {
 			const numMatch = this.currentWord.match(/^-?\d[\.\d+]*/);
+
 			if (numMatch) {
 				currentWord = numMatch[0];
 				result.isIncomplete =
@@ -752,6 +806,7 @@ export class CSSCompletion {
 		if (entry.restrictions) {
 			for (const restriction of entry.restrictions) {
 				const units = languageFacts.units[restriction];
+
 				if (units) {
 					for (const unit of units) {
 						const insertText = currentWord + unit;
@@ -780,7 +835,9 @@ export class CSSCompletion {
 				existingNode.end !== -1
 					? this.textDocument.positionAt(existingNode.end)
 					: this.position;
+
 			const start = this.textDocument.positionAt(existingNode.offset);
+
 			if (start.line === end.line) {
 				return Range.create(start, end); // multi line edits are not allowed
 			}
@@ -819,6 +876,7 @@ export class CSSCompletion {
 		this.styleSheet.acceptVisitor(
 			new ColorValueCollector(colorValues, this.offset),
 		);
+
 		for (const color of colorValues.getEntries()) {
 			result.items.push({
 				label: color,
@@ -1024,6 +1082,7 @@ export class CSSCompletion {
 
 	public getCompletionsForStylesheet(result: CompletionList): CompletionList {
 		const node = this.styleSheet.findFirstChildBeforeOffset(this.offset);
+
 		if (!node) {
 			return this.getCompletionForTopLevel(result);
 		}
@@ -1054,6 +1113,7 @@ export class CSSCompletion {
 		});
 
 		this.getCompletionsForSelector(null, false, result);
+
 		return result;
 	}
 
@@ -1067,11 +1127,13 @@ export class CSSCompletion {
 			declarations &&
 			declarations.endsWith("}") &&
 			this.offset >= declarations.end;
+
 		if (isAfter) {
 			return this.getCompletionForTopLevel(result);
 		}
 		const isInSelectors =
 			!declarations || this.offset <= declarations.offset;
+
 		if (isInSelectors) {
 			return this.getCompletionsForSelector(
 				ruleSet,
@@ -1097,6 +1159,7 @@ export class CSSCompletion {
 			nodes.NodeType.ClassSelector,
 			nodes.NodeType.ElementNameSelector,
 		);
+
 		if (
 			!existingNode &&
 			this.hasCharacterAtPosition(
@@ -1106,6 +1169,7 @@ export class CSSCompletion {
 		) {
 			// after the ':' of a pseudo selector, no node generated for just ':'
 			this.currentWord = ":" + this.currentWord;
+
 			if (
 				this.hasCharacterAtPosition(
 					this.offset - this.currentWord.length - 1,
@@ -1126,6 +1190,7 @@ export class CSSCompletion {
 		const pseudoClasses = this.cssDataManager.getPseudoClasses();
 		pseudoClasses.forEach((entry) => {
 			const insertText = moveCursorInsideParenthesis(entry.name);
+
 			const item: CompletionItem = {
 				label: entry.name,
 				textEdit: TextEdit.replace(
@@ -1141,6 +1206,7 @@ export class CSSCompletion {
 				insertTextFormat:
 					entry.name !== insertText ? SnippetFormat : void 0,
 			};
+
 			if (strings.startsWith(entry.name, ":-")) {
 				item.sortText = SortTexts.VendorPrefixed;
 			}
@@ -1150,6 +1216,7 @@ export class CSSCompletion {
 		const pseudoElements = this.cssDataManager.getPseudoElements();
 		pseudoElements.forEach((entry) => {
 			const insertText = moveCursorInsideParenthesis(entry.name);
+
 			const item: CompletionItem = {
 				label: entry.name,
 				textEdit: TextEdit.replace(
@@ -1165,11 +1232,13 @@ export class CSSCompletion {
 				insertTextFormat:
 					entry.name !== insertText ? SnippetFormat : void 0,
 			};
+
 			if (strings.startsWith(entry.name, "::-")) {
 				item.sortText = SortTexts.VendorPrefixed;
 			}
 			result.items.push(item);
 		});
+
 		if (!isNested) {
 			// show html tags only for top level
 			for (const entry of languageFacts.html5Tags) {
@@ -1196,10 +1265,12 @@ export class CSSCompletion {
 
 		const visited: { [name: string]: boolean } = {};
 		visited[this.currentWord] = true;
+
 		const docText = this.textDocument.getText();
 		this.styleSheet.accept((n) => {
 			if (n.type === nodes.NodeType.SimpleSelector && n.length > 0) {
 				const selector = docText.substr(n.offset, n.length);
+
 				if (selector.charAt(0) === "." && !visited[selector]) {
 					visited[selector] = true;
 					result.items.push({
@@ -1220,6 +1291,7 @@ export class CSSCompletion {
 			const selector = ruleSet
 				.getSelectors()
 				.findFirstChildBeforeOffset(this.offset);
+
 			if (
 				selector &&
 				ruleSet.getSelectors().getChildren().indexOf(selector) === 0
@@ -1240,12 +1312,14 @@ export class CSSCompletion {
 		}
 
 		const node = declarations.findFirstChildBeforeOffset(this.offset);
+
 		if (!node) {
 			return this.getCompletionsForDeclarationProperty(null, result);
 		}
 
 		if (node instanceof nodes.AbstractDeclaration) {
 			const declaration = <nodes.AbstractDeclaration>node;
+
 			if (
 				!isDefined(declaration.colonPosition) ||
 				this.offset <= declaration.colonPosition
@@ -1304,24 +1378,29 @@ export class CSSCompletion {
 		result: CompletionList,
 	): CompletionList {
 		const parent = expression.getParent();
+
 		if (parent instanceof nodes.FunctionArgument) {
 			this.getCompletionsForFunctionArgument(
 				parent,
 				<nodes.Function>parent.getParent(),
 				result,
 			);
+
 			return result;
 		}
 
 		const declaration = <nodes.Declaration>(
 			expression.findParent(nodes.NodeType.Declaration)
 		);
+
 		if (!declaration) {
 			this.getTermProposals(undefined, null, result);
+
 			return result;
 		}
 
 		const node = expression.findChildAtOffset(this.offset, true);
+
 		if (!node) {
 			return this.getCompletionsForDeclarationValue(declaration, result);
 		}
@@ -1340,6 +1419,7 @@ export class CSSCompletion {
 		result: CompletionList,
 	): CompletionList {
 		const identifier = func.getIdentifier();
+
 		if (identifier && identifier.matches("var")) {
 			if (
 				!func.getArguments().hasChildren() ||
@@ -1356,6 +1436,7 @@ export class CSSCompletion {
 		result: CompletionList,
 	): CompletionList {
 		const declarations = decl.getDeclarations();
+
 		if (
 			declarations &&
 			this.offset > declarations.offset &&
@@ -1374,6 +1455,7 @@ export class CSSCompletion {
 			this.offset,
 			nodes.ReferenceType.Mixin,
 		);
+
 		for (const mixinSymbol of allMixins) {
 			if (mixinSymbol.node instanceof nodes.MixinDeclaration) {
 				result.items.push(
@@ -1409,6 +1491,7 @@ export class CSSCompletion {
 			this.offset,
 			nodes.ReferenceType.Function,
 		);
+
 		for (const functionSymbol of allFunctions) {
 			if (functionSymbol.node instanceof nodes.FunctionDeclaration) {
 				result.items.push(
@@ -1429,11 +1512,13 @@ export class CSSCompletion {
 		existingNode: nodes.Node | null,
 	): CompletionItem {
 		const decl = <nodes.FunctionDeclaration>symbol.node;
+
 		const params = parameters.getChildren().map((c) => {
 			return c instanceof nodes.FunctionParameter
 				? (<nodes.FunctionParameter>c).getName()
 				: c.getText();
 		});
+
 		const insertText =
 			symbol.name +
 			"(" +
@@ -1441,6 +1526,7 @@ export class CSSCompletion {
 				.map((p, index) => "${" + (index + 1) + ":" + p + "}")
 				.join(", ") +
 			")";
+
 		return {
 			label: symbol.name,
 			detail: symbol.name + "(" + params.join(", ") + ")",
@@ -1459,6 +1545,7 @@ export class CSSCompletion {
 		result: CompletionList,
 	): CompletionList {
 		const child = supportsCondition.findFirstChildBeforeOffset(this.offset);
+
 		if (child) {
 			if (child instanceof nodes.Declaration) {
 				if (
@@ -1498,8 +1585,10 @@ export class CSSCompletion {
 
 		const inInCondition =
 			!declarations || this.offset <= declarations.offset;
+
 		if (inInCondition) {
 			const child = supports.findFirstChildBeforeOffset(this.offset);
+
 			if (child instanceof nodes.SupportsCondition) {
 				return this.getCompletionsForSupportsCondition(child, result);
 			}
@@ -1521,12 +1610,15 @@ export class CSSCompletion {
 		result: CompletionList,
 	): CompletionList {
 		let uriValue: string;
+
 		let position: Position;
+
 		let range: Range;
 		// No children, empty value
 		if (!uriLiteralNode.hasChildren()) {
 			uriValue = "";
 			position = this.position;
+
 			const emptyURIValuePosition = this.textDocument.positionAt(
 				uriLiteralNode.offset + "url(".length,
 			);
@@ -1563,11 +1655,13 @@ export class CSSCompletion {
 				});
 			}
 		});
+
 		return result;
 	}
 
 	private hasCharacterAtPosition(offset: number, char: string) {
 		const text = this.textDocument.getText();
+
 		return (
 			offset >= 0 && offset < text.length && text.charAt(offset) === char
 		);
@@ -1577,6 +1671,7 @@ export class CSSCompletion {
 		if (!isDefined(this.supportsMarkdown)) {
 			if (!isDefined(this.lsOptions.clientCapabilities)) {
 				this.supportsMarkdown = true;
+
 				return this.supportsMarkdown;
 			}
 			const documentationFormat =
@@ -1623,6 +1718,7 @@ function collectValues(
 	declaration: nodes.Declaration,
 ): Set {
 	const fullPropertyName = declaration.getFullPropertyName();
+
 	const entries: Set = new Set();
 
 	function visitValue(node: nodes.Node) {
@@ -1638,6 +1734,7 @@ function collectValues(
 
 	function matchesProperty(decl: nodes.Declaration): boolean {
 		const propertyName = decl.getFullPropertyName();
+
 		return fullPropertyName === propertyName;
 	}
 
@@ -1645,6 +1742,7 @@ function collectValues(
 		if (node instanceof nodes.Declaration && node !== declaration) {
 			if (matchesProperty(<nodes.Declaration>node)) {
 				const value = (<nodes.Declaration>node).getValue();
+
 				if (value) {
 					value.accept(visitValue);
 				}
@@ -1653,6 +1751,7 @@ function collectValues(
 		return true;
 	}
 	styleSheet.accept(vistNode);
+
 	return entries;
 }
 
@@ -1704,7 +1803,9 @@ class VariableCollector implements nodes.IVisitor {
 
 function getCurrentWord(document: TextDocument, offset: number): string {
 	let i = offset - 1;
+
 	const text = document.getText();
+
 	while (i >= 0 && ' \t\n\r":{[()]},*>+'.indexOf(text.charAt(i)) === -1) {
 		i--;
 	}

@@ -20,11 +20,13 @@ class NodesByRootMap {
 
 	public add(root: string, name: string, node?: nodes.Node | null): void {
 		let entry = this.data[root];
+
 		if (!entry) {
 			entry = { nodes: [], names: [] };
 			this.data[root] = entry;
 		}
 		entry.names.push(name);
+
 		if (node) {
 			entry.nodes.push(node);
 		}
@@ -42,6 +44,7 @@ export class LintVisitor implements nodes.IVisitor {
 		const visitor = new LintVisitor(document, settings, cssDataManager);
 		node.acceptVisitor(visitor);
 		visitor.completeValidations();
+
 		return visitor.getEntries(entryFilter);
 	}
 
@@ -71,10 +74,12 @@ export class LintVisitor implements nodes.IVisitor {
 		this.validProperties = {};
 
 		const properties = settings.getSetting(Settings.ValidProperties);
+
 		if (Array.isArray(properties)) {
 			properties.forEach((p) => {
 				if (typeof p === "string") {
 					const name = p.trim().toLowerCase();
+
 					if (name.length) {
 						this.validProperties[name] = true;
 					}
@@ -85,6 +90,7 @@ export class LintVisitor implements nodes.IVisitor {
 
 	private isValidPropertyDeclaration(element: Element): boolean {
 		const propertyName = element.fullPropertyName;
+
 		return this.validProperties[propertyName];
 	}
 
@@ -102,9 +108,11 @@ export class LintVisitor implements nodes.IVisitor {
 
 	private fetchWithValue(input: Element[], s: string, v: string): Element[] {
 		const elements: Element[] = [];
+
 		for (const inputElement of input) {
 			if (inputElement.fullPropertyName === s) {
 				const expression = inputElement.node.getValue();
+
 				if (expression && this.findValueInExpression(expression, v)) {
 					elements.push(inputElement);
 				}
@@ -124,6 +132,7 @@ export class LintVisitor implements nodes.IVisitor {
 			}
 			return !found;
 		});
+
 		return found;
 	}
 
@@ -153,13 +162,16 @@ export class LintVisitor implements nodes.IVisitor {
 
 		for (let i = 0; i < actual.length; i++) {
 			const k = expectedClone.indexOf(actual[i]);
+
 			if (k !== -1) {
 				expectedClone[k] = null;
 			}
 		}
 		let result: string | null = null;
+
 		for (let i = 0; i < expectedClone.length; i++) {
 			const curr = expectedClone[i];
+
 			if (curr) {
 				if (result === null) {
 					result = l10n.t("'{0}'", curr);
@@ -175,24 +187,34 @@ export class LintVisitor implements nodes.IVisitor {
 		switch (node.type) {
 			case nodes.NodeType.UnknownAtRule:
 				return this.visitUnknownAtRule(<nodes.UnknownAtRule>node);
+
 			case nodes.NodeType.Keyframe:
 				return this.visitKeyframe(<nodes.Keyframe>node);
+
 			case nodes.NodeType.FontFace:
 				return this.visitFontFace(<nodes.FontFace>node);
+
 			case nodes.NodeType.Ruleset:
 				return this.visitRuleSet(<nodes.RuleSet>node);
+
 			case nodes.NodeType.SimpleSelector:
 				return this.visitSimpleSelector(<nodes.SimpleSelector>node);
+
 			case nodes.NodeType.Function:
 				return this.visitFunction(<nodes.Function>node);
+
 			case nodes.NodeType.NumericValue:
 				return this.visitNumericValue(<nodes.NumericValue>node);
+
 			case nodes.NodeType.Import:
 				return this.visitImport(<nodes.Import>node);
+
 			case nodes.NodeType.HexColorValue:
 				return this.visitHexColorValue(<nodes.HexColorValue>node);
+
 			case nodes.NodeType.Prio:
 				return this.visitPrio(node);
+
 			case nodes.NodeType.IdentifierSelector:
 				return this.visitIdentifierSelector(node);
 		}
@@ -205,6 +227,7 @@ export class LintVisitor implements nodes.IVisitor {
 
 	private visitUnknownAtRule(node: nodes.UnknownAtRule): boolean {
 		const atRuleName = node.getChild(0);
+
 		if (!atRuleName) {
 			return false;
 		}
@@ -212,6 +235,7 @@ export class LintVisitor implements nodes.IVisitor {
 		const atDirective = this.cssDataManager.getAtDirective(
 			atRuleName.getText(),
 		);
+
 		if (atDirective) {
 			return false;
 		}
@@ -221,11 +245,13 @@ export class LintVisitor implements nodes.IVisitor {
 			Rules.UnknownAtRules,
 			`Unknown at rule ${atRuleName.getText()}`,
 		);
+
 		return true;
 	}
 
 	private visitKeyframe(node: nodes.Keyframe): boolean {
 		const keyword = node.getKeyword();
+
 		if (!keyword) {
 			return false;
 		}
@@ -236,6 +262,7 @@ export class LintVisitor implements nodes.IVisitor {
 			text,
 			text !== "@keyframes" ? keyword : null,
 		);
+
 		return true;
 	}
 
@@ -250,7 +277,9 @@ export class LintVisitor implements nodes.IVisitor {
 
 		for (const name in this.keyframes.data) {
 			const actual = this.keyframes.data[name].names;
+
 			const needsStandard = actual.indexOf("@keyframes") === -1;
+
 			if (!needsStandard && actual.length === 1) {
 				continue; // only the non-vendor specific keyword is used, that's fine, no warning
 			}
@@ -259,6 +288,7 @@ export class LintVisitor implements nodes.IVisitor {
 				expected,
 				actual,
 			);
+
 			if (missingVendorSpecific || needsStandard) {
 				for (const node of this.keyframes.data[name].nodes) {
 					if (needsStandard) {
@@ -303,6 +333,7 @@ export class LintVisitor implements nodes.IVisitor {
 		//	Lint - Avoid id selectors
 		/////////////////////////////////////////////////////////////
 		this.addEntry(node, Rules.AvoidIdSelector);
+
 		return true;
 	}
 
@@ -311,6 +342,7 @@ export class LintVisitor implements nodes.IVisitor {
 		//	Lint - Import statements shouldn't be used, because they aren't offering parallel downloads.
 		/////////////////////////////////////////////////////////////
 		this.addEntry(node, Rules.ImportStatemement);
+
 		return true;
 	}
 
@@ -319,6 +351,7 @@ export class LintVisitor implements nodes.IVisitor {
 		//	Lint - Don't use empty rulesets.
 		/////////////////////////////////////////////////////////////
 		const declarations = node.getDeclarations();
+
 		if (!declarations) {
 			// syntax error
 			return false;
@@ -329,6 +362,7 @@ export class LintVisitor implements nodes.IVisitor {
 		}
 
 		const propertyTable: Element[] = [];
+
 		for (const element of declarations.getChildren()) {
 			if (element instanceof nodes.Declaration) {
 				propertyTable.push(new Element(element));
@@ -343,8 +377,10 @@ export class LintVisitor implements nodes.IVisitor {
 		// see https://github.com/CSSLint/csslint/wiki/Beware-of-box-model-size
 		/////////////////////////////////////////////////////////////
 		const boxModel = calculateBoxModel(propertyTable);
+
 		if (boxModel.width) {
 			let properties: Element[] = [];
+
 			if (boxModel.right.value) {
 				properties = union(properties, boxModel.right.properties);
 			}
@@ -360,6 +396,7 @@ export class LintVisitor implements nodes.IVisitor {
 		}
 		if (boxModel.height) {
 			let properties: Element[] = [];
+
 			if (boxModel.top.value) {
 				properties = union(properties, boxModel.top.properties);
 			}
@@ -384,11 +421,15 @@ export class LintVisitor implements nodes.IVisitor {
 			"display",
 			"inline-block",
 		);
+
 		if (displayElems.length > 0) {
 			const elem = this.fetch(propertyTable, "float");
+
 			for (let index = 0; index < elem.length; index++) {
 				const node = elem[index].node;
+
 				const value = node.getValue();
+
 				if (value && !value.matches("none")) {
 					this.addEntry(
 						node,
@@ -403,8 +444,10 @@ export class LintVisitor implements nodes.IVisitor {
 
 		// With 'display: block', 'vertical-align' has no effect
 		displayElems = this.fetchWithValue(propertyTable, "display", "block");
+
 		if (displayElems.length > 0) {
 			const elem = this.fetch(propertyTable, "vertical-align");
+
 			for (let index = 0; index < elem.length; index++) {
 				this.addEntry(
 					elem[index].node,
@@ -421,8 +464,10 @@ export class LintVisitor implements nodes.IVisitor {
 		/////////////////////////////////////////////////////////////
 
 		const elements: Element[] = this.fetch(propertyTable, "float");
+
 		for (let index = 0; index < elements.length; index++) {
 			const element = elements[index];
+
 			if (!this.isValidPropertyDeclaration(element)) {
 				this.addEntry(element.node, Rules.AvoidFloat);
 			}
@@ -433,19 +478,23 @@ export class LintVisitor implements nodes.IVisitor {
 		/////////////////////////////////////////////////////////////
 		for (let i = 0; i < propertyTable.length; i++) {
 			const element = propertyTable[i];
+
 			if (
 				element.fullPropertyName !== "background" &&
 				!this.validProperties[element.fullPropertyName]
 			) {
 				const value = element.node.getValue();
+
 				if (value && this.documentText.charAt(value.offset) !== "-") {
 					const elements = this.fetch(
 						propertyTable,
 						element.fullPropertyName,
 					);
+
 					if (elements.length > 1) {
 						for (let k = 0; k < elements.length; k++) {
 							const value = elements[k].node.getValue();
+
 							if (
 								value &&
 								this.documentText.charAt(value.offset) !==
@@ -471,12 +520,15 @@ export class LintVisitor implements nodes.IVisitor {
 
 		if (!isExportBlock) {
 			const propertiesBySuffix = new NodesByRootMap();
+
 			let containsUnknowns = false;
 
 			for (const element of propertyTable) {
 				const decl = element.node;
+
 				if (this.isCSSDeclaration(decl)) {
 					let name = element.fullPropertyName;
+
 					const firstChar = name.charAt(0);
 
 					if (firstChar === "-") {
@@ -501,6 +553,7 @@ export class LintVisitor implements nodes.IVisitor {
 						}
 					} else {
 						const fullName = name;
+
 						if (firstChar === "*" || firstChar === "_") {
 							this.addEntry(
 								decl.getProperty()!,
@@ -537,11 +590,13 @@ export class LintVisitor implements nodes.IVisitor {
 				// don't perform this test if there are
 				for (const suffix in propertiesBySuffix.data) {
 					const entry = propertiesBySuffix.data[suffix];
+
 					const actual = entry.names;
 
 					const needsStandard =
 						this.cssDataManager.isStandardProperty(suffix) &&
 						actual.indexOf(suffix) === -1;
+
 					if (!needsStandard && actual.length === 1) {
 						continue; // only the non-vendor specific rule is used, that's fine, no warning
 					}
@@ -555,19 +610,23 @@ export class LintVisitor implements nodes.IVisitor {
 					const entriesThatNeedStandard = new Set<nodes.Node>(
 						needsStandard ? entry.nodes : [],
 					);
+
 					if (needsStandard) {
 						const pseudoElements =
 							this.getContextualVendorSpecificPseudoElements(
 								node,
 							);
+
 						for (const node of entry.nodes) {
 							const propertyName = (
 								node as nodes.Property
 							).getName();
+
 							const prefix = propertyName.substring(
 								0,
 								propertyName.length - suffix.length,
 							);
+
 							if (
 								pseudoElements.some((x) => x.startsWith(prefix))
 							) {
@@ -577,12 +636,14 @@ export class LintVisitor implements nodes.IVisitor {
 					}
 
 					const expected: string[] = [];
+
 					for (
 						let i = 0, len = LintVisitor.prefixes.length;
 						i < len;
 						i++
 					) {
 						const prefix = LintVisitor.prefixes[i];
+
 						if (
 							this.cssDataManager.isStandardProperty(
 								prefix + suffix,
@@ -596,6 +657,7 @@ export class LintVisitor implements nodes.IVisitor {
 						expected,
 						actual,
 					);
+
 					if (missingVendorSpecific || needsStandard) {
 						for (const node of entry.nodes) {
 							if (
@@ -645,6 +707,7 @@ export class LintVisitor implements nodes.IVisitor {
 			for (const child of n.getChildren()) {
 				if (child.type === nodes.NodeType.PseudoSelector) {
 					const pseudoElement = child.getChildren()[0]?.getText();
+
 					if (pseudoElement) {
 						s.add(pseudoElement);
 					}
@@ -664,6 +727,7 @@ export class LintVisitor implements nodes.IVisitor {
 		}
 		const result = new Set<string>();
 		walkUp(result, node);
+
 		return Array.from(result);
 	}
 
@@ -672,6 +736,7 @@ export class LintVisitor implements nodes.IVisitor {
 		//	Don't use !important
 		/////////////////////////////////////////////////////////////
 		this.addEntry(node, Rules.AvoidImportant);
+
 		return true;
 	}
 
@@ -682,6 +747,7 @@ export class LintVisitor implements nodes.IVisitor {
 		const funcDecl = node.findParent(
 			nodes.NodeType.Function,
 		) as nodes.Function;
+
 		if (funcDecl && funcDecl.getName() === "calc") {
 			return true;
 		}
@@ -689,10 +755,13 @@ export class LintVisitor implements nodes.IVisitor {
 		const decl = <nodes.Declaration>(
 			node.findParent(nodes.NodeType.Declaration)
 		);
+
 		if (decl) {
 			const declValue = decl.getValue();
+
 			if (declValue) {
 				const value = node.getValue();
+
 				if (
 					!value.unit ||
 					languageFacts.units.length.indexOf(
@@ -715,6 +784,7 @@ export class LintVisitor implements nodes.IVisitor {
 
 	private visitFontFace(node: nodes.FontFace): boolean {
 		const declarations = node.getDeclarations();
+
 		if (!declarations) {
 			// syntax error
 			return false;
@@ -722,10 +792,13 @@ export class LintVisitor implements nodes.IVisitor {
 
 		let definesSrc = false,
 			definesFontFamily = false;
+
 		let containsUnknowns = false;
+
 		for (const node of declarations.getChildren()) {
 			if (this.isCSSDeclaration(node)) {
 				const name = node.getProperty()!.getName().toLowerCase();
+
 				if (name === "src") {
 					definesSrc = true;
 				}
@@ -750,10 +823,12 @@ export class LintVisitor implements nodes.IVisitor {
 				return false;
 			}
 			const property = (<nodes.Declaration>node).getProperty();
+
 			if (!property) {
 				return false;
 			}
 			const identifier = property.getIdentifier();
+
 			if (!identifier || identifier.containsInterpolation()) {
 				return false;
 			}
@@ -765,6 +840,7 @@ export class LintVisitor implements nodes.IVisitor {
 	private visitHexColorValue(node: nodes.HexColorValue): boolean {
 		// Rule: #eeff0011 or #eeff00 or #ef01 or #ef0
 		const length = node.length;
+
 		if (length !== 9 && length !== 7 && length !== 5 && length !== 4) {
 			this.addEntry(node, Rules.HexColorLength);
 		}
@@ -773,17 +849,22 @@ export class LintVisitor implements nodes.IVisitor {
 
 	private visitFunction(node: nodes.Function): boolean {
 		const fnName = node.getName().toLowerCase();
+
 		let expectedAttrCount = -1;
+
 		let actualAttrCount = 0;
 
 		switch (fnName) {
 			case "rgb(":
 			case "hsl(":
 				expectedAttrCount = 3;
+
 				break;
+
 			case "rgba(":
 			case "hsla(":
 				expectedAttrCount = 4;
+
 				break;
 		}
 
@@ -791,6 +872,7 @@ export class LintVisitor implements nodes.IVisitor {
 			node.getArguments().accept((n) => {
 				if (n instanceof nodes.BinaryExpression) {
 					actualAttrCount += 1;
+
 					return false;
 				}
 				return true;

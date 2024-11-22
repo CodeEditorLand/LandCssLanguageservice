@@ -45,9 +45,12 @@ export class PathCompletionParticipant implements ICompletionParticipant {
 		documentContext: DocumentContext,
 	): Promise<CompletionList> {
 		const result: CompletionList = { items: [], isIncomplete: false };
+
 		for (const literalCompletion of this.literalCompletions) {
 			const uriValue = literalCompletion.uriValue;
+
 			const fullValue = stripQuotes(uriValue);
+
 			if (fullValue === "." || fullValue === "..") {
 				result.isIncomplete = true;
 			} else {
@@ -58,6 +61,7 @@ export class PathCompletionParticipant implements ICompletionParticipant {
 					document,
 					documentContext,
 				);
+
 				for (let item of items) {
 					result.items.push(item);
 				}
@@ -65,7 +69,9 @@ export class PathCompletionParticipant implements ICompletionParticipant {
 		}
 		for (const importCompletion of this.importCompletions) {
 			const pathValue = importCompletion.pathValue;
+
 			const fullValue = stripQuotes(pathValue);
+
 			if (fullValue === "." || fullValue === "..") {
 				result.isIncomplete = true;
 			} else {
@@ -107,8 +113,10 @@ export class PathCompletionParticipant implements ICompletionParticipant {
 		documentContext: DocumentContext,
 	): Promise<CompletionItem[]> {
 		const fullValue = stripQuotes(pathValue);
+
 		const isValueQuoted =
 			startsWith(pathValue, `'`) || startsWith(pathValue, `"`);
+
 		const valueBeforeCursor = isValueQuoted
 			? fullValue.slice(
 					0,
@@ -119,6 +127,7 @@ export class PathCompletionParticipant implements ICompletionParticipant {
 		const currentDocUri = document.uri;
 
 		const fullValueRange = isValueQuoted ? shiftRange(range, 1, -1) : range;
+
 		const replaceRange = pathToReplaceRange(
 			valueBeforeCursor,
 			fullValue,
@@ -134,10 +143,13 @@ export class PathCompletionParticipant implements ICompletionParticipant {
 			valueBeforeLastSlash || ".",
 			currentDocUri,
 		);
+
 		if (parentDir) {
 			try {
 				const result: CompletionItem[] = [];
+
 				const infos = await this.readDirectory(parentDir);
+
 				for (const [name, type] of infos) {
 					// Exclude paths that start with `.`
 					if (
@@ -179,20 +191,25 @@ function pathToReplaceRange(
 	fullValueRange: Range,
 ) {
 	let replaceRange: Range;
+
 	const lastIndexOfSlash = valueBeforeCursor.lastIndexOf("/");
+
 	if (lastIndexOfSlash === -1) {
 		replaceRange = fullValueRange;
 	} else {
 		// For cases where cursor is in the middle of attribute value, like <script src="./s|rc/test.js">
 		// Find the last slash before cursor, and calculate the start of replace range from there
 		const valueAfterLastSlash = fullValue.slice(lastIndexOfSlash + 1);
+
 		const startPos = shiftPosition(
 			fullValueRange.end,
 			-valueAfterLastSlash.length,
 		);
 		// If whitespace exists, replace until it
 		const whitespaceIndex = valueAfterLastSlash.indexOf(" ");
+
 		let endPos;
+
 		if (whitespaceIndex !== -1) {
 			endPos = shiftPosition(startPos, whitespaceIndex);
 		} else {
@@ -211,6 +228,7 @@ function createCompletionItem(
 ): CompletionItem {
 	if (isDir) {
 		name = name + "/";
+
 		return {
 			label: escapePath(name),
 			kind: CompletionItemKind.Folder,
@@ -242,6 +260,8 @@ function shiftRange(
 	endOffset: number,
 ): Range {
 	const start = shiftPosition(range.start, startOffset);
+
 	const end = shiftPosition(range.end, endOffset);
+
 	return Range.create(start, end);
 }

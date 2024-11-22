@@ -10,7 +10,9 @@ import { LintSettings } from "../cssLanguageTypes";
 import * as nodes from "../parser/cssNodes";
 
 const Warning = nodes.Level.Warning;
+
 const Error = nodes.Level.Error;
+
 const Ignore = nodes.Level.Ignore;
 
 export class Rule implements nodes.IRule {
@@ -161,6 +163,7 @@ export class LintConfigurationSettings {
 	getRule(rule: Rule): nodes.Level {
 		if (this.conf.hasOwnProperty(rule.id)) {
 			const level = toLevel(this.conf[rule.id]);
+
 			if (level) {
 				return level;
 			}
@@ -177,8 +180,10 @@ function toLevel(level: string): nodes.Level | null {
 	switch (level) {
 		case "ignore":
 			return nodes.Level.Ignore;
+
 		case "warning":
 			return nodes.Level.Warning;
+
 		case "error":
 			return nodes.Level.Error;
 	}

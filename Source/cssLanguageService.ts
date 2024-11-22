@@ -59,22 +59,26 @@ export * from "./cssLanguageTypes";
 
 export interface LanguageService {
 	configure(raw?: LanguageSettings): void;
+
 	setDataProviders(
 		useDefaultDataProvider: boolean,
 		customDataProviders: ICSSDataProvider[],
 	): void;
+
 	doValidation(
 		document: TextDocument,
 		stylesheet: Stylesheet,
 		documentSettings?: LanguageSettings,
 	): Diagnostic[];
 	parseStylesheet(document: TextDocument): Stylesheet;
+
 	doComplete(
 		document: TextDocument,
 		position: Position,
 		stylesheet: Stylesheet,
 		settings?: CompletionSettings,
 	): CompletionList;
+
 	doComplete2(
 		document: TextDocument,
 		position: Position,
@@ -82,9 +86,11 @@ export interface LanguageService {
 		documentContext: DocumentContext,
 		settings?: CompletionSettings,
 	): Promise<CompletionList>;
+
 	setCompletionParticipants(
 		registeredCompletionParticipants: ICompletionParticipant[],
 	): void;
+
 	doHover(
 		document: TextDocument,
 		position: Position,
@@ -127,12 +133,14 @@ export interface LanguageService {
 		document: TextDocument,
 		stylesheet: Stylesheet,
 	): DocumentSymbol[];
+
 	doCodeActions(
 		document: TextDocument,
 		range: Range,
 		context: CodeActionContext,
 		stylesheet: Stylesheet,
 	): Command[];
+
 	doCodeActions2(
 		document: TextDocument,
 		range: Range,
@@ -143,6 +151,7 @@ export interface LanguageService {
 		document: TextDocument,
 		stylesheet: Stylesheet,
 	): ColorInformation[];
+
 	getColorPresentations(
 		document: TextDocument,
 		stylesheet: Stylesheet,
@@ -154,21 +163,25 @@ export interface LanguageService {
 		position: Position,
 		stylesheet: Stylesheet,
 	): Range | undefined;
+
 	doRename(
 		document: TextDocument,
 		position: Position,
 		newName: string,
 		stylesheet: Stylesheet,
 	): WorkspaceEdit;
+
 	getFoldingRanges(
 		document: TextDocument,
 		context?: { rangeLimit?: number },
 	): FoldingRange[];
+
 	getSelectionRanges(
 		document: TextDocument,
 		positions: Position[],
 		stylesheet: Stylesheet,
 	): SelectionRange[];
+
 	format(
 		document: TextDocument,
 		range: Range | undefined,
@@ -235,6 +248,7 @@ export function getCSSLanguageService(
 	options: LanguageServiceOptions = defaultLanguageServiceOptions,
 ): LanguageService {
 	const cssDataManager = new CSSDataManager(options);
+
 	return createFacade(
 		new Parser(),
 		new CSSCompletion(null, options, cssDataManager),
@@ -250,6 +264,7 @@ export function getSCSSLanguageService(
 	options: LanguageServiceOptions = defaultLanguageServiceOptions,
 ): LanguageService {
 	const cssDataManager = new CSSDataManager(options);
+
 	return createFacade(
 		new SCSSParser(),
 		new SCSSCompletion(options, cssDataManager),
@@ -265,6 +280,7 @@ export function getLESSLanguageService(
 	options: LanguageServiceOptions = defaultLanguageServiceOptions,
 ): LanguageService {
 	const cssDataManager = new CSSDataManager(options);
+
 	return createFacade(
 		new LESSParser(),
 		new LESSCompletion(options, cssDataManager),

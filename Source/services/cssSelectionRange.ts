@@ -19,7 +19,9 @@ export function getSelectionRanges(
 ): SelectionRange[] {
 	function getSelectionRange(position: Position): SelectionRange {
 		const applicableRanges = getApplicableRanges(position);
+
 		let current: SelectionRange | undefined = undefined;
+
 		for (let index = applicableRanges.length - 1; index >= 0; index--) {
 			current = SelectionRange.create(
 				Range.create(
@@ -38,6 +40,7 @@ export function getSelectionRanges(
 
 	function getApplicableRanges(position: Position): number[][] {
 		const offset = document.offsetAt(position);
+
 		let currNode = stylesheet.findChildAtOffset(offset, true);
 
 		if (!currNode) {
@@ -53,6 +56,7 @@ export function getSelectionRanges(
 				currNode.end === currNode.parent.end
 			) {
 				currNode = currNode.parent;
+
 				continue;
 			}
 
