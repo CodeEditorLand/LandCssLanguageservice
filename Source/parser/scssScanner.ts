@@ -35,13 +35,21 @@ const _ATS = "@".charCodeAt(0);
 let customTokenValue = TokenType.CustomToken;
 
 export const VariableName = customTokenValue++;
+
 export const InterpolationFunction: TokenType = customTokenValue++;
+
 export const Default: TokenType = customTokenValue++;
+
 export const EqualsOperator: TokenType = customTokenValue++;
+
 export const NotEqualsOperator: TokenType = customTokenValue++;
+
 export const GreaterEqualsOperator: TokenType = customTokenValue++;
+
 export const SmallerEqualsOperator: TokenType = customTokenValue++;
+
 export const Ellipsis: TokenType = customTokenValue++;
+
 export const Module: TokenType = customTokenValue++;
 
 export class SCSSScanner extends Scanner {

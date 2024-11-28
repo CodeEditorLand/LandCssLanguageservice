@@ -19,6 +19,7 @@ const _TIC = "`".charCodeAt(0);
 const _DOT = ".".charCodeAt(0);
 
 let customTokenValue = scanner.TokenType.CustomToken;
+
 export const Ellipsis: scanner.TokenType = customTokenValue++;
 
 export class LESSScanner extends scanner.Scanner {

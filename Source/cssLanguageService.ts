@@ -55,6 +55,7 @@ import { SCSSCompletion } from "./services/scssCompletion";
 import { SCSSNavigation } from "./services/scssNavigation";
 
 export type Stylesheet = {};
+
 export * from "./cssLanguageTypes";
 
 export interface LanguageService {
