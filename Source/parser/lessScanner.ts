@@ -42,6 +42,7 @@ export class LESSScanner extends scanner.Scanner {
 		if (super.comment()) {
 			return true;
 		}
+
 		if (!this.inURL && this.stream.advanceIfChars([_FSL, _FSL])) {
 			this.stream.advanceWhileChar((ch: number) => {
 				switch (ch) {
@@ -66,6 +67,7 @@ export class LESSScanner extends scanner.Scanner {
 
 		if (ch === _TIC) {
 			this.stream.advance(1);
+
 			this.stream.advanceWhileChar((ch) => {
 				return ch !== _TIC;
 			});
@@ -74,6 +76,7 @@ export class LESSScanner extends scanner.Scanner {
 				? scanner.TokenType.EscapedJavaScript
 				: scanner.TokenType.BadEscapedJavaScript;
 		}
+
 		return null;
 	}
 }

@@ -9,10 +9,12 @@ import { includes } from "../utils/arrays";
 
 export class Element {
 	public readonly fullPropertyName: string;
+
 	public readonly node: nodes.Declaration;
 
 	constructor(decl: nodes.Declaration) {
 		this.fullPropertyName = decl.getFullPropertyName().toLowerCase();
+
 		this.node = decl;
 	}
 }
@@ -95,24 +97,33 @@ function updateModelWithList(
 
 		case 2:
 			updateModelWithValue(model, "top", values[0], property);
+
 			updateModelWithValue(model, "bottom", values[0], property);
+
 			updateModelWithValue(model, "right", values[1], property);
+
 			updateModelWithValue(model, "left", values[1], property);
 
 			break;
 
 		case 3:
 			updateModelWithValue(model, "top", values[0], property);
+
 			updateModelWithValue(model, "right", values[1], property);
+
 			updateModelWithValue(model, "left", values[1], property);
+
 			updateModelWithValue(model, "bottom", values[2], property);
 
 			break;
 
 		case 4:
 			updateModelWithValue(model, "top", values[0], property);
+
 			updateModelWithValue(model, "right", values[1], property);
+
 			updateModelWithValue(model, "bottom", values[2], property);
+
 			updateModelWithValue(model, "left", values[3], property);
 
 			break;
@@ -125,6 +136,7 @@ function matches(value: nodes.Node, candidates: string[]) {
 			return true;
 		}
 	}
+
 	return false;
 }
 
@@ -201,6 +213,7 @@ function checkBorderShorthand(node: nodes.Node): boolean {
 			return false;
 		}
 	}
+
 	return true;
 }
 
@@ -283,6 +296,7 @@ export default function calculateBoxModel(propertyTable: Element[]): BoxModel {
 
 										break;
 								}
+
 								break;
 
 							case "width":
@@ -311,6 +325,7 @@ export default function calculateBoxModel(propertyTable: Element[]): BoxModel {
 
 								break;
 						}
+
 						break;
 
 					case "padding":
@@ -330,8 +345,10 @@ export default function calculateBoxModel(propertyTable: Element[]): BoxModel {
 								property,
 							);
 						}
+
 						break;
 				}
+
 				break;
 		}
 	}

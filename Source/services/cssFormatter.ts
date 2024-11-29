@@ -37,6 +37,7 @@ export function format(
 		while (extendedStart > 0 && isWhitespace(value, extendedStart - 1)) {
 			extendedStart--;
 		}
+
 		if (extendedStart === 0 || isEOL(value, extendedStart - 1)) {
 			startOffset = extendedStart;
 		} else {
@@ -54,9 +55,11 @@ export function format(
 		while (extendedEnd < value.length && isWhitespace(value, extendedEnd)) {
 			extendedEnd++;
 		}
+
 		if (extendedEnd === value.length || isEOL(value, extendedEnd)) {
 			endOffset = extendedEnd;
 		}
+
 		range = Range.create(
 			document.positionAt(startOffset),
 			document.positionAt(endOffset),
@@ -66,18 +69,21 @@ export function format(
 		inRule = isInRule(value, startOffset);
 
 		includesEnd = endOffset === value.length;
+
 		value = value.substring(startOffset, endOffset);
 
 		if (startOffset !== 0) {
 			const startOfLineOffset = document.offsetAt(
 				Position.create(range.start.line, 0),
 			);
+
 			initialIndentLevel = computeIndentLevel(
 				document.getText(),
 				startOfLineOffset,
 				options,
 			);
 		}
+
 		if (inRule) {
 			value = `{\n${trimLeft(value)}`;
 		}
@@ -87,6 +93,7 @@ export function format(
 			document.positionAt(value.length),
 		);
 	}
+
 	const cssOptions: IBeautifyCSSOptions = {
 		indent_size: tabSize,
 		indent_char: options.insertSpaces ? " " : "\t",
@@ -125,16 +132,19 @@ export function format(
 	if (inRule) {
 		result = trimLeft(result.substring(2));
 	}
+
 	if (initialIndentLevel > 0) {
 		const indent = options.insertSpaces
 			? repeat(" ", tabSize * initialIndentLevel)
 			: repeat("\t", initialIndentLevel);
+
 		result = result.split("\n").join("\n" + indent);
 
 		if (range.start.character === 0) {
 			result = indent + result; // keep the indent
 		}
 	}
+
 	return [
 		{
 			range: range,
@@ -160,8 +170,10 @@ function isInRule(str: string, offset: number) {
 		} else if (ch === _CUR) {
 			return false;
 		}
+
 		offset--;
 	}
+
 	return false;
 }
 
@@ -177,6 +189,7 @@ function getFormatOption(
 			return value;
 		}
 	}
+
 	return dflt;
 }
 
@@ -201,8 +214,10 @@ function computeIndentLevel(
 		} else {
 			break;
 		}
+
 		i++;
 	}
+
 	return Math.floor(nChars / tabSize);
 }
 

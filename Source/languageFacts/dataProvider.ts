@@ -15,8 +15,11 @@ import {
 
 export class CSSDataProvider implements ICSSDataProvider {
 	private _properties: IPropertyData[] = [];
+
 	private _atDirectives: IAtDirectiveData[] = [];
+
 	private _pseudoClasses: IPseudoClassData[] = [];
+
 	private _pseudoElements: IPseudoElementData[] = [];
 
 	/**
@@ -31,12 +34,15 @@ export class CSSDataProvider implements ICSSDataProvider {
 	provideProperties() {
 		return this._properties;
 	}
+
 	provideAtDirectives() {
 		return this._atDirectives;
 	}
+
 	providePseudoClasses() {
 		return this._pseudoClasses;
 	}
+
 	providePseudoElements() {
 		return this._pseudoElements;
 	}
@@ -49,6 +55,7 @@ export class CSSDataProvider implements ICSSDataProvider {
 				}
 			}
 		}
+
 		if (Array.isArray(data.atDirectives)) {
 			for (const prop of data.atDirectives) {
 				if (isAtDirective(prop)) {
@@ -56,6 +63,7 @@ export class CSSDataProvider implements ICSSDataProvider {
 				}
 			}
 		}
+
 		if (Array.isArray(data.pseudoClasses)) {
 			for (const prop of data.pseudoClasses) {
 				if (isPseudoClassData(prop)) {
@@ -63,6 +71,7 @@ export class CSSDataProvider implements ICSSDataProvider {
 				}
 			}
 		}
+
 		if (Array.isArray(data.pseudoElements)) {
 			for (const prop of data.pseudoElements) {
 				if (isPseudoElementData(prop)) {

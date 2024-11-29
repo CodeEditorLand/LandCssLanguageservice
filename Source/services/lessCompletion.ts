@@ -21,8 +21,11 @@ import { CSSCompletion } from "./cssCompletion";
 
 interface IFunctionInfo {
 	name: string;
+
 	example: string;
+
 	description?: string;
+
 	type?: string;
 }
 
@@ -430,8 +433,10 @@ export class LESSCompletion extends CSSCompletion {
 			if (sortToEnd) {
 				item.sortText = "z";
 			}
+
 			result.items.push(item);
 		}
+
 		return result;
 	}
 
@@ -450,6 +455,7 @@ export class LESSCompletion extends CSSCompletion {
 					entry.restrictions.indexOf(f.type) !== -1,
 			);
 		}
+
 		this.createFunctionProposals(functions, existingNode, true, result);
 
 		return super.getTermProposals(entry, existingNode, result);

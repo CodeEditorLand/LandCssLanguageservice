@@ -128,14 +128,17 @@ export function getNodeAtOffset(node: Node, offset: number): Node | null {
 		if (node.offset === -1 && node.length === -1) {
 			return true;
 		}
+
 		if (node.offset <= offset && node.end >= offset) {
 			if (!candidate) {
 				candidate = node;
 			} else if (node.length <= candidate.length) {
 				candidate = node;
 			}
+
 			return true;
 		}
+
 		return false;
 	});
 
@@ -149,6 +152,7 @@ export function getNodePath(node: Node, offset: number): Node[] {
 
 	while (candidate) {
 		path.unshift(candidate);
+
 		candidate = candidate.parent;
 	}
 
@@ -163,6 +167,7 @@ export function getParentDeclaration(node: Node): Declaration | null {
 	if (value && value.encloses(node)) {
 		return decl;
 	}
+
 	return null;
 }
 
@@ -174,7 +179,9 @@ export class Node {
 	public parent: Node | null;
 
 	public offset: number;
+
 	public length: number;
+
 	public get end() {
 		return this.offset + this.length;
 	}
@@ -184,13 +191,16 @@ export class Node {
 	public textProvider: ITextProvider | undefined; // only set on the root node
 
 	private children: Node[] | undefined;
+
 	private issues: IMarker[] | undefined;
 
 	private nodeType: NodeType | undefined;
 
 	constructor(offset: number = -1, len: number = -1, nodeType?: NodeType) {
 		this.parent = null;
+
 		this.offset = offset;
+
 		this.length = len;
 
 		if (nodeType) {
@@ -212,9 +222,11 @@ export class Node {
 		while (node && !node.textProvider) {
 			node = node.parent;
 		}
+
 		if (node) {
 			return node.textProvider!;
 		}
+
 		return () => {
 			return "unknown";
 		};
@@ -265,6 +277,7 @@ export class Node {
 				node.parent.children.splice(idx, 1);
 			}
 		}
+
 		node.parent = this;
 
 		let children = this.children;
@@ -272,11 +285,13 @@ export class Node {
 		if (!children) {
 			children = this.children = [];
 		}
+
 		if (index !== -1) {
 			children.splice(index, 0, node);
 		} else {
 			children.push(node);
 		}
+
 		return node;
 	}
 
@@ -284,6 +299,7 @@ export class Node {
 		if (parent) {
 			parent.adoptChild(this, index);
 		}
+
 		return this;
 	}
 
@@ -297,6 +313,7 @@ export class Node {
 		if (!this.issues) {
 			this.issues = [];
 		}
+
 		this.issues.push(issue);
 	}
 
@@ -311,6 +328,7 @@ export class Node {
 		if (this.issues && this.issues.length > 0) {
 			return true;
 		}
+
 		return (
 			recursive &&
 			Array.isArray(this.children) &&
@@ -329,6 +347,7 @@ export class Node {
 
 			return true;
 		}
+
 		return false;
 	}
 
@@ -337,11 +356,14 @@ export class Node {
 			if (!this.children) {
 				this.children = [];
 			}
+
 			node.attachTo(this);
+
 			this.updateOffsetAndLength(node);
 
 			return true;
 		}
+
 		return false;
 	}
 
@@ -349,6 +371,7 @@ export class Node {
 		if (node.offset < this.offset || this.offset === -1) {
 			this.offset = node.offset;
 		}
+
 		const nodeEnd = node.end;
 
 		if (nodeEnd > this.end || this.length === -1) {
@@ -368,6 +391,7 @@ export class Node {
 		if (this.children && index < this.children.length) {
 			return this.children[index];
 		}
+
 		return null;
 	}
 
@@ -390,6 +414,7 @@ export class Node {
 				}
 			}
 		}
+
 		return null;
 	}
 
@@ -400,8 +425,10 @@ export class Node {
 			if (goDeep) {
 				return current.findChildAtOffset(offset, true) || current;
 			}
+
 			return current;
 		}
+
 		return null;
 	}
 
@@ -418,6 +445,7 @@ export class Node {
 		while (result instanceof Nodelist) {
 			result = result.parent;
 		}
+
 		return result;
 	}
 
@@ -427,6 +455,7 @@ export class Node {
 		while (result && result.type !== type) {
 			result = result.parent;
 		}
+
 		return result;
 	}
 
@@ -436,6 +465,7 @@ export class Node {
 		while (result && !types.some((t) => result!.type === t)) {
 			result = result.parent;
 		}
+
 		return result;
 	}
 
@@ -443,6 +473,7 @@ export class Node {
 		if (!this.options) {
 			this.options = {};
 		}
+
 		this.options[key] = value;
 	}
 
@@ -450,6 +481,7 @@ export class Node {
 		if (!this.options || !this.options.hasOwnProperty(key)) {
 			return null;
 		}
+
 		return this.options[key];
 	}
 }
@@ -463,14 +495,18 @@ export class Nodelist extends Node {
 
 	constructor(parent: Node, index: number = -1) {
 		super(-1, -1);
+
 		this.attachTo(parent, index);
+
 		this.offset = -1;
+
 		this.length = -1;
 	}
 }
 
 export class UnicodeRange extends Node {
 	public rangeStart?: Node;
+
 	public rangeEnd?: Node;
 
 	constructor(offset: number, length: number) {
@@ -500,6 +536,7 @@ export class UnicodeRange extends Node {
 
 export class Identifier extends Node {
 	public referenceTypes?: ReferenceType[];
+
 	public isCustomProperty = false;
 
 	constructor(offset: number, length: number) {
@@ -568,6 +605,7 @@ export class RuleSet extends BodyDeclaration {
 		if (!this.selectors) {
 			this.selectors = new Nodelist(this);
 		}
+
 		return this.selectors;
 	}
 
@@ -630,6 +668,7 @@ export class AtApplyRule extends Node {
 export abstract class AbstractDeclaration extends Node {
 	// positions for code assist
 	public colonPosition: number | undefined;
+
 	public semicolonPosition: number | undefined; // semicolon following the declaration
 
 	constructor(offset: number, length: number) {
@@ -649,7 +688,9 @@ export class CustomPropertySet extends BodyDeclaration {
 
 export class Declaration extends AbstractDeclaration {
 	public property: Property | null = null;
+
 	public value?: Expression;
+
 	public nestedProperties?: NestedProperties;
 
 	constructor(offset: number, length: number) {
@@ -686,6 +727,7 @@ export class Declaration extends AbstractDeclaration {
 				);
 			}
 		}
+
 		return propertyName;
 	}
 
@@ -699,6 +741,7 @@ export class Declaration extends AbstractDeclaration {
 				return propertyName.substring(vendorPrefixEnd + 1);
 			}
 		}
+
 		return propertyName;
 	}
 
@@ -785,6 +828,7 @@ export class Invocation extends Node {
 		if (!this.arguments) {
 			this.arguments = new Nodelist(this);
 		}
+
 		return this.arguments;
 	}
 }
@@ -815,6 +859,7 @@ export class Function extends Invocation {
 
 export class FunctionParameter extends Node {
 	public identifier?: Node;
+
 	public defaultValue?: Node;
 
 	constructor(offset: number, length: number) {
@@ -848,6 +893,7 @@ export class FunctionParameter extends Node {
 
 export class FunctionArgument extends Node {
 	public identifier?: Node;
+
 	public value?: Node;
 
 	constructor(offset: number, length: number) {
@@ -881,6 +927,7 @@ export class FunctionArgument extends Node {
 
 export class IfStatement extends BodyDeclaration {
 	public expression?: Expression;
+
 	public elseClause?: BodyDeclaration;
 
 	constructor(offset: number, length: number) {
@@ -933,6 +980,7 @@ export class EachStatement extends BodyDeclaration {
 		if (!this.variables) {
 			this.variables = new Nodelist(this);
 		}
+
 		return this.variables;
 	}
 }
@@ -959,6 +1007,7 @@ export class ElseStatement extends BodyDeclaration {
 
 export class FunctionDeclaration extends BodyDeclaration {
 	public identifier?: Identifier;
+
 	public parameters?: Nodelist;
 
 	constructor(offset: number, length: number) {
@@ -985,6 +1034,7 @@ export class FunctionDeclaration extends BodyDeclaration {
 		if (!this.parameters) {
 			this.parameters = new Nodelist(this);
 		}
+
 		return this.parameters;
 	}
 }
@@ -1021,6 +1071,7 @@ export class NestedProperties extends BodyDeclaration {
 
 export class Keyframe extends BodyDeclaration {
 	public keyword?: Node;
+
 	public identifier?: Identifier;
 
 	constructor(offset: number, length: number) {
@@ -1077,12 +1128,14 @@ export class Import extends Node {
 
 			return true;
 		}
+
 		return false;
 	}
 }
 
 export class Use extends Node {
 	public identifier?: Identifier;
+
 	public parameters?: Node;
 
 	public get type(): NodeType {
@@ -1108,6 +1161,7 @@ export class Use extends Node {
 
 export class ModuleConfiguration extends Node {
 	public identifier?: Node;
+
 	public value?: Node;
 
 	public get type(): NodeType {
@@ -1137,6 +1191,7 @@ export class ModuleConfiguration extends Node {
 
 export class Forward extends Node {
 	public identifier?: Node;
+
 	public parameters?: Node;
 
 	public get type(): NodeType {
@@ -1240,10 +1295,12 @@ export class PropertyAtRule extends BodyDeclaration {
 	public setName(node: Identifier | undefined | null): node is Identifier {
 		if (node) {
 			node.attachTo(this);
+
 			this.name = node;
 
 			return true;
 		}
+
 		return false;
 	}
 
@@ -1310,6 +1367,7 @@ export class MediaFeature extends Node {
 
 export class SupportsCondition extends Node {
 	public lParent?: number;
+
 	public rParent?: number;
 
 	constructor(offset: number, length: number) {
@@ -1355,7 +1413,9 @@ export class Expression extends Node {
 
 export class BinaryExpression extends Node {
 	public left?: Node;
+
 	public right?: Node;
+
 	public operator?: Node;
 
 	constructor(offset: number, length: number) {
@@ -1393,6 +1453,7 @@ export class BinaryExpression extends Node {
 
 export class Term extends Node {
 	public operator?: Node;
+
 	public expression?: Node;
 
 	constructor(offset: number, length: number) {
@@ -1422,8 +1483,11 @@ export class Term extends Node {
 
 export class AttributeSelector extends Node {
 	public namespacePrefix?: Node;
+
 	public identifier?: Identifier;
+
 	public operator?: Operator;
+
 	public value?: BinaryExpression;
 
 	constructor(offset: number, length: number) {
@@ -1525,8 +1589,10 @@ export class NumericValue extends Node {
 			if (!((_0 <= code && code <= _9) || code === _dot)) {
 				break;
 			}
+
 			unitIdx += 1;
 		}
+
 		return {
 			value: raw.substring(0, unitIdx),
 			unit: unitIdx < raw.length ? raw.substring(unitIdx) : undefined,
@@ -1536,7 +1602,9 @@ export class NumericValue extends Node {
 
 export class VariableDeclaration extends AbstractDeclaration {
 	private variable: Variable | undefined;
+
 	private value: Node | undefined;
+
 	public needsSemicolon: boolean = true;
 
 	constructor(offset: number, length: number) {
@@ -1550,10 +1618,12 @@ export class VariableDeclaration extends AbstractDeclaration {
 	public setVariable(node: Variable | undefined | null): node is Variable {
 		if (node) {
 			node.attachTo(this);
+
 			this.variable = node;
 
 			return true;
 		}
+
 		return false;
 	}
 
@@ -1568,10 +1638,12 @@ export class VariableDeclaration extends AbstractDeclaration {
 	public setValue(node: Node | undefined | null): node is Node {
 		if (node) {
 			node.attachTo(this);
+
 			this.value = node;
 
 			return true;
 		}
+
 		return false;
 	}
 
@@ -1623,6 +1695,7 @@ export class ExtendsReference extends Node {
 		if (!this.selectors) {
 			this.selectors = new Nodelist(this);
 		}
+
 		return this.selectors;
 	}
 }
@@ -1642,6 +1715,7 @@ export class MixinContentReference extends Node {
 		if (!this.arguments) {
 			this.arguments = new Nodelist(this);
 		}
+
 		return this.arguments;
 	}
 }
@@ -1661,14 +1735,18 @@ export class MixinContentDeclaration extends BodyDeclaration {
 		if (!this.parameters) {
 			this.parameters = new Nodelist(this);
 		}
+
 		return this.parameters;
 	}
 }
 
 export class MixinReference extends Node {
 	public namespaces?: Nodelist;
+
 	public identifier?: Identifier;
+
 	private arguments?: Nodelist;
+
 	public content?: MixinContentDeclaration;
 
 	constructor(offset: number, length: number) {
@@ -1683,6 +1761,7 @@ export class MixinReference extends Node {
 		if (!this.namespaces) {
 			this.namespaces = new Nodelist(this);
 		}
+
 		return this.namespaces;
 	}
 
@@ -1702,6 +1781,7 @@ export class MixinReference extends Node {
 		if (!this.arguments) {
 			this.arguments = new Nodelist(this);
 		}
+
 		return this.arguments;
 	}
 
@@ -1718,7 +1798,9 @@ export class MixinReference extends Node {
 
 export class MixinDeclaration extends BodyDeclaration {
 	public identifier?: Identifier;
+
 	private parameters?: Nodelist;
+
 	private guard?: LessGuard;
 
 	constructor(offset: number, length: number) {
@@ -1745,14 +1827,17 @@ export class MixinDeclaration extends BodyDeclaration {
 		if (!this.parameters) {
 			this.parameters = new Nodelist(this);
 		}
+
 		return this.parameters;
 	}
 
 	public setGuard(node: LessGuard | null): boolean {
 		if (node) {
 			node.attachTo(this);
+
 			this.guard = node;
 		}
+
 		return false;
 	}
 }
@@ -1771,6 +1856,7 @@ export class UnknownAtRule extends BodyDeclaration {
 	public setAtRuleName(atRuleName: string) {
 		this.atRuleName = atRuleName;
 	}
+
 	public getAtRuleName() {
 		return this.atRuleName;
 	}
@@ -1778,6 +1864,7 @@ export class UnknownAtRule extends BodyDeclaration {
 
 export class ListEntry extends Node {
 	public key?: Node;
+
 	public value?: Node;
 
 	public get type(): NodeType {
@@ -1800,17 +1887,24 @@ export class LessGuard extends Node {
 		if (!this.conditions) {
 			this.conditions = new Nodelist(this);
 		}
+
 		return this.conditions;
 	}
 }
 
 export class GuardCondition extends Node {
 	public isNegated?: boolean;
+
 	public variable?: Node;
+
 	public isEquals?: boolean;
+
 	public isGreater?: boolean;
+
 	public isEqualsGreater?: boolean;
+
 	public isLess?: boolean;
+
 	public isEqualsLess?: boolean;
 
 	public setVariable(node: Node | null): node is Node {
@@ -1836,6 +1930,7 @@ export class Module extends Node {
 
 export interface IRule {
 	id: string;
+
 	message: string;
 }
 
@@ -1861,10 +1956,15 @@ export interface IMarker {
 
 export class Marker implements IMarker {
 	private node: Node;
+
 	private rule: IRule;
+
 	private level: Level;
+
 	private message: string;
+
 	private offset: number;
+
 	private length: number;
 
 	constructor(
@@ -1876,10 +1976,15 @@ export class Marker implements IMarker {
 		length: number = node.length,
 	) {
 		this.node = node;
+
 		this.rule = rule;
+
 		this.level = level;
+
 		this.message = message || rule.message;
+
 		this.offset = offset;
+
 		this.length = length;
 	}
 
@@ -1995,6 +2100,7 @@ export class DefaultVisitor implements IVisitor {
 			case NodeType.VariableDeclaration:
 				return this.visitVariableDeclaration(<VariableDeclaration> node);
 		}
+
 		return this.visitUnknownNode(node);
 	}
 
@@ -2102,6 +2208,7 @@ export class DefaultVisitor implements IVisitor {
 export class ParseErrorCollector implements IVisitor {
 	static entries(node: Node): IMarker[] {
 		const visitor = new ParseErrorCollector();
+
 		node.acceptVisitor(visitor);
 
 		return visitor.entries;
@@ -2117,6 +2224,7 @@ export class ParseErrorCollector implements IVisitor {
 		if (node.isErroneous()) {
 			node.collectIssues(this.entries);
 		}
+
 		return true;
 	}
 }

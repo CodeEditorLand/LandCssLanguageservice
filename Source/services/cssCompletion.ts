@@ -57,14 +57,21 @@ export class CSSCompletion {
 	private supportsMarkdown: boolean | undefined;
 
 	position!: Position;
+
 	offset!: number;
+
 	currentWord!: string;
+
 	textDocument!: TextDocument;
+
 	styleSheet!: nodes.Stylesheet;
+
 	symbolContext!: Symbols;
 
 	defaultReplaceRange!: Range;
+
 	nodePath!: nodes.Node[];
+
 	completionParticipants: ICompletionParticipant[] = [];
 
 	documentSettings?: CompletionSettings;
@@ -83,6 +90,7 @@ export class CSSCompletion {
 		if (!this.symbolContext) {
 			this.symbolContext = new Symbols(this.styleSheet);
 		}
+
 		return this.symbolContext;
 	}
 
@@ -117,6 +125,7 @@ export class CSSCompletion {
 			);
 
 		const contributedParticipants = this.completionParticipants;
+
 		this.completionParticipants = [
 			participant as ICompletionParticipant,
 		].concat(contributedParticipants);
@@ -152,8 +161,11 @@ export class CSSCompletion {
 		documentSettings: CompletionSettings | undefined,
 	): CompletionList {
 		this.offset = document.offsetAt(position);
+
 		this.position = position;
+
 		this.currentWord = getCurrentWord(document, this.offset);
+
 		this.defaultReplaceRange = Range.create(
 			Position.create(
 				this.position.line,
@@ -161,8 +173,11 @@ export class CSSCompletion {
 			),
 			this.position,
 		);
+
 		this.textDocument = document;
+
 		this.styleSheet = styleSheet;
+
 		this.documentSettings = documentSettings;
 
 		try {
@@ -180,6 +195,7 @@ export class CSSCompletion {
 				},
 				items: [],
 			};
+
 			this.nodePath = nodes.getNodePath(this.styleSheet, this.offset);
 
 			for (let i = this.nodePath.length - 1; i >= 0; i--) {
@@ -216,6 +232,7 @@ export class CSSCompletion {
 							);
 						} else {
 							const parentRuleSet = <nodes.RuleSet>parentRef;
+
 							this.getCompletionsForSelector(
 								parentRuleSet,
 								parentRuleSet && parentRuleSet.isNested(),
@@ -292,10 +309,12 @@ export class CSSCompletion {
 				} else {
 					continue;
 				}
+
 				if (result.items.length > 0 || this.offset > node.offset) {
 					return this.finalize(result);
 				}
 			}
+
 			this.getCompletionsForStylesheet(result);
 
 			if (result.items.length === 0) {
@@ -306,15 +325,22 @@ export class CSSCompletion {
 					this.getVariableProposals(null, result);
 				}
 			}
+
 			return this.finalize(result);
 		} finally {
 			// don't hold on any state, clear symbolContext
 			this.position = null!;
+
 			this.currentWord = null!;
+
 			this.textDocument = null!;
+
 			this.styleSheet = null!;
+
 			this.symbolContext = null!;
+
 			this.defaultReplaceRange = null!;
+
 			this.nodePath = null!;
 		}
 	}
@@ -335,6 +361,7 @@ export class CSSCompletion {
 				return node;
 			}
 		}
+
 		return null;
 	}
 
@@ -366,15 +393,19 @@ export class CSSCompletion {
 
 			if (declaration) {
 				range = this.getCompletionRange(declaration.getProperty());
+
 				insertText = entry.name;
 
 				if (!isDefined(declaration.colonPosition)) {
 					insertText += ": ";
+
 					retrigger = true;
 				}
 			} else {
 				range = this.getCompletionRange(null);
+
 				insertText = entry.name + ": ";
+
 				retrigger = true;
 			}
 			// Empty .selector { | } case
@@ -383,6 +414,7 @@ export class CSSCompletion {
 			}
 
 			// Cases such as .selector { p; } or .selector { p:; }
+
 			if (declaration && !declaration.semicolonPosition) {
 				if (
 					completePropertyWithSemicolon &&
@@ -407,9 +439,11 @@ export class CSSCompletion {
 			if (!entry.restrictions) {
 				retrigger = false;
 			}
+
 			if (triggerPropertyValueCompletion && retrigger) {
 				item.command = retriggerCommand;
 			}
+
 			const relevance =
 				typeof entry.relevance === "number"
 					? Math.min(Math.max(entry.relevance, 0), 99)
@@ -420,7 +454,9 @@ export class CSSCompletion {
 			const sortTextPrefix = strings.startsWith(entry.name, "-")
 				? SortTexts.VendorPrefixed
 				: SortTexts.Normal;
+
 			item.sortText = sortTextPrefix + "_" + sortTextSuffix;
+
 			result.items.push(item);
 		});
 
@@ -552,8 +588,11 @@ export class CSSCompletion {
 					}
 				}
 			}
+
 			this.getValueEnumProposals(entry, existingNode, result);
+
 			this.getCSSWideKeywordProposals(entry, existingNode, result);
+
 			this.getUnitProposals(entry, existingNode, result);
 		} else {
 			const existingValues = collectValues(this.styleSheet, node);
@@ -569,7 +608,9 @@ export class CSSCompletion {
 				});
 			}
 		}
+
 		this.getVariableProposals(existingNode, result);
+
 		this.getTermProposals(entry, existingNode, result);
 
 		return result;
@@ -594,9 +635,11 @@ export class CSSCompletion {
 							insertString.substring(0, from + 1) +
 							"$1" +
 							insertString.substring(from + 1);
+
 						insertTextFormat = SnippetFormat;
 					}
 				}
+
 				let sortText: string = SortTexts.Enums;
 
 				if (strings.startsWith(value.name, "-")) {
@@ -620,9 +663,11 @@ export class CSSCompletion {
 					kind: CompletionItemKind.Value,
 					insertTextFormat,
 				};
+
 				result.items.push(item);
 			}
 		}
+
 		return result;
 	}
 
@@ -642,8 +687,10 @@ export class CSSCompletion {
 				kind: CompletionItemKind.Value,
 			});
 		}
+
 		for (const func in languageFacts.cssWideFunctions) {
 			const insertText = moveCursorInsideParenthesis(func);
+
 			result.items.push({
 				label: func,
 				documentation: languageFacts.cssWideFunctions[func],
@@ -658,6 +705,7 @@ export class CSSCompletion {
 					: undefined,
 			});
 		}
+
 		return result;
 	}
 
@@ -668,6 +716,7 @@ export class CSSCompletion {
 		if (this.offset >= node.offset + 2) {
 			this.getVariableProposals(null, result);
 		}
+
 		return result;
 	}
 
@@ -720,6 +769,7 @@ export class CSSCompletion {
 
 			result.items.push(completionItem);
 		}
+
 		return result;
 	}
 
@@ -727,6 +777,7 @@ export class CSSCompletion {
 		result: CompletionList,
 	): CompletionList {
 		const allReferencedVariables = new Set();
+
 		this.styleSheet.acceptVisitor(
 			new VariableCollector(allReferencedVariables, this.offset),
 		);
@@ -759,6 +810,7 @@ export class CSSCompletion {
 
 				result.items.push(completionItem);
 			}
+
 			allReferencedVariables.remove(symbol.name);
 		}
 
@@ -772,9 +824,11 @@ export class CSSCompletion {
 					),
 					kind: CompletionItemKind.Variable,
 				};
+
 				result.items.push(completionItem);
 			}
 		}
+
 		return result;
 	}
 
@@ -790,12 +844,14 @@ export class CSSCompletion {
 
 			if (numMatch) {
 				currentWord = numMatch[0];
+
 				result.isIncomplete =
 					currentWord.length === this.currentWord.length;
 			}
 		} else if (this.currentWord.length === 0) {
 			result.isIncomplete = true;
 		}
+
 		if (
 			existingNode &&
 			existingNode.parent &&
@@ -803,6 +859,7 @@ export class CSSCompletion {
 		) {
 			existingNode = existingNode.getParent(); // include the unary operator
 		}
+
 		if (entry.restrictions) {
 			for (const restriction of entry.restrictions) {
 				const units = languageFacts.units[restriction];
@@ -810,6 +867,7 @@ export class CSSCompletion {
 				if (units) {
 					for (const unit of units) {
 						const insertText = currentWord + unit;
+
 						result.items.push({
 							label: insertText,
 							textEdit: TextEdit.replace(
@@ -822,6 +880,7 @@ export class CSSCompletion {
 				}
 			}
 		}
+
 		return result;
 	}
 
@@ -842,6 +901,7 @@ export class CSSCompletion {
 				return Range.create(start, end); // multi line edits are not allowed
 			}
 		}
+
 		return this.defaultReplaceRange;
 	}
 
@@ -861,6 +921,7 @@ export class CSSCompletion {
 				kind: CompletionItemKind.Color,
 			});
 		}
+
 		for (const color in languageFacts.colorKeywords) {
 			result.items.push({
 				label: color,
@@ -872,7 +933,9 @@ export class CSSCompletion {
 				kind: CompletionItemKind.Value,
 			});
 		}
+
 		const colorValues = new Set();
+
 		this.styleSheet.acceptVisitor(
 			new ColorValueCollector(colorValues, this.offset),
 		);
@@ -887,6 +950,7 @@ export class CSSCompletion {
 				kind: CompletionItemKind.Color,
 			});
 		}
+
 		for (const p of languageFacts.colorFunctions) {
 			result.items.push({
 				label: p.label,
@@ -900,6 +964,7 @@ export class CSSCompletion {
 				kind: CompletionItemKind.Function,
 			});
 		}
+
 		return result;
 	}
 
@@ -919,6 +984,7 @@ export class CSSCompletion {
 				kind: CompletionItemKind.Value,
 			});
 		}
+
 		return result;
 	}
 
@@ -938,6 +1004,7 @@ export class CSSCompletion {
 				kind: CompletionItemKind.Value,
 			});
 		}
+
 		return result;
 	}
 
@@ -957,6 +1024,7 @@ export class CSSCompletion {
 				kind: CompletionItemKind.Value,
 			});
 		}
+
 		return result;
 	}
 
@@ -975,6 +1043,7 @@ export class CSSCompletion {
 				kind: CompletionItemKind.Value,
 			});
 		}
+
 		return result;
 	}
 
@@ -994,6 +1063,7 @@ export class CSSCompletion {
 				kind: CompletionItemKind.Value,
 			});
 		}
+
 		return result;
 	}
 
@@ -1013,6 +1083,7 @@ export class CSSCompletion {
 				kind: CompletionItemKind.Value,
 			});
 		}
+
 		return result;
 	}
 
@@ -1023,6 +1094,7 @@ export class CSSCompletion {
 	): CompletionList {
 		for (const image in languageFacts.imageFunctions) {
 			const insertText = moveCursorInsideParenthesis(image);
+
 			result.items.push({
 				label: image,
 				documentation: languageFacts.imageFunctions[image],
@@ -1034,6 +1106,7 @@ export class CSSCompletion {
 				insertTextFormat: image !== insertText ? SnippetFormat : void 0,
 			});
 		}
+
 		return result;
 	}
 
@@ -1044,6 +1117,7 @@ export class CSSCompletion {
 	): CompletionList {
 		for (const timing in languageFacts.transitionTimingFunctions) {
 			const insertText = moveCursorInsideParenthesis(timing);
+
 			result.items.push({
 				label: timing,
 				documentation: languageFacts.transitionTimingFunctions[timing],
@@ -1056,6 +1130,7 @@ export class CSSCompletion {
 					timing !== insertText ? SnippetFormat : void 0,
 			});
 		}
+
 		return result;
 	}
 
@@ -1066,6 +1141,7 @@ export class CSSCompletion {
 	): CompletionList {
 		for (const shape in languageFacts.basicShapeFunctions) {
 			const insertText = moveCursorInsideParenthesis(shape);
+
 			result.items.push({
 				label: shape,
 				documentation: languageFacts.basicShapeFunctions[shape],
@@ -1077,6 +1153,7 @@ export class CSSCompletion {
 				insertTextFormat: shape !== insertText ? SnippetFormat : void 0,
 			});
 		}
+
 		return result;
 	}
 
@@ -1086,12 +1163,15 @@ export class CSSCompletion {
 		if (!node) {
 			return this.getCompletionForTopLevel(result);
 		}
+
 		if (node instanceof nodes.RuleSet) {
 			return this.getCompletionsForRuleSet(<nodes.RuleSet>node, result);
 		}
+
 		if (node instanceof nodes.Supports) {
 			return this.getCompletionsForSupports(<nodes.Supports>node, result);
 		}
+
 		return result;
 	}
 
@@ -1131,6 +1211,7 @@ export class CSSCompletion {
 		if (isAfter) {
 			return this.getCompletionForTopLevel(result);
 		}
+
 		const isInSelectors =
 			!declarations || this.offset <= declarations.offset;
 
@@ -1178,6 +1259,7 @@ export class CSSCompletion {
 			) {
 				this.currentWord = ":" + this.currentWord; // for '::'
 			}
+
 			this.defaultReplaceRange = Range.create(
 				Position.create(
 					this.position.line,
@@ -1188,6 +1270,7 @@ export class CSSCompletion {
 		}
 
 		const pseudoClasses = this.cssDataManager.getPseudoClasses();
+
 		pseudoClasses.forEach((entry) => {
 			const insertText = moveCursorInsideParenthesis(entry.name);
 
@@ -1210,10 +1293,12 @@ export class CSSCompletion {
 			if (strings.startsWith(entry.name, ":-")) {
 				item.sortText = SortTexts.VendorPrefixed;
 			}
+
 			result.items.push(item);
 		});
 
 		const pseudoElements = this.cssDataManager.getPseudoElements();
+
 		pseudoElements.forEach((entry) => {
 			const insertText = moveCursorInsideParenthesis(entry.name);
 
@@ -1236,6 +1321,7 @@ export class CSSCompletion {
 			if (strings.startsWith(entry.name, "::-")) {
 				item.sortText = SortTexts.VendorPrefixed;
 			}
+
 			result.items.push(item);
 		});
 
@@ -1251,6 +1337,7 @@ export class CSSCompletion {
 					kind: CompletionItemKind.Keyword,
 				});
 			}
+
 			for (const entry of languageFacts.svgElements) {
 				result.items.push({
 					label: entry,
@@ -1264,15 +1351,18 @@ export class CSSCompletion {
 		}
 
 		const visited: { [name: string]: boolean } = {};
+
 		visited[this.currentWord] = true;
 
 		const docText = this.textDocument.getText();
+
 		this.styleSheet.accept((n) => {
 			if (n.type === nodes.NodeType.SimpleSelector && n.length > 0) {
 				const selector = docText.substr(n.offset, n.length);
 
 				if (selector.charAt(0) === "." && !visited[selector]) {
 					visited[selector] = true;
+
 					result.items.push({
 						label: selector,
 						textEdit: TextEdit.replace(
@@ -1282,8 +1372,10 @@ export class CSSCompletion {
 						kind: CompletionItemKind.Keyword,
 					});
 				}
+
 				return false;
 			}
+
 			return true;
 		});
 
@@ -1299,6 +1391,7 @@ export class CSSCompletion {
 				this.getPropertyProposals(null, result);
 			}
 		}
+
 		return result;
 	}
 
@@ -1370,6 +1463,7 @@ export class CSSCompletion {
 		) {
 			this.getVariableProposals(declaration.getValue() || null, result);
 		}
+
 		return result;
 	}
 
@@ -1404,12 +1498,14 @@ export class CSSCompletion {
 		if (!node) {
 			return this.getCompletionsForDeclarationValue(declaration, result);
 		}
+
 		if (
 			node instanceof nodes.NumericValue ||
 			node instanceof nodes.Identifier
 		) {
 			return this.getCompletionsForDeclarationValue(declaration, result);
 		}
+
 		return result;
 	}
 
@@ -1428,6 +1524,7 @@ export class CSSCompletion {
 				this.getVariableProposalsForCSSVarFunction(result);
 			}
 		}
+
 		return result;
 	}
 
@@ -1444,6 +1541,7 @@ export class CSSCompletion {
 		) {
 			this.getTermProposals(undefined, null, result);
 		}
+
 		return result;
 	}
 
@@ -1503,6 +1601,7 @@ export class CSSCompletion {
 				);
 			}
 		}
+
 		return result;
 	}
 
@@ -1566,6 +1665,7 @@ export class CSSCompletion {
 				return this.getCompletionsForSupportsCondition(child, result);
 			}
 		}
+
 		if (
 			isDefined(supportsCondition.lParent) &&
 			this.offset > supportsCondition.lParent &&
@@ -1574,6 +1674,7 @@ export class CSSCompletion {
 		) {
 			return this.getCompletionsForDeclarationProperty(null, result);
 		}
+
 		return result;
 	}
 
@@ -1592,8 +1693,10 @@ export class CSSCompletion {
 			if (child instanceof nodes.SupportsCondition) {
 				return this.getCompletionsForSupportsCondition(child, result);
 			}
+
 			return result;
 		}
+
 		return this.getCompletionForTopLevel(result);
 	}
 
@@ -1617,18 +1720,24 @@ export class CSSCompletion {
 		// No children, empty value
 		if (!uriLiteralNode.hasChildren()) {
 			uriValue = "";
+
 			position = this.position;
 
 			const emptyURIValuePosition = this.textDocument.positionAt(
 				uriLiteralNode.offset + "url(".length,
 			);
+
 			range = Range.create(emptyURIValuePosition, emptyURIValuePosition);
 		} else {
 			const uriValueNode = uriLiteralNode.getChild(0)!;
+
 			uriValue = uriValueNode.getText();
+
 			position = this.position;
+
 			range = this.getCompletionRange(uriValueNode);
 		}
+
 		this.completionParticipants.forEach((participant) => {
 			if (participant.onCssURILiteralValue) {
 				participant.onCssURILiteralValue({
@@ -1674,13 +1783,16 @@ export class CSSCompletion {
 
 				return this.supportsMarkdown;
 			}
+
 			const documentationFormat =
 				this.lsOptions.clientCapabilities.textDocument?.completion
 					?.completionItem?.documentationFormat;
+
 			this.supportsMarkdown =
 				Array.isArray(documentationFormat) &&
 				documentationFormat.indexOf(MarkupKind.Markdown) !== -1;
 		}
+
 		return <boolean>this.supportsMarkdown;
 	}
 }
@@ -1698,12 +1810,15 @@ function isDeprecated(entry: languageFacts.IEntry2): boolean {
 
 class Set {
 	private entries: { [key: string]: boolean } = {};
+
 	public add(entry: string): void {
 		this.entries[entry] = true;
 	}
+
 	public remove(entry: string): void {
 		delete this.entries[entry];
 	}
+
 	public getEntries(): string[] {
 		return Object.keys(this.entries);
 	}
@@ -1729,6 +1844,7 @@ function collectValues(
 		) {
 			entries.add(node.getText());
 		}
+
 		return true;
 	}
 
@@ -1748,8 +1864,10 @@ function collectValues(
 				}
 			}
 		}
+
 		return true;
 	}
+
 	styleSheet.accept(vistNode);
 
 	return entries;
@@ -1776,6 +1894,7 @@ class ColorValueCollector implements nodes.IVisitor {
 				this.entries.add(node.getText());
 			}
 		}
+
 		return true;
 	}
 }
@@ -1797,6 +1916,7 @@ class VariableCollector implements nodes.IVisitor {
 				this.entries.add(node.getText());
 			}
 		}
+
 		return true;
 	}
 }
@@ -1809,5 +1929,6 @@ function getCurrentWord(document: TextDocument, offset: number): string {
 	while (i >= 0 && ' \t\n\r":{[()]},*>+'.indexOf(text.charAt(i)) === -1) {
 		i--;
 	}
+
 	return text.substring(i + 1, offset);
 }

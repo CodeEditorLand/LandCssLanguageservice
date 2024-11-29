@@ -63,9 +63,11 @@ export function difference(
 	for (i = 0; i < second.length + 1; ++i) {
 		zeroArray.push(0);
 	}
+
 	for (i = 0; i < first.length + 1; ++i) {
 		LCS.push(zeroArray);
 	}
+
 	for (i = 1; i < first.length + 1; ++i) {
 		for (j = 1; j < second.length + 1; ++j) {
 			if (first[i - 1] === second[j - 1]) {
@@ -75,6 +77,7 @@ export function difference(
 			}
 		}
 	}
+
 	return LCS[first.length][second.length] - Math.sqrt(lengthDifference);
 }
 
@@ -85,9 +88,11 @@ export function getLimitedString(str: string, ellipsis = true): string {
 	if (!str) {
 		return "";
 	}
+
 	if (str.length < 140) {
 		return str;
 	}
+
 	return str.slice(0, 140) + (ellipsis ? "\u2026" : "");
 }
 
@@ -100,6 +105,7 @@ export function trim(str: string, regexp: RegExp): string {
 	if (m && m[0].length) {
 		return str.substr(0, str.length - m[0].length);
 	}
+
 	return str;
 }
 
@@ -110,9 +116,12 @@ export function repeat(value: string, count: number) {
 		if ((count & 1) === 1) {
 			s += value;
 		}
+
 		value += value;
+
 		count = count >>> 1;
 	}
+
 	return s;
 }
 

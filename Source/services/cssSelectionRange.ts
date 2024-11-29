@@ -31,11 +31,14 @@ export function getSelectionRanges(
 				current,
 			);
 		}
+
 		if (!current) {
 			current = SelectionRange.create(Range.create(position, position));
 		}
+
 		return current;
 	}
+
 	return positions.map(getSelectionRange);
 
 	function getApplicableRanges(position: Position): number[][] {

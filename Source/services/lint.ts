@@ -23,8 +23,10 @@ class NodesByRootMap {
 
 		if (!entry) {
 			entry = { nodes: [], names: [] };
+
 			this.data[root] = entry;
 		}
+
 		entry.names.push(name);
 
 		if (node) {
@@ -42,7 +44,9 @@ export class LintVisitor implements nodes.IVisitor {
 		entryFilter?: number,
 	): nodes.IMarker[] {
 		const visitor = new LintVisitor(document, settings, cssDataManager);
+
 		node.acceptVisitor(visitor);
+
 		visitor.completeValidations();
 
 		return visitor.getEntries(entryFilter);
@@ -57,8 +61,11 @@ export class LintVisitor implements nodes.IVisitor {
 	];
 
 	private warnings: nodes.IMarker[] = [];
+
 	private settings: LintConfigurationSettings;
+
 	private keyframes: NodesByRootMap;
+
 	private documentText: string;
 
 	private validProperties: { [name: string]: boolean };
@@ -69,8 +76,11 @@ export class LintVisitor implements nodes.IVisitor {
 		private cssDataManager: CSSDataManager,
 	) {
 		this.settings = settings;
+
 		this.documentText = document.getText();
+
 		this.keyframes = new NodesByRootMap();
+
 		this.validProperties = {};
 
 		const properties = settings.getSetting(Settings.ValidProperties);
@@ -118,6 +128,7 @@ export class LintVisitor implements nodes.IVisitor {
 				}
 			}
 		}
+
 		return elements;
 	}
 
@@ -126,10 +137,12 @@ export class LintVisitor implements nodes.IVisitor {
 		v: string,
 	): boolean {
 		let found = false;
+
 		expression.accept((node) => {
 			if (node.type === nodes.NodeType.Identifier && node.matches(v)) {
 				found = true;
 			}
+
 			return !found;
 		});
 
@@ -151,6 +164,7 @@ export class LintVisitor implements nodes.IVisitor {
 			this.settings.getRule(rule),
 			details,
 		);
+
 		this.warnings.push(entry);
 	}
 
@@ -167,6 +181,7 @@ export class LintVisitor implements nodes.IVisitor {
 				expectedClone[k] = null;
 			}
 		}
+
 		let result: string | null = null;
 
 		for (let i = 0; i < expectedClone.length; i++) {
@@ -180,6 +195,7 @@ export class LintVisitor implements nodes.IVisitor {
 				}
 			}
 		}
+
 		return result;
 	}
 
@@ -218,6 +234,7 @@ export class LintVisitor implements nodes.IVisitor {
 			case nodes.NodeType.IdentifierSelector:
 				return this.visitIdentifierSelector(node);
 		}
+
 		return true;
 	}
 
@@ -257,6 +274,7 @@ export class LintVisitor implements nodes.IVisitor {
 		}
 
 		const text = keyword.getText();
+
 		this.keyframes.add(
 			node.getName(),
 			text,
@@ -295,17 +313,20 @@ export class LintVisitor implements nodes.IVisitor {
 						const message = l10n.t(
 							"Always define standard rule '@keyframes' when defining keyframes.",
 						);
+
 						this.addEntry(
 							node,
 							Rules.IncludeStandardPropertyWhenUsingVendorPrefix,
 							message,
 						);
 					}
+
 					if (missingVendorSpecific) {
 						const message = l10n.t(
 							"Always include all vendor specific rules: Missing: {0}",
 							missingVendorSpecific,
 						);
+
 						this.addEntry(node, Rules.AllVendorPrefixes, message);
 					}
 				}
@@ -384,29 +405,36 @@ export class LintVisitor implements nodes.IVisitor {
 			if (boxModel.right.value) {
 				properties = union(properties, boxModel.right.properties);
 			}
+
 			if (boxModel.left.value) {
 				properties = union(properties, boxModel.left.properties);
 			}
+
 			if (properties.length !== 0) {
 				for (const item of properties) {
 					this.addEntry(item.node, Rules.BewareOfBoxModelSize);
 				}
+
 				this.addEntry(boxModel.width.node, Rules.BewareOfBoxModelSize);
 			}
 		}
+
 		if (boxModel.height) {
 			let properties: Element[] = [];
 
 			if (boxModel.top.value) {
 				properties = union(properties, boxModel.top.properties);
 			}
+
 			if (boxModel.bottom.value) {
 				properties = union(properties, boxModel.bottom.properties);
 			}
+
 			if (properties.length !== 0) {
 				for (const item of properties) {
 					this.addEntry(item.node, Rules.BewareOfBoxModelSize);
 				}
+
 				this.addEntry(boxModel.height.node, Rules.BewareOfBoxModelSize);
 			}
 		}
@@ -543,8 +571,10 @@ export class LintVisitor implements nodes.IVisitor {
 									Rules.UnknownVendorSpecificProperty,
 								);
 							}
+
 							const nonPrefixedName =
 								decl.getNonPrefixedPropertyName();
+
 							propertiesBySuffix.add(
 								nonPrefixedName,
 								name,
@@ -559,6 +589,7 @@ export class LintVisitor implements nodes.IVisitor {
 								decl.getProperty()!,
 								Rules.IEStarHack,
 							);
+
 							name = name.substr(1);
 						}
 
@@ -639,7 +670,9 @@ export class LintVisitor implements nodes.IVisitor {
 
 					for (
 						let i = 0, len = LintVisitor.prefixes.length;
+
 						i < len;
+
 						i++
 					) {
 						const prefix = LintVisitor.prefixes[i];
@@ -668,17 +701,20 @@ export class LintVisitor implements nodes.IVisitor {
 									"Also define the standard property '{0}' for compatibility",
 									suffix,
 								);
+
 								this.addEntry(
 									node,
 									Rules.IncludeStandardPropertyWhenUsingVendorPrefix,
 									message,
 								);
 							}
+
 							if (missingVendorSpecific) {
 								const message = l10n.t(
 									"Always include all vendor specific properties: Missing: {0}",
 									missingVendorSpecific,
 								);
+
 								this.addEntry(
 									node,
 									Rules.AllVendorPrefixes,
@@ -712,9 +748,11 @@ export class LintVisitor implements nodes.IVisitor {
 						s.add(pseudoElement);
 					}
 				}
+
 				walkDown(s, child);
 			}
 		}
+
 		function walkUp(s: Set<string>, n: nodes.Node): undefined {
 			if (n.type === nodes.NodeType.Ruleset) {
 				for (const selector of (n as nodes.RuleSet)
@@ -723,9 +761,12 @@ export class LintVisitor implements nodes.IVisitor {
 					walkDown(s, selector);
 				}
 			}
+
 			return n.parent ? walkUp(s, n.parent) : undefined;
 		}
+
 		const result = new Set<string>();
+
 		walkUp(result, node);
 
 		return Array.from(result);
@@ -770,6 +811,7 @@ export class LintVisitor implements nodes.IVisitor {
 				) {
 					return true;
 				}
+
 				if (
 					parseFloat(value.value) === 0.0 &&
 					!!value.unit &&
@@ -779,6 +821,7 @@ export class LintVisitor implements nodes.IVisitor {
 				}
 			}
 		}
+
 		return true;
 	}
 
@@ -802,6 +845,7 @@ export class LintVisitor implements nodes.IVisitor {
 				if (name === "src") {
 					definesSrc = true;
 				}
+
 				if (name === "font-family") {
 					definesFontFamily = true;
 				}
@@ -822,18 +866,22 @@ export class LintVisitor implements nodes.IVisitor {
 			if (!(<nodes.Declaration>node).getValue()) {
 				return false;
 			}
+
 			const property = (<nodes.Declaration>node).getProperty();
 
 			if (!property) {
 				return false;
 			}
+
 			const identifier = property.getIdentifier();
 
 			if (!identifier || identifier.containsInterpolation()) {
 				return false;
 			}
+
 			return true;
 		}
+
 		return false;
 	}
 
@@ -844,6 +892,7 @@ export class LintVisitor implements nodes.IVisitor {
 		if (length !== 9 && length !== 7 && length !== 5 && length !== 4) {
 			this.addEntry(node, Rules.HexColorLength);
 		}
+
 		return false;
 	}
 
@@ -875,6 +924,7 @@ export class LintVisitor implements nodes.IVisitor {
 
 					return false;
 				}
+
 				return true;
 			});
 

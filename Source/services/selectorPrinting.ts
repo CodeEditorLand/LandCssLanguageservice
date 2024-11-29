@@ -14,7 +14,9 @@ import { Scanner } from "../parser/cssScanner";
 
 export class Element {
 	public parent: Element | null = null;
+
 	public children: Element[] | null = null;
+
 	public attributes: { name: string; value: string }[] | null = null;
 
 	public findAttribute(name: string): string | null {
@@ -25,6 +27,7 @@ export class Element {
 				}
 			}
 		}
+
 		return null;
 	}
 
@@ -32,15 +35,18 @@ export class Element {
 		if (child instanceof Element) {
 			(<Element>child).parent = this;
 		}
+
 		if (!this.children) {
 			this.children = [];
 		}
+
 		this.children.push(child);
 	}
 
 	public append(text: string) {
 		if (this.attributes) {
 			const last = this.attributes[this.attributes.length - 1];
+
 			last.value = last.value + text;
 		}
 	}
@@ -48,6 +54,7 @@ export class Element {
 	public prepend(text: string) {
 		if (this.attributes) {
 			const first = this.attributes[0];
+
 			first.value = text + first.value;
 		}
 	}
@@ -58,6 +65,7 @@ export class Element {
 		while (curr.parent && !(curr.parent instanceof RootElement)) {
 			curr = curr.parent;
 		}
+
 		return curr;
 	}
 
@@ -71,6 +79,7 @@ export class Element {
 				return true;
 			}
 		}
+
 		return false;
 	}
 
@@ -78,6 +87,7 @@ export class Element {
 		if (!this.attributes) {
 			this.attributes = [];
 		}
+
 		for (const attribute of this.attributes) {
 			if (attribute.name === name) {
 				attribute.value += " " + value;
@@ -85,6 +95,7 @@ export class Element {
 				return;
 			}
 		}
+
 		this.attributes.push({ name, value });
 	}
 
@@ -98,6 +109,7 @@ export class Element {
 				elem.addAttr(attribute.name, attribute.value);
 			}
 		}
+
 		if (cloneChildren && this.children) {
 			elem.children = [];
 
@@ -105,6 +117,7 @@ export class Element {
 				elem.addChild(this.children[index].clone());
 			}
 		}
+
 		return elem;
 	}
 
@@ -113,8 +126,10 @@ export class Element {
 
 		if (this.parent && !(this.parent instanceof RootElement)) {
 			const parentClone = this.parent.cloneWithParent();
+
 			parentClone.addChild(clone);
 		}
+
 		return clone;
 	}
 }
@@ -124,6 +139,7 @@ export class RootElement extends Element {}
 export class LabelElement extends Element {
 	constructor(label: string) {
 		super();
+
 		this.addAttr("name", label);
 	}
 }
@@ -148,6 +164,7 @@ class MarkedStringPrinter {
 		} else {
 			this.doPrint([element], 0);
 		}
+
 		let value;
 
 		if (flagOpts) {
@@ -155,6 +172,7 @@ class MarkedStringPrinter {
 		} else {
 			value = this.result.join("\n");
 		}
+
 		return [{ language: "html", value }];
 	}
 
@@ -170,6 +188,7 @@ class MarkedStringPrinter {
 
 	private writeLine(level: number, content: string) {
 		const indent = new Array(level + 1).join("  ");
+
 		this.result.push(indent + content);
 	}
 
@@ -198,17 +217,20 @@ class MarkedStringPrinter {
 			for (const attr of element.attributes) {
 				if (attr.name !== "name") {
 					content.push(" ");
+
 					content.push(attr.name);
 
 					const value = attr.value;
 
 					if (value) {
 						content.push("=");
+
 						content.push(quotes.ensure(value, this.quote));
 					}
 				}
 			}
 		}
+
 		content.push(">");
 
 		this.writeLine(indent, content.join(""));
@@ -226,6 +248,7 @@ namespace quotes {
 		if (match) {
 			return match[1];
 		}
+
 		return value;
 	}
 }
@@ -257,21 +280,28 @@ export function toElement(
 
 						break;
 					}
+
 					result = parentElement.cloneWithParent();
 
 					if (segments[0]) {
 						const root = result.findRoot();
+
 						root.prepend(segments[0]);
 					}
+
 					for (let i = 1; i < segments.length; i++) {
 						if (i > 1) {
 							const clone = parentElement.cloneWithParent();
+
 							result.addChild(clone.findRoot());
+
 							result = clone;
 						}
+
 						result.append(segments[i]);
 					}
 				}
+
 				break;
 
 			case nodes.NodeType.SelectorPlaceholder:
@@ -281,6 +311,7 @@ export function toElement(
 			// fall through
 			case nodes.NodeType.ElementNameSelector:
 				const text = child.getText();
+
 				result.addAttr(
 					"name",
 					text === "*" ? "element" : unescape(text),
@@ -363,16 +394,20 @@ export function toElement(
 								break;
 						}
 					}
+
 					result.addAttr(unescape(identifier.getText()), value!);
 				}
+
 				break;
 		}
 	}
+
 	return result;
 }
 
 function unescape(content: string) {
 	const scanner = new Scanner();
+
 	scanner.setSource(content);
 
 	const token = scanner.scanUnquotedString();
@@ -380,6 +415,7 @@ function unescape(content: string) {
 	if (token) {
 		return token.text;
 	}
+
 	return content;
 }
 
@@ -397,6 +433,7 @@ export class SelectorPrinting {
 				root,
 				flagOpts,
 			);
+
 			markedStrings.push(this.selectorToSpecificityMarkedString(node));
 
 			return markedStrings;
@@ -411,6 +448,7 @@ export class SelectorPrinting {
 		const element = toElement(node);
 
 		const markedStrings = new MarkedStringPrinter('"').print(element);
+
 		markedStrings.push(this.selectorToSpecificityMarkedString(node));
 
 		return markedStrings;
@@ -465,7 +503,9 @@ export class SelectorPrinting {
 			}
 
 			specificity.id += mostSpecificListItem.id;
+
 			specificity.attr += mostSpecificListItem.attr;
+
 			specificity.tag += mostSpecificListItem.tag;
 
 			return specificity;
@@ -519,7 +559,9 @@ export class SelectorPrinting {
 									);
 
 								specificity.id += mostSpecificListItem.id;
+
 								specificity.attr += mostSpecificListItem.attr;
+
 								specificity.tag += mostSpecificListItem.tag;
 
 								continue elementLoop;
@@ -543,7 +585,9 @@ export class SelectorPrinting {
 								calculateMostSpecificListItem(childElements);
 
 							specificity.id += mostSpecificListItem.id;
+
 							specificity.attr += mostSpecificListItem.attr;
+
 							specificity.tag += mostSpecificListItem.tag;
 
 							continue elementLoop;
@@ -561,7 +605,9 @@ export class SelectorPrinting {
 								calculateMostSpecificListItem(childElements);
 
 							specificity.id += mostSpecificListItem.id;
+
 							specificity.attr += mostSpecificListItem.attr;
+
 							specificity.tag += mostSpecificListItem.tag;
 
 							continue elementLoop;
@@ -586,7 +632,9 @@ export class SelectorPrinting {
 									);
 
 								specificity.id += mostSpecificListItem.id;
+
 								specificity.attr += mostSpecificListItem.attr;
+
 								specificity.tag += mostSpecificListItem.tag;
 
 								continue elementLoop;
@@ -597,6 +645,7 @@ export class SelectorPrinting {
 
 							const pseudoSelectorText =
 								childElements[1].getText();
+
 							parser.scanner.setSource(pseudoSelectorText);
 
 							const firstToken = parser.scanner.scan();
@@ -636,7 +685,9 @@ export class SelectorPrinting {
 									);
 
 								specificity.id += mostSpecificListItem.id;
+
 								specificity.attr += mostSpecificListItem.attr;
+
 								specificity.tag += mostSpecificListItem.tag;
 
 								continue elementLoop;
@@ -651,8 +702,11 @@ export class SelectorPrinting {
 
 				if (element.getChildren().length > 0) {
 					const itemSpecificity = calculateScore(element);
+
 					specificity.id += itemSpecificity.id;
+
 					specificity.attr += itemSpecificity.attr;
+
 					specificity.tag += itemSpecificity.tag;
 				}
 			}
@@ -668,10 +722,12 @@ export class SelectorPrinting {
 
 class SelectorElementBuilder {
 	private prev: nodes.Node | null;
+
 	private element: Element;
 
 	public constructor(element: Element) {
 		this.prev = null;
+
 		this.element = element;
 	}
 
@@ -695,7 +751,9 @@ class SelectorElementBuilder {
 					parentElement = this.element;
 
 					this.element = curr.parent;
+
 					this.element.removeChild(curr);
+
 					this.prev = null;
 				}
 			}
@@ -705,7 +763,9 @@ class SelectorElementBuilder {
 			if (selectorChild instanceof nodes.SimpleSelector) {
 				if (this.prev instanceof nodes.SimpleSelector) {
 					const labelElement = new LabelElement("\u2026");
+
 					this.element.addChild(labelElement);
+
 					this.element = labelElement;
 				} else if (
 					this.prev &&
@@ -727,8 +787,10 @@ class SelectorElementBuilder {
 				const root = thisElement.findRoot();
 
 				this.element.addChild(root);
+
 				this.element = thisElement;
 			}
+
 			if (
 				selectorChild instanceof nodes.SimpleSelector ||
 				selectorChild.type ===
@@ -752,6 +814,7 @@ function isNewSelectorContext(node: nodes.Node): boolean {
 		case nodes.NodeType.Stylesheet:
 			return true;
 	}
+
 	return false;
 }
 
@@ -759,6 +822,7 @@ export function selectorToElement(node: nodes.Selector): Element | null {
 	if (node.matches("@at-root")) {
 		return null;
 	}
+
 	const root: Element = new RootElement();
 
 	const parentRuleSets: nodes.RuleSet[] = [];
@@ -772,8 +836,10 @@ export function selectorToElement(node: nodes.Selector): Element | null {
 				if (parent.getSelectors().matches("@at-root")) {
 					break;
 				}
+
 				parentRuleSets.push(<nodes.RuleSet>parent);
 			}
+
 			parent = parent.getParent();
 		}
 	}

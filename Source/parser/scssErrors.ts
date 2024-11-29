@@ -10,10 +10,12 @@ import * as nodes from "./cssNodes";
 
 export class SCSSIssueType implements nodes.IRule {
 	id: string;
+
 	message: string;
 
 	public constructor(id: string, message: string) {
 		this.id = id;
+
 		this.message = message;
 	}
 }

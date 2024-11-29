@@ -19,13 +19,21 @@ import {
 
 export interface Browsers {
 	E?: string;
+
 	FF?: string;
+
 	IE?: string;
+
 	O?: string;
+
 	C?: string;
+
 	S?: string;
+
 	count: number;
+
 	all: boolean;
+
 	onCodeComplete: boolean;
 }
 
@@ -103,6 +111,7 @@ function getEntryStringDescription(
 		if (entry.status) {
 			result += getEntryStatus(entry.status);
 		}
+
 		result += entry.description;
 
 		const browserLabel = getBrowserLabel(entry.browsers);
@@ -110,10 +119,12 @@ function getEntryStringDescription(
 		if (browserLabel) {
 			result += "\n(" + browserLabel + ")";
 		}
+
 		if ("syntax" in entry) {
 			result += `\n\nSyntax: ${entry.syntax}`;
 		}
 	}
+
 	if (
 		entry.references &&
 		entry.references.length > 0 &&
@@ -122,6 +133,7 @@ function getEntryStringDescription(
 		if (result.length > 0) {
 			result += "\n\n";
 		}
+
 		result += entry.references
 			.map((r) => {
 				return `${r.name}: ${r.url}`;
@@ -161,10 +173,12 @@ function getEntryMarkdownDescription(
 		if (browserLabel) {
 			result += "\n\n(" + textToMarkedString(browserLabel) + ")";
 		}
+
 		if ("syntax" in entry && entry.syntax) {
 			result += `\n\nSyntax: ${textToMarkedString(entry.syntax)}`;
 		}
 	}
+
 	if (
 		entry.references &&
 		entry.references.length > 0 &&
@@ -173,6 +187,7 @@ function getEntryMarkdownDescription(
 		if (result.length > 0) {
 			result += "\n\n";
 		}
+
 		result += entry.references
 			.map((r) => {
 				return `[${r.name}](${r.url})`;
@@ -205,9 +220,11 @@ export function getBrowserLabel(browsers: string[] = []): string | null {
 			if (name in browserNames) {
 				result += browserNames[name as keyof typeof browserNames];
 			}
+
 			if (version) {
 				result += " " + version;
 			}
+
 			return result;
 		})
 		.join(", ");
@@ -225,16 +242,24 @@ export type IEntry2 =
  */
 export interface IEntry {
 	name: string;
+
 	description?: string | MarkupContent;
+
 	browsers?: string[];
+
 	restrictions?: string[];
+
 	status?: EntryStatus;
+
 	syntax?: string;
+
 	values?: IValue[];
 }
 
 export interface IValue {
 	name: string;
+
 	description?: string | MarkupContent;
+
 	browsers?: string[];
 }

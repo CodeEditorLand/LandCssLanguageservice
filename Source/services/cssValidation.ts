@@ -35,10 +35,12 @@ export class CSSValidation {
 		}
 
 		const entries: nodes.IMarker[] = [];
+
 		entries.push.apply(
 			entries,
 			nodes.ParseErrorCollector.entries(stylesheet),
 		);
+
 		entries.push.apply(
 			entries,
 			LintVisitor.entries(

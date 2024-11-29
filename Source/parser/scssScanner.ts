@@ -85,6 +85,7 @@ export class SCSSScanner extends Scanner {
 			if (this.stream.advanceIfChar(_EQS)) {
 				return this.finishToken(offset, SmallerEqualsOperator);
 			}
+
 			return this.finishToken(offset, TokenType.Delim);
 		}
 
@@ -93,6 +94,7 @@ export class SCSSScanner extends Scanner {
 			if (this.stream.advanceIfChar(_EQS)) {
 				return this.finishToken(offset, GreaterEqualsOperator);
 			}
+
 			return this.finishToken(offset, TokenType.Delim);
 		}
 
@@ -108,6 +110,7 @@ export class SCSSScanner extends Scanner {
 		if (super.comment()) {
 			return true;
 		}
+
 		if (!this.inURL && this.stream.advanceIfChars([_FSL, _FSL])) {
 			this.stream.advanceWhileChar((ch: number) => {
 				switch (ch) {

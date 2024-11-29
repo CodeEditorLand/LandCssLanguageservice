@@ -9,24 +9,30 @@ import * as nodes from "./cssNodes";
 
 export class Scope {
 	public parent: Scope | null;
+
 	public children: Scope[];
 
 	public offset: number;
+
 	public length: number;
 
 	private symbols: Symbol[];
 
 	constructor(offset: number, length: number) {
 		this.offset = offset;
+
 		this.length = length;
+
 		this.symbols = [];
 
 		this.parent = null;
+
 		this.children = [];
 	}
 
 	public addChild(scope: Scope): void {
 		this.children.push(scope);
+
 		scope.setParent(this);
 	}
 
@@ -42,6 +48,7 @@ export class Scope {
 		) {
 			return this.findInScope(offset, length);
 		}
+
 		return null;
 	}
 
@@ -64,6 +71,7 @@ export class Scope {
 		) {
 			return res.findInScope(offset, length);
 		}
+
 		return this;
 	}
 
@@ -79,6 +87,7 @@ export class Scope {
 				return symbol;
 			}
 		}
+
 		return null;
 	}
 
@@ -95,8 +104,11 @@ export class GlobalScope extends Scope {
 
 export class Symbol {
 	public name: string;
+
 	public value: string | undefined;
+
 	public type: nodes.ReferenceType;
+
 	public node: nodes.Node;
 
 	constructor(
@@ -106,8 +118,11 @@ export class Symbol {
 		type: nodes.ReferenceType,
 	) {
 		this.name = name;
+
 		this.value = value;
+
 		this.node = node;
+
 		this.type = type;
 	}
 }
@@ -145,12 +160,15 @@ export class ScopeBuilder implements nodes.IVisitor {
 			) {
 				// scope already known?
 				const newScope = new Scope(node.offset, node.length);
+
 				current.addChild(newScope);
 
 				return newScope;
 			}
+
 			return current;
 		}
+
 		return null;
 	}
 
@@ -219,6 +237,7 @@ export class ScopeBuilder implements nodes.IVisitor {
 					<nodes.FunctionParameter>node,
 				);
 			}
+
 			case nodes.NodeType.Declarations:
 				this.addScope(node);
 
@@ -238,6 +257,7 @@ export class ScopeBuilder implements nodes.IVisitor {
 						nodes.ReferenceType.Variable,
 					);
 				}
+
 				return true;
 
 			case nodes.NodeType.Each: {
@@ -260,9 +280,11 @@ export class ScopeBuilder implements nodes.IVisitor {
 						);
 					}
 				}
+
 				return true;
 			}
 		}
+
 		return true;
 	}
 
@@ -286,6 +308,7 @@ export class ScopeBuilder implements nodes.IVisitor {
 				}
 			}
 		}
+
 		return true;
 	}
 
@@ -293,6 +316,7 @@ export class ScopeBuilder implements nodes.IVisitor {
 		node: nodes.VariableDeclaration,
 	): boolean {
 		const value = node.getValue() ? node.getValue()!.getText() : void 0;
+
 		this.addSymbol(
 			node,
 			node.getName(),
@@ -313,6 +337,7 @@ export class ScopeBuilder implements nodes.IVisitor {
 			const valueNode = (<nodes.FunctionParameter>node).getDefaultValue();
 
 			const value = valueNode ? valueNode.getText() : void 0;
+
 			this.addSymbolToChildScope(
 				scopeNode,
 				node,
@@ -321,6 +346,7 @@ export class ScopeBuilder implements nodes.IVisitor {
 				nodes.ReferenceType.Variable,
 			);
 		}
+
 		return true;
 	}
 
@@ -328,6 +354,7 @@ export class ScopeBuilder implements nodes.IVisitor {
 		node: nodes.CustomPropertyDeclaration,
 	): boolean {
 		const value = node.getValue() ? node.getValue()!.getText() : "";
+
 		this.addCSSVariable(
 			node.getProperty()!,
 			node.getProperty()!.getName(),
@@ -355,6 +382,7 @@ export class Symbols {
 
 	constructor(node: nodes.Node) {
 		this.global = new GlobalScope();
+
 		node.acceptVisitor(new ScopeBuilder(this.global));
 	}
 
@@ -376,11 +404,14 @@ export class Symbols {
 
 				if (symbol.type === referenceType && !names[symbol.name]) {
 					result.push(symbol);
+
 					names[symbol.name] = true;
 				}
 			}
+
 			scope = scope.parent;
 		}
+
 		return result;
 	}
 
@@ -398,6 +429,7 @@ export class Symbols {
 				node.parent.getParent()
 			)).getDeclarations();
 		}
+
 		if (
 			node.parent instanceof nodes.FunctionArgument &&
 			node.parent.getParent() instanceof nodes.Function
@@ -418,9 +450,11 @@ export class Symbols {
 				}
 			}
 		}
+
 		if (!scopeNode) {
 			return null;
 		}
+
 		const name = node.getText();
 
 		let scope = this.global.findScope(scopeNode.offset, scopeNode.length);
@@ -435,8 +469,10 @@ export class Symbols {
 					return symbol;
 				}
 			}
+
 			scope = scope.parent;
 		}
+
 		return null;
 	}
 
@@ -471,6 +507,7 @@ export class Symbols {
 		} else if (node instanceof nodes.Variable) {
 			return [nodes.ReferenceType.Variable];
 		}
+
 		const selector = node.findAParent(
 			nodes.NodeType.Selector,
 			nodes.NodeType.ExtendsReference,
@@ -479,6 +516,7 @@ export class Symbols {
 		if (selector) {
 			return [nodes.ReferenceType.Rule];
 		}
+
 		return null;
 	}
 
@@ -486,6 +524,7 @@ export class Symbols {
 		if (!node) {
 			return null;
 		}
+
 		while (node.type === nodes.NodeType.Interpolation) {
 			node = node.getParent()!;
 		}
@@ -495,6 +534,7 @@ export class Symbols {
 		if (referenceTypes) {
 			return this.internalFindSymbol(node, referenceTypes);
 		}
+
 		return null;
 	}
 
@@ -502,9 +542,11 @@ export class Symbols {
 		if (!node) {
 			return false;
 		}
+
 		while (node.type === nodes.NodeType.Interpolation) {
 			node = node.getParent()!;
 		}
+
 		if (!node.matches(symbol.name)) {
 			return false;
 		}
@@ -533,8 +575,10 @@ export class Symbols {
 			if (symbol) {
 				return symbol;
 			}
+
 			scope = scope.parent;
 		}
+
 		return null;
 	}
 }

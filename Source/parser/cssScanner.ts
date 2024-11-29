@@ -53,19 +53,26 @@ export enum TokenType {
 
 export interface IToken {
 	type: TokenType;
+
 	text: string;
+
 	offset: number;
+
 	len: number;
 }
 
 export class MultiLineStream {
 	private source: string;
+
 	private len: number;
+
 	private position: number;
 
 	constructor(source: string) {
 		this.source = source;
+
 		this.len = source.length;
+
 		this.position = 0;
 	}
 
@@ -111,6 +118,7 @@ export class MultiLineStream {
 
 			return true;
 		}
+
 		return false;
 	}
 
@@ -118,6 +126,7 @@ export class MultiLineStream {
 		if (this.position + ch.length > this.source.length) {
 			return false;
 		}
+
 		let i = 0;
 
 		for (; i < ch.length; i++) {
@@ -125,6 +134,7 @@ export class MultiLineStream {
 				return false;
 			}
 		}
+
 		this.advance(i);
 
 		return true;
@@ -139,6 +149,7 @@ export class MultiLineStream {
 		) {
 			this.position++;
 		}
+
 		return this.position - posNow;
 	}
 }
@@ -271,8 +282,11 @@ staticUnitTable["cqmax"] = TokenType.ContainerQueryLength;
 
 export class Scanner {
 	public stream: MultiLineStream = new MultiLineStream("");
+
 	public ignoreComment = true;
+
 	public ignoreWhitespace = true;
+
 	public inURL = false;
 
 	public setSource(input: string): void {
@@ -312,6 +326,7 @@ export class Scanner {
 				content.join(""),
 			);
 		}
+
 		return null;
 	}
 
@@ -329,6 +344,7 @@ export class Scanner {
 		if (this.stream.eos()) {
 			return this.finishToken(offset, TokenType.EOF);
 		}
+
 		return this.scanNext(offset);
 	}
 
@@ -343,6 +359,7 @@ export class Scanner {
 		if (!this.stream.eos() && this._unicodeRange()) {
 			return this.finishToken(offset, TokenType.UnicodeRange);
 		}
+
 		this.stream.goBackTo(offset);
 
 		return undefined;
@@ -379,6 +396,7 @@ export class Scanner {
 						keywordText,
 					);
 				}
+
 				return this.finishToken(
 					offset,
 					TokenType.AtKeyword,
@@ -412,6 +430,7 @@ export class Scanner {
 		// Numbers
 		if (this._number()) {
 			const pos = this.stream.pos();
+
 			content = [this.stream.substring(offset, pos)];
 
 			if (this.stream.advanceIfChar(_PRC)) {
@@ -538,12 +557,14 @@ export class Scanner {
 		if (this.stream.advanceIfChars([_FSL, _MUL])) {
 			let success = false,
 				hot = false;
+
 			this.stream.advanceWhileChar((ch) => {
 				if (hot && ch === _FSL) {
 					success = true;
 
 					return false;
 				}
+
 				hot = ch === _MUL;
 
 				return true;
@@ -552,6 +573,7 @@ export class Scanner {
 			if (success) {
 				this.stream.advance(1);
 			}
+
 			return true;
 		}
 
@@ -565,16 +587,19 @@ export class Scanner {
 		if (this.stream.peekChar() === _DOT) {
 			npeek = 1;
 		}
+
 		ch = this.stream.peekChar(npeek);
 
 		if (ch >= _0 && ch <= _9) {
 			this.stream.advance(npeek + 1);
+
 			this.stream.advanceWhileChar((ch) => {
 				return (ch >= _0 && ch <= _9) || (npeek === 0 && ch === _DOT);
 			});
 
 			return true;
 		}
+
 		return false;
 	}
 
@@ -586,11 +611,13 @@ export class Scanner {
 			case _LFD:
 			case _NWL:
 				this.stream.advance(1);
+
 				result.push(String.fromCharCode(ch));
 
 				if (ch === _CAR && this.stream.advanceIfChar(_NWL)) {
 					result.push("\n");
 				}
+
 				return true;
 		}
 
@@ -602,6 +629,7 @@ export class Scanner {
 
 		if (ch === _BSL) {
 			this.stream.advance(1);
+
 			ch = this.stream.peekChar();
 
 			let hexNumCount = 0;
@@ -613,9 +641,12 @@ export class Scanner {
 					(ch >= _A && ch <= _F))
 			) {
 				this.stream.advance(1);
+
 				ch = this.stream.peekChar();
+
 				hexNumCount++;
 			}
+
 			if (hexNumCount > 0) {
 				try {
 					const hexVal = parseInt(
@@ -636,10 +667,13 @@ export class Scanner {
 				} else {
 					this._newline([]);
 				}
+
 				return true;
 			}
+
 			if (ch !== _CAR && ch !== _LFD && ch !== _NWL) {
 				this.stream.advance(1);
+
 				result.push(String.fromCharCode(ch));
 
 				return true;
@@ -647,6 +681,7 @@ export class Scanner {
 				return this._newline(result);
 			}
 		}
+
 		return false;
 	}
 
@@ -663,10 +698,12 @@ export class Scanner {
 			ch !== _NWL
 		) {
 			this.stream.advance(1);
+
 			result.push(String.fromCharCode(ch));
 
 			return true;
 		}
+
 		return false;
 	}
 
@@ -676,6 +713,7 @@ export class Scanner {
 			this.stream.peekChar() === _DQO
 		) {
 			const closeQuote = this.stream.nextChar();
+
 			result.push(String.fromCharCode(closeQuote));
 
 			while (
@@ -687,6 +725,7 @@ export class Scanner {
 
 			if (this.stream.peekChar() === closeQuote) {
 				this.stream.nextChar();
+
 				result.push(String.fromCharCode(closeQuote));
 
 				return TokenType.String;
@@ -694,6 +733,7 @@ export class Scanner {
 				return TokenType.BadString;
 			}
 		}
+
 		return null;
 	}
 
@@ -715,10 +755,12 @@ export class Scanner {
 			ch !== _CAR
 		) {
 			this.stream.advance(1);
+
 			result.push(String.fromCharCode(ch));
 
 			return true;
 		}
+
 		return false;
 	}
 
@@ -728,6 +770,7 @@ export class Scanner {
 		while (this._unquotedChar(result) || this._escape(result)) {
 			hasContent = true;
 		}
+
 		return hasContent;
 	}
 
@@ -751,6 +794,7 @@ export class Scanner {
 		while (this._identChar(result) || this._escape(result)) {
 			matched = true;
 		}
+
 		return matched;
 	}
 
@@ -768,14 +812,17 @@ export class Scanner {
 				while (this._identChar(result) || this._escape(result)) {
 					// loop
 				}
+
 				return true;
 			}
 		} else if (this._identFirstChar(result) || this._escape(result)) {
 			while (this._identChar(result) || this._escape(result)) {
 				// loop
 			}
+
 			return true;
 		}
+
 		this.stream.goBackTo(pos);
 
 		return false;
@@ -792,10 +839,12 @@ export class Scanner {
 		) {
 			// nonascii
 			this.stream.advance(1);
+
 			result.push(String.fromCharCode(ch));
 
 			return true;
 		}
+
 		return false;
 	}
 
@@ -804,10 +853,12 @@ export class Scanner {
 
 		if (ch === _MIN) {
 			this.stream.advance(1);
+
 			result.push(String.fromCharCode(ch));
 
 			return true;
 		}
+
 		return false;
 	}
 
@@ -824,10 +875,12 @@ export class Scanner {
 		) {
 			// nonascii
 			this.stream.advance(1);
+
 			result.push(String.fromCharCode(ch));
 
 			return true;
 		}
+
 		return false;
 	}
 
@@ -857,6 +910,7 @@ export class Scanner {
 				}
 			}
 		}
+
 		return false;
 	}
 }

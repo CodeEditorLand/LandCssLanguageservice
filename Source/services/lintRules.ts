@@ -168,6 +168,7 @@ export class LintConfigurationSettings {
 				return level;
 			}
 		}
+
 		return rule.defaultValue;
 	}
 
@@ -187,5 +188,6 @@ function toLevel(level: string): nodes.Level | null {
 		case "error":
 			return nodes.Level.Error;
 	}
+
 	return null;
 }

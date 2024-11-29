@@ -45,7 +45,9 @@ export class LESSParser extends cssParser.Parser {
 		) {
 			return null;
 		}
+
 		const node = <nodes.Import>this.create(nodes.Import);
+
 		this.consumeToken();
 
 		// less 1.4.1: @import (css) "lib"
@@ -55,6 +57,7 @@ export class LESSParser extends cssParser.Parser {
 					TokenType.SemiColon,
 				]);
 			}
+
 			do {
 				if (!this.accept(TokenType.Comma)) {
 					break;
@@ -90,6 +93,7 @@ export class LESSParser extends cssParser.Parser {
 		}
 
 		const node = this.createNode(nodes.NodeType.Plugin);
+
 		this.consumeToken(); // @import
 
 		if (!node.addChild(this._parseStringLiteral())) {
@@ -112,8 +116,10 @@ export class LESSParser extends cssParser.Parser {
 			if (node.addChild(this._parseVariable())) {
 				return this.finish(node);
 			}
+
 			return null;
 		}
+
 		return node;
 	}
 
@@ -151,6 +157,7 @@ export class LESSParser extends cssParser.Parser {
 			if (this.prevToken) {
 				node.colonPosition = this.prevToken.offset;
 			}
+
 			if (node.setValue(this._parseDetachedRuleSet())) {
 				node.needsSemicolon = false;
 			} else if (!node.setValue(this._parseExpr())) {
@@ -200,6 +207,7 @@ export class LESSParser extends cssParser.Parser {
 						if (this.peek(TokenType.ParenthesisR)) {
 							break;
 						}
+
 						if (
 							!node
 								.getParameters()
@@ -230,6 +238,7 @@ export class LESSParser extends cssParser.Parser {
 		if (!this.peek(TokenType.CurlyL)) {
 			return null;
 		}
+
 		const content = <nodes.BodyDeclaration>(
 			this.create(nodes.BodyDeclaration)
 		);
@@ -256,11 +265,14 @@ export class LESSParser extends cssParser.Parser {
 			if (this.peek(TokenType.BracketL)) {
 				expectsValue = true;
 			}
+
 			if (!node.addChild(this._parseLookupValue())) {
 				break;
 			}
+
 			expectsValue = false;
 		}
+
 		return !expectsValue;
 	}
 
@@ -317,6 +329,7 @@ export class LESSParser extends cssParser.Parser {
 				return null;
 			}
 		}
+
 		if (
 			!this.accept(TokenType.AtKeyword) &&
 			!this.accept(TokenType.Ident)
@@ -325,6 +338,7 @@ export class LESSParser extends cssParser.Parser {
 
 			return null;
 		}
+
 		if (!insideLookup && this.peek(TokenType.BracketL)) {
 			if (!this._addLookupChildren(node)) {
 				this.restoreAtMark(mark);
@@ -332,6 +346,7 @@ export class LESSParser extends cssParser.Parser {
 				return null;
 			}
 		}
+
 		return <nodes.Variable>node;
 	}
 
@@ -350,6 +365,7 @@ export class LESSParser extends cssParser.Parser {
 			this.peek(TokenType.BadEscapedJavaScript)
 		) {
 			const node = this.createNode(nodes.NodeType.EscapedValue);
+
 			this.consumeToken();
 
 			return this.finish(node);
@@ -357,6 +373,7 @@ export class LESSParser extends cssParser.Parser {
 
 		if (this.peekDelim("~")) {
 			const node = this.createNode(nodes.NodeType.EscapedValue);
+
 			this.consumeToken();
 
 			if (
@@ -385,23 +402,30 @@ export class LESSParser extends cssParser.Parser {
 	public _parseGuardOperator(): nodes.Node | null {
 		if (this.peekDelim(">")) {
 			const node = this.createNode(nodes.NodeType.Operator);
+
 			this.consumeToken();
+
 			this.acceptDelim("=");
 
 			return node;
 		} else if (this.peekDelim("=")) {
 			const node = this.createNode(nodes.NodeType.Operator);
+
 			this.consumeToken();
+
 			this.acceptDelim("<");
 
 			return node;
 		} else if (this.peekDelim("<")) {
 			const node = this.createNode(nodes.NodeType.Operator);
+
 			this.consumeToken();
+
 			this.acceptDelim("=");
 
 			return node;
 		}
+
 		return null;
 	}
 
@@ -420,6 +444,7 @@ export class LESSParser extends cssParser.Parser {
 				this._parseRuleSetDeclarationAtStatement()
 			);
 		}
+
 		return (
 			this._tryParseMixinDeclaration() ||
 			this._tryParseRuleset(true) || // nested ruleset
@@ -458,6 +483,7 @@ export class LESSParser extends cssParser.Parser {
 			// nested selectors can start with a combinator
 			hasContent = node.addChild(this._parseCombinator());
 		}
+
 		while (node.addChild(this._parseSimpleSelector())) {
 			hasContent = true;
 
@@ -469,15 +495,19 @@ export class LESSParser extends cssParser.Parser {
 			) {
 				break;
 			}
+
 			this.restoreAtMark(mark);
+
 			node.addChild(this._parseCombinator()); // optional
 		}
+
 		return hasContent ? this.finish(node) : null;
 	}
 
 	public _parseNestingSelector(): nodes.Node | null {
 		if (this.peekDelim("&")) {
 			const node = this.createNode(nodes.NodeType.SelectorCombinator);
+
 			this.consumeToken();
 
 			while (
@@ -490,8 +520,10 @@ export class LESSParser extends cssParser.Parser {
 			) {
 				//  support &-foo
 			}
+
 			return this.finish(node);
 		}
+
 		return null;
 	}
 
@@ -499,6 +531,7 @@ export class LESSParser extends cssParser.Parser {
 		if (!this.peekInterpolatedIdent()) {
 			return null;
 		}
+
 		const node = this.createNode(nodes.NodeType.SelectorInterpolation);
 
 		const hasContent = this._acceptInterpolatedIdent(node);
@@ -517,6 +550,7 @@ export class LESSParser extends cssParser.Parser {
 		) {
 			return null;
 		}
+
 		const mark = this.mark();
 
 		const node = <nodes.Identifier>this.create(nodes.Identifier);
@@ -578,12 +612,14 @@ export class LESSParser extends cssParser.Parser {
 				if (!this.hasWhitespace()) {
 					this.acceptDelim("-");
 				}
+
 				if (this.hasWhitespace()) {
 					this.restoreAtMark(pos);
 
 					return null;
 				}
 			}
+
 			return this._parseInterpolation();
 		};
 
@@ -603,6 +639,7 @@ export class LESSParser extends cssParser.Parser {
 				break;
 			}
 		}
+
 		return hasContent;
 	}
 
@@ -613,6 +650,7 @@ export class LESSParser extends cssParser.Parser {
 
 		if (this.peekDelim("@") || this.peekDelim("$")) {
 			const node = this.createNode(nodes.NodeType.Interpolation);
+
 			this.consumeToken();
 
 			if (this.hasWhitespace() || !this.accept(TokenType.CurlyL)) {
@@ -620,14 +658,18 @@ export class LESSParser extends cssParser.Parser {
 
 				return null;
 			}
+
 			if (!node.addChild(this._parseIdent())) {
 				return this.finish(node, ParseError.IdentifierExpected);
 			}
+
 			if (!this.accept(TokenType.CurlyR)) {
 				return this.finish(node, ParseError.RightCurlyExpected);
 			}
+
 			return this.finish(node);
 		}
+
 		return null;
 	}
 
@@ -655,6 +697,7 @@ export class LESSParser extends cssParser.Parser {
 				if (this.peek(TokenType.ParenthesisR)) {
 					break;
 				}
+
 				if (
 					!node.getParameters().addChild(this._parseMixinParameter())
 				) {
@@ -673,6 +716,7 @@ export class LESSParser extends cssParser.Parser {
 
 			return null;
 		}
+
 		node.setGuard(this._parseGuard());
 
 		if (!this.peek(TokenType.CurlyL)) {
@@ -696,6 +740,7 @@ export class LESSParser extends cssParser.Parser {
 
 		if (this.peekDelim("#") || this.peekDelim(".")) {
 			identifier = <nodes.Identifier>this.create(nodes.Identifier);
+
 			this.consumeToken(); // # or .
 			if (
 				this.hasWhitespace() ||
@@ -705,10 +750,12 @@ export class LESSParser extends cssParser.Parser {
 			}
 		} else if (this.peek(TokenType.Hash)) {
 			identifier = <nodes.Identifier>this.create(nodes.Identifier);
+
 			this.consumeToken(); // TokenType.Hash
 		} else {
 			return null;
 		}
+
 		identifier.referenceTypes = [nodes.ReferenceType.Mixin];
 
 		return this.finish(identifier);
@@ -718,15 +765,18 @@ export class LESSParser extends cssParser.Parser {
 		if (!this.peek(TokenType.Colon)) {
 			return null;
 		}
+
 		const mark = this.mark();
 
 		const node = <nodes.ExtendsReference>(
 			this.create(nodes.ExtendsReference)
 		);
+
 		this.consumeToken(); // :
 		if (this.acceptIdent("extend")) {
 			return this._completeExtends(node);
 		}
+
 		this.restoreAtMark(mark);
 
 		return super._parsePseudo();
@@ -742,6 +792,7 @@ export class LESSParser extends cssParser.Parser {
 		const node = <nodes.ExtendsReference>(
 			this.create(nodes.ExtendsReference)
 		);
+
 		this.consumeToken(); // &
 
 		if (
@@ -753,6 +804,7 @@ export class LESSParser extends cssParser.Parser {
 
 			return null;
 		}
+
 		return this._completeExtends(node);
 	}
 
@@ -760,19 +812,23 @@ export class LESSParser extends cssParser.Parser {
 		if (!this.accept(TokenType.ParenthesisL)) {
 			return this.finish(node, ParseError.LeftParenthesisExpected);
 		}
+
 		const selectors = node.getSelectors();
 
 		if (!selectors.addChild(this._parseSelector(true))) {
 			return this.finish(node, ParseError.SelectorExpected);
 		}
+
 		while (this.accept(TokenType.Comma)) {
 			if (!selectors.addChild(this._parseSelector(true))) {
 				return this.finish(node, ParseError.SelectorExpected);
 			}
 		}
+
 		if (!this.accept(TokenType.ParenthesisR)) {
 			return this.finish(node, ParseError.RightParenthesisExpected);
 		}
+
 		return this.finish(node);
 	}
 
@@ -780,6 +836,7 @@ export class LESSParser extends cssParser.Parser {
 		if (!this.peek(TokenType.AtKeyword)) {
 			return null;
 		}
+
 		const mark = this.mark();
 
 		const node = <nodes.MixinReference>this.create(nodes.MixinReference);
@@ -792,9 +849,11 @@ export class LESSParser extends cssParser.Parser {
 
 			return null;
 		}
+
 		if (!this.accept(TokenType.ParenthesisR)) {
 			return this.finish(node, ParseError.RightParenthesisExpected);
 		}
+
 		return this.finish(node);
 	}
 
@@ -812,16 +871,19 @@ export class LESSParser extends cssParser.Parser {
 
 			if (nextId) {
 				node.getNamespaces().addChild(identifier);
+
 				identifier = nextId;
 			} else {
 				break;
 			}
 		}
+
 		if (!node.setIdentifier(identifier)) {
 			this.restoreAtMark(mark);
 
 			return null;
 		}
+
 		let hasArguments = false;
 
 		if (this.accept(TokenType.ParenthesisL)) {
@@ -835,6 +897,7 @@ export class LESSParser extends cssParser.Parser {
 					if (this.peek(TokenType.ParenthesisR)) {
 						break;
 					}
+
 					if (
 						!node
 							.getArguments()
@@ -844,9 +907,11 @@ export class LESSParser extends cssParser.Parser {
 					}
 				}
 			}
+
 			if (!this.accept(TokenType.ParenthesisR)) {
 				return this.finish(node, ParseError.RightParenthesisExpected);
 			}
+
 			identifier.referenceTypes = [nodes.ReferenceType.Mixin];
 		} else {
 			identifier.referenceTypes = [
@@ -873,6 +938,7 @@ export class LESSParser extends cssParser.Parser {
 
 			return null;
 		}
+
 		return this.finish(node);
 	}
 
@@ -899,6 +965,7 @@ export class LESSParser extends cssParser.Parser {
 		) {
 			return this.finish(node);
 		}
+
 		this.restoreAtMark(pos);
 
 		return null;
@@ -912,6 +979,7 @@ export class LESSParser extends cssParser.Parser {
 		// special rest variable: @rest...
 		if (this.peekKeyword("@rest")) {
 			const restNode = this.create(nodes.Node);
+
 			this.consumeToken();
 
 			if (!this.accept(lessScanner.Ellipsis)) {
@@ -922,6 +990,7 @@ export class LESSParser extends cssParser.Parser {
 					[TokenType.Comma, TokenType.ParenthesisR],
 				);
 			}
+
 			node.setIdentifier(this.finish(restNode));
 
 			return this.finish(node);
@@ -930,7 +999,9 @@ export class LESSParser extends cssParser.Parser {
 		// special const args: ...
 		if (this.peek(lessScanner.Ellipsis)) {
 			const varargsNode = this.create(nodes.Node);
+
 			this.consumeToken();
+
 			node.setIdentifier(this.finish(varargsNode));
 
 			return this.finish(node);
@@ -940,8 +1011,10 @@ export class LESSParser extends cssParser.Parser {
 		// default variable declaration: @param: 12 or @name
 		if (node.setIdentifier(this._parseVariable())) {
 			this.accept(TokenType.Colon);
+
 			hasContent = true;
 		}
+
 		if (
 			!node.setDefaultValue(
 				this._parseDetachedRuleSet() || this._parseExpr(true),
@@ -950,6 +1023,7 @@ export class LESSParser extends cssParser.Parser {
 		) {
 			return null;
 		}
+
 		return this.finish(node);
 	}
 
@@ -957,7 +1031,9 @@ export class LESSParser extends cssParser.Parser {
 		if (!this.peekIdent("when")) {
 			return null;
 		}
+
 		const node = <nodes.LessGuard>this.create(nodes.LessGuard);
+
 		this.consumeToken(); // when
 
 		if (!node.getConditions().addChild(this._parseGuardCondition())) {
@@ -965,6 +1041,7 @@ export class LESSParser extends cssParser.Parser {
 				this.finish(node, ParseError.ConditionExpected)
 			);
 		}
+
 		while (this.acceptIdent("and") || this.accept(TokenType.Comma)) {
 			if (!node.getConditions().addChild(this._parseGuardCondition())) {
 				return <nodes.LessGuard>(
@@ -978,12 +1055,14 @@ export class LESSParser extends cssParser.Parser {
 
 	public _parseGuardCondition(): nodes.Node | null {
 		const node = this.create(nodes.GuardCondition);
+
 		node.isNegated = this.acceptIdent("not");
 
 		if (!this.accept(TokenType.ParenthesisL)) {
 			if (node.isNegated) {
 				return this.finish(node, ParseError.LeftParenthesisExpected);
 			}
+
 			return null;
 		}
 
@@ -1021,6 +1100,7 @@ export class LESSParser extends cssParser.Parser {
 				if (this.peek(TokenType.ParenthesisR)) {
 					break;
 				}
+
 				if (!node.getArguments().addChild(this._parseMixinArgument())) {
 					return this.finish(node, ParseError.ExpressionExpected);
 				}
@@ -1032,13 +1112,16 @@ export class LESSParser extends cssParser.Parser {
 				this.finish(node, ParseError.RightParenthesisExpected)
 			);
 		}
+
 		return <nodes.Function>this.finish(node);
 	}
 
 	public _parseFunctionIdentifier(): nodes.Identifier | null {
 		if (this.peekDelim("%")) {
 			const node = <nodes.Identifier>this.create(nodes.Identifier);
+
 			node.referenceTypes = [nodes.ReferenceType.Function];
+
 			this.consumeToken();
 
 			return this.finish(node);
@@ -1056,10 +1139,12 @@ export class LESSParser extends cssParser.Parser {
 			this.restoreAtMark(pos);
 
 			const node = this.create(nodes.Node);
+
 			node.addChild(this._parseBinaryExpr());
 
 			return this.finish(node);
 		}
+
 		return node;
 	}
 }

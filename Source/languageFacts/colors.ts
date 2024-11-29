@@ -338,12 +338,14 @@ function getNumericValue(node: nodes.Node, factor: number) {
 		if (m[2]) {
 			factor = 100.0;
 		}
+
 		const result = parseFloat(m[1]) / factor;
 
 		if (result >= 0 && result <= 1) {
 			return result;
 		}
 	}
+
 	throw new Error();
 }
 
@@ -382,6 +384,7 @@ export function isColorConstructor(node: nodes.Function): boolean {
 	if (!name) {
 		return false;
 	}
+
 	return colorFunctionNameRegExp.test(name);
 }
 
@@ -407,15 +410,18 @@ export function isColorValue(node: nodes.Node): boolean {
 		if (node.parent && node.parent.type !== nodes.NodeType.Term) {
 			return false;
 		}
+
 		const candidateColor = node.getText().toLowerCase();
 
 		if (candidateColor === "none") {
 			return false;
 		}
+
 		if (colors[candidateColor]) {
 			return true;
 		}
 	}
+
 	return false;
 }
 
@@ -435,15 +441,19 @@ export function hexDigit(charCode: number) {
 	if (charCode < Digit0) {
 		return 0;
 	}
+
 	if (charCode <= Digit9) {
 		return charCode - Digit0;
 	}
+
 	if (charCode < a) {
 		charCode += a - A;
 	}
+
 	if (charCode >= a && charCode <= f) {
 		return charCode - a + 10;
 	}
+
 	return 0;
 }
 
@@ -451,6 +461,7 @@ export function colorFromHex(text: string): Color | null {
 	if (text[0] !== "#") {
 		return null;
 	}
+
 	switch (text.length) {
 		case 4:
 			return {
@@ -505,6 +516,7 @@ export function colorFromHex(text: string): Color | null {
 					255.0,
 			};
 	}
+
 	return null;
 }
 
@@ -537,6 +549,7 @@ export function colorFromHSL(
 			while (hue < 0) {
 				hue += 6;
 			}
+
 			while (hue >= 6) {
 				hue -= 6;
 			}
@@ -544,12 +557,15 @@ export function colorFromHSL(
 			if (hue < 1) {
 				return (t2 - t1) * hue + t1;
 			}
+
 			if (hue < 3) {
 				return t2;
 			}
+
 			if (hue < 4) {
 				return (t2 - t1) * (4 - hue) + t1;
 			}
+
 			return t1;
 		};
 
@@ -568,8 +584,11 @@ export function colorFromHSL(
 
 export interface HSLA {
 	h: number;
+
 	s: number;
+
 	l: number;
+
 	a: number;
 }
 
@@ -615,8 +634,10 @@ export function hslFromColor(rgba: Color): HSLA {
 		}
 
 		h *= 60;
+
 		h = Math.round(h);
 	}
+
 	return { h, s, l, a };
 }
 
@@ -635,15 +656,21 @@ export function colorFromHWB(
 	const rgb = colorFromHSL(hue, 1, 0.5, alpha);
 
 	let red = rgb.red;
+
 	red *= 1 - white - black;
+
 	red += white;
 
 	let green = rgb.green;
+
 	green *= 1 - white - black;
+
 	green += white;
 
 	let blue = rgb.blue;
+
 	blue *= 1 - white - black;
+
 	blue += white;
 
 	return {
@@ -656,8 +683,11 @@ export function colorFromHWB(
 
 export interface HWBA {
 	h: number;
+
 	w: number;
+
 	b: number;
+
 	a: number;
 }
 
@@ -722,9 +752,11 @@ export function getColorValue(node: nodes.Node): Color | null {
 				}
 			}
 		}
+
 		if (!name || colorValues.length < 3 || colorValues.length > 4) {
 			return null;
 		}
+
 		try {
 			const alpha =
 				colorValues.length === 4
@@ -763,6 +795,7 @@ export function getColorValue(node: nodes.Node): Color | null {
 		if (node.parent && node.parent.type !== nodes.NodeType.Term) {
 			return null;
 		}
+
 		const term = node.parent;
 
 		if (
@@ -786,11 +819,13 @@ export function getColorValue(node: nodes.Node): Color | null {
 		if (candidateColor === "none") {
 			return null;
 		}
+
 		const colorHex = colors[candidateColor];
 
 		if (colorHex) {
 			return colorFromHex(colorHex);
 		}
 	}
+
 	return null;
 }

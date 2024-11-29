@@ -70,6 +70,7 @@ export class CSSCodeActions {
 				);
 			}
 		}
+
 		return result;
 	}
 
@@ -81,6 +82,7 @@ export class CSSCodeActions {
 	): void {
 		interface RankedProperty {
 			property: string;
+
 			score: number;
 		}
 
@@ -126,7 +128,9 @@ export class CSSCodeActions {
 				workspaceEdit,
 				CodeActionKind.QuickFix,
 			);
+
 			codeAction.diagnostics = [marker];
+
 			result.push(codeAction);
 
 			if (--maxActions <= 0) {
@@ -144,6 +148,7 @@ export class CSSCodeActions {
 		if (marker.code !== Rules.UnknownProperty.id) {
 			return;
 		}
+
 		const offset = document.offsetAt(marker.range.start);
 
 		const end = document.offsetAt(marker.range.end);

@@ -88,13 +88,17 @@ export type LintSettings = { [key: string]: any };
 
 export interface CompletionSettings {
 	triggerPropertyValueCompletion: boolean;
+
 	completePropertyWithSemicolon?: boolean;
 }
 
 export interface LanguageSettings {
 	validate?: boolean;
+
 	lint?: LintSettings;
+
 	completion?: CompletionSettings;
+
 	hover?: HoverSettings;
 
 	importAliases?: AliasSettings;
@@ -106,42 +110,55 @@ export interface AliasSettings {
 
 export interface HoverSettings {
 	documentation?: boolean;
+
 	references?: boolean;
 }
 
 export interface PropertyCompletionContext {
 	propertyName: string;
+
 	range: Range;
 }
 
 export interface PropertyValueCompletionContext {
 	propertyName: string;
+
 	propertyValue?: string;
+
 	range: Range;
 }
 
 export interface URILiteralCompletionContext {
 	uriValue: string;
+
 	position: Position;
+
 	range: Range;
 }
 
 export interface ImportPathCompletionContext {
 	pathValue: string;
+
 	position: Position;
+
 	range: Range;
 }
 
 export interface MixinReferenceCompletionContext {
 	mixinName: string;
+
 	range: Range;
 }
 
 export interface ICompletionParticipant {
 	onCssProperty?: (context: PropertyCompletionContext) => void;
+
 	onCssPropertyValue?: (context: PropertyValueCompletionContext) => void;
+
 	onCssURILiteralValue?: (context: URILiteralCompletionContext) => void;
+
 	onCssImportPath?: (context: ImportPathCompletionContext) => void;
+
 	onCssMixinReference?: (context: MixinReferenceCompletionContext) => void;
 }
 
@@ -238,63 +255,96 @@ export type EntryStatus =
 
 export interface IReference {
 	name: string;
+
 	url: string;
 }
 
 export interface IPropertyData {
 	name: string;
+
 	description?: string | MarkupContent;
+
 	browsers?: string[];
+
 	restrictions?: string[];
+
 	status?: EntryStatus;
+
 	syntax?: string;
+
 	values?: IValueData[];
+
 	references?: IReference[];
+
 	relevance?: number;
+
 	atRule?: string;
 }
 export interface IAtDirectiveData {
 	name: string;
+
 	description?: string | MarkupContent;
+
 	browsers?: string[];
+
 	status?: EntryStatus;
+
 	references?: IReference[];
 }
 export interface IPseudoClassData {
 	name: string;
+
 	description?: string | MarkupContent;
+
 	browsers?: string[];
+
 	status?: EntryStatus;
+
 	references?: IReference[];
 }
 export interface IPseudoElementData {
 	name: string;
+
 	description?: string | MarkupContent;
+
 	browsers?: string[];
+
 	status?: EntryStatus;
+
 	references?: IReference[];
 }
 
 export interface IValueData {
 	name: string;
+
 	description?: string | MarkupContent;
+
 	browsers?: string[];
+
 	status?: EntryStatus;
+
 	references?: IReference[];
 }
 
 export interface CSSDataV1 {
 	version: 1 | 1.1;
+
 	properties?: IPropertyData[];
+
 	atDirectives?: IAtDirectiveData[];
+
 	pseudoClasses?: IPseudoClassData[];
+
 	pseudoElements?: IPseudoElementData[];
 }
 
 export interface ICSSDataProvider {
 	provideProperties(): IPropertyData[];
+
 	provideAtDirectives(): IAtDirectiveData[];
+
 	providePseudoClasses(): IPseudoClassData[];
+
 	providePseudoElements(): IPseudoElementData[];
 }
 
@@ -339,6 +389,7 @@ export interface FileStat {
 
 export interface FileSystemProvider {
 	stat(uri: DocumentUri): Promise<FileStat>;
+
 	readDirectory?(uri: DocumentUri): Promise<[string, FileType][]>;
 
 	getContent?(uri: DocumentUri, encoding?: string): Promise<string>;

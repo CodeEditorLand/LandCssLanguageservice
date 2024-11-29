@@ -23,7 +23,9 @@ import { CSSCompletion } from "./cssCompletion";
 
 interface IFunctionInfo {
 	func: string;
+
 	desc?: string;
+
 	type?: string;
 }
 
@@ -617,6 +619,7 @@ export class SCSSCompletion extends CSSCompletion {
 		super("$", lsServiceOptions, cssDataManager);
 
 		addReferencesToDocumentation(SCSSCompletion.scssModuleLoaders);
+
 		addReferencesToDocumentation(SCSSCompletion.scssModuleBuiltIns);
 	}
 
@@ -648,6 +651,7 @@ export class SCSSCompletion extends CSSCompletion {
 					),
 					kind: CompletionItemKind.Module,
 				};
+
 				result.items.push(item);
 			}
 		}
@@ -700,8 +704,10 @@ export class SCSSCompletion extends CSSCompletion {
 			if (sortToEnd) {
 				item.sortText = "z";
 			}
+
 			result.items.push(item);
 		}
+
 		return result;
 	}
 
@@ -735,6 +741,7 @@ export class SCSSCompletion extends CSSCompletion {
 					entry.restrictions.indexOf(f.type) !== -1,
 			);
 		}
+
 		this.createFunctionProposals(functions, existingNode, true, result);
 
 		return super.getTermProposals(entry, existingNode, result);
@@ -760,6 +767,7 @@ export class SCSSCompletion extends CSSCompletion {
 		result: CompletionList,
 	): CompletionList {
 		this.getCompletionForAtDirectives(result);
+
 		this.getCompletionsForSelector(null, true, result);
 
 		return super.getCompletionsForDeclarationProperty(declaration, result);
@@ -784,8 +792,10 @@ export class SCSSCompletion extends CSSCompletion {
 				),
 				kind: CompletionItemKind.Function,
 			};
+
 			result.items.push(suggest);
 		}
+
 		return result;
 	}
 
@@ -799,6 +809,7 @@ export class SCSSCompletion extends CSSCompletion {
 
 	public getCompletionForTopLevel(result: CompletionList): CompletionList {
 		this.getCompletionForAtDirectives(result);
+
 		this.getCompletionForModuleLoaders(result);
 
 		super.getCompletionForTopLevel(result);
@@ -829,6 +840,7 @@ function addReferencesToDocumentation(
 					: { kind: "markdown", value: i.documentation.value };
 
 			markdownDoc.value += "\n\n";
+
 			markdownDoc.value += i.references
 				.map((r) => {
 					return `[${r.name}](${r.url})`;

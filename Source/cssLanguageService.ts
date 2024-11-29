@@ -71,6 +71,7 @@ export interface LanguageService {
 		stylesheet: Stylesheet,
 		documentSettings?: LanguageSettings,
 	): Diagnostic[];
+
 	parseStylesheet(document: TextDocument): Stylesheet;
 
 	doComplete(
@@ -98,21 +99,25 @@ export interface LanguageService {
 		stylesheet: Stylesheet,
 		settings?: HoverSettings,
 	): Hover | null;
+
 	findDefinition(
 		document: TextDocument,
 		position: Position,
 		stylesheet: Stylesheet,
 	): Location | null;
+
 	findReferences(
 		document: TextDocument,
 		position: Position,
 		stylesheet: Stylesheet,
 	): Location[];
+
 	findDocumentHighlights(
 		document: TextDocument,
 		position: Position,
 		stylesheet: Stylesheet,
 	): DocumentHighlight[];
+
 	findDocumentLinks(
 		document: TextDocument,
 		stylesheet: Stylesheet,
@@ -126,10 +131,12 @@ export interface LanguageService {
 		stylesheet: Stylesheet,
 		documentContext: DocumentContext,
 	): Promise<DocumentLink[]>;
+
 	findDocumentSymbols(
 		document: TextDocument,
 		stylesheet: Stylesheet,
 	): SymbolInformation[];
+
 	findDocumentSymbols2(
 		document: TextDocument,
 		stylesheet: Stylesheet,
@@ -148,6 +155,7 @@ export interface LanguageService {
 		context: CodeActionContext,
 		stylesheet: Stylesheet,
 	): CodeAction[];
+
 	findDocumentColors(
 		document: TextDocument,
 		stylesheet: Stylesheet,
@@ -159,6 +167,7 @@ export interface LanguageService {
 		color: Color,
 		range: Range,
 	): ColorPresentation[];
+
 	prepareRename(
 		document: TextDocument,
 		position: Position,
@@ -210,8 +219,11 @@ function createFacade(
 	return {
 		configure: (settings) => {
 			validation.configure(settings);
+
 			completion.configure(settings?.completion);
+
 			hover.configure(settings?.hover);
+
 			navigation.configure(settings?.importAliases);
 		},
 		setDataProviders: cssDataManager.setDataProviders.bind(cssDataManager),

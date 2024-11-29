@@ -13,7 +13,9 @@ import { IToken, Scanner, TokenType } from "./cssScanner";
 
 export interface IMark {
 	prev?: IToken;
+
 	curr: IToken;
+
 	pos: number;
 }
 
@@ -24,14 +26,18 @@ export interface IMark {
 /// </summary>
 export class Parser {
 	public scanner: Scanner;
+
 	public token: IToken;
+
 	public prevToken?: IToken;
 
 	private lastErrorToken?: IToken;
 
 	constructor(scnr: Scanner = new Scanner()) {
 		this.scanner = scnr;
+
 		this.token = { type: TokenType.EOF, offset: -1, len: 0, text: "" };
+
 		this.prevToken = undefined!;
 	}
 
@@ -67,6 +73,7 @@ export class Parser {
 		if (type !== this.token.type) {
 			return false;
 		}
+
 		return regEx.test(this.token.text);
 	}
 
@@ -79,6 +86,7 @@ export class Parser {
 
 	public consumeToken(): void {
 		this.prevToken = this.token;
+
 		this.token = this.scanner.scan();
 	}
 
@@ -87,10 +95,12 @@ export class Parser {
 
 		if (token) {
 			this.prevToken = token;
+
 			this.token = this.scanner.scan();
 
 			return true;
 		}
+
 		return false;
 	}
 
@@ -104,7 +114,9 @@ export class Parser {
 
 	public restoreAtMark(mark: IMark): void {
 		this.prevToken = mark.prev;
+
 		this.token = mark.curr;
+
 		this.scanner.goBackTo(mark.pos);
 	}
 
@@ -118,6 +130,7 @@ export class Parser {
 
 			return null;
 		}
+
 		return node;
 	}
 
@@ -134,6 +147,7 @@ export class Parser {
 				}
 			}
 		}
+
 		return false;
 	}
 
@@ -143,6 +157,7 @@ export class Parser {
 
 			return true;
 		}
+
 		return false;
 	}
 
@@ -152,6 +167,7 @@ export class Parser {
 
 			return true;
 		}
+
 		return false;
 	}
 
@@ -161,6 +177,7 @@ export class Parser {
 
 			return true;
 		}
+
 		return false;
 	}
 
@@ -170,6 +187,7 @@ export class Parser {
 
 			return true;
 		}
+
 		return false;
 	}
 
@@ -179,6 +197,7 @@ export class Parser {
 
 			return true;
 		}
+
 		return false;
 	}
 
@@ -192,16 +211,19 @@ export class Parser {
 
 	protected acceptUnquotedString(): boolean {
 		const pos = this.scanner.pos();
+
 		this.scanner.goBackTo(this.token.offset);
 
 		const unquoted = this.scanner.scanUnquotedString();
 
 		if (unquoted) {
 			this.token = unquoted;
+
 			this.consumeToken();
 
 			return true;
 		}
+
 		this.scanner.goBackTo(pos);
 
 		return false;
@@ -225,6 +247,7 @@ export class Parser {
 				if (this.token.type === TokenType.EOF) {
 					return false;
 				}
+
 				this.token = this.scanner.scan();
 			}
 		}
@@ -254,9 +277,11 @@ export class Parser {
 			if (this.prevToken) {
 				// length with more elements belonging together
 				const prevEnd = this.prevToken.offset + this.prevToken.len;
+
 				node.length = prevEnd > node.offset ? prevEnd - node.offset : 0; // offset is taken from current token, end from previous: Use 0 for empty nodes
 			}
 		}
+
 		return node;
 	}
 
@@ -278,8 +303,10 @@ export class Parser {
 					this.token.len,
 				),
 			);
+
 			this.lastErrorToken = this.token;
 		}
+
 		if (resyncTokens || resyncStopTokens) {
 			this.resync(resyncTokens, resyncStopTokens);
 		}
@@ -296,6 +323,7 @@ export class Parser {
 					"Underlying model has changed, AST is no longer valid",
 				);
 			}
+
 			return text.substr(offset, length);
 		};
 
@@ -307,12 +335,14 @@ export class Parser {
 		parseFunc: () => U,
 		textProvider?: nodes.ITextProvider,
 	): U;
+
 	public internalParse<T extends nodes.Node, U extends T>(
 		input: string,
 		parseFunc: () => U,
 		textProvider?: nodes.ITextProvider,
 	): U {
 		this.scanner.setSource(input);
+
 		this.token = this.scanner.scan();
 
 		const node: U = parseFunc.bind(this)();
@@ -326,6 +356,7 @@ export class Parser {
 				};
 			}
 		}
+
 		return node;
 	}
 
@@ -348,7 +379,9 @@ export class Parser {
 
 				if (statement) {
 					node.addChild(statement);
+
 					hasMatch = true;
+
 					inRecovery = false;
 
 					if (
@@ -359,6 +392,7 @@ export class Parser {
 						this.markError(node, ParseError.SemiColonExpected);
 					}
 				}
+
 				while (
 					this.accept(TokenType.SemiColon) ||
 					this.accept(TokenType.CDO) ||
@@ -366,6 +400,7 @@ export class Parser {
 				) {
 					// accept empty statements
 					hasMatch = true;
+
 					inRecovery = false;
 				}
 			} while (hasMatch);
@@ -380,8 +415,10 @@ export class Parser {
 				} else {
 					this.markError(node, ParseError.RuleOrSelectorExpected);
 				}
+
 				inRecovery = true;
 			}
+
 			this.consumeToken();
 		} while (!this.peek(TokenType.EOF));
 
@@ -398,6 +435,7 @@ export class Parser {
 		if (this.peek(TokenType.AtKeyword)) {
 			return this._parseStylesheetAtStatement(isNested);
 		}
+
 		return this._parseRuleset(isNested);
 	}
 
@@ -431,12 +469,14 @@ export class Parser {
 			) {
 				// loop
 			}
+
 			if (this.accept(TokenType.CurlyL)) {
 				this.restoreAtMark(mark);
 
 				return this._parseRuleset(isNested);
 			}
 		}
+
 		this.restoreAtMark(mark);
 
 		return null;
@@ -518,6 +558,7 @@ export class Parser {
 			case nodes.NodeType.Declaration:
 				return !(<nodes.Declaration>node).getNestedProperties();
 		}
+
 		return false;
 	}
 
@@ -536,6 +577,7 @@ export class Parser {
 			if (this.peek(TokenType.CurlyR)) {
 				break;
 			}
+
 			if (
 				this._needsSemicolonAfter(decl) &&
 				!this.accept(TokenType.SemiColon)
@@ -554,9 +596,11 @@ export class Parser {
 				(decl as nodes.Declaration).semicolonPosition =
 					this.prevToken.offset;
 			}
+
 			while (this.accept(TokenType.SemiColon)) {
 				// accept empty statements
 			}
+
 			decl = parseDeclaration();
 		}
 
@@ -566,6 +610,7 @@ export class Parser {
 				TokenType.SemiColon,
 			]);
 		}
+
 		return this.finish(node);
 	}
 
@@ -579,6 +624,7 @@ export class Parser {
 				TokenType.SemiColon,
 			]);
 		}
+
 		return this.finish(node);
 	}
 
@@ -591,10 +637,13 @@ export class Parser {
 			// nested selectors can start with a combinator
 			hasContent = node.addChild(this._parseCombinator());
 		}
+
 		while (node.addChild(this._parseSimpleSelector())) {
 			hasContent = true;
+
 			node.addChild(this._parseCombinator()); // optional
 		}
+
 		return hasContent ? this.finish(node) : null;
 	}
 
@@ -624,6 +673,7 @@ export class Parser {
 				)
 			);
 		}
+
 		if (this.prevToken) {
 			node.colonPosition = this.prevToken.offset;
 		}
@@ -637,6 +687,7 @@ export class Parser {
 		if (this.peek(TokenType.SemiColon)) {
 			node.semicolonPosition = this.token.offset; // not part of the declaration, but useful information for code assist
 		}
+
 		return this.finish(node);
 	}
 
@@ -646,6 +697,7 @@ export class Parser {
 		if (!this.peekRegExp(TokenType.Ident, /^--/)) {
 			return null;
 		}
+
 		const node = this.create(nodes.CustomPropertyDeclaration);
 
 		if (!node.setProperty(this._parseProperty())) {
@@ -657,6 +709,7 @@ export class Parser {
 				TokenType.Colon,
 			]);
 		}
+
 		if (this.prevToken) {
 			node.colonPosition = this.prevToken.offset;
 		}
@@ -679,11 +732,14 @@ export class Parser {
 
 				if (this.peek(TokenType.SemiColon)) {
 					this.finish(propertySet);
+
 					node.setPropertySet(propertySet);
+
 					node.semicolonPosition = this.token.offset; // not part of the declaration, but useful information for code assist
 					return this.finish(node);
 				}
 			}
+
 			this.restoreAtMark(mark);
 		}
 
@@ -705,11 +761,15 @@ export class Parser {
 				if (this.peek(TokenType.SemiColon)) {
 					node.semicolonPosition = this.token.offset; // not part of the declaration, but useful information for code assist
 				}
+
 				return this.finish(node);
 			}
 		}
+
 		this.restoreAtMark(mark);
+
 		node.addChild(this._parseCustomPropertyValue(stopTokens));
+
 		node.addChild(this._parsePrio());
 
 		if (
@@ -718,6 +778,7 @@ export class Parser {
 		) {
 			return this.finish(node, ParseError.PropertyValueExpected);
 		}
+
 		return this.finish(node);
 	}
 
@@ -755,6 +816,7 @@ export class Parser {
 					if (isTopLevel()) {
 						break done;
 					}
+
 					break;
 
 				case TokenType.Exclamation:
@@ -762,6 +824,7 @@ export class Parser {
 					if (isTopLevel()) {
 						break done;
 					}
+
 					break;
 
 				case TokenType.CurlyL:
@@ -782,8 +845,10 @@ export class Parser {
 						) {
 							break done;
 						}
+
 						return this.finish(node, ParseError.LeftCurlyExpected);
 					}
+
 					break;
 
 				case TokenType.ParenthesisL:
@@ -802,11 +867,13 @@ export class Parser {
 						) {
 							break done;
 						}
+
 						return this.finish(
 							node,
 							ParseError.LeftParenthesisExpected,
 						);
 					}
+
 					break;
 
 				case TokenType.BracketL:
@@ -823,6 +890,7 @@ export class Parser {
 							ParseError.LeftSquareBracketExpected,
 						);
 					}
+
 					break;
 
 				case TokenType.BadString: // fall through
@@ -838,10 +906,13 @@ export class Parser {
 					} else if (parensDepth > 0) {
 						error = ParseError.RightParenthesisExpected;
 					}
+
 					return this.finish(node, error);
 			}
+
 			this.consumeToken();
 		}
+
 		return this.finish(node);
 	}
 
@@ -875,9 +946,11 @@ export class Parser {
 				return null;
 			}
 		}
+
 		if (node.setIdentifier(this._parsePropertyIdentifier())) {
 			return <nodes.Property>this.finish(node);
 		}
+
 		return null;
 	}
 
@@ -891,13 +964,16 @@ export class Parser {
 		}
 
 		const node = this.create(nodes.Node);
+
 		this.consumeToken(); // charset
 		if (!this.accept(TokenType.String)) {
 			return this.finish(node, ParseError.IdentifierExpected);
 		}
+
 		if (!this.accept(TokenType.SemiColon)) {
 			return this.finish(node, ParseError.SemiColonExpected);
 		}
+
 		return this.finish(node);
 	}
 
@@ -913,6 +989,7 @@ export class Parser {
 		}
 
 		const node = this.create(nodes.Import);
+
 		this.consumeToken(); // @import
 
 		if (
@@ -933,6 +1010,7 @@ export class Parser {
 						TokenType.SemiColon,
 					]);
 				}
+
 				if (!this.accept(TokenType.ParenthesisR)) {
 					return this.finish(
 						node,
@@ -943,6 +1021,7 @@ export class Parser {
 				}
 			}
 		}
+
 		if (this.acceptIdent("supports")) {
 			if (this.accept(TokenType.ParenthesisL)) {
 				node.addChild(
@@ -974,7 +1053,9 @@ export class Parser {
 		if (!this.peekKeyword("@namespace")) {
 			return null;
 		}
+
 		const node = this.create(nodes.Namespace);
+
 		this.consumeToken(); // @namespace
 
 		if (!node.addChild(this._parseURILiteral())) {
@@ -1002,7 +1083,9 @@ export class Parser {
 		if (!this.peekKeyword("@font-face")) {
 			return null;
 		}
+
 		const node = this.create(nodes.FontFace);
+
 		this.consumeToken(); // @font-face
 
 		return this._parseBody(node, this._parseRuleSetDeclaration.bind(this));
@@ -1016,7 +1099,9 @@ export class Parser {
 		) {
 			return null;
 		}
+
 		const node = this.create(nodes.ViewPort);
+
 		this.consumeToken(); // @-ms-viewport
 
 		return this._parseBody(node, this._parseRuleSetDeclaration.bind(this));
@@ -1028,9 +1113,11 @@ export class Parser {
 		if (!this.peekRegExp(TokenType.AtKeyword, this.keyframeRegex)) {
 			return null;
 		}
+
 		const node = this.create(nodes.Keyframe);
 
 		const atNode = this.create(nodes.Node);
+
 		this.consumeToken(); // atkeyword
 		node.setKeyword(this.finish(atNode));
 
@@ -1138,10 +1225,13 @@ export class Parser {
 		// @property <custom-property-name> {
 		// 	<declaration-list>
 		//  }
+
 		if (!this.peekKeyword("@property")) {
 			return null;
 		}
+
 		const node = this.create(nodes.PropertyAtRule);
+
 		this.consumeToken(); // @layer
 
 		if (
@@ -1159,11 +1249,13 @@ export class Parser {
 		// @layer layer-name;
 		// @layer layer-name, layer-name, layer-name;
 		// @layer {rules}
+
 		if (!this.peekKeyword("@layer")) {
 			return null;
 		}
 
 		const node = this.create(nodes.Layer);
+
 		this.consumeToken(); // @layer
 
 		const names = this._parseLayerNameList();
@@ -1171,6 +1263,7 @@ export class Parser {
 		if (names) {
 			node.setNames(names);
 		}
+
 		if (
 			(!names || names.getChildren().length === 1) &&
 			this.peek(TokenType.CurlyL)
@@ -1180,9 +1273,11 @@ export class Parser {
 				this._parseLayerDeclaration.bind(this, isNested),
 			);
 		}
+
 		if (!this.accept(TokenType.SemiColon)) {
 			return this.finish(node, ParseError.SemiColonExpected);
 		}
+
 		return this.finish(node);
 	}
 
@@ -1195,6 +1290,7 @@ export class Parser {
 				this._parseStylesheetStatement(true)
 			);
 		}
+
 		return this._parseStylesheetStatement(false);
 	}
 
@@ -1204,11 +1300,13 @@ export class Parser {
 		if (!node.addChild(this._parseLayerName())) {
 			return null;
 		}
+
 		while (this.accept(TokenType.Comma)) {
 			if (!node.addChild(this._parseLayerName())) {
 				return this.finish(node, ParseError.IdentifierExpected);
 			}
 		}
+
 		return this.finish(node);
 	}
 
@@ -1219,11 +1317,13 @@ export class Parser {
 		if (!node.addChild(this._parseIdent())) {
 			return null;
 		}
+
 		while (!this.hasWhitespace() && this.acceptDelim(".")) {
 			if (this.hasWhitespace() || !node.addChild(this._parseIdent())) {
 				return this.finish(node, ParseError.IdentifierExpected);
 			}
 		}
+
 		return this.finish(node);
 	}
 
@@ -1234,6 +1334,7 @@ export class Parser {
 		}
 
 		const node = this.create(nodes.Supports);
+
 		this.consumeToken(); // @supports
 		node.addChild(this._parseSupportsCondition());
 
@@ -1252,6 +1353,7 @@ export class Parser {
 				this._parseStylesheetStatement(true)
 			);
 		}
+
 		return this._parseStylesheetStatement(false);
 	}
 
@@ -1279,6 +1381,7 @@ export class Parser {
 				}
 			}
 		}
+
 		return this.finish(node);
 	}
 
@@ -1289,6 +1392,7 @@ export class Parser {
 			if (this.prevToken) {
 				node.lParent = this.prevToken.offset;
 			}
+
 			if (
 				!node.addChild(
 					this._tryToParseDeclaration([TokenType.ParenthesisR]),
@@ -1298,6 +1402,7 @@ export class Parser {
 					return this.finish(node, ParseError.ConditionExpected);
 				}
 			}
+
 			if (!this.accept(TokenType.ParenthesisR)) {
 				return this.finish(
 					node,
@@ -1306,12 +1411,15 @@ export class Parser {
 					[],
 				);
 			}
+
 			if (this.prevToken) {
 				node.rParent = this.prevToken.offset;
 			}
+
 			return this.finish(node);
 		} else if (this.peek(TokenType.Ident)) {
 			const pos = this.mark();
+
 			this.consumeToken();
 
 			if (!this.hasWhitespace() && this.accept(TokenType.ParenthesisL)) {
@@ -1326,13 +1434,16 @@ export class Parser {
 					} else if (this.token.type === TokenType.ParenthesisR) {
 						openParentCount--;
 					}
+
 					this.consumeToken();
 				}
+
 				return this.finish(node);
 			} else {
 				this.restoreAtMark(pos);
 			}
 		}
+
 		return this.finish(
 			node,
 			ParseError.LeftParenthesisExpected,
@@ -1350,6 +1461,7 @@ export class Parser {
 				this._parseStylesheetStatement(true)
 			);
 		}
+
 		return this._parseStylesheetStatement(false);
 	}
 
@@ -1359,12 +1471,15 @@ export class Parser {
 		if (!this.peekKeyword("@media")) {
 			return null;
 		}
+
 		const node = this.create(nodes.Media);
+
 		this.consumeToken(); // @media
 
 		if (!node.addChild(this._parseMediaQueryList())) {
 			return this.finish(node, ParseError.MediaQueryExpected);
 		}
+
 		return this._parseBody(
 			node,
 			this._parseMediaDeclaration.bind(this, isNested),
@@ -1377,11 +1492,13 @@ export class Parser {
 		if (!node.addChild(this._parseMediaQuery())) {
 			return this.finish(node, ParseError.MediaQueryExpected);
 		}
+
 		while (this.accept(TokenType.Comma)) {
 			if (!node.addChild(this._parseMediaQuery())) {
 				return this.finish(node, ParseError.MediaQueryExpected);
 			}
 		}
+
 		return this.finish(node);
 	}
 
@@ -1390,15 +1507,18 @@ export class Parser {
 		const node = this.create(nodes.MediaQuery);
 
 		const pos = this.mark();
+
 		this.acceptIdent("not");
 
 		if (!this.peek(TokenType.ParenthesisL)) {
 			if (this.acceptIdent("only")) {
 				// optional
 			}
+
 			if (!node.addChild(this._parseIdent())) {
 				return null;
 			}
+
 			if (this.acceptIdent("and")) {
 				node.addChild(this._parseMediaCondition());
 			}
@@ -1406,6 +1526,7 @@ export class Parser {
 			this.restoreAtMark(pos); // 'not' is part of the MediaCondition
 			node.addChild(this._parseMediaCondition());
 		}
+
 		return this.finish(node);
 	}
 
@@ -1417,14 +1538,17 @@ export class Parser {
 		if (!this._parseNumeric()) {
 			return null;
 		}
+
 		if (!this.acceptDelim("/")) {
 			this.restoreAtMark(pos);
 
 			return null;
 		}
+
 		if (!this._parseNumeric()) {
 			return this.finish(node, ParseError.NumberExpected);
 		}
+
 		return this.finish(node);
 	}
 
@@ -1450,6 +1574,7 @@ export class Parser {
 					[TokenType.CurlyL],
 				);
 			}
+
 			if (this.peek(TokenType.ParenthesisL) || this.peekIdent("not")) {
 				// <media-condition>
 				node.addChild(this._parseMediaCondition());
@@ -1465,8 +1590,10 @@ export class Parser {
 					[TokenType.CurlyL],
 				);
 			}
+
 			parseExpression = this.acceptIdent("and") || this.acceptIdent("or");
 		}
+
 		return this.finish(node);
 	}
 
@@ -1498,6 +1625,7 @@ export class Parser {
 						resyncStopToken,
 					);
 				}
+
 				if (this._parseMediaFeatureRangeOperator()) {
 					if (!node.addChild(this._parseMediaFeatureValue())) {
 						return this.finish(
@@ -1520,6 +1648,7 @@ export class Parser {
 					resyncStopToken,
 				);
 			}
+
 			if (!node.addChild(this._parseMediaFeatureName())) {
 				return this.finish(
 					node,
@@ -1528,6 +1657,7 @@ export class Parser {
 					resyncStopToken,
 				);
 			}
+
 			if (this._parseMediaFeatureRangeOperator()) {
 				if (!node.addChild(this._parseMediaFeatureValue())) {
 					return this.finish(
@@ -1546,6 +1676,7 @@ export class Parser {
 				resyncStopToken,
 			);
 		}
+
 		return this.finish(node);
 	}
 
@@ -1554,10 +1685,12 @@ export class Parser {
 			if (!this.hasWhitespace()) {
 				this.acceptDelim("=");
 			}
+
 			return true;
 		} else if (this.acceptDelim("=")) {
 			return true;
 		}
+
 		return false;
 	}
 
@@ -1590,7 +1723,9 @@ export class Parser {
 		if (!this.peekKeyword("@page")) {
 			return null;
 		}
+
 		const node = this.create(nodes.Page);
+
 		this.consumeToken();
 
 		if (node.addChild(this._parsePageSelector())) {
@@ -1609,6 +1744,7 @@ export class Parser {
 		if (!this.peek(TokenType.AtKeyword)) {
 			return null;
 		}
+
 		const node = this.create(nodes.PageBoxMarginBox);
 
 		if (!this.acceptOneKeyword(languageFacts.pageBoxDirectives)) {
@@ -1630,7 +1766,9 @@ export class Parser {
 		if (!this.peek(TokenType.Ident) && !this.peek(TokenType.Colon)) {
 			return null;
 		}
+
 		const node = this.create(nodes.Node);
+
 		node.addChild(this._parseIdent()); // optional ident
 
 		if (this.accept(TokenType.Colon)) {
@@ -1639,6 +1777,7 @@ export class Parser {
 				return this.finish(node, ParseError.IdentifierExpected);
 			}
 		}
+
 		return this.finish(node);
 	}
 
@@ -1647,12 +1786,15 @@ export class Parser {
 		if (!this.peekKeyword("@-moz-document")) {
 			return null;
 		}
+
 		const node = this.create(nodes.Document);
+
 		this.consumeToken(); // @-moz-document
 
 		this.resync([], [TokenType.CurlyL]); // ignore all the rules
 		return this._parseBody(node, this._parseStylesheetStatement.bind(this));
 	}
+
 	public _parseContainerDeclaration(isNested = false): nodes.Node | null {
 		if (isNested) {
 			// if nested, the body can contain rulesets, but also declarations
@@ -1662,6 +1804,7 @@ export class Parser {
 				this._parseStylesheetStatement(true)
 			);
 		}
+
 		return this._parseStylesheetStatement(false);
 	}
 
@@ -1669,7 +1812,9 @@ export class Parser {
 		if (!this.peekKeyword("@container")) {
 			return null;
 		}
+
 		const node = this.create(nodes.Container);
+
 		this.consumeToken(); // @container
 
 		node.addChild(this._parseIdent()); // optional container name
@@ -1701,6 +1846,7 @@ export class Parser {
 				}
 			}
 		}
+
 		return this.finish(node);
 	}
 
@@ -1717,6 +1863,7 @@ export class Parser {
 			} else {
 				node.addChild(this._parseMediaFeature());
 			}
+
 			if (!this.accept(TokenType.ParenthesisR)) {
 				return this.finish(
 					node,
@@ -1734,6 +1881,7 @@ export class Parser {
 					[TokenType.CurlyL],
 				);
 			}
+
 			node.addChild(this._parseStyleQuery());
 
 			if (!this.accept(TokenType.ParenthesisR)) {
@@ -1752,6 +1900,7 @@ export class Parser {
 				[TokenType.CurlyL],
 			);
 		}
+
 		return this.finish(node);
 	}
 
@@ -1781,6 +1930,7 @@ export class Parser {
 		} else {
 			node.addChild(this._parseDeclaration([TokenType.ParenthesisR]));
 		}
+
 		return this.finish(node);
 	}
 
@@ -1806,6 +1956,7 @@ export class Parser {
 				[TokenType.CurlyL],
 			);
 		}
+
 		return this.finish(node);
 	}
 
@@ -1816,6 +1967,7 @@ export class Parser {
 		}
 
 		const node = this.create(nodes.UnknownAtRule);
+
 		node.addChild(this._parseUnknownAtRuleName());
 
 		const isTopLevel = () =>
@@ -1835,6 +1987,7 @@ export class Parser {
 					if (isTopLevel()) {
 						break done;
 					}
+
 					break;
 
 				case TokenType.EOF:
@@ -1853,8 +2006,10 @@ export class Parser {
 					} else {
 						return this.finish(node);
 					}
+
 				case TokenType.CurlyL:
 					curlyLCount++;
+
 					curlyDepth++;
 
 					break;
@@ -1876,16 +2031,20 @@ export class Parser {
 								ParseError.RightParenthesisExpected,
 							);
 						}
+
 						break done;
 					}
+
 					if (curlyDepth < 0) {
 						// The property value has been terminated without a semicolon, and
 						// this is the last declaration in the ruleset.
 						if (parensDepth === 0 && bracketsDepth === 0) {
 							break done;
 						}
+
 						return this.finish(node, ParseError.LeftCurlyExpected);
 					}
+
 					break;
 
 				case TokenType.ParenthesisL:
@@ -1902,6 +2061,7 @@ export class Parser {
 							ParseError.LeftParenthesisExpected,
 						);
 					}
+
 					break;
 
 				case TokenType.BracketL:
@@ -1918,6 +2078,7 @@ export class Parser {
 							ParseError.LeftSquareBracketExpected,
 						);
 					}
+
 					break;
 			}
 
@@ -1953,6 +2114,7 @@ export class Parser {
 		) {
 			// doesn't stick to the standard here
 			const node = this.createNode(nodes.NodeType.Operator);
+
 			this.consumeToken();
 
 			return this.finish(node);
@@ -1965,7 +2127,9 @@ export class Parser {
 		if (!this.peekDelim("+") && !this.peekDelim("-")) {
 			return null;
 		}
+
 		const node = this.create(nodes.Node);
+
 		this.consumeToken();
 
 		return this.finish(node);
@@ -1974,6 +2138,7 @@ export class Parser {
 	public _parseCombinator(): nodes.Node | null {
 		if (this.peekDelim(">")) {
 			const node = this.create(nodes.Node);
+
 			this.consumeToken();
 
 			const mark = this.mark();
@@ -1985,25 +2150,32 @@ export class Parser {
 
 					return this.finish(node);
 				}
+
 				this.restoreAtMark(mark);
 			}
+
 			node.type = nodes.NodeType.SelectorCombinatorParent;
 
 			return this.finish(node);
 		} else if (this.peekDelim("+")) {
 			const node = this.create(nodes.Node);
+
 			this.consumeToken();
+
 			node.type = nodes.NodeType.SelectorCombinatorSibling;
 
 			return this.finish(node);
 		} else if (this.peekDelim("~")) {
 			const node = this.create(nodes.Node);
+
 			this.consumeToken();
+
 			node.type = nodes.NodeType.SelectorCombinatorAllSiblings;
 
 			return this.finish(node);
 		} else if (this.peekDelim("/")) {
 			const node = this.create(nodes.Node);
+
 			this.consumeToken();
 
 			const mark = this.mark();
@@ -2019,6 +2191,7 @@ export class Parser {
 
 				return this.finish(node);
 			}
+
 			this.restoreAtMark(mark);
 		}
 
@@ -2040,22 +2213,26 @@ export class Parser {
 		) {
 			c++;
 		}
+
 		while (
 			(c === 0 || !this.hasWhitespace()) &&
 			node.addChild(this._parseSimpleSelectorBody())
 		) {
 			c++;
 		}
+
 		return c > 0 ? this.finish(node) : null;
 	}
 
 	public _parseNestingSelector(): nodes.Node | null {
 		if (this.peekDelim("&")) {
 			const node = this.createNode(nodes.NodeType.SelectorCombinator);
+
 			this.consumeToken();
 
 			return this.finish(node);
 		}
+
 		return null;
 	}
 
@@ -2076,6 +2253,7 @@ export class Parser {
 		if (!this.peek(TokenType.Hash) && !this.peekDelim("#")) {
 			return null;
 		}
+
 		const node = this.createNode(nodes.NodeType.IdentifierSelector);
 
 		if (this.acceptDelim("#")) {
@@ -2088,6 +2266,7 @@ export class Parser {
 		} else {
 			this.consumeToken(); // TokenType.Hash
 		}
+
 		return this.finish(node);
 	}
 
@@ -2097,7 +2276,9 @@ export class Parser {
 		if (!this.peekDelim(".")) {
 			return null;
 		}
+
 		const node = this.createNode(nodes.NodeType.ClassSelector);
+
 		this.consumeToken(); // '.'
 
 		if (
@@ -2106,6 +2287,7 @@ export class Parser {
 		) {
 			return this.finish(node, ParseError.IdentifierExpected);
 		}
+
 		return this.finish(node);
 	}
 
@@ -2115,6 +2297,7 @@ export class Parser {
 		const pos = this.mark();
 
 		const node = this.createNode(nodes.NodeType.ElementNameSelector);
+
 		node.addChild(this._parseNamespacePrefix());
 
 		if (
@@ -2125,6 +2308,7 @@ export class Parser {
 
 			return null;
 		}
+
 		return this.finish(node);
 	}
 
@@ -2136,11 +2320,13 @@ export class Parser {
 		if (!node.addChild(this._parseIdent()) && !this.acceptDelim("*")) {
 			// ns is optional
 		}
+
 		if (!this.acceptDelim("|")) {
 			this.restoreAtMark(pos);
 
 			return null;
 		}
+
 		return this.finish(node);
 	}
 
@@ -2149,7 +2335,9 @@ export class Parser {
 		if (!this.peek(TokenType.BracketL)) {
 			return null;
 		}
+
 		const node = this.create(nodes.AttributeSelector);
+
 		this.consumeToken(); // BracketL
 
 		// Optional attrib namespace
@@ -2158,8 +2346,10 @@ export class Parser {
 		if (!node.setIdentifier(this._parseIdent())) {
 			return this.finish(node, ParseError.IdentifierExpected);
 		}
+
 		if (node.setOperator(this._parseOperator())) {
 			node.setValue(this._parseBinaryExpr());
+
 			this.acceptIdent("i"); // case insensitive matching
 			this.acceptIdent("s"); // case sensitive matching
 		}
@@ -2167,6 +2357,7 @@ export class Parser {
 		if (!this.accept(TokenType.BracketR)) {
 			return this.finish(node, ParseError.RightSquareBracketExpected);
 		}
+
 		return this.finish(node);
 	}
 
@@ -2182,12 +2373,14 @@ export class Parser {
 					if (!selectors.addChild(this._parseSelector(true))) {
 						return null;
 					}
+
 					while (
 						this.accept(TokenType.Comma) &&
 						selectors.addChild(this._parseSelector(true))
 					) {
 						// loop
 					}
+
 					if (this.peek(TokenType.ParenthesisR)) {
 						return this.finish(selectors);
 					}
@@ -2214,8 +2407,10 @@ export class Parser {
 					);
 				}
 			}
+
 			return this.finish(node);
 		}
+
 		return null;
 	}
 
@@ -2223,9 +2418,11 @@ export class Parser {
 		if (!this.peek(TokenType.Colon)) {
 			return null;
 		}
+
 		const pos = this.mark();
 
 		const node = this.createNode(nodes.NodeType.PseudoSelector);
+
 		this.consumeToken(); // Colon
 		if (this.hasWhitespace()) {
 			this.restoreAtMark(pos);
@@ -2238,6 +2435,7 @@ export class Parser {
 		if (this.hasWhitespace() || !node.addChild(this._parseIdent())) {
 			return this.finish(node, ParseError.IdentifierExpected);
 		}
+
 		return this.finish(node);
 	}
 
@@ -2249,6 +2447,7 @@ export class Parser {
 		if (prio) {
 			return prio;
 		}
+
 		this.restoreAtMark(mark);
 
 		return null;
@@ -2267,6 +2466,7 @@ export class Parser {
 		) {
 			return this.finish(node);
 		}
+
 		return null;
 	}
 
@@ -2283,8 +2483,10 @@ export class Parser {
 				if (stopOnComma) {
 					return this.finish(node);
 				}
+
 				this.consumeToken();
 			}
+
 			if (!node.addChild(this._parseBinaryExpr())) {
 				break;
 			}
@@ -2297,11 +2499,13 @@ export class Parser {
 		if (!this.peekIdent("u")) {
 			return null;
 		}
+
 		const node = this.create(nodes.UnicodeRange);
 
 		if (!this.acceptUnicodeRange()) {
 			return null;
 		}
+
 		return this.finish(node);
 	}
 
@@ -2310,15 +2514,19 @@ export class Parser {
 		if (!this.peek(TokenType.BracketL)) {
 			return null;
 		}
+
 		const node = this.createNode(nodes.NodeType.GridLine);
+
 		this.consumeToken();
 
 		while (node.addChild(this._parseIdent())) {
 			// repeat
 		}
+
 		if (!this.accept(TokenType.BracketR)) {
 			return this.finish(node, ParseError.RightSquareBracketExpected);
 		}
+
 		return this.finish(node);
 	}
 
@@ -2356,6 +2564,7 @@ export class Parser {
 
 	public _parseTerm(): nodes.Term | null {
 		let node = this.create(nodes.Term);
+
 		node.setOperator(this._parseUnaryOperator()); // optional
 
 		if (node.setExpression(this._parseTermExpression())) {
@@ -2383,13 +2592,16 @@ export class Parser {
 		if (!this.peek(TokenType.ParenthesisL)) {
 			return null;
 		}
+
 		const node = this.create(nodes.Node);
+
 		this.consumeToken(); // ParenthesisL
 		node.addChild(this._parseExpr());
 
 		if (!this.accept(TokenType.ParenthesisR)) {
 			return this.finish(node, ParseError.RightParenthesisExpected);
 		}
+
 		return this.finish(node);
 	}
 
@@ -2408,6 +2620,7 @@ export class Parser {
 			this.peek(TokenType.Freq)
 		) {
 			const node = this.create(nodes.NumericValue);
+
 			this.consumeToken();
 
 			return <nodes.NumericValue>this.finish(node);
@@ -2420,7 +2633,9 @@ export class Parser {
 		if (!this.peek(TokenType.String) && !this.peek(TokenType.BadString)) {
 			return null;
 		}
+
 		const node = this.createNode(nodes.NodeType.StringLiteral);
+
 		this.consumeToken();
 
 		return this.finish(node);
@@ -2430,9 +2645,11 @@ export class Parser {
 		if (!this.peekRegExp(TokenType.Ident, /^url(-prefix)?$/i)) {
 			return null;
 		}
+
 		const pos = this.mark();
 
 		const node = this.createNode(nodes.NodeType.URILiteral);
+
 		this.accept(TokenType.Ident);
 
 		if (this.hasWhitespace() || !this.peek(TokenType.ParenthesisL)) {
@@ -2440,7 +2657,9 @@ export class Parser {
 
 			return null;
 		}
+
 		this.scanner.inURL = true;
+
 		this.consumeToken(); // consume ()
 		node.addChild(this._parseURLArgument()); // argument is optional
 		this.scanner.inURL = false;
@@ -2448,6 +2667,7 @@ export class Parser {
 		if (!this.accept(TokenType.ParenthesisR)) {
 			return this.finish(node, ParseError.RightParenthesisExpected);
 		}
+
 		return this.finish(node);
 	}
 
@@ -2461,6 +2681,7 @@ export class Parser {
 		) {
 			return null;
 		}
+
 		return this.finish(node);
 	}
 
@@ -2470,12 +2691,15 @@ export class Parser {
 		if (!this.peek(TokenType.Ident)) {
 			return null;
 		}
+
 		const node = this.create(nodes.Identifier);
 
 		if (referenceTypes) {
 			node.referenceTypes = referenceTypes;
 		}
+
 		node.isCustomProperty = this.peekRegExp(TokenType.Ident, /^--/);
+
 		this.consumeToken();
 
 		return this.finish(node);
@@ -2501,6 +2725,7 @@ export class Parser {
 				if (this.peek(TokenType.ParenthesisR)) {
 					break;
 				}
+
 				if (
 					!node.getArguments().addChild(this._parseFunctionArgument())
 				) {
@@ -2514,6 +2739,7 @@ export class Parser {
 				this.finish(node, ParseError.RightParenthesisExpected)
 			);
 		}
+
 		return <nodes.Function>this.finish(node);
 	}
 
@@ -2523,6 +2749,7 @@ export class Parser {
 		}
 
 		const node = this.create(nodes.Identifier);
+
 		node.referenceTypes = [nodes.ReferenceType.Function];
 
 		if (this.acceptIdent("progid")) {
@@ -2532,8 +2759,10 @@ export class Parser {
 					// loop
 				}
 			}
+
 			return this.finish(node);
 		}
+
 		this.consumeToken();
 
 		return this.finish(node);
@@ -2545,6 +2774,7 @@ export class Parser {
 		if (node.setValue(this._parseExpr(true))) {
 			return this.finish(node);
 		}
+
 		return null;
 	}
 
@@ -2556,6 +2786,7 @@ export class Parser {
 			)
 		) {
 			const node = this.create(nodes.HexColorValue);
+
 			this.consumeToken();
 
 			return this.finish(node);

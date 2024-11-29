@@ -126,6 +126,7 @@ export class CSSNavigation {
 		) {
 			return;
 		}
+
 		if (
 			node.type === nodes.NodeType.Identifier &&
 			node.parent &&
@@ -177,6 +178,7 @@ export class CSSNavigation {
 					range: getRange(candidate, document),
 				});
 			}
+
 			return true;
 		});
 
@@ -214,9 +216,11 @@ export class CSSNavigation {
 				if (resolved) {
 					link.target = resolved;
 				}
+
 				resolvedLinks.push(link);
 			}
 		}
+
 		return resolvedLinks;
 	}
 
@@ -248,10 +252,12 @@ export class CSSNavigation {
 
 				if (resolvedTarget !== undefined) {
 					link.target = resolvedTarget;
+
 					resolvedLinks.push(link);
 				}
 			}
 		}
+
 		return resolvedLinks;
 	}
 
@@ -280,6 +286,7 @@ export class CSSNavigation {
 			const isRawLink = uriStringNode.parent
 				? this.isRawStringDocumentLinkNode(uriStringNode.parent)
 				: false;
+
 			result.push({ link: { target: rawUri, range }, isRawLink });
 		};
 
@@ -290,6 +297,7 @@ export class CSSNavigation {
 				if (first) {
 					collect(first);
 				}
+
 				return false;
 			}
 
@@ -306,6 +314,7 @@ export class CSSNavigation {
 				if (startsWith(rawText, `'`) || startsWith(rawText, `"`)) {
 					collect(candidate);
 				}
+
 				return false;
 			}
 
@@ -336,6 +345,7 @@ export class CSSNavigation {
 				kind,
 				location: Location.create(document.uri, range),
 			};
+
 			result.push(entry);
 		};
 
@@ -385,17 +395,21 @@ export class CSSNavigation {
 			while (top && !containsRange(top[1], range)) {
 				top = parents.pop();
 			}
+
 			if (top) {
 				const topSymbol = top[0];
 
 				if (!topSymbol.children) {
 					topSymbol.children = [];
 				}
+
 				topSymbol.children.push(entry);
+
 				parents.push(top); // put back top
 			} else {
 				result.push(entry);
 			}
+
 			if (bodyNode) {
 				parents.push([entry, getRange(bodyNode, document)]);
 			}
@@ -419,6 +433,7 @@ export class CSSNavigation {
 							document.positionAt(selector.offset),
 							document.positionAt(node.end),
 						);
+
 						collect(
 							selector.getText(),
 							SymbolKind.Class,
@@ -454,6 +469,7 @@ export class CSSNavigation {
 				);
 			} else if (node instanceof nodes.Keyframe) {
 				const name = l10n.t("@keyframes {0}", node.getName());
+
 				collect(
 					name,
 					SymbolKind.Class,
@@ -463,6 +479,7 @@ export class CSSNavigation {
 				);
 			} else if (node instanceof nodes.FontFace) {
 				const name = l10n.t("@font-face");
+
 				collect(
 					name,
 					SymbolKind.Class,
@@ -475,6 +492,7 @@ export class CSSNavigation {
 
 				if (mediaList instanceof nodes.Medialist) {
 					const name = "@media " + mediaList.getText();
+
 					collect(
 						name,
 						SymbolKind.Module,
@@ -484,6 +502,7 @@ export class CSSNavigation {
 					);
 				}
 			}
+
 			return true;
 		});
 	}
@@ -493,12 +512,14 @@ export class CSSNavigation {
 		stylesheet: nodes.Stylesheet,
 	): ColorInformation[] {
 		const result: ColorInformation[] = [];
+
 		stylesheet.accept((node) => {
 			const colorInfo = getColorInformation(node, document);
 
 			if (colorInfo) {
 				result.push(colorInfo);
 			}
+
 			return true;
 		});
 
@@ -524,6 +545,7 @@ export class CSSNavigation {
 		} else {
 			label = `rgba(${red256}, ${green256}, ${blue256}, ${color.alpha})`;
 		}
+
 		result.push({ label: label, textEdit: TextEdit.replace(range, label) });
 
 		if (color.alpha === 1) {
@@ -531,6 +553,7 @@ export class CSSNavigation {
 		} else {
 			label = `#${toTwoDigitHex(red256)}${toTwoDigitHex(green256)}${toTwoDigitHex(blue256)}${toTwoDigitHex(Math.round(color.alpha * 255))}`;
 		}
+
 		result.push({ label: label, textEdit: TextEdit.replace(range, label) });
 
 		const hsl = hslFromColor(color);
@@ -540,6 +563,7 @@ export class CSSNavigation {
 		} else {
 			label = `hsla(${hsl.h}, ${Math.round(hsl.s * 100)}%, ${Math.round(hsl.l * 100)}%, ${hsl.a})`;
 		}
+
 		result.push({ label: label, textEdit: TextEdit.replace(range, label) });
 
 		const hwb = hwbFromColor(color);
@@ -549,6 +573,7 @@ export class CSSNavigation {
 		} else {
 			label = `hwb(${hwb.h} ${Math.round(hwb.w * 100)}% ${Math.round(hwb.b * 100)}% / ${hwb.a})`;
 		}
+
 		result.push({ label: label, textEdit: TextEdit.replace(range, label) });
 
 		return result;
@@ -619,6 +644,7 @@ export class CSSNavigation {
 				}
 			}
 		}
+
 		return undefined;
 	}
 
@@ -748,6 +774,7 @@ export class CSSNavigation {
 				rootFolderUri,
 			);
 		}
+
 		return undefined;
 	}
 
@@ -755,6 +782,7 @@ export class CSSNavigation {
 		if (!this.fileSystemProvider) {
 			return false;
 		}
+
 		try {
 			const stat = await this.fileSystemProvider.stat(uri);
 
@@ -772,6 +800,7 @@ export class CSSNavigation {
 		if (!this.fileSystemProvider || !this.fileSystemProvider.getContent) {
 			return null;
 		}
+
 		try {
 			return await this.fileSystemProvider.getContent(uri);
 		} catch (err) {
@@ -791,6 +820,7 @@ function getColorInformation(
 
 		return { color, range };
 	}
+
 	return null;
 }
 
@@ -814,21 +844,25 @@ function containsRange(range: Range, otherRange: Range): boolean {
 	if (otherStartLine < rangeStartLine || otherEndLine < rangeStartLine) {
 		return false;
 	}
+
 	if (otherStartLine > rangeEndLine || otherEndLine > rangeEndLine) {
 		return false;
 	}
+
 	if (
 		otherStartLine === rangeStartLine &&
 		otherRange.start.character < range.start.character
 	) {
 		return false;
 	}
+
 	if (
 		otherEndLine === rangeEndLine &&
 		otherRange.end.character > range.end.character
 	) {
 		return false;
 	}
+
 	return true;
 }
 
@@ -879,6 +913,7 @@ export function getModuleNameFromPath(path: string) {
 		if (secondSlash === -1) {
 			return path;
 		}
+
 		return path.substring(0, secondSlash);
 	}
 	// Otherwise get until first instance of '/'

@@ -43,6 +43,7 @@ export class SCSSNavigation extends CSSNavigation {
 				}
 			}
 		}
+
 		return target;
 	}
 
@@ -65,6 +66,7 @@ export class SCSSNavigation extends CSSNavigation {
 				documentContext,
 			);
 		}
+
 		return super.resolveReference(
 			target,
 			documentUri,
@@ -109,8 +111,10 @@ export class SCSSNavigation extends CSSNavigation {
 		if (!packageJsonContent) {
 			return undefined;
 		}
+
 		let packageJson: {
 			style?: string;
+
 			sass?: string;
 
 			exports?: Record<string, string | Record<string, string>>;
@@ -128,6 +132,7 @@ export class SCSSNavigation extends CSSNavigation {
 		if (packageJson.exports) {
 			if (!subpath) {
 				// exports may look like { "sass": "./_index.scss" } or { ".": { "sass": "./_index.scss" } }
+
 				const rootExport =
 					packageJson.exports["."] || packageJson.exports;
 				// look for the default/index export
@@ -225,6 +230,7 @@ export class SCSSNavigation extends CSSNavigation {
 				return entryPath;
 			}
 		}
+
 		return undefined;
 	}
 }

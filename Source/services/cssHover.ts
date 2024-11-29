@@ -24,7 +24,9 @@ import { SelectorPrinting } from "./selectorPrinting";
 
 export class CSSHover {
 	private supportsMarkdown: boolean | undefined;
+
 	private readonly selectorPrinting: SelectorPrinting;
+
 	private defaultSettings?: HoverSettings;
 
 	constructor(
@@ -50,6 +52,7 @@ export class CSSHover {
 				document.positionAt(node.end),
 			);
 		}
+
 		const offset = document.offsetAt(position);
 
 		const nodepath = nodes.getNodePath(stylesheet, offset);
@@ -69,6 +72,7 @@ export class CSSHover {
 				const regex = /@media[^\{]+/g;
 
 				const matches = node.getText().match(regex);
+
 				flagOpts = {
 					isMedia: true,
 					text: matches?.[0]!,
@@ -100,6 +104,7 @@ export class CSSHover {
 						range: getRange(node),
 					};
 				}
+
 				break;
 			}
 
@@ -124,6 +129,7 @@ export class CSSHover {
 						hover = null;
 					}
 				}
+
 				continue;
 			}
 
@@ -148,6 +154,7 @@ export class CSSHover {
 						hover = null;
 					}
 				}
+
 				continue;
 			}
 
@@ -178,6 +185,7 @@ export class CSSHover {
 						hover = null;
 					}
 				}
+
 				continue;
 			}
 		}
@@ -229,12 +237,14 @@ export class CSSHover {
 			const hover =
 				this.clientCapabilities.textDocument &&
 				this.clientCapabilities.textDocument.hover;
+
 			this.supportsMarkdown =
 				hover &&
 				hover.contentFormat &&
 				Array.isArray(hover.contentFormat) &&
 				hover.contentFormat.indexOf(MarkupKind.Markdown) !== -1;
 		}
+
 		return <boolean>this.supportsMarkdown;
 	}
 }

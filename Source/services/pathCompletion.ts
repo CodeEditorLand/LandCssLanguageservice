@@ -24,6 +24,7 @@ import { endsWith, startsWith } from "../utils/strings";
 
 export class PathCompletionParticipant implements ICompletionParticipant {
 	private literalCompletions: URILiteralCompletionContext[] = [];
+
 	private importCompletions: ImportPathCompletionContext[] = [];
 
 	constructor(
@@ -67,6 +68,7 @@ export class PathCompletionParticipant implements ICompletionParticipant {
 				}
 			}
 		}
+
 		for (const importCompletion of this.importCompletions) {
 			const pathValue = importCompletion.pathValue;
 
@@ -97,11 +99,13 @@ export class PathCompletionParticipant implements ICompletionParticipant {
 						}
 					});
 				}
+
 				for (let item of suggestions) {
 					result.items.push(item);
 				}
 			}
 		}
+
 		return result;
 	}
 
@@ -166,11 +170,13 @@ export class PathCompletionParticipant implements ICompletionParticipant {
 						);
 					}
 				}
+
 				return result;
 			} catch (e) {
 				// ignore
 			}
 		}
+
 		return [];
 	}
 }
@@ -215,6 +221,7 @@ function pathToReplaceRange(
 		} else {
 			endPos = fullValueRange.end;
 		}
+
 		replaceRange = Range.create(startPos, endPos);
 	}
 

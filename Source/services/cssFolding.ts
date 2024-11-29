@@ -29,9 +29,11 @@ function computeFoldingRanges(document: TextDocument): FoldingRange[] {
 	function getStartLine(t: IToken) {
 		return document.positionAt(t.offset).line;
 	}
+
 	function getEndLine(t: IToken) {
 		return document.positionAt(t.offset + t.len).line;
 	}
+
 	function getScanner() {
 		switch (document.languageId) {
 			case "scss":
@@ -44,6 +46,7 @@ function computeFoldingRanges(document: TextDocument): FoldingRange[] {
 				return new Scanner();
 		}
 	}
+
 	function tokenToRange(
 		t: IToken,
 		kind?: FoldingRangeKind | string,
@@ -68,7 +71,9 @@ function computeFoldingRanges(document: TextDocument): FoldingRange[] {
 	const delimiterStack: Delimiter[] = [];
 
 	const scanner = getScanner();
+
 	scanner.ignoreComment = false;
+
 	scanner.setSource(document.getText());
 
 	let token = scanner.scan();
@@ -87,6 +92,7 @@ function computeFoldingRanges(document: TextDocument): FoldingRange[] {
 
 				break;
 			}
+
 			case TokenType.CurlyR: {
 				if (delimiterStack.length !== 0) {
 					const prevDelimiter = popPrevStartDelimiterOfType(
@@ -120,6 +126,7 @@ function computeFoldingRanges(document: TextDocument): FoldingRange[] {
 						}
 					}
 				}
+
 				break;
 			}
 			/**
@@ -208,7 +215,9 @@ function computeFoldingRanges(document: TextDocument): FoldingRange[] {
 				break;
 			}
 		}
+
 		prevToken = token;
+
 		token = scanner.scan();
 	}
 
@@ -249,15 +258,18 @@ function limitFoldingRanges(
 		if (diff === 0) {
 			diff = r1.endLine - r2.endLine;
 		}
+
 		return diff;
 	});
 
 	const validRanges: FoldingRange[] = [];
 
 	let prevEndLine = -1;
+
 	sortedRanges.forEach((r) => {
 		if (!(r.startLine < prevEndLine && prevEndLine < r.endLine)) {
 			validRanges.push(r);
+
 			prevEndLine = r.endLine;
 		}
 	});
