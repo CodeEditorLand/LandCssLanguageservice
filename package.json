@@ -2,7 +2,7 @@
 	"dependencies": {},
 	"description": "Language service for CSS, LESS and SCSS",
 	"devDependencies": {
-		"@types/node": "22.10.0",
+		"@types/node": "22.10.1",
 		"js-beautify": "1.15.1",
 		"rimraf": "6.0.1",
 		"source-map-support": "0.5.21"
