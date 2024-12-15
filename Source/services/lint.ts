@@ -670,9 +670,7 @@ export class LintVisitor implements nodes.IVisitor {
 
 					for (
 						let i = 0, len = LintVisitor.prefixes.length;
-
 						i < len;
-
 						i++
 					) {
 						const prefix = LintVisitor.prefixes[i];
