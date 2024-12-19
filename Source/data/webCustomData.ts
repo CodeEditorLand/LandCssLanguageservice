@@ -96,7 +96,7 @@ export const cssData: CSSDataV1 = {
 			"references": [
 				{
 					"name": "MDN Reference",
-					"url": "https://developer.mozilla.org/docs/Web/CSS/align-content",
+					"url": "HTTPS://developer.mozilla.org/docs/Web/CSS/align-content",
 				},
 			],
 			"description":
@@ -169,7 +169,7 @@ export const cssData: CSSDataV1 = {
 			"references": [
 				{
 					"name": "MDN Reference",
-					"url": "https://developer.mozilla.org/docs/Web/CSS/align-items",
+					"url": "HTTPS://developer.mozilla.org/docs/Web/CSS/align-items",
 				},
 			],
 			"description":
@@ -253,7 +253,7 @@ export const cssData: CSSDataV1 = {
 			"references": [
 				{
 					"name": "MDN Reference",
-					"url": "https://developer.mozilla.org/docs/Web/CSS/justify-items",
+					"url": "HTTPS://developer.mozilla.org/docs/Web/CSS/justify-items",
 				},
 			],
 			"description":
@@ -334,7 +334,7 @@ export const cssData: CSSDataV1 = {
 			"references": [
 				{
 					"name": "MDN Reference",
-					"url": "https://developer.mozilla.org/docs/Web/CSS/justify-self",
+					"url": "HTTPS://developer.mozilla.org/docs/Web/CSS/justify-self",
 				},
 			],
 			"description":
@@ -406,7 +406,7 @@ export const cssData: CSSDataV1 = {
 			"references": [
 				{
 					"name": "MDN Reference",
-					"url": "https://developer.mozilla.org/docs/Web/CSS/align-self",
+					"url": "HTTPS://developer.mozilla.org/docs/Web/CSS/align-self",
 				},
 			],
 			"description":
@@ -422,7 +422,7 @@ export const cssData: CSSDataV1 = {
 			"references": [
 				{
 					"name": "MDN Reference",
-					"url": "https://developer.mozilla.org/docs/Web/CSS/all",
+					"url": "HTTPS://developer.mozilla.org/docs/Web/CSS/all",
 				},
 			],
 			"description":
@@ -490,7 +490,7 @@ export const cssData: CSSDataV1 = {
 			"references": [
 				{
 					"name": "MDN Reference",
-					"url": "https://developer.mozilla.org/docs/Web/CSS/animation",
+					"url": "HTTPS://developer.mozilla.org/docs/Web/CSS/animation",
 				},
 			],
 			"description":
@@ -511,7 +511,7 @@ export const cssData: CSSDataV1 = {
 			"references": [
 				{
 					"name": "MDN Reference",
-					"url": "https://developer.mozilla.org/docs/Web/CSS/animation-delay",
+					"url": "HTTPS://developer.mozilla.org/docs/Web/CSS/animation-delay",
 				},
 			],
 			"description": "Defines when the animation will start.",
@@ -546,7 +546,7 @@ export const cssData: CSSDataV1 = {
 			"references": [
 				{
 					"name": "MDN Reference",
-					"url": "https://developer.mozilla.org/docs/Web/CSS/animation-direction",
+					"url": "HTTPS://developer.mozilla.org/docs/Web/CSS/animation-direction",
 				},
 			],
 			"description":
@@ -561,7 +561,7 @@ export const cssData: CSSDataV1 = {
 			"references": [
 				{
 					"name": "MDN Reference",
-					"url": "https://developer.mozilla.org/docs/Web/CSS/animation-duration",
+					"url": "HTTPS://developer.mozilla.org/docs/Web/CSS/animation-duration",
 				},
 			],
 			"description":
@@ -598,7 +598,7 @@ export const cssData: CSSDataV1 = {
 			"references": [
 				{
 					"name": "MDN Reference",
-					"url": "https://developer.mozilla.org/docs/Web/CSS/animation-fill-mode",
+					"url": "HTTPS://developer.mozilla.org/docs/Web/CSS/animation-fill-mode",
 				},
 			],
 			"description":
@@ -619,7 +619,7 @@ export const cssData: CSSDataV1 = {
 			"references": [
 				{
 					"name": "MDN Reference",
-					"url": "https://developer.mozilla.org/docs/Web/CSS/animation-iteration-count",
+					"url": "HTTPS://developer.mozilla.org/docs/Web/CSS/animation-iteration-count",
 				},
 			],
 			"description":
@@ -640,7 +640,7 @@ export const cssData: CSSDataV1 = {
 			"references": [
 				{
 					"name": "MDN Reference",
-					"url": "https://developer.mozilla.org/docs/Web/CSS/animation-name",
+					"url": "HTTPS://developer.mozilla.org/docs/Web/CSS/animation-name",
 				},
 			],
 			"description":
@@ -665,7 +665,7 @@ export const cssData: CSSDataV1 = {
 			"references": [
 				{
 					"name": "MDN Reference",
-					"url": "https://developer.mozilla.org/docs/Web/CSS/animation-play-state",
+					"url": "HTTPS://developer.mozilla.org/docs/Web/CSS/animation-play-state",
 				},
 			],
 			"description":
@@ -680,7 +680,7 @@ export const cssData: CSSDataV1 = {
 			"references": [
 				{
 					"name": "MDN Reference",
-					"url": "https://developer.mozilla.org/docs/Web/CSS/animation-timing-function",
+					"url": "HTTPS://developer.mozilla.org/docs/Web/CSS/animation-timing-function",
 				},
 			],
 			"description":
@@ -705,7 +705,7 @@ export const cssData: CSSDataV1 = {
 			"references": [
 				{
 					"name": "MDN Reference",
-					"url": "https://developer.mozilla.org/docs/Web/CSS/backface-visibility",
+					"url": "HTTPS://developer.mozilla.org/docs/Web/CSS/backface-visibility",
 				},
 			],
 			"description":
@@ -742,7 +742,7 @@ export const cssData: CSSDataV1 = {
 			"references": [
 				{
 					"name": "MDN Reference",
-					"url": "https://developer.mozilla.org/docs/Web/CSS/background",
+					"url": "HTTPS://developer.mozilla.org/docs/Web/CSS/background",
 				},
 			],
 			"description":
@@ -784,7 +784,7 @@ export const cssData: CSSDataV1 = {
 			"references": [
 				{
 					"name": "MDN Reference",
-					"url": "https://developer.mozilla.org/docs/Web/CSS/background-attachment",
+					"url": "HTTPS://developer.mozilla.org/docs/Web/CSS/background-attachment",
 				},
 			],
 			"description":
@@ -885,7 +885,7 @@ export const cssData: CSSDataV1 = {
 			"references": [
 				{
 					"name": "MDN Reference",
-					"url": "https://developer.mozilla.org/docs/Web/CSS/background-blend-mode",
+					"url": "HTTPS://developer.mozilla.org/docs/Web/CSS/background-blend-mode",
 				},
 			],
 			"description":
@@ -900,7 +900,7 @@ export const cssData: CSSDataV1 = {
 			"references": [
 				{
 					"name": "MDN Reference",
-					"url": "https://developer.mozilla.org/docs/Web/CSS/background-clip",
+					"url": "HTTPS://developer.mozilla.org/docs/Web/CSS/background-clip",
 				},
 			],
 			"description": "Determines the background painting area.",
@@ -914,7 +914,7 @@ export const cssData: CSSDataV1 = {
 			"references": [
 				{
 					"name": "MDN Reference",
-					"url": "https://developer.mozilla.org/docs/Web/CSS/background-color",
+					"url": "HTTPS://developer.mozilla.org/docs/Web/CSS/background-color",
 				},
 			],
 			"description": "Sets the background color of an element.",
@@ -935,7 +935,7 @@ export const cssData: CSSDataV1 = {
 			"references": [
 				{
 					"name": "MDN Reference",
-					"url": "https://developer.mozilla.org/docs/Web/CSS/background-image",
+					"url": "HTTPS://developer.mozilla.org/docs/Web/CSS/background-image",
 				},
 			],
 			"description": "Sets the background image(s) of an element.",
@@ -949,7 +949,7 @@ export const cssData: CSSDataV1 = {
 			"references": [
 				{
 					"name": "MDN Reference",
-					"url": "https://developer.mozilla.org/docs/Web/CSS/background-origin",
+					"url": "HTTPS://developer.mozilla.org/docs/Web/CSS/background-origin",
 				},
 			],
 			"description":
@@ -964,7 +964,7 @@ export const cssData: CSSDataV1 = {
 			"references": [
 				{
 					"name": "MDN Reference",
-					"url": "https://developer.mozilla.org/docs/Web/CSS/background-position",
+					"url": "HTTPS://developer.mozilla.org/docs/Web/CSS/background-position",
 				},
 			],
 			"description":
@@ -997,7 +997,7 @@ export const cssData: CSSDataV1 = {
 			"references": [
 				{
 					"name": "MDN Reference",
-					"url": "https://developer.mozilla.org/docs/Web/CSS/background-position-x",
+					"url": "HTTPS://developer.mozilla.org/docs/Web/CSS/background-position-x",
 				},
 			],
 			"description":
@@ -1030,7 +1030,7 @@ export const cssData: CSSDataV1 = {
 			"references": [
 				{
 					"name": "MDN Reference",
-					"url": "https://developer.mozilla.org/docs/Web/CSS/background-position-y",
+					"url": "HTTPS://developer.mozilla.org/docs/Web/CSS/background-position-y",
 				},
 			],
 			"description":
@@ -1046,7 +1046,7 @@ export const cssData: CSSDataV1 = {
 			"references": [
 				{
 					"name": "MDN Reference",
-					"url": "https://developer.mozilla.org/docs/Web/CSS/background-repeat",
+					"url": "HTTPS://developer.mozilla.org/docs/Web/CSS/background-repeat",
 				},
 			],
 			"description":
@@ -1078,7 +1078,7 @@ export const cssData: CSSDataV1 = {
 			"references": [
 				{
 					"name": "MDN Reference",
-					"url": "https://developer.mozilla.org/docs/Web/CSS/background-size",
+					"url": "HTTPS://developer.mozilla.org/docs/Web/CSS/background-size",
 				},
 			],
 			"description": "Specifies the size of the background images.",
@@ -1105,7 +1105,7 @@ export const cssData: CSSDataV1 = {
 			"references": [
 				{
 					"name": "MDN Reference",
-					"url": "https://developer.mozilla.org/docs/Web/CSS/block-size",
+					"url": "HTTPS://developer.mozilla.org/docs/Web/CSS/block-size",
 				},
 			],
 			"description":
@@ -1120,7 +1120,7 @@ export const cssData: CSSDataV1 = {
 			"references": [
 				{
 					"name": "MDN Reference",
-					"url": "https://developer.mozilla.org/docs/Web/CSS/border",
+					"url": "HTTPS://developer.mozilla.org/docs/Web/CSS/border",
 				},
 			],
 			"description":
@@ -1135,7 +1135,7 @@ export const cssData: CSSDataV1 = {
 			"references": [
 				{
 					"name": "MDN Reference",
-					"url": "https://developer.mozilla.org/docs/Web/CSS/border-block-end",
+					"url": "HTTPS://developer.mozilla.org/docs/Web/CSS/border-block-end",
 				},
 			],
 			"description":
@@ -1150,7 +1150,7 @@ export const cssData: CSSDataV1 = {
 			"references": [
 				{
 					"name": "MDN Reference",
-					"url": "https://developer.mozilla.org/docs/Web/CSS/border-block-start",
+					"url": "HTTPS://developer.mozilla.org/docs/Web/CSS/border-block-start",
 				},
 			],
 			"description":
@@ -1165,7 +1165,7 @@ export const cssData: CSSDataV1 = {
 			"references": [
 				{
 					"name": "MDN Reference",
-					"url": "https://developer.mozilla.org/docs/Web/CSS/border-block-end-color",
+					"url": "HTTPS://developer.mozilla.org/docs/Web/CSS/border-block-end-color",
 				},
 			],
 			"description":
@@ -1180,7 +1180,7 @@ export const cssData: CSSDataV1 = {
 			"references": [
 				{
 					"name": "MDN Reference",
-					"url": "https://developer.mozilla.org/docs/Web/CSS/border-block-start-color",
+					"url": "HTTPS://developer.mozilla.org/docs/Web/CSS/border-block-start-color",
 				},
 			],
 			"description":
@@ -1195,7 +1195,7 @@ export const cssData: CSSDataV1 = {
 			"references": [
 				{
 					"name": "MDN Reference",
-					"url": "https://developer.mozilla.org/docs/Web/CSS/border-block-end-style",
+					"url": "HTTPS://developer.mozilla.org/docs/Web/CSS/border-block-end-style",
 				},
 			],
 			"description":
@@ -1210,7 +1210,7 @@ export const cssData: CSSDataV1 = {
 			"references": [
 				{
 					"name": "MDN Reference",
-					"url": "https://developer.mozilla.org/docs/Web/CSS/border-block-start-style",
+					"url": "HTTPS://developer.mozilla.org/docs/Web/CSS/border-block-start-style",
 				},
 			],
 			"description":
@@ -1225,7 +1225,7 @@ export const cssData: CSSDataV1 = {
 			"references": [
 				{
 					"name": "MDN Reference",
-					"url": "https://developer.mozilla.org/docs/Web/CSS/border-block-end-width",
+					"url": "HTTPS://developer.mozilla.org/docs/Web/CSS/border-block-end-width",
 				},
 			],
 			"description":
@@ -1240,7 +1240,7 @@ export const cssData: CSSDataV1 = {
 			"references": [
 				{
 					"name": "MDN Reference",
-					"url": "https://developer.mozilla.org/docs/Web/CSS/border-block-start-width",
+					"url": "HTTPS://developer.mozilla.org/docs/Web/CSS/border-block-start-width",
 				},
 			],
 			"description":
@@ -1255,7 +1255,7 @@ export const cssData: CSSDataV1 = {
 			"references": [
 				{
 					"name": "MDN Reference",
-					"url": "https://developer.mozilla.org/docs/Web/CSS/border-bottom",
+					"url": "HTTPS://developer.mozilla.org/docs/Web/CSS/border-bottom",
 				},
 			],
 			"description":
@@ -1270,7 +1270,7 @@ export const cssData: CSSDataV1 = {
 			"references": [
 				{
 					"name": "MDN Reference",
-					"url": "https://developer.mozilla.org/docs/Web/CSS/border-bottom-color",
+					"url": "HTTPS://developer.mozilla.org/docs/Web/CSS/border-bottom-color",
 				},
 			],
 			"description": "Sets the color of the bottom border.",
@@ -1284,7 +1284,7 @@ export const cssData: CSSDataV1 = {
 			"references": [
 				{
 					"name": "MDN Reference",
-					"url": "https://developer.mozilla.org/docs/Web/CSS/border-bottom-left-radius",
+					"url": "HTTPS://developer.mozilla.org/docs/Web/CSS/border-bottom-left-radius",
 				},
 			],
 			"description":
@@ -1299,7 +1299,7 @@ export const cssData: CSSDataV1 = {
 			"references": [
 				{
 					"name": "MDN Reference",
-					"url": "https://developer.mozilla.org/docs/Web/CSS/border-bottom-right-radius",
+					"url": "HTTPS://developer.mozilla.org/docs/Web/CSS/border-bottom-right-radius",
 				},
 			],
 			"description":
@@ -1314,7 +1314,7 @@ export const cssData: CSSDataV1 = {
 			"references": [
 				{
 					"name": "MDN Reference",
-					"url": "https://developer.mozilla.org/docs/Web/CSS/border-bottom-style",
+					"url": "HTTPS://developer.mozilla.org/docs/Web/CSS/border-bottom-style",
 				},
 			],
 			"description": "Sets the style of the bottom border.",
@@ -1328,7 +1328,7 @@ export const cssData: CSSDataV1 = {
 			"references": [
 				{
 					"name": "MDN Reference",
-					"url": "https://developer.mozilla.org/docs/Web/CSS/border-bottom-width",
+					"url": "HTTPS://developer.mozilla.org/docs/Web/CSS/border-bottom-width",
 				},
 			],
 			"description": "Sets the thickness of the bottom border.",
@@ -1353,7 +1353,7 @@ export const cssData: CSSDataV1 = {
 			"references": [
 				{
 					"name": "MDN Reference",
-					"url": "https://developer.mozilla.org/docs/Web/CSS/border-collapse",
+					"url": "HTTPS://developer.mozilla.org/docs/Web/CSS/border-collapse",
 				},
 			],
 			"description": "Selects a table's border model.",
@@ -1368,7 +1368,7 @@ export const cssData: CSSDataV1 = {
 			"references": [
 				{
 					"name": "MDN Reference",
-					"url": "https://developer.mozilla.org/docs/Web/CSS/border-color",
+					"url": "HTTPS://developer.mozilla.org/docs/Web/CSS/border-color",
 				},
 			],
 			"description":
@@ -1422,7 +1422,7 @@ export const cssData: CSSDataV1 = {
 			"references": [
 				{
 					"name": "MDN Reference",
-					"url": "https://developer.mozilla.org/docs/Web/CSS/border-image",
+					"url": "HTTPS://developer.mozilla.org/docs/Web/CSS/border-image",
 				},
 			],
 			"description":
@@ -1437,7 +1437,7 @@ export const cssData: CSSDataV1 = {
 			"references": [
 				{
 					"name": "MDN Reference",
-					"url": "https://developer.mozilla.org/docs/Web/CSS/border-image-outset",
+					"url": "HTTPS://developer.mozilla.org/docs/Web/CSS/border-image-outset",
 				},
 			],
 			"description":
@@ -1473,7 +1473,7 @@ export const cssData: CSSDataV1 = {
 			"references": [
 				{
 					"name": "MDN Reference",
-					"url": "https://developer.mozilla.org/docs/Web/CSS/border-image-repeat",
+					"url": "HTTPS://developer.mozilla.org/docs/Web/CSS/border-image-repeat",
 				},
 			],
 			"description":
@@ -1495,7 +1495,7 @@ export const cssData: CSSDataV1 = {
 			"references": [
 				{
 					"name": "MDN Reference",
-					"url": "https://developer.mozilla.org/docs/Web/CSS/border-image-slice",
+					"url": "HTTPS://developer.mozilla.org/docs/Web/CSS/border-image-slice",
 				},
 			],
 			"description":
@@ -1516,7 +1516,7 @@ export const cssData: CSSDataV1 = {
 			"references": [
 				{
 					"name": "MDN Reference",
-					"url": "https://developer.mozilla.org/docs/Web/CSS/border-image-source",
+					"url": "HTTPS://developer.mozilla.org/docs/Web/CSS/border-image-source",
 				},
 			],
 			"description":
@@ -1538,7 +1538,7 @@ export const cssData: CSSDataV1 = {
 			"references": [
 				{
 					"name": "MDN Reference",
-					"url": "https://developer.mozilla.org/docs/Web/CSS/border-image-width",
+					"url": "HTTPS://developer.mozilla.org/docs/Web/CSS/border-image-width",
 				},
 			],
 			"description":
@@ -1553,7 +1553,7 @@ export const cssData: CSSDataV1 = {
 			"references": [
 				{
 					"name": "MDN Reference",
-					"url": "https://developer.mozilla.org/docs/Web/CSS/border-inline-end",
+					"url": "HTTPS://developer.mozilla.org/docs/Web/CSS/border-inline-end",
 				},
 			],
 			"description":
@@ -1568,7 +1568,7 @@ export const cssData: CSSDataV1 = {
 			"references": [
 				{
 					"name": "MDN Reference",
-					"url": "https://developer.mozilla.org/docs/Web/CSS/border-inline-start",
+					"url": "HTTPS://developer.mozilla.org/docs/Web/CSS/border-inline-start",
 				},
 			],
 			"description":
@@ -1583,7 +1583,7 @@ export const cssData: CSSDataV1 = {
 			"references": [
 				{
 					"name": "MDN Reference",
-					"url": "https://developer.mozilla.org/docs/Web/CSS/border-inline-end-color",
+					"url": "HTTPS://developer.mozilla.org/docs/Web/CSS/border-inline-end-color",
 				},
 			],
 			"description":
@@ -1598,7 +1598,7 @@ export const cssData: CSSDataV1 = {
 			"references": [
 				{
 					"name": "MDN Reference",
-					"url": "https://developer.mozilla.org/docs/Web/CSS/border-inline-start-color",
+					"url": "HTTPS://developer.mozilla.org/docs/Web/CSS/border-inline-start-color",
 				},
 			],
 			"description":
@@ -1613,7 +1613,7 @@ export const cssData: CSSDataV1 = {
 			"references": [
 				{
 					"name": "MDN Reference",
-					"url": "https://developer.mozilla.org/docs/Web/CSS/border-inline-end-style",
+					"url": "HTTPS://developer.mozilla.org/docs/Web/CSS/border-inline-end-style",
 				},
 			],
 			"description":
@@ -1628,7 +1628,7 @@ export const cssData: CSSDataV1 = {
 			"references": [
 				{
 					"name": "MDN Reference",
-					"url": "https://developer.mozilla.org/docs/Web/CSS/border-inline-start-style",
+					"url": "HTTPS://developer.mozilla.org/docs/Web/CSS/border-inline-start-style",
 				},
 			],
 			"description":
@@ -1643,7 +1643,7 @@ export const cssData: CSSDataV1 = {
 			"references": [
 				{
 					"name": "MDN Reference",
-					"url": "https://developer.mozilla.org/docs/Web/CSS/border-inline-end-width",
+					"url": "HTTPS://developer.mozilla.org/docs/Web/CSS/border-inline-end-width",
 				},
 			],
 			"description":
@@ -1658,7 +1658,7 @@ export const cssData: CSSDataV1 = {
 			"references": [
 				{
 					"name": "MDN Reference",
-					"url": "https://developer.mozilla.org/docs/Web/CSS/border-inline-start-width",
+					"url": "HTTPS://developer.mozilla.org/docs/Web/CSS/border-inline-start-width",
 				},
 			],
 			"description":
@@ -1673,7 +1673,7 @@ export const cssData: CSSDataV1 = {
 			"references": [
 				{
 					"name": "MDN Reference",
-					"url": "https://developer.mozilla.org/docs/Web/CSS/border-left",
+					"url": "HTTPS://developer.mozilla.org/docs/Web/CSS/border-left",
 				},
 			],
 			"description":
@@ -1688,7 +1688,7 @@ export const cssData: CSSDataV1 = {
 			"references": [
 				{
 					"name": "MDN Reference",
-					"url": "https://developer.mozilla.org/docs/Web/CSS/border-left-color",
+					"url": "HTTPS://developer.mozilla.org/docs/Web/CSS/border-left-color",
 				},
 			],
 			"description": "Sets the color of the left border.",
@@ -1702,7 +1702,7 @@ export const cssData: CSSDataV1 = {
 			"references": [
 				{
 					"name": "MDN Reference",
-					"url": "https://developer.mozilla.org/docs/Web/CSS/border-left-style",
+					"url": "HTTPS://developer.mozilla.org/docs/Web/CSS/border-left-style",
 				},
 			],
 			"description": "Sets the style of the left border.",
@@ -1716,7 +1716,7 @@ export const cssData: CSSDataV1 = {
 			"references": [
 				{
 					"name": "MDN Reference",
-					"url": "https://developer.mozilla.org/docs/Web/CSS/border-left-width",
+					"url": "HTTPS://developer.mozilla.org/docs/Web/CSS/border-left-width",
 				},
 			],
 			"description": "Sets the thickness of the left border.",
@@ -1731,7 +1731,7 @@ export const cssData: CSSDataV1 = {
 			"references": [
 				{
 					"name": "MDN Reference",
-					"url": "https://developer.mozilla.org/docs/Web/CSS/border-radius",
+					"url": "HTTPS://developer.mozilla.org/docs/Web/CSS/border-radius",
 				},
 			],
 			"description": "Defines the radii of the outer border edge.",
@@ -1745,7 +1745,7 @@ export const cssData: CSSDataV1 = {
 			"references": [
 				{
 					"name": "MDN Reference",
-					"url": "https://developer.mozilla.org/docs/Web/CSS/border-right",
+					"url": "HTTPS://developer.mozilla.org/docs/Web/CSS/border-right",
 				},
 			],
 			"description":
@@ -1760,7 +1760,7 @@ export const cssData: CSSDataV1 = {
 			"references": [
 				{
 					"name": "MDN Reference",
-					"url": "https://developer.mozilla.org/docs/Web/CSS/border-right-color",
+					"url": "HTTPS://developer.mozilla.org/docs/Web/CSS/border-right-color",
 				},
 			],
 			"description": "Sets the color of the right border.",
@@ -1774,7 +1774,7 @@ export const cssData: CSSDataV1 = {
 			"references": [
 				{
 					"name": "MDN Reference",
-					"url": "https://developer.mozilla.org/docs/Web/CSS/border-right-style",
+					"url": "HTTPS://developer.mozilla.org/docs/Web/CSS/border-right-style",
 				},
 			],
 			"description": "Sets the style of the right border.",
@@ -1788,7 +1788,7 @@ export const cssData: CSSDataV1 = {
 			"references": [
 				{
 					"name": "MDN Reference",
-					"url": "https://developer.mozilla.org/docs/Web/CSS/border-right-width",
+					"url": "HTTPS://developer.mozilla.org/docs/Web/CSS/border-right-width",
 				},
 			],
 			"description": "Sets the thickness of the right border.",
@@ -1802,7 +1802,7 @@ export const cssData: CSSDataV1 = {
 			"references": [
 				{
 					"name": "MDN Reference",
-					"url": "https://developer.mozilla.org/docs/Web/CSS/border-spacing",
+					"url": "HTTPS://developer.mozilla.org/docs/Web/CSS/border-spacing",
 				},
 			],
 			"description":
@@ -1818,7 +1818,7 @@ export const cssData: CSSDataV1 = {
 			"references": [
 				{
 					"name": "MDN Reference",
-					"url": "https://developer.mozilla.org/docs/Web/CSS/border-style",
+					"url": "HTTPS://developer.mozilla.org/docs/Web/CSS/border-style",
 				},
 			],
 			"description":
@@ -1833,7 +1833,7 @@ export const cssData: CSSDataV1 = {
 			"references": [
 				{
 					"name": "MDN Reference",
-					"url": "https://developer.mozilla.org/docs/Web/CSS/border-top",
+					"url": "HTTPS://developer.mozilla.org/docs/Web/CSS/border-top",
 				},
 			],
 			"description":
@@ -1848,7 +1848,7 @@ export const cssData: CSSDataV1 = {
 			"references": [
 				{
 					"name": "MDN Reference",
-					"url": "https://developer.mozilla.org/docs/Web/CSS/border-top-color",
+					"url": "HTTPS://developer.mozilla.org/docs/Web/CSS/border-top-color",
 				},
 			],
 			"description": "Sets the color of the top border.",
@@ -1862,7 +1862,7 @@ export const cssData: CSSDataV1 = {
 			"references": [
 				{
 					"name": "MDN Reference",
-					"url": "https://developer.mozilla.org/docs/Web/CSS/border-top-left-radius",
+					"url": "HTTPS://developer.mozilla.org/docs/Web/CSS/border-top-left-radius",
 				},
 			],
 			"description":
@@ -1877,7 +1877,7 @@ export const cssData: CSSDataV1 = {
 			"references": [
 				{
 					"name": "MDN Reference",
-					"url": "https://developer.mozilla.org/docs/Web/CSS/border-top-right-radius",
+					"url": "HTTPS://developer.mozilla.org/docs/Web/CSS/border-top-right-radius",
 				},
 			],
 			"description":
@@ -1892,7 +1892,7 @@ export const cssData: CSSDataV1 = {
 			"references": [
 				{
 					"name": "MDN Reference",
-					"url": "https://developer.mozilla.org/docs/Web/CSS/border-top-style",
+					"url": "HTTPS://developer.mozilla.org/docs/Web/CSS/border-top-style",
 				},
 			],
 			"description": "Sets the style of the top border.",
@@ -1906,7 +1906,7 @@ export const cssData: CSSDataV1 = {
 			"references": [
 				{
 					"name": "MDN Reference",
-					"url": "https://developer.mozilla.org/docs/Web/CSS/border-top-width",
+					"url": "HTTPS://developer.mozilla.org/docs/Web/CSS/border-top-width",
 				},
 			],
 			"description": "Sets the thickness of the top border.",
@@ -1921,7 +1921,7 @@ export const cssData: CSSDataV1 = {
 			"references": [
 				{
 					"name": "MDN Reference",
-					"url": "https://developer.mozilla.org/docs/Web/CSS/border-width",
+					"url": "HTTPS://developer.mozilla.org/docs/Web/CSS/border-width",
 				},
 			],
 			"description":
@@ -1943,7 +1943,7 @@ export const cssData: CSSDataV1 = {
 			"references": [
 				{
 					"name": "MDN Reference",
-					"url": "https://developer.mozilla.org/docs/Web/CSS/bottom",
+					"url": "HTTPS://developer.mozilla.org/docs/Web/CSS/bottom",
 				},
 			],
 			"description":
@@ -1970,7 +1970,7 @@ export const cssData: CSSDataV1 = {
 			"references": [
 				{
 					"name": "MDN Reference",
-					"url": "https://developer.mozilla.org/docs/Web/CSS/box-decoration-break",
+					"url": "HTTPS://developer.mozilla.org/docs/Web/CSS/box-decoration-break",
 				},
 			],
 			"description":
@@ -1996,7 +1996,7 @@ export const cssData: CSSDataV1 = {
 			"references": [
 				{
 					"name": "MDN Reference",
-					"url": "https://developer.mozilla.org/docs/Web/CSS/box-shadow",
+					"url": "HTTPS://developer.mozilla.org/docs/Web/CSS/box-shadow",
 				},
 			],
 			"description":
@@ -2023,7 +2023,7 @@ export const cssData: CSSDataV1 = {
 			"references": [
 				{
 					"name": "MDN Reference",
-					"url": "https://developer.mozilla.org/docs/Web/CSS/box-sizing",
+					"url": "HTTPS://developer.mozilla.org/docs/Web/CSS/box-sizing",
 				},
 			],
 			"description":
@@ -2086,7 +2086,7 @@ export const cssData: CSSDataV1 = {
 			"references": [
 				{
 					"name": "MDN Reference",
-					"url": "https://developer.mozilla.org/docs/Web/CSS/break-after",
+					"url": "HTTPS://developer.mozilla.org/docs/Web/CSS/break-after",
 				},
 			],
 			"description":
@@ -2149,7 +2149,7 @@ export const cssData: CSSDataV1 = {
 			"references": [
 				{
 					"name": "MDN Reference",
-					"url": "https://developer.mozilla.org/docs/Web/CSS/break-before",
+					"url": "HTTPS://developer.mozilla.org/docs/Web/CSS/break-before",
 				},
 			],
 			"description":
@@ -2183,7 +2183,7 @@ export const cssData: CSSDataV1 = {
 			"references": [
 				{
 					"name": "MDN Reference",
-					"url": "https://developer.mozilla.org/docs/Web/CSS/break-inside",
+					"url": "HTTPS://developer.mozilla.org/docs/Web/CSS/break-inside",
 				},
 			],
 			"description":
@@ -2211,7 +2211,7 @@ export const cssData: CSSDataV1 = {
 			"references": [
 				{
 					"name": "MDN Reference",
-					"url": "https://developer.mozilla.org/docs/Web/CSS/caption-side",
+					"url": "HTTPS://developer.mozilla.org/docs/Web/CSS/caption-side",
 				},
 			],
 			"description":
@@ -2233,7 +2233,7 @@ export const cssData: CSSDataV1 = {
 			"references": [
 				{
 					"name": "MDN Reference",
-					"url": "https://developer.mozilla.org/docs/Web/CSS/caret-color",
+					"url": "HTTPS://developer.mozilla.org/docs/Web/CSS/caret-color",
 				},
 			],
 			"description":
@@ -2270,7 +2270,7 @@ export const cssData: CSSDataV1 = {
 			"references": [
 				{
 					"name": "MDN Reference",
-					"url": "https://developer.mozilla.org/docs/Web/CSS/clear",
+					"url": "HTTPS://developer.mozilla.org/docs/Web/CSS/clear",
 				},
 			],
 			"description":
@@ -2296,7 +2296,7 @@ export const cssData: CSSDataV1 = {
 			"references": [
 				{
 					"name": "MDN Reference",
-					"url": "https://developer.mozilla.org/docs/Web/CSS/clip",
+					"url": "HTTPS://developer.mozilla.org/docs/Web/CSS/clip",
 				},
 			],
 			"description":
@@ -2323,7 +2323,7 @@ export const cssData: CSSDataV1 = {
 			"references": [
 				{
 					"name": "MDN Reference",
-					"url": "https://developer.mozilla.org/docs/Web/CSS/clip-path",
+					"url": "HTTPS://developer.mozilla.org/docs/Web/CSS/clip-path",
 				},
 			],
 			"description":
@@ -2350,7 +2350,7 @@ export const cssData: CSSDataV1 = {
 			"references": [
 				{
 					"name": "MDN Reference",
-					"url": "https://developer.mozilla.org/docs/Web/CSS/clip-rule",
+					"url": "HTTPS://developer.mozilla.org/docs/Web/CSS/clip-rule",
 				},
 			],
 			"description":
@@ -2365,7 +2365,7 @@ export const cssData: CSSDataV1 = {
 			"references": [
 				{
 					"name": "MDN Reference",
-					"url": "https://developer.mozilla.org/docs/Web/CSS/color",
+					"url": "HTTPS://developer.mozilla.org/docs/Web/CSS/color",
 				},
 			],
 			"description": "Sets the color of an element's text",
@@ -2396,7 +2396,7 @@ export const cssData: CSSDataV1 = {
 			"references": [
 				{
 					"name": "MDN Reference",
-					"url": "https://developer.mozilla.org/docs/Web/CSS/color-interpolation-filters",
+					"url": "HTTPS://developer.mozilla.org/docs/Web/CSS/color-interpolation-filters",
 				},
 			],
 			"description":
@@ -2418,7 +2418,7 @@ export const cssData: CSSDataV1 = {
 			"references": [
 				{
 					"name": "MDN Reference",
-					"url": "https://developer.mozilla.org/docs/Web/CSS/column-count",
+					"url": "HTTPS://developer.mozilla.org/docs/Web/CSS/column-count",
 				},
 			],
 			"description":
@@ -2444,7 +2444,7 @@ export const cssData: CSSDataV1 = {
 			"references": [
 				{
 					"name": "MDN Reference",
-					"url": "https://developer.mozilla.org/docs/Web/CSS/column-fill",
+					"url": "HTTPS://developer.mozilla.org/docs/Web/CSS/column-fill",
 				},
 			],
 			"description":
@@ -2466,7 +2466,7 @@ export const cssData: CSSDataV1 = {
 			"references": [
 				{
 					"name": "MDN Reference",
-					"url": "https://developer.mozilla.org/docs/Web/CSS/column-gap",
+					"url": "HTTPS://developer.mozilla.org/docs/Web/CSS/column-gap",
 				},
 			],
 			"description":
@@ -2482,7 +2482,7 @@ export const cssData: CSSDataV1 = {
 			"references": [
 				{
 					"name": "MDN Reference",
-					"url": "https://developer.mozilla.org/docs/Web/CSS/column-rule",
+					"url": "HTTPS://developer.mozilla.org/docs/Web/CSS/column-rule",
 				},
 			],
 			"description":
@@ -2497,7 +2497,7 @@ export const cssData: CSSDataV1 = {
 			"references": [
 				{
 					"name": "MDN Reference",
-					"url": "https://developer.mozilla.org/docs/Web/CSS/column-rule-color",
+					"url": "HTTPS://developer.mozilla.org/docs/Web/CSS/column-rule-color",
 				},
 			],
 			"description": "Sets the color of the column rule",
@@ -2511,7 +2511,7 @@ export const cssData: CSSDataV1 = {
 			"references": [
 				{
 					"name": "MDN Reference",
-					"url": "https://developer.mozilla.org/docs/Web/CSS/column-rule-style",
+					"url": "HTTPS://developer.mozilla.org/docs/Web/CSS/column-rule-style",
 				},
 			],
 			"description":
@@ -2526,7 +2526,7 @@ export const cssData: CSSDataV1 = {
 			"references": [
 				{
 					"name": "MDN Reference",
-					"url": "https://developer.mozilla.org/docs/Web/CSS/column-rule-width",
+					"url": "HTTPS://developer.mozilla.org/docs/Web/CSS/column-rule-width",
 				},
 			],
 			"description":
@@ -2548,7 +2548,7 @@ export const cssData: CSSDataV1 = {
 			"references": [
 				{
 					"name": "MDN Reference",
-					"url": "https://developer.mozilla.org/docs/Web/CSS/columns",
+					"url": "HTTPS://developer.mozilla.org/docs/Web/CSS/columns",
 				},
 			],
 			"description":
@@ -2575,7 +2575,7 @@ export const cssData: CSSDataV1 = {
 			"references": [
 				{
 					"name": "MDN Reference",
-					"url": "https://developer.mozilla.org/docs/Web/CSS/column-span",
+					"url": "HTTPS://developer.mozilla.org/docs/Web/CSS/column-span",
 				},
 			],
 			"description":
@@ -2597,7 +2597,7 @@ export const cssData: CSSDataV1 = {
 			"references": [
 				{
 					"name": "MDN Reference",
-					"url": "https://developer.mozilla.org/docs/Web/CSS/column-width",
+					"url": "HTTPS://developer.mozilla.org/docs/Web/CSS/column-width",
 				},
 			],
 			"description":
@@ -2649,7 +2649,7 @@ export const cssData: CSSDataV1 = {
 			"references": [
 				{
 					"name": "MDN Reference",
-					"url": "https://developer.mozilla.org/docs/Web/CSS/contain",
+					"url": "HTTPS://developer.mozilla.org/docs/Web/CSS/contain",
 				},
 			],
 			"description":
@@ -2695,7 +2695,7 @@ export const cssData: CSSDataV1 = {
 			"references": [
 				{
 					"name": "MDN Reference",
-					"url": "https://developer.mozilla.org/docs/Web/CSS/content",
+					"url": "HTTPS://developer.mozilla.org/docs/Web/CSS/content",
 				},
 			],
 			"description":
@@ -2717,7 +2717,7 @@ export const cssData: CSSDataV1 = {
 			"references": [
 				{
 					"name": "MDN Reference",
-					"url": "https://developer.mozilla.org/docs/Web/CSS/counter-increment",
+					"url": "HTTPS://developer.mozilla.org/docs/Web/CSS/counter-increment",
 				},
 			],
 			"description": "Manipulate the value of existing counters.",
@@ -2738,7 +2738,7 @@ export const cssData: CSSDataV1 = {
 			"references": [
 				{
 					"name": "MDN Reference",
-					"url": "https://developer.mozilla.org/docs/Web/CSS/counter-reset",
+					"url": "HTTPS://developer.mozilla.org/docs/Web/CSS/counter-reset",
 				},
 			],
 			"description":
@@ -2976,7 +2976,7 @@ export const cssData: CSSDataV1 = {
 			"references": [
 				{
 					"name": "MDN Reference",
-					"url": "https://developer.mozilla.org/docs/Web/CSS/cursor",
+					"url": "HTTPS://developer.mozilla.org/docs/Web/CSS/cursor",
 				},
 			],
 			"description":
@@ -3001,7 +3001,7 @@ export const cssData: CSSDataV1 = {
 			"references": [
 				{
 					"name": "MDN Reference",
-					"url": "https://developer.mozilla.org/docs/Web/CSS/direction",
+					"url": "HTTPS://developer.mozilla.org/docs/Web/CSS/direction",
 				},
 			],
 			"description":
@@ -3238,7 +3238,7 @@ export const cssData: CSSDataV1 = {
 			"references": [
 				{
 					"name": "MDN Reference",
-					"url": "https://developer.mozilla.org/docs/Web/CSS/display",
+					"url": "HTTPS://developer.mozilla.org/docs/Web/CSS/display",
 				},
 			],
 			"description":
@@ -3269,7 +3269,7 @@ export const cssData: CSSDataV1 = {
 			"references": [
 				{
 					"name": "MDN Reference",
-					"url": "https://developer.mozilla.org/docs/Web/CSS/empty-cells",
+					"url": "HTTPS://developer.mozilla.org/docs/Web/CSS/empty-cells",
 				},
 			],
 			"description":
@@ -3325,7 +3325,7 @@ export const cssData: CSSDataV1 = {
 			"references": [
 				{
 					"name": "MDN Reference",
-					"url": "https://developer.mozilla.org/docs/Web/CSS/fill",
+					"url": "HTTPS://developer.mozilla.org/docs/Web/CSS/fill",
 				},
 			],
 			"description":
@@ -3340,7 +3340,7 @@ export const cssData: CSSDataV1 = {
 			"references": [
 				{
 					"name": "MDN Reference",
-					"url": "https://developer.mozilla.org/docs/Web/CSS/fill-opacity",
+					"url": "HTTPS://developer.mozilla.org/docs/Web/CSS/fill-opacity",
 				},
 			],
 			"description":
@@ -3367,7 +3367,7 @@ export const cssData: CSSDataV1 = {
 			"references": [
 				{
 					"name": "MDN Reference",
-					"url": "https://developer.mozilla.org/docs/Web/CSS/fill-rule",
+					"url": "HTTPS://developer.mozilla.org/docs/Web/CSS/fill-rule",
 				},
 			],
 			"description":
@@ -3438,7 +3438,7 @@ export const cssData: CSSDataV1 = {
 			"references": [
 				{
 					"name": "MDN Reference",
-					"url": "https://developer.mozilla.org/docs/Web/CSS/filter",
+					"url": "HTTPS://developer.mozilla.org/docs/Web/CSS/filter",
 				},
 			],
 			"description":
@@ -3471,7 +3471,7 @@ export const cssData: CSSDataV1 = {
 			"references": [
 				{
 					"name": "MDN Reference",
-					"url": "https://developer.mozilla.org/docs/Web/CSS/flex",
+					"url": "HTTPS://developer.mozilla.org/docs/Web/CSS/flex",
 				},
 			],
 			"description":
@@ -3499,7 +3499,7 @@ export const cssData: CSSDataV1 = {
 			"references": [
 				{
 					"name": "MDN Reference",
-					"url": "https://developer.mozilla.org/docs/Web/CSS/flex-basis",
+					"url": "HTTPS://developer.mozilla.org/docs/Web/CSS/flex-basis",
 				},
 			],
 			"description": "Sets the flex basis.",
@@ -3535,7 +3535,7 @@ export const cssData: CSSDataV1 = {
 			"references": [
 				{
 					"name": "MDN Reference",
-					"url": "https://developer.mozilla.org/docs/Web/CSS/flex-direction",
+					"url": "HTTPS://developer.mozilla.org/docs/Web/CSS/flex-direction",
 				},
 			],
 			"description":
@@ -3585,7 +3585,7 @@ export const cssData: CSSDataV1 = {
 			"references": [
 				{
 					"name": "MDN Reference",
-					"url": "https://developer.mozilla.org/docs/Web/CSS/flex-flow",
+					"url": "HTTPS://developer.mozilla.org/docs/Web/CSS/flex-flow",
 				},
 			],
 			"description":
@@ -3600,7 +3600,7 @@ export const cssData: CSSDataV1 = {
 			"references": [
 				{
 					"name": "MDN Reference",
-					"url": "https://developer.mozilla.org/docs/Web/CSS/flex-grow",
+					"url": "HTTPS://developer.mozilla.org/docs/Web/CSS/flex-grow",
 				},
 			],
 			"description":
@@ -3615,7 +3615,7 @@ export const cssData: CSSDataV1 = {
 			"references": [
 				{
 					"name": "MDN Reference",
-					"url": "https://developer.mozilla.org/docs/Web/CSS/flex-shrink",
+					"url": "HTTPS://developer.mozilla.org/docs/Web/CSS/flex-shrink",
 				},
 			],
 			"description":
@@ -3645,7 +3645,7 @@ export const cssData: CSSDataV1 = {
 			"references": [
 				{
 					"name": "MDN Reference",
-					"url": "https://developer.mozilla.org/docs/Web/CSS/flex-wrap",
+					"url": "HTTPS://developer.mozilla.org/docs/Web/CSS/flex-wrap",
 				},
 			],
 			"description":
@@ -3688,7 +3688,7 @@ export const cssData: CSSDataV1 = {
 			"references": [
 				{
 					"name": "MDN Reference",
-					"url": "https://developer.mozilla.org/docs/Web/CSS/float",
+					"url": "HTTPS://developer.mozilla.org/docs/Web/CSS/float",
 				},
 			],
 			"description":
@@ -3844,7 +3844,7 @@ export const cssData: CSSDataV1 = {
 			"references": [
 				{
 					"name": "MDN Reference",
-					"url": "https://developer.mozilla.org/docs/Web/CSS/font",
+					"url": "HTTPS://developer.mozilla.org/docs/Web/CSS/font",
 				},
 			],
 			"description":
@@ -3916,7 +3916,7 @@ export const cssData: CSSDataV1 = {
 			"references": [
 				{
 					"name": "MDN Reference",
-					"url": "https://developer.mozilla.org/docs/Web/CSS/font-family",
+					"url": "HTTPS://developer.mozilla.org/docs/Web/CSS/font-family",
 				},
 			],
 			"description":
@@ -4474,7 +4474,7 @@ export const cssData: CSSDataV1 = {
 			"references": [
 				{
 					"name": "MDN Reference",
-					"url": "https://developer.mozilla.org/docs/Web/CSS/font-feature-settings",
+					"url": "HTTPS://developer.mozilla.org/docs/Web/CSS/font-feature-settings",
 				},
 			],
 			"description":
@@ -4504,7 +4504,7 @@ export const cssData: CSSDataV1 = {
 			"references": [
 				{
 					"name": "MDN Reference",
-					"url": "https://developer.mozilla.org/docs/Web/CSS/font-kerning",
+					"url": "HTTPS://developer.mozilla.org/docs/Web/CSS/font-kerning",
 				},
 			],
 			"description":
@@ -4526,7 +4526,7 @@ export const cssData: CSSDataV1 = {
 			"references": [
 				{
 					"name": "MDN Reference",
-					"url": "https://developer.mozilla.org/docs/Web/CSS/font-language-override",
+					"url": "HTTPS://developer.mozilla.org/docs/Web/CSS/font-language-override",
 				},
 			],
 			"description":
@@ -4570,7 +4570,7 @@ export const cssData: CSSDataV1 = {
 			"references": [
 				{
 					"name": "MDN Reference",
-					"url": "https://developer.mozilla.org/docs/Web/CSS/font-size",
+					"url": "HTTPS://developer.mozilla.org/docs/Web/CSS/font-size",
 				},
 			],
 			"description":
@@ -4592,7 +4592,7 @@ export const cssData: CSSDataV1 = {
 			"references": [
 				{
 					"name": "MDN Reference",
-					"url": "https://developer.mozilla.org/docs/Web/CSS/font-size-adjust",
+					"url": "HTTPS://developer.mozilla.org/docs/Web/CSS/font-size-adjust",
 				},
 			],
 			"description":
@@ -4649,7 +4649,7 @@ export const cssData: CSSDataV1 = {
 			"references": [
 				{
 					"name": "MDN Reference",
-					"url": "https://developer.mozilla.org/docs/Web/CSS/font-stretch",
+					"url": "HTTPS://developer.mozilla.org/docs/Web/CSS/font-stretch",
 				},
 			],
 			"description":
@@ -4682,7 +4682,7 @@ export const cssData: CSSDataV1 = {
 			"references": [
 				{
 					"name": "MDN Reference",
-					"url": "https://developer.mozilla.org/docs/Web/CSS/font-style",
+					"url": "HTTPS://developer.mozilla.org/docs/Web/CSS/font-style",
 				},
 			],
 			"description":
@@ -4711,7 +4711,7 @@ export const cssData: CSSDataV1 = {
 			"references": [
 				{
 					"name": "MDN Reference",
-					"url": "https://developer.mozilla.org/docs/Web/CSS/font-synthesis",
+					"url": "HTTPS://developer.mozilla.org/docs/Web/CSS/font-synthesis",
 				},
 			],
 			"description":
@@ -4739,7 +4739,7 @@ export const cssData: CSSDataV1 = {
 			"references": [
 				{
 					"name": "MDN Reference",
-					"url": "https://developer.mozilla.org/docs/Web/CSS/font-variant",
+					"url": "HTTPS://developer.mozilla.org/docs/Web/CSS/font-variant",
 				},
 			],
 			"description": "Specifies variant representations of the font",
@@ -4791,7 +4791,7 @@ export const cssData: CSSDataV1 = {
 			"references": [
 				{
 					"name": "MDN Reference",
-					"url": "https://developer.mozilla.org/docs/Web/CSS/font-variant-alternates",
+					"url": "HTTPS://developer.mozilla.org/docs/Web/CSS/font-variant-alternates",
 				},
 			],
 			"description":
@@ -4841,7 +4841,7 @@ export const cssData: CSSDataV1 = {
 			"references": [
 				{
 					"name": "MDN Reference",
-					"url": "https://developer.mozilla.org/docs/Web/CSS/font-variant-caps",
+					"url": "HTTPS://developer.mozilla.org/docs/Web/CSS/font-variant-caps",
 				},
 			],
 			"description": "Specifies control over capitalized forms.",
@@ -4899,7 +4899,7 @@ export const cssData: CSSDataV1 = {
 			"references": [
 				{
 					"name": "MDN Reference",
-					"url": "https://developer.mozilla.org/docs/Web/CSS/font-variant-east-asian",
+					"url": "HTTPS://developer.mozilla.org/docs/Web/CSS/font-variant-east-asian",
 				},
 			],
 			"description":
@@ -4971,7 +4971,7 @@ export const cssData: CSSDataV1 = {
 			"references": [
 				{
 					"name": "MDN Reference",
-					"url": "https://developer.mozilla.org/docs/Web/CSS/font-variant-ligatures",
+					"url": "HTTPS://developer.mozilla.org/docs/Web/CSS/font-variant-ligatures",
 				},
 			],
 			"description":
@@ -5028,7 +5028,7 @@ export const cssData: CSSDataV1 = {
 			"references": [
 				{
 					"name": "MDN Reference",
-					"url": "https://developer.mozilla.org/docs/Web/CSS/font-variant-numeric",
+					"url": "HTTPS://developer.mozilla.org/docs/Web/CSS/font-variant-numeric",
 				},
 			],
 			"description": "Specifies control over numerical forms.",
@@ -5058,7 +5058,7 @@ export const cssData: CSSDataV1 = {
 			"references": [
 				{
 					"name": "MDN Reference",
-					"url": "https://developer.mozilla.org/docs/Web/CSS/font-variant-position",
+					"url": "HTTPS://developer.mozilla.org/docs/Web/CSS/font-variant-position",
 				},
 			],
 			"description": "Specifies the vertical position",
@@ -5129,7 +5129,7 @@ export const cssData: CSSDataV1 = {
 			"references": [
 				{
 					"name": "MDN Reference",
-					"url": "https://developer.mozilla.org/docs/Web/CSS/font-weight",
+					"url": "HTTPS://developer.mozilla.org/docs/Web/CSS/font-weight",
 				},
 			],
 			"description":
@@ -5178,7 +5178,7 @@ export const cssData: CSSDataV1 = {
 			"references": [
 				{
 					"name": "MDN Reference",
-					"url": "https://developer.mozilla.org/docs/Web/CSS/grid-area",
+					"url": "HTTPS://developer.mozilla.org/docs/Web/CSS/grid-area",
 				},
 			],
 			"description":
@@ -5194,7 +5194,7 @@ export const cssData: CSSDataV1 = {
 			"references": [
 				{
 					"name": "MDN Reference",
-					"url": "https://developer.mozilla.org/docs/Web/CSS/grid",
+					"url": "HTTPS://developer.mozilla.org/docs/Web/CSS/grid",
 				},
 			],
 			"description":
@@ -5237,7 +5237,7 @@ export const cssData: CSSDataV1 = {
 			"references": [
 				{
 					"name": "MDN Reference",
-					"url": "https://developer.mozilla.org/docs/Web/CSS/grid-auto-columns",
+					"url": "HTTPS://developer.mozilla.org/docs/Web/CSS/grid-auto-columns",
 				},
 			],
 			"description": "Specifies the size of implicitly created columns.",
@@ -5268,7 +5268,7 @@ export const cssData: CSSDataV1 = {
 			"references": [
 				{
 					"name": "MDN Reference",
-					"url": "https://developer.mozilla.org/docs/Web/CSS/grid-auto-flow",
+					"url": "HTTPS://developer.mozilla.org/docs/Web/CSS/grid-auto-flow",
 				},
 			],
 			"description":
@@ -5305,7 +5305,7 @@ export const cssData: CSSDataV1 = {
 			"references": [
 				{
 					"name": "MDN Reference",
-					"url": "https://developer.mozilla.org/docs/Web/CSS/grid-auto-rows",
+					"url": "HTTPS://developer.mozilla.org/docs/Web/CSS/grid-auto-rows",
 				},
 			],
 			"description": "Specifies the size of implicitly created rows.",
@@ -5331,7 +5331,7 @@ export const cssData: CSSDataV1 = {
 			"references": [
 				{
 					"name": "MDN Reference",
-					"url": "https://developer.mozilla.org/docs/Web/CSS/grid-column",
+					"url": "HTTPS://developer.mozilla.org/docs/Web/CSS/grid-column",
 				},
 			],
 			"description":
@@ -5358,7 +5358,7 @@ export const cssData: CSSDataV1 = {
 			"references": [
 				{
 					"name": "MDN Reference",
-					"url": "https://developer.mozilla.org/docs/Web/CSS/grid-column-end",
+					"url": "HTTPS://developer.mozilla.org/docs/Web/CSS/grid-column-end",
 				},
 			],
 			"description":
@@ -5395,7 +5395,7 @@ export const cssData: CSSDataV1 = {
 			"references": [
 				{
 					"name": "MDN Reference",
-					"url": "https://developer.mozilla.org/docs/Web/CSS/grid-column-start",
+					"url": "HTTPS://developer.mozilla.org/docs/Web/CSS/grid-column-start",
 				},
 			],
 			"description":
@@ -5432,7 +5432,7 @@ export const cssData: CSSDataV1 = {
 			"references": [
 				{
 					"name": "MDN Reference",
-					"url": "https://developer.mozilla.org/docs/Web/CSS/grid-row",
+					"url": "HTTPS://developer.mozilla.org/docs/Web/CSS/grid-row",
 				},
 			],
 			"description": "Shorthand for 'grid-row-start' and 'grid-row-end'.",
@@ -5458,7 +5458,7 @@ export const cssData: CSSDataV1 = {
 			"references": [
 				{
 					"name": "MDN Reference",
-					"url": "https://developer.mozilla.org/docs/Web/CSS/grid-row-end",
+					"url": "HTTPS://developer.mozilla.org/docs/Web/CSS/grid-row-end",
 				},
 			],
 			"description":
@@ -5495,7 +5495,7 @@ export const cssData: CSSDataV1 = {
 			"references": [
 				{
 					"name": "MDN Reference",
-					"url": "https://developer.mozilla.org/docs/Web/CSS/grid-row-start",
+					"url": "HTTPS://developer.mozilla.org/docs/Web/CSS/grid-row-start",
 				},
 			],
 			"description":
@@ -5548,7 +5548,7 @@ export const cssData: CSSDataV1 = {
 			"references": [
 				{
 					"name": "MDN Reference",
-					"url": "https://developer.mozilla.org/docs/Web/CSS/grid-template",
+					"url": "HTTPS://developer.mozilla.org/docs/Web/CSS/grid-template",
 				},
 			],
 			"description":
@@ -5576,7 +5576,7 @@ export const cssData: CSSDataV1 = {
 			"references": [
 				{
 					"name": "MDN Reference",
-					"url": "https://developer.mozilla.org/docs/Web/CSS/grid-template-areas",
+					"url": "HTTPS://developer.mozilla.org/docs/Web/CSS/grid-template-areas",
 				},
 			],
 			"description":
@@ -5629,7 +5629,7 @@ export const cssData: CSSDataV1 = {
 			"references": [
 				{
 					"name": "MDN Reference",
-					"url": "https://developer.mozilla.org/docs/Web/CSS/grid-template-columns",
+					"url": "HTTPS://developer.mozilla.org/docs/Web/CSS/grid-template-columns",
 				},
 			],
 			"description":
@@ -5682,7 +5682,7 @@ export const cssData: CSSDataV1 = {
 			"references": [
 				{
 					"name": "MDN Reference",
-					"url": "https://developer.mozilla.org/docs/Web/CSS/grid-template-rows",
+					"url": "HTTPS://developer.mozilla.org/docs/Web/CSS/grid-template-rows",
 				},
 			],
 			"description":
@@ -5729,7 +5729,7 @@ export const cssData: CSSDataV1 = {
 			"references": [
 				{
 					"name": "MDN Reference",
-					"url": "https://developer.mozilla.org/docs/Web/CSS/height",
+					"url": "HTTPS://developer.mozilla.org/docs/Web/CSS/height",
 				},
 			],
 			"description":
@@ -5761,7 +5761,7 @@ export const cssData: CSSDataV1 = {
 			"references": [
 				{
 					"name": "MDN Reference",
-					"url": "https://developer.mozilla.org/docs/Web/CSS/hyphens",
+					"url": "HTTPS://developer.mozilla.org/docs/Web/CSS/hyphens",
 				},
 			],
 			"description":
@@ -5788,7 +5788,7 @@ export const cssData: CSSDataV1 = {
 			"references": [
 				{
 					"name": "MDN Reference",
-					"url": "https://developer.mozilla.org/docs/Web/CSS/image-orientation",
+					"url": "HTTPS://developer.mozilla.org/docs/Web/CSS/image-orientation",
 				},
 			],
 			"description":
@@ -5832,7 +5832,7 @@ export const cssData: CSSDataV1 = {
 			"references": [
 				{
 					"name": "MDN Reference",
-					"url": "https://developer.mozilla.org/docs/Web/CSS/image-rendering",
+					"url": "HTTPS://developer.mozilla.org/docs/Web/CSS/image-rendering",
 				},
 			],
 			"description":
@@ -5890,7 +5890,7 @@ export const cssData: CSSDataV1 = {
 			"references": [
 				{
 					"name": "MDN Reference",
-					"url": "https://developer.mozilla.org/docs/Web/CSS/inline-size",
+					"url": "HTTPS://developer.mozilla.org/docs/Web/CSS/inline-size",
 				},
 			],
 			"description":
@@ -5917,7 +5917,7 @@ export const cssData: CSSDataV1 = {
 			"references": [
 				{
 					"name": "MDN Reference",
-					"url": "https://developer.mozilla.org/docs/Web/CSS/isolation",
+					"url": "HTTPS://developer.mozilla.org/docs/Web/CSS/isolation",
 				},
 			],
 			"description":
@@ -6015,7 +6015,7 @@ export const cssData: CSSDataV1 = {
 			"references": [
 				{
 					"name": "MDN Reference",
-					"url": "https://developer.mozilla.org/docs/Web/CSS/justify-content",
+					"url": "HTTPS://developer.mozilla.org/docs/Web/CSS/justify-content",
 				},
 			],
 			"description":
@@ -6051,7 +6051,7 @@ export const cssData: CSSDataV1 = {
 			"references": [
 				{
 					"name": "MDN Reference",
-					"url": "https://developer.mozilla.org/docs/Web/CSS/left",
+					"url": "HTTPS://developer.mozilla.org/docs/Web/CSS/left",
 				},
 			],
 			"description":
@@ -6073,7 +6073,7 @@ export const cssData: CSSDataV1 = {
 			"references": [
 				{
 					"name": "MDN Reference",
-					"url": "https://developer.mozilla.org/docs/Web/CSS/letter-spacing",
+					"url": "HTTPS://developer.mozilla.org/docs/Web/CSS/letter-spacing",
 				},
 			],
 			"description":
@@ -6123,7 +6123,7 @@ export const cssData: CSSDataV1 = {
 			"references": [
 				{
 					"name": "MDN Reference",
-					"url": "https://developer.mozilla.org/docs/Web/CSS/line-break",
+					"url": "HTTPS://developer.mozilla.org/docs/Web/CSS/line-break",
 				},
 			],
 			"description":
@@ -6145,7 +6145,7 @@ export const cssData: CSSDataV1 = {
 			"references": [
 				{
 					"name": "MDN Reference",
-					"url": "https://developer.mozilla.org/docs/Web/CSS/line-height",
+					"url": "HTTPS://developer.mozilla.org/docs/Web/CSS/line-height",
 				},
 			],
 			"description":
@@ -6230,7 +6230,7 @@ export const cssData: CSSDataV1 = {
 			"references": [
 				{
 					"name": "MDN Reference",
-					"url": "https://developer.mozilla.org/docs/Web/CSS/list-style",
+					"url": "HTTPS://developer.mozilla.org/docs/Web/CSS/list-style",
 				},
 			],
 			"description":
@@ -6252,7 +6252,7 @@ export const cssData: CSSDataV1 = {
 			"references": [
 				{
 					"name": "MDN Reference",
-					"url": "https://developer.mozilla.org/docs/Web/CSS/list-style-image",
+					"url": "HTTPS://developer.mozilla.org/docs/Web/CSS/list-style-image",
 				},
 			],
 			"description":
@@ -6279,7 +6279,7 @@ export const cssData: CSSDataV1 = {
 			"references": [
 				{
 					"name": "MDN Reference",
-					"url": "https://developer.mozilla.org/docs/Web/CSS/list-style-position",
+					"url": "HTTPS://developer.mozilla.org/docs/Web/CSS/list-style-position",
 				},
 			],
 			"description":
@@ -6362,7 +6362,7 @@ export const cssData: CSSDataV1 = {
 			"references": [
 				{
 					"name": "MDN Reference",
-					"url": "https://developer.mozilla.org/docs/Web/CSS/list-style-type",
+					"url": "HTTPS://developer.mozilla.org/docs/Web/CSS/list-style-type",
 				},
 			],
 			"description":
@@ -6382,7 +6382,7 @@ export const cssData: CSSDataV1 = {
 			"references": [
 				{
 					"name": "MDN Reference",
-					"url": "https://developer.mozilla.org/docs/Web/CSS/margin",
+					"url": "HTTPS://developer.mozilla.org/docs/Web/CSS/margin",
 				},
 			],
 			"description":
@@ -6402,7 +6402,7 @@ export const cssData: CSSDataV1 = {
 			"references": [
 				{
 					"name": "MDN Reference",
-					"url": "https://developer.mozilla.org/docs/Web/CSS/margin-block-end",
+					"url": "HTTPS://developer.mozilla.org/docs/Web/CSS/margin-block-end",
 				},
 			],
 			"description":
@@ -6422,7 +6422,7 @@ export const cssData: CSSDataV1 = {
 			"references": [
 				{
 					"name": "MDN Reference",
-					"url": "https://developer.mozilla.org/docs/Web/CSS/margin-block-start",
+					"url": "HTTPS://developer.mozilla.org/docs/Web/CSS/margin-block-start",
 				},
 			],
 			"description":
@@ -6442,7 +6442,7 @@ export const cssData: CSSDataV1 = {
 			"references": [
 				{
 					"name": "MDN Reference",
-					"url": "https://developer.mozilla.org/docs/Web/CSS/margin-bottom",
+					"url": "HTTPS://developer.mozilla.org/docs/Web/CSS/margin-bottom",
 				},
 			],
 			"description":
@@ -6462,7 +6462,7 @@ export const cssData: CSSDataV1 = {
 			"references": [
 				{
 					"name": "MDN Reference",
-					"url": "https://developer.mozilla.org/docs/Web/CSS/margin-inline-end",
+					"url": "HTTPS://developer.mozilla.org/docs/Web/CSS/margin-inline-end",
 				},
 			],
 			"description":
@@ -6482,7 +6482,7 @@ export const cssData: CSSDataV1 = {
 			"references": [
 				{
 					"name": "MDN Reference",
-					"url": "https://developer.mozilla.org/docs/Web/CSS/margin-inline-start",
+					"url": "HTTPS://developer.mozilla.org/docs/Web/CSS/margin-inline-start",
 				},
 			],
 			"description":
@@ -6502,7 +6502,7 @@ export const cssData: CSSDataV1 = {
 			"references": [
 				{
 					"name": "MDN Reference",
-					"url": "https://developer.mozilla.org/docs/Web/CSS/margin-left",
+					"url": "HTTPS://developer.mozilla.org/docs/Web/CSS/margin-left",
 				},
 			],
 			"description":
@@ -6522,7 +6522,7 @@ export const cssData: CSSDataV1 = {
 			"references": [
 				{
 					"name": "MDN Reference",
-					"url": "https://developer.mozilla.org/docs/Web/CSS/margin-right",
+					"url": "HTTPS://developer.mozilla.org/docs/Web/CSS/margin-right",
 				},
 			],
 			"description":
@@ -6542,7 +6542,7 @@ export const cssData: CSSDataV1 = {
 			"references": [
 				{
 					"name": "MDN Reference",
-					"url": "https://developer.mozilla.org/docs/Web/CSS/margin-top",
+					"url": "HTTPS://developer.mozilla.org/docs/Web/CSS/margin-top",
 				},
 			],
 			"description":
@@ -6569,7 +6569,7 @@ export const cssData: CSSDataV1 = {
 			"references": [
 				{
 					"name": "MDN Reference",
-					"url": "https://developer.mozilla.org/docs/Web/CSS/marker",
+					"url": "HTTPS://developer.mozilla.org/docs/Web/CSS/marker",
 				},
 			],
 			"description":
@@ -6596,7 +6596,7 @@ export const cssData: CSSDataV1 = {
 			"references": [
 				{
 					"name": "MDN Reference",
-					"url": "https://developer.mozilla.org/docs/Web/CSS/marker-end",
+					"url": "HTTPS://developer.mozilla.org/docs/Web/CSS/marker-end",
 				},
 			],
 			"description":
@@ -6623,7 +6623,7 @@ export const cssData: CSSDataV1 = {
 			"references": [
 				{
 					"name": "MDN Reference",
-					"url": "https://developer.mozilla.org/docs/Web/CSS/marker-mid",
+					"url": "HTTPS://developer.mozilla.org/docs/Web/CSS/marker-mid",
 				},
 			],
 			"description":
@@ -6650,7 +6650,7 @@ export const cssData: CSSDataV1 = {
 			"references": [
 				{
 					"name": "MDN Reference",
-					"url": "https://developer.mozilla.org/docs/Web/CSS/marker-start",
+					"url": "HTTPS://developer.mozilla.org/docs/Web/CSS/marker-start",
 				},
 			],
 			"description":
@@ -6676,7 +6676,7 @@ export const cssData: CSSDataV1 = {
 			"references": [
 				{
 					"name": "MDN Reference",
-					"url": "https://developer.mozilla.org/docs/Web/CSS/mask-image",
+					"url": "HTTPS://developer.mozilla.org/docs/Web/CSS/mask-image",
 				},
 			],
 			"description": "Sets the mask layer image of an element.",
@@ -6707,7 +6707,7 @@ export const cssData: CSSDataV1 = {
 			"references": [
 				{
 					"name": "MDN Reference",
-					"url": "https://developer.mozilla.org/docs/Web/CSS/mask-mode",
+					"url": "HTTPS://developer.mozilla.org/docs/Web/CSS/mask-mode",
 				},
 			],
 			"description":
@@ -6722,7 +6722,7 @@ export const cssData: CSSDataV1 = {
 			"references": [
 				{
 					"name": "MDN Reference",
-					"url": "https://developer.mozilla.org/docs/Web/CSS/mask-origin",
+					"url": "HTTPS://developer.mozilla.org/docs/Web/CSS/mask-origin",
 				},
 			],
 			"description": "Specifies the mask positioning area.",
@@ -6736,7 +6736,7 @@ export const cssData: CSSDataV1 = {
 			"references": [
 				{
 					"name": "MDN Reference",
-					"url": "https://developer.mozilla.org/docs/Web/CSS/mask-position",
+					"url": "HTTPS://developer.mozilla.org/docs/Web/CSS/mask-position",
 				},
 			],
 			"description": "Specifies how mask layer images are positioned.",
@@ -6750,7 +6750,7 @@ export const cssData: CSSDataV1 = {
 			"references": [
 				{
 					"name": "MDN Reference",
-					"url": "https://developer.mozilla.org/docs/Web/CSS/mask-repeat",
+					"url": "HTTPS://developer.mozilla.org/docs/Web/CSS/mask-repeat",
 				},
 			],
 			"description":
@@ -6782,7 +6782,7 @@ export const cssData: CSSDataV1 = {
 			"references": [
 				{
 					"name": "MDN Reference",
-					"url": "https://developer.mozilla.org/docs/Web/CSS/mask-size",
+					"url": "HTTPS://developer.mozilla.org/docs/Web/CSS/mask-size",
 				},
 			],
 			"description": "Specifies the size of the mask layer images.",
@@ -6808,7 +6808,7 @@ export const cssData: CSSDataV1 = {
 			"references": [
 				{
 					"name": "MDN Reference",
-					"url": "https://developer.mozilla.org/docs/Web/CSS/mask-type",
+					"url": "HTTPS://developer.mozilla.org/docs/Web/CSS/mask-type",
 				},
 			],
 			"description":
@@ -6829,7 +6829,7 @@ export const cssData: CSSDataV1 = {
 			"references": [
 				{
 					"name": "MDN Reference",
-					"url": "https://developer.mozilla.org/docs/Web/CSS/max-block-size",
+					"url": "HTTPS://developer.mozilla.org/docs/Web/CSS/max-block-size",
 				},
 			],
 			"description":
@@ -6869,7 +6869,7 @@ export const cssData: CSSDataV1 = {
 			"references": [
 				{
 					"name": "MDN Reference",
-					"url": "https://developer.mozilla.org/docs/Web/CSS/max-height",
+					"url": "HTTPS://developer.mozilla.org/docs/Web/CSS/max-height",
 				},
 			],
 			"description":
@@ -6890,7 +6890,7 @@ export const cssData: CSSDataV1 = {
 			"references": [
 				{
 					"name": "MDN Reference",
-					"url": "https://developer.mozilla.org/docs/Web/CSS/max-inline-size",
+					"url": "HTTPS://developer.mozilla.org/docs/Web/CSS/max-inline-size",
 				},
 			],
 			"description":
@@ -6930,7 +6930,7 @@ export const cssData: CSSDataV1 = {
 			"references": [
 				{
 					"name": "MDN Reference",
-					"url": "https://developer.mozilla.org/docs/Web/CSS/max-width",
+					"url": "HTTPS://developer.mozilla.org/docs/Web/CSS/max-width",
 				},
 			],
 			"description":
@@ -6945,7 +6945,7 @@ export const cssData: CSSDataV1 = {
 			"references": [
 				{
 					"name": "MDN Reference",
-					"url": "https://developer.mozilla.org/docs/Web/CSS/min-block-size",
+					"url": "HTTPS://developer.mozilla.org/docs/Web/CSS/min-block-size",
 				},
 			],
 			"description":
@@ -6985,7 +6985,7 @@ export const cssData: CSSDataV1 = {
 			"references": [
 				{
 					"name": "MDN Reference",
-					"url": "https://developer.mozilla.org/docs/Web/CSS/min-height",
+					"url": "HTTPS://developer.mozilla.org/docs/Web/CSS/min-height",
 				},
 			],
 			"description":
@@ -7000,7 +7000,7 @@ export const cssData: CSSDataV1 = {
 			"references": [
 				{
 					"name": "MDN Reference",
-					"url": "https://developer.mozilla.org/docs/Web/CSS/min-inline-size",
+					"url": "HTTPS://developer.mozilla.org/docs/Web/CSS/min-inline-size",
 				},
 			],
 			"description":
@@ -7040,7 +7040,7 @@ export const cssData: CSSDataV1 = {
 			"references": [
 				{
 					"name": "MDN Reference",
-					"url": "https://developer.mozilla.org/docs/Web/CSS/min-width",
+					"url": "HTTPS://developer.mozilla.org/docs/Web/CSS/min-width",
 				},
 			],
 			"description":
@@ -7141,7 +7141,7 @@ export const cssData: CSSDataV1 = {
 			"references": [
 				{
 					"name": "MDN Reference",
-					"url": "https://developer.mozilla.org/docs/Web/CSS/mix-blend-mode",
+					"url": "HTTPS://developer.mozilla.org/docs/Web/CSS/mix-blend-mode",
 				},
 			],
 			"description":
@@ -8420,7 +8420,7 @@ export const cssData: CSSDataV1 = {
 			"references": [
 				{
 					"name": "MDN Reference",
-					"url": "https://developer.mozilla.org/docs/Web/CSS/-moz-user-focus",
+					"url": "HTTPS://developer.mozilla.org/docs/Web/CSS/-moz-user-focus",
 				},
 			],
 			"description":
@@ -10797,7 +10797,7 @@ export const cssData: CSSDataV1 = {
 			"references": [
 				{
 					"name": "MDN Reference",
-					"url": "https://developer.mozilla.org/docs/Web/CSS/object-fit",
+					"url": "HTTPS://developer.mozilla.org/docs/Web/CSS/object-fit",
 				},
 			],
 			"description":
@@ -10812,7 +10812,7 @@ export const cssData: CSSDataV1 = {
 			"references": [
 				{
 					"name": "MDN Reference",
-					"url": "https://developer.mozilla.org/docs/Web/CSS/object-position",
+					"url": "HTTPS://developer.mozilla.org/docs/Web/CSS/object-position",
 				},
 			],
 			"description":
@@ -10912,7 +10912,7 @@ export const cssData: CSSDataV1 = {
 			"references": [
 				{
 					"name": "MDN Reference",
-					"url": "https://developer.mozilla.org/docs/Web/CSS/opacity",
+					"url": "HTTPS://developer.mozilla.org/docs/Web/CSS/opacity",
 				},
 			],
 			"description":
@@ -10927,7 +10927,7 @@ export const cssData: CSSDataV1 = {
 			"references": [
 				{
 					"name": "MDN Reference",
-					"url": "https://developer.mozilla.org/docs/Web/CSS/order",
+					"url": "HTTPS://developer.mozilla.org/docs/Web/CSS/order",
 				},
 			],
 			"description":
@@ -10942,7 +10942,7 @@ export const cssData: CSSDataV1 = {
 			"references": [
 				{
 					"name": "MDN Reference",
-					"url": "https://developer.mozilla.org/docs/Web/CSS/orphans",
+					"url": "HTTPS://developer.mozilla.org/docs/Web/CSS/orphans",
 				},
 			],
 			"description":
@@ -11250,7 +11250,7 @@ export const cssData: CSSDataV1 = {
 			"references": [
 				{
 					"name": "MDN Reference",
-					"url": "https://developer.mozilla.org/docs/Web/CSS/outline",
+					"url": "HTTPS://developer.mozilla.org/docs/Web/CSS/outline",
 				},
 			],
 			"description":
@@ -11279,7 +11279,7 @@ export const cssData: CSSDataV1 = {
 			"references": [
 				{
 					"name": "MDN Reference",
-					"url": "https://developer.mozilla.org/docs/Web/CSS/outline-color",
+					"url": "HTTPS://developer.mozilla.org/docs/Web/CSS/outline-color",
 				},
 			],
 			"description": "The color of the outline.",
@@ -11293,7 +11293,7 @@ export const cssData: CSSDataV1 = {
 			"references": [
 				{
 					"name": "MDN Reference",
-					"url": "https://developer.mozilla.org/docs/Web/CSS/outline-offset",
+					"url": "HTTPS://developer.mozilla.org/docs/Web/CSS/outline-offset",
 				},
 			],
 			"description":
@@ -11315,7 +11315,7 @@ export const cssData: CSSDataV1 = {
 			"references": [
 				{
 					"name": "MDN Reference",
-					"url": "https://developer.mozilla.org/docs/Web/CSS/outline-style",
+					"url": "HTTPS://developer.mozilla.org/docs/Web/CSS/outline-style",
 				},
 			],
 			"description": "Style of the outline.",
@@ -11329,7 +11329,7 @@ export const cssData: CSSDataV1 = {
 			"references": [
 				{
 					"name": "MDN Reference",
-					"url": "https://developer.mozilla.org/docs/Web/CSS/outline-width",
+					"url": "HTTPS://developer.mozilla.org/docs/Web/CSS/outline-width",
 				},
 			],
 			"description": "Width of the outline.",
@@ -11371,7 +11371,7 @@ export const cssData: CSSDataV1 = {
 			"references": [
 				{
 					"name": "MDN Reference",
-					"url": "https://developer.mozilla.org/docs/Web/CSS/overflow",
+					"url": "HTTPS://developer.mozilla.org/docs/Web/CSS/overflow",
 				},
 			],
 			"description":
@@ -11403,7 +11403,7 @@ export const cssData: CSSDataV1 = {
 			"references": [
 				{
 					"name": "MDN Reference",
-					"url": "https://developer.mozilla.org/docs/Web/CSS/overflow-wrap",
+					"url": "HTTPS://developer.mozilla.org/docs/Web/CSS/overflow-wrap",
 				},
 			],
 			"description":
@@ -11440,7 +11440,7 @@ export const cssData: CSSDataV1 = {
 			"references": [
 				{
 					"name": "MDN Reference",
-					"url": "https://developer.mozilla.org/docs/Web/CSS/overflow-x",
+					"url": "HTTPS://developer.mozilla.org/docs/Web/CSS/overflow-x",
 				},
 			],
 			"description":
@@ -11477,7 +11477,7 @@ export const cssData: CSSDataV1 = {
 			"references": [
 				{
 					"name": "MDN Reference",
-					"url": "https://developer.mozilla.org/docs/Web/CSS/overflow-y",
+					"url": "HTTPS://developer.mozilla.org/docs/Web/CSS/overflow-y",
 				},
 			],
 			"description":
@@ -11503,7 +11503,7 @@ export const cssData: CSSDataV1 = {
 			"references": [
 				{
 					"name": "MDN Reference",
-					"url": "https://developer.mozilla.org/docs/Web/CSS/padding",
+					"url": "HTTPS://developer.mozilla.org/docs/Web/CSS/padding",
 				},
 			],
 			"description":
@@ -11518,7 +11518,7 @@ export const cssData: CSSDataV1 = {
 			"references": [
 				{
 					"name": "MDN Reference",
-					"url": "https://developer.mozilla.org/docs/Web/CSS/padding-bottom",
+					"url": "HTTPS://developer.mozilla.org/docs/Web/CSS/padding-bottom",
 				},
 			],
 			"description":
@@ -11533,7 +11533,7 @@ export const cssData: CSSDataV1 = {
 			"references": [
 				{
 					"name": "MDN Reference",
-					"url": "https://developer.mozilla.org/docs/Web/CSS/padding-block-end",
+					"url": "HTTPS://developer.mozilla.org/docs/Web/CSS/padding-block-end",
 				},
 			],
 			"description":
@@ -11548,7 +11548,7 @@ export const cssData: CSSDataV1 = {
 			"references": [
 				{
 					"name": "MDN Reference",
-					"url": "https://developer.mozilla.org/docs/Web/CSS/padding-block-start",
+					"url": "HTTPS://developer.mozilla.org/docs/Web/CSS/padding-block-start",
 				},
 			],
 			"description":
@@ -11563,7 +11563,7 @@ export const cssData: CSSDataV1 = {
 			"references": [
 				{
 					"name": "MDN Reference",
-					"url": "https://developer.mozilla.org/docs/Web/CSS/padding-inline-end",
+					"url": "HTTPS://developer.mozilla.org/docs/Web/CSS/padding-inline-end",
 				},
 			],
 			"description":
@@ -11578,7 +11578,7 @@ export const cssData: CSSDataV1 = {
 			"references": [
 				{
 					"name": "MDN Reference",
-					"url": "https://developer.mozilla.org/docs/Web/CSS/padding-inline-start",
+					"url": "HTTPS://developer.mozilla.org/docs/Web/CSS/padding-inline-start",
 				},
 			],
 			"description":
@@ -11593,7 +11593,7 @@ export const cssData: CSSDataV1 = {
 			"references": [
 				{
 					"name": "MDN Reference",
-					"url": "https://developer.mozilla.org/docs/Web/CSS/padding-left",
+					"url": "HTTPS://developer.mozilla.org/docs/Web/CSS/padding-left",
 				},
 			],
 			"description":
@@ -11608,7 +11608,7 @@ export const cssData: CSSDataV1 = {
 			"references": [
 				{
 					"name": "MDN Reference",
-					"url": "https://developer.mozilla.org/docs/Web/CSS/padding-right",
+					"url": "HTTPS://developer.mozilla.org/docs/Web/CSS/padding-right",
 				},
 			],
 			"description":
@@ -11623,7 +11623,7 @@ export const cssData: CSSDataV1 = {
 			"references": [
 				{
 					"name": "MDN Reference",
-					"url": "https://developer.mozilla.org/docs/Web/CSS/padding-top",
+					"url": "HTTPS://developer.mozilla.org/docs/Web/CSS/padding-top",
 				},
 			],
 			"description":
@@ -11665,7 +11665,7 @@ export const cssData: CSSDataV1 = {
 			"references": [
 				{
 					"name": "MDN Reference",
-					"url": "https://developer.mozilla.org/docs/Web/CSS/page-break-after",
+					"url": "HTTPS://developer.mozilla.org/docs/Web/CSS/page-break-after",
 				},
 			],
 			"description": "Defines rules for page breaks after an element.",
@@ -11706,7 +11706,7 @@ export const cssData: CSSDataV1 = {
 			"references": [
 				{
 					"name": "MDN Reference",
-					"url": "https://developer.mozilla.org/docs/Web/CSS/page-break-before",
+					"url": "HTTPS://developer.mozilla.org/docs/Web/CSS/page-break-before",
 				},
 			],
 			"description": "Defines rules for page breaks before an element.",
@@ -11732,7 +11732,7 @@ export const cssData: CSSDataV1 = {
 			"references": [
 				{
 					"name": "MDN Reference",
-					"url": "https://developer.mozilla.org/docs/Web/CSS/page-break-inside",
+					"url": "HTTPS://developer.mozilla.org/docs/Web/CSS/page-break-inside",
 				},
 			],
 			"description": "Defines rules for page breaks inside an element.",
@@ -11762,7 +11762,7 @@ export const cssData: CSSDataV1 = {
 			"references": [
 				{
 					"name": "MDN Reference",
-					"url": "https://developer.mozilla.org/docs/Web/CSS/paint-order",
+					"url": "HTTPS://developer.mozilla.org/docs/Web/CSS/paint-order",
 				},
 			],
 			"description":
@@ -11783,7 +11783,7 @@ export const cssData: CSSDataV1 = {
 			"references": [
 				{
 					"name": "MDN Reference",
-					"url": "https://developer.mozilla.org/docs/Web/CSS/perspective",
+					"url": "HTTPS://developer.mozilla.org/docs/Web/CSS/perspective",
 				},
 			],
 			"description":
@@ -11798,7 +11798,7 @@ export const cssData: CSSDataV1 = {
 			"references": [
 				{
 					"name": "MDN Reference",
-					"url": "https://developer.mozilla.org/docs/Web/CSS/perspective-origin",
+					"url": "HTTPS://developer.mozilla.org/docs/Web/CSS/perspective-origin",
 				},
 			],
 			"description":
@@ -11861,7 +11861,7 @@ export const cssData: CSSDataV1 = {
 			"references": [
 				{
 					"name": "MDN Reference",
-					"url": "https://developer.mozilla.org/docs/Web/CSS/pointer-events",
+					"url": "HTTPS://developer.mozilla.org/docs/Web/CSS/pointer-events",
 				},
 			],
 			"description":
@@ -11916,7 +11916,7 @@ export const cssData: CSSDataV1 = {
 			"references": [
 				{
 					"name": "MDN Reference",
-					"url": "https://developer.mozilla.org/docs/Web/CSS/position",
+					"url": "HTTPS://developer.mozilla.org/docs/Web/CSS/position",
 				},
 			],
 			"description":
@@ -11948,7 +11948,7 @@ export const cssData: CSSDataV1 = {
 			"references": [
 				{
 					"name": "MDN Reference",
-					"url": "https://developer.mozilla.org/docs/Web/CSS/quotes",
+					"url": "HTTPS://developer.mozilla.org/docs/Web/CSS/quotes",
 				},
 			],
 			"description":
@@ -12006,7 +12006,7 @@ export const cssData: CSSDataV1 = {
 			"references": [
 				{
 					"name": "MDN Reference",
-					"url": "https://developer.mozilla.org/docs/Web/CSS/resize",
+					"url": "HTTPS://developer.mozilla.org/docs/Web/CSS/resize",
 				},
 			],
 			"description":
@@ -12028,7 +12028,7 @@ export const cssData: CSSDataV1 = {
 			"references": [
 				{
 					"name": "MDN Reference",
-					"url": "https://developer.mozilla.org/docs/Web/CSS/right",
+					"url": "HTTPS://developer.mozilla.org/docs/Web/CSS/right",
 				},
 			],
 			"description":
@@ -12103,7 +12103,7 @@ export const cssData: CSSDataV1 = {
 			"references": [
 				{
 					"name": "MDN Reference",
-					"url": "https://developer.mozilla.org/docs/Web/CSS/ruby-align",
+					"url": "HTTPS://developer.mozilla.org/docs/Web/CSS/ruby-align",
 				},
 			],
 			"description":
@@ -12168,7 +12168,7 @@ export const cssData: CSSDataV1 = {
 			"references": [
 				{
 					"name": "MDN Reference",
-					"url": "https://developer.mozilla.org/docs/Web/CSS/ruby-position",
+					"url": "HTTPS://developer.mozilla.org/docs/Web/CSS/ruby-position",
 				},
 			],
 			"description":
@@ -12277,7 +12277,7 @@ export const cssData: CSSDataV1 = {
 			"references": [
 				{
 					"name": "MDN Reference",
-					"url": "https://developer.mozilla.org/docs/Web/CSS/scroll-behavior",
+					"url": "HTTPS://developer.mozilla.org/docs/Web/CSS/scroll-behavior",
 				},
 			],
 			"description":
@@ -12381,7 +12381,7 @@ export const cssData: CSSDataV1 = {
 			"references": [
 				{
 					"name": "MDN Reference",
-					"url": "https://developer.mozilla.org/docs/Web/CSS/scroll-snap-type",
+					"url": "HTTPS://developer.mozilla.org/docs/Web/CSS/scroll-snap-type",
 				},
 			],
 			"description":
@@ -12396,7 +12396,7 @@ export const cssData: CSSDataV1 = {
 			"references": [
 				{
 					"name": "MDN Reference",
-					"url": "https://developer.mozilla.org/docs/Web/CSS/shape-image-threshold",
+					"url": "HTTPS://developer.mozilla.org/docs/Web/CSS/shape-image-threshold",
 				},
 			],
 			"description":
@@ -12411,7 +12411,7 @@ export const cssData: CSSDataV1 = {
 			"references": [
 				{
 					"name": "MDN Reference",
-					"url": "https://developer.mozilla.org/docs/Web/CSS/shape-margin",
+					"url": "HTTPS://developer.mozilla.org/docs/Web/CSS/shape-margin",
 				},
 			],
 			"description":
@@ -12437,7 +12437,7 @@ export const cssData: CSSDataV1 = {
 			"references": [
 				{
 					"name": "MDN Reference",
-					"url": "https://developer.mozilla.org/docs/Web/CSS/shape-outside",
+					"url": "HTTPS://developer.mozilla.org/docs/Web/CSS/shape-outside",
 				},
 			],
 			"description":
@@ -12473,7 +12473,7 @@ export const cssData: CSSDataV1 = {
 			"references": [
 				{
 					"name": "MDN Reference",
-					"url": "https://developer.mozilla.org/docs/Web/CSS/shape-rendering",
+					"url": "HTTPS://developer.mozilla.org/docs/Web/CSS/shape-rendering",
 				},
 			],
 			"description":
@@ -12524,7 +12524,7 @@ export const cssData: CSSDataV1 = {
 			"references": [
 				{
 					"name": "MDN Reference",
-					"url": "https://developer.mozilla.org/docs/Web/CSS/stop-color",
+					"url": "HTTPS://developer.mozilla.org/docs/Web/CSS/stop-color",
 				},
 			],
 			"description": "Indicates what color to use at that gradient stop.",
@@ -12537,7 +12537,7 @@ export const cssData: CSSDataV1 = {
 			"references": [
 				{
 					"name": "MDN Reference",
-					"url": "https://developer.mozilla.org/docs/Web/CSS/stop-opacity",
+					"url": "HTTPS://developer.mozilla.org/docs/Web/CSS/stop-opacity",
 				},
 			],
 			"description": "Defines the opacity of a given gradient stop.",
@@ -12562,7 +12562,7 @@ export const cssData: CSSDataV1 = {
 			"references": [
 				{
 					"name": "MDN Reference",
-					"url": "https://developer.mozilla.org/docs/Web/CSS/stroke",
+					"url": "HTTPS://developer.mozilla.org/docs/Web/CSS/stroke",
 				},
 			],
 			"description":
@@ -12583,7 +12583,7 @@ export const cssData: CSSDataV1 = {
 			"references": [
 				{
 					"name": "MDN Reference",
-					"url": "https://developer.mozilla.org/docs/Web/CSS/stroke-dasharray",
+					"url": "HTTPS://developer.mozilla.org/docs/Web/CSS/stroke-dasharray",
 				},
 			],
 			"description":
@@ -12598,7 +12598,7 @@ export const cssData: CSSDataV1 = {
 			"references": [
 				{
 					"name": "MDN Reference",
-					"url": "https://developer.mozilla.org/docs/Web/CSS/stroke-dashoffset",
+					"url": "HTTPS://developer.mozilla.org/docs/Web/CSS/stroke-dashoffset",
 				},
 			],
 			"description":
@@ -12630,7 +12630,7 @@ export const cssData: CSSDataV1 = {
 			"references": [
 				{
 					"name": "MDN Reference",
-					"url": "https://developer.mozilla.org/docs/Web/CSS/stroke-linecap",
+					"url": "HTTPS://developer.mozilla.org/docs/Web/CSS/stroke-linecap",
 				},
 			],
 			"description":
@@ -12662,7 +12662,7 @@ export const cssData: CSSDataV1 = {
 			"references": [
 				{
 					"name": "MDN Reference",
-					"url": "https://developer.mozilla.org/docs/Web/CSS/stroke-linejoin",
+					"url": "HTTPS://developer.mozilla.org/docs/Web/CSS/stroke-linejoin",
 				},
 			],
 			"description":
@@ -12677,7 +12677,7 @@ export const cssData: CSSDataV1 = {
 			"references": [
 				{
 					"name": "MDN Reference",
-					"url": "https://developer.mozilla.org/docs/Web/CSS/stroke-miterlimit",
+					"url": "HTTPS://developer.mozilla.org/docs/Web/CSS/stroke-miterlimit",
 				},
 			],
 			"description":
@@ -12692,7 +12692,7 @@ export const cssData: CSSDataV1 = {
 			"references": [
 				{
 					"name": "MDN Reference",
-					"url": "https://developer.mozilla.org/docs/Web/CSS/stroke-opacity",
+					"url": "HTTPS://developer.mozilla.org/docs/Web/CSS/stroke-opacity",
 				},
 			],
 			"description":
@@ -12707,7 +12707,7 @@ export const cssData: CSSDataV1 = {
 			"references": [
 				{
 					"name": "MDN Reference",
-					"url": "https://developer.mozilla.org/docs/Web/CSS/stroke-width",
+					"url": "HTTPS://developer.mozilla.org/docs/Web/CSS/stroke-width",
 				},
 			],
 			"description":
@@ -12800,7 +12800,7 @@ export const cssData: CSSDataV1 = {
 			"references": [
 				{
 					"name": "MDN Reference",
-					"url": "https://developer.mozilla.org/docs/Web/CSS/table-layout",
+					"url": "HTTPS://developer.mozilla.org/docs/Web/CSS/table-layout",
 				},
 			],
 			"description":
@@ -12815,7 +12815,7 @@ export const cssData: CSSDataV1 = {
 			"references": [
 				{
 					"name": "MDN Reference",
-					"url": "https://developer.mozilla.org/docs/Web/CSS/tab-size",
+					"url": "HTTPS://developer.mozilla.org/docs/Web/CSS/tab-size",
 				},
 			],
 			"description":
@@ -12865,7 +12865,7 @@ export const cssData: CSSDataV1 = {
 			"references": [
 				{
 					"name": "MDN Reference",
-					"url": "https://developer.mozilla.org/docs/Web/CSS/text-align",
+					"url": "HTTPS://developer.mozilla.org/docs/Web/CSS/text-align",
 				},
 			],
 			"description":
@@ -12907,7 +12907,7 @@ export const cssData: CSSDataV1 = {
 			"references": [
 				{
 					"name": "MDN Reference",
-					"url": "https://developer.mozilla.org/docs/Web/CSS/text-align-last",
+					"url": "HTTPS://developer.mozilla.org/docs/Web/CSS/text-align-last",
 				},
 			],
 			"description":
@@ -12939,7 +12939,7 @@ export const cssData: CSSDataV1 = {
 			"references": [
 				{
 					"name": "MDN Reference",
-					"url": "https://developer.mozilla.org/docs/Web/CSS/text-anchor",
+					"url": "HTTPS://developer.mozilla.org/docs/Web/CSS/text-anchor",
 				},
 			],
 			"description":
@@ -12994,7 +12994,7 @@ export const cssData: CSSDataV1 = {
 			"references": [
 				{
 					"name": "MDN Reference",
-					"url": "https://developer.mozilla.org/docs/Web/CSS/text-decoration",
+					"url": "HTTPS://developer.mozilla.org/docs/Web/CSS/text-decoration",
 				},
 			],
 			"description":
@@ -13009,7 +13009,7 @@ export const cssData: CSSDataV1 = {
 			"references": [
 				{
 					"name": "MDN Reference",
-					"url": "https://developer.mozilla.org/docs/Web/CSS/text-decoration-color",
+					"url": "HTTPS://developer.mozilla.org/docs/Web/CSS/text-decoration-color",
 				},
 			],
 			"description":
@@ -13045,7 +13045,7 @@ export const cssData: CSSDataV1 = {
 			"references": [
 				{
 					"name": "MDN Reference",
-					"url": "https://developer.mozilla.org/docs/Web/CSS/text-decoration-line",
+					"url": "HTTPS://developer.mozilla.org/docs/Web/CSS/text-decoration-line",
 				},
 			],
 			"description":
@@ -13086,7 +13086,7 @@ export const cssData: CSSDataV1 = {
 			"references": [
 				{
 					"name": "MDN Reference",
-					"url": "https://developer.mozilla.org/docs/Web/CSS/text-decoration-style",
+					"url": "HTTPS://developer.mozilla.org/docs/Web/CSS/text-decoration-style",
 				},
 			],
 			"description":
@@ -13102,7 +13102,7 @@ export const cssData: CSSDataV1 = {
 			"references": [
 				{
 					"name": "MDN Reference",
-					"url": "https://developer.mozilla.org/docs/Web/CSS/text-indent",
+					"url": "HTTPS://developer.mozilla.org/docs/Web/CSS/text-indent",
 				},
 			],
 			"description":
@@ -13155,7 +13155,7 @@ export const cssData: CSSDataV1 = {
 			"references": [
 				{
 					"name": "MDN Reference",
-					"url": "https://developer.mozilla.org/docs/Web/CSS/text-justify",
+					"url": "HTTPS://developer.mozilla.org/docs/Web/CSS/text-justify",
 				},
 			],
 			"description":
@@ -13189,7 +13189,7 @@ export const cssData: CSSDataV1 = {
 			"references": [
 				{
 					"name": "MDN Reference",
-					"url": "https://developer.mozilla.org/docs/Web/CSS/text-orientation",
+					"url": "HTTPS://developer.mozilla.org/docs/Web/CSS/text-orientation",
 				},
 			],
 			"description": "Specifies the orientation of text within a line.",
@@ -13215,7 +13215,7 @@ export const cssData: CSSDataV1 = {
 			"references": [
 				{
 					"name": "MDN Reference",
-					"url": "https://developer.mozilla.org/docs/Web/CSS/text-overflow",
+					"url": "HTTPS://developer.mozilla.org/docs/Web/CSS/text-overflow",
 				},
 			],
 			"description":
@@ -13251,7 +13251,7 @@ export const cssData: CSSDataV1 = {
 			"references": [
 				{
 					"name": "MDN Reference",
-					"url": "https://developer.mozilla.org/docs/Web/CSS/text-rendering",
+					"url": "HTTPS://developer.mozilla.org/docs/Web/CSS/text-rendering",
 				},
 			],
 			"description":
@@ -13272,7 +13272,7 @@ export const cssData: CSSDataV1 = {
 			"references": [
 				{
 					"name": "MDN Reference",
-					"url": "https://developer.mozilla.org/docs/Web/CSS/text-shadow",
+					"url": "HTTPS://developer.mozilla.org/docs/Web/CSS/text-shadow",
 				},
 			],
 			"description":
@@ -13307,7 +13307,7 @@ export const cssData: CSSDataV1 = {
 			"references": [
 				{
 					"name": "MDN Reference",
-					"url": "https://developer.mozilla.org/docs/Web/CSS/text-transform",
+					"url": "HTTPS://developer.mozilla.org/docs/Web/CSS/text-transform",
 				},
 			],
 			"description":
@@ -13337,7 +13337,7 @@ export const cssData: CSSDataV1 = {
 			"references": [
 				{
 					"name": "MDN Reference",
-					"url": "https://developer.mozilla.org/docs/Web/CSS/text-underline-position",
+					"url": "HTTPS://developer.mozilla.org/docs/Web/CSS/text-underline-position",
 				},
 			],
 			"description":
@@ -13359,7 +13359,7 @@ export const cssData: CSSDataV1 = {
 			"references": [
 				{
 					"name": "MDN Reference",
-					"url": "https://developer.mozilla.org/docs/Web/CSS/top",
+					"url": "HTTPS://developer.mozilla.org/docs/Web/CSS/top",
 				},
 			],
 			"description":
@@ -13418,7 +13418,7 @@ export const cssData: CSSDataV1 = {
 			"references": [
 				{
 					"name": "MDN Reference",
-					"url": "https://developer.mozilla.org/docs/Web/CSS/touch-action",
+					"url": "HTTPS://developer.mozilla.org/docs/Web/CSS/touch-action",
 				},
 			],
 			"description":
@@ -13542,7 +13542,7 @@ export const cssData: CSSDataV1 = {
 			"references": [
 				{
 					"name": "MDN Reference",
-					"url": "https://developer.mozilla.org/docs/Web/CSS/transform",
+					"url": "HTTPS://developer.mozilla.org/docs/Web/CSS/transform",
 				},
 			],
 			"description":
@@ -13558,7 +13558,7 @@ export const cssData: CSSDataV1 = {
 			"references": [
 				{
 					"name": "MDN Reference",
-					"url": "https://developer.mozilla.org/docs/Web/CSS/transform-origin",
+					"url": "HTTPS://developer.mozilla.org/docs/Web/CSS/transform-origin",
 				},
 			],
 			"description":
@@ -13586,7 +13586,7 @@ export const cssData: CSSDataV1 = {
 			"references": [
 				{
 					"name": "MDN Reference",
-					"url": "https://developer.mozilla.org/docs/Web/CSS/transform-style",
+					"url": "HTTPS://developer.mozilla.org/docs/Web/CSS/transform-style",
 				},
 			],
 			"description":
@@ -13612,7 +13612,7 @@ export const cssData: CSSDataV1 = {
 			"references": [
 				{
 					"name": "MDN Reference",
-					"url": "https://developer.mozilla.org/docs/Web/CSS/transition",
+					"url": "HTTPS://developer.mozilla.org/docs/Web/CSS/transition",
 				},
 			],
 			"description":
@@ -13627,7 +13627,7 @@ export const cssData: CSSDataV1 = {
 			"references": [
 				{
 					"name": "MDN Reference",
-					"url": "https://developer.mozilla.org/docs/Web/CSS/transition-delay",
+					"url": "HTTPS://developer.mozilla.org/docs/Web/CSS/transition-delay",
 				},
 			],
 			"description":
@@ -13642,7 +13642,7 @@ export const cssData: CSSDataV1 = {
 			"references": [
 				{
 					"name": "MDN Reference",
-					"url": "https://developer.mozilla.org/docs/Web/CSS/transition-duration",
+					"url": "HTTPS://developer.mozilla.org/docs/Web/CSS/transition-duration",
 				},
 			],
 			"description":
@@ -13668,7 +13668,7 @@ export const cssData: CSSDataV1 = {
 			"references": [
 				{
 					"name": "MDN Reference",
-					"url": "https://developer.mozilla.org/docs/Web/CSS/transition-property",
+					"url": "HTTPS://developer.mozilla.org/docs/Web/CSS/transition-property",
 				},
 			],
 			"description":
@@ -13683,7 +13683,7 @@ export const cssData: CSSDataV1 = {
 			"references": [
 				{
 					"name": "MDN Reference",
-					"url": "https://developer.mozilla.org/docs/Web/CSS/transition-timing-function",
+					"url": "HTTPS://developer.mozilla.org/docs/Web/CSS/transition-timing-function",
 				},
 			],
 			"description":
@@ -13734,7 +13734,7 @@ export const cssData: CSSDataV1 = {
 			"references": [
 				{
 					"name": "MDN Reference",
-					"url": "https://developer.mozilla.org/docs/Web/CSS/unicode-bidi",
+					"url": "HTTPS://developer.mozilla.org/docs/Web/CSS/unicode-bidi",
 				},
 			],
 			"description":
@@ -14117,7 +14117,7 @@ export const cssData: CSSDataV1 = {
 			"references": [
 				{
 					"name": "MDN Reference",
-					"url": "https://developer.mozilla.org/docs/Web/CSS/user-select",
+					"url": "HTTPS://developer.mozilla.org/docs/Web/CSS/user-select",
 				},
 			],
 			"description": "Controls the appearance of selection.",
@@ -14183,7 +14183,7 @@ export const cssData: CSSDataV1 = {
 			"references": [
 				{
 					"name": "MDN Reference",
-					"url": "https://developer.mozilla.org/docs/Web/CSS/vertical-align",
+					"url": "HTTPS://developer.mozilla.org/docs/Web/CSS/vertical-align",
 				},
 			],
 			"description":
@@ -14214,7 +14214,7 @@ export const cssData: CSSDataV1 = {
 			"references": [
 				{
 					"name": "MDN Reference",
-					"url": "https://developer.mozilla.org/docs/Web/CSS/visibility",
+					"url": "HTTPS://developer.mozilla.org/docs/Web/CSS/visibility",
 				},
 			],
 			"description":
@@ -14873,7 +14873,7 @@ export const cssData: CSSDataV1 = {
 			"references": [
 				{
 					"name": "MDN Reference",
-					"url": "https://developer.mozilla.org/docs/Web/CSS/-webkit-box-reflect",
+					"url": "HTTPS://developer.mozilla.org/docs/Web/CSS/-webkit-box-reflect",
 				},
 			],
 			"description": "Defines a reflection of a border box.",
@@ -15724,7 +15724,7 @@ export const cssData: CSSDataV1 = {
 			"references": [
 				{
 					"name": "MDN Reference",
-					"url": "https://developer.mozilla.org/docs/Web/CSS/-webkit-tap-highlight-color",
+					"url": "HTTPS://developer.mozilla.org/docs/Web/CSS/-webkit-tap-highlight-color",
 				},
 			],
 			"restrictions": ["color"],
@@ -15737,7 +15737,7 @@ export const cssData: CSSDataV1 = {
 			"references": [
 				{
 					"name": "MDN Reference",
-					"url": "https://developer.mozilla.org/docs/Web/CSS/-webkit-text-fill-color",
+					"url": "HTTPS://developer.mozilla.org/docs/Web/CSS/-webkit-text-fill-color",
 				},
 			],
 			"restrictions": ["color"],
@@ -15770,7 +15770,7 @@ export const cssData: CSSDataV1 = {
 			"references": [
 				{
 					"name": "MDN Reference",
-					"url": "https://developer.mozilla.org/docs/Web/CSS/-webkit-text-stroke",
+					"url": "HTTPS://developer.mozilla.org/docs/Web/CSS/-webkit-text-stroke",
 				},
 			],
 			"restrictions": ["length", "line-width", "color", "percentage"],
@@ -15783,7 +15783,7 @@ export const cssData: CSSDataV1 = {
 			"references": [
 				{
 					"name": "MDN Reference",
-					"url": "https://developer.mozilla.org/docs/Web/CSS/-webkit-text-stroke-color",
+					"url": "HTTPS://developer.mozilla.org/docs/Web/CSS/-webkit-text-stroke-color",
 				},
 			],
 			"restrictions": ["color"],
@@ -15796,7 +15796,7 @@ export const cssData: CSSDataV1 = {
 			"references": [
 				{
 					"name": "MDN Reference",
-					"url": "https://developer.mozilla.org/docs/Web/CSS/-webkit-text-stroke-width",
+					"url": "HTTPS://developer.mozilla.org/docs/Web/CSS/-webkit-text-stroke-width",
 				},
 			],
 			"restrictions": ["length", "line-width", "percentage"],
@@ -15815,7 +15815,7 @@ export const cssData: CSSDataV1 = {
 			"references": [
 				{
 					"name": "MDN Reference",
-					"url": "https://developer.mozilla.org/docs/Web/CSS/-webkit-touch-callout",
+					"url": "HTTPS://developer.mozilla.org/docs/Web/CSS/-webkit-touch-callout",
 				},
 			],
 			"restrictions": ["enum"],
@@ -16110,7 +16110,7 @@ export const cssData: CSSDataV1 = {
 			"references": [
 				{
 					"name": "MDN Reference",
-					"url": "https://developer.mozilla.org/docs/Web/CSS/widows",
+					"url": "HTTPS://developer.mozilla.org/docs/Web/CSS/widows",
 				},
 			],
 			"description":
@@ -16151,7 +16151,7 @@ export const cssData: CSSDataV1 = {
 			"references": [
 				{
 					"name": "MDN Reference",
-					"url": "https://developer.mozilla.org/docs/Web/CSS/width",
+					"url": "HTTPS://developer.mozilla.org/docs/Web/CSS/width",
 				},
 			],
 			"description":
@@ -16182,7 +16182,7 @@ export const cssData: CSSDataV1 = {
 			"references": [
 				{
 					"name": "MDN Reference",
-					"url": "https://developer.mozilla.org/docs/Web/CSS/will-change",
+					"url": "HTTPS://developer.mozilla.org/docs/Web/CSS/will-change",
 				},
 			],
 			"description":
@@ -16214,7 +16214,7 @@ export const cssData: CSSDataV1 = {
 			"references": [
 				{
 					"name": "MDN Reference",
-					"url": "https://developer.mozilla.org/docs/Web/CSS/word-break",
+					"url": "HTTPS://developer.mozilla.org/docs/Web/CSS/word-break",
 				},
 			],
 			"description":
@@ -16236,7 +16236,7 @@ export const cssData: CSSDataV1 = {
 			"references": [
 				{
 					"name": "MDN Reference",
-					"url": "https://developer.mozilla.org/docs/Web/CSS/word-spacing",
+					"url": "HTTPS://developer.mozilla.org/docs/Web/CSS/word-spacing",
 				},
 			],
 			"description": 'Specifies additional spacing between "words".',
@@ -16301,7 +16301,7 @@ export const cssData: CSSDataV1 = {
 			"references": [
 				{
 					"name": "MDN Reference",
-					"url": "https://developer.mozilla.org/docs/Web/CSS/writing-mode",
+					"url": "HTTPS://developer.mozilla.org/docs/Web/CSS/writing-mode",
 				},
 			],
 			"description":
@@ -16323,7 +16323,7 @@ export const cssData: CSSDataV1 = {
 			"references": [
 				{
 					"name": "MDN Reference",
-					"url": "https://developer.mozilla.org/docs/Web/CSS/z-index",
+					"url": "HTTPS://developer.mozilla.org/docs/Web/CSS/z-index",
 				},
 			],
 			"description":
@@ -16343,7 +16343,7 @@ export const cssData: CSSDataV1 = {
 			"references": [
 				{
 					"name": "MDN Reference",
-					"url": "https://developer.mozilla.org/docs/Web/CSS/zoom",
+					"url": "HTTPS://developer.mozilla.org/docs/Web/CSS/zoom",
 				},
 			],
 			"description":
@@ -16406,7 +16406,7 @@ export const cssData: CSSDataV1 = {
 			"references": [
 				{
 					"name": "MDN Reference",
-					"url": "https://developer.mozilla.org/docs/Web/CSS/-moz-float-edge",
+					"url": "HTTPS://developer.mozilla.org/docs/Web/CSS/-moz-float-edge",
 				},
 			],
 			"description":
@@ -16429,7 +16429,7 @@ export const cssData: CSSDataV1 = {
 			"references": [
 				{
 					"name": "MDN Reference",
-					"url": "https://developer.mozilla.org/docs/Web/CSS/-moz-force-broken-image-icon",
+					"url": "HTTPS://developer.mozilla.org/docs/Web/CSS/-moz-force-broken-image-icon",
 				},
 			],
 			"description":
@@ -16444,7 +16444,7 @@ export const cssData: CSSDataV1 = {
 			"references": [
 				{
 					"name": "MDN Reference",
-					"url": "https://developer.mozilla.org/docs/Web/CSS/-moz-image-region",
+					"url": "HTTPS://developer.mozilla.org/docs/Web/CSS/-moz-image-region",
 				},
 			],
 			"description":
@@ -16473,7 +16473,7 @@ export const cssData: CSSDataV1 = {
 			"references": [
 				{
 					"name": "MDN Reference",
-					"url": "https://developer.mozilla.org/docs/Web/CSS/-moz-orient",
+					"url": "HTTPS://developer.mozilla.org/docs/Web/CSS/-moz-orient",
 				},
 			],
 			"description":
@@ -16574,7 +16574,7 @@ export const cssData: CSSDataV1 = {
 			"references": [
 				{
 					"name": "MDN Reference",
-					"url": "https://developer.mozilla.org/docs/Web/CSS/-moz-user-input",
+					"url": "HTTPS://developer.mozilla.org/docs/Web/CSS/-moz-user-input",
 				},
 			],
 			"description":
@@ -16649,7 +16649,7 @@ export const cssData: CSSDataV1 = {
 			"references": [
 				{
 					"name": "MDN Reference",
-					"url": "https://developer.mozilla.org/docs/Web/CSS/-webkit-border-before",
+					"url": "HTTPS://developer.mozilla.org/docs/Web/CSS/-webkit-border-before",
 				},
 			],
 			"description":
@@ -16712,7 +16712,7 @@ export const cssData: CSSDataV1 = {
 			"references": [
 				{
 					"name": "MDN Reference",
-					"url": "https://developer.mozilla.org/docs/Web/CSS/-webkit-mask-composite",
+					"url": "HTTPS://developer.mozilla.org/docs/Web/CSS/-webkit-mask-composite",
 				},
 			],
 			"description":
@@ -16735,7 +16735,7 @@ export const cssData: CSSDataV1 = {
 			"references": [
 				{
 					"name": "MDN Reference",
-					"url": "https://developer.mozilla.org/docs/Web/CSS/-webkit-mask-position-x",
+					"url": "HTTPS://developer.mozilla.org/docs/Web/CSS/-webkit-mask-position-x",
 				},
 			],
 			"description":
@@ -16750,7 +16750,7 @@ export const cssData: CSSDataV1 = {
 			"references": [
 				{
 					"name": "MDN Reference",
-					"url": "https://developer.mozilla.org/docs/Web/CSS/-webkit-mask-position-y",
+					"url": "HTTPS://developer.mozilla.org/docs/Web/CSS/-webkit-mask-position-y",
 				},
 			],
 			"description":
@@ -16779,7 +16779,7 @@ export const cssData: CSSDataV1 = {
 			"references": [
 				{
 					"name": "MDN Reference",
-					"url": "https://developer.mozilla.org/docs/Web/CSS/-webkit-mask-repeat-x",
+					"url": "HTTPS://developer.mozilla.org/docs/Web/CSS/-webkit-mask-repeat-x",
 				},
 			],
 			"description":
@@ -16808,7 +16808,7 @@ export const cssData: CSSDataV1 = {
 			"references": [
 				{
 					"name": "MDN Reference",
-					"url": "https://developer.mozilla.org/docs/Web/CSS/-webkit-mask-repeat-y",
+					"url": "HTTPS://developer.mozilla.org/docs/Web/CSS/-webkit-mask-repeat-y",
 				},
 			],
 			"description":
@@ -16822,7 +16822,7 @@ export const cssData: CSSDataV1 = {
 			"references": [
 				{
 					"name": "MDN Reference",
-					"url": "https://developer.mozilla.org/docs/Web/CSS/accent-color",
+					"url": "HTTPS://developer.mozilla.org/docs/Web/CSS/accent-color",
 				},
 			],
 			"description": "Sets the color of the elements accent",
@@ -16845,7 +16845,7 @@ export const cssData: CSSDataV1 = {
 			"references": [
 				{
 					"name": "MDN Reference",
-					"url": "https://developer.mozilla.org/docs/Web/CSS/anchor-name",
+					"url": "HTTPS://developer.mozilla.org/docs/Web/CSS/anchor-name",
 				},
 			],
 			"description":
@@ -16868,7 +16868,7 @@ export const cssData: CSSDataV1 = {
 			"references": [
 				{
 					"name": "MDN Reference",
-					"url": "https://developer.mozilla.org/docs/Web/CSS/animation-composition",
+					"url": "HTTPS://developer.mozilla.org/docs/Web/CSS/animation-composition",
 				},
 			],
 			"description":
@@ -16883,7 +16883,7 @@ export const cssData: CSSDataV1 = {
 			"references": [
 				{
 					"name": "MDN Reference",
-					"url": "https://developer.mozilla.org/docs/Web/CSS/animation-range",
+					"url": "HTTPS://developer.mozilla.org/docs/Web/CSS/animation-range",
 				},
 			],
 			"description":
@@ -16899,7 +16899,7 @@ export const cssData: CSSDataV1 = {
 			"references": [
 				{
 					"name": "MDN Reference",
-					"url": "https://developer.mozilla.org/docs/Web/CSS/animation-range-end",
+					"url": "HTTPS://developer.mozilla.org/docs/Web/CSS/animation-range-end",
 				},
 			],
 			"description":
@@ -16915,7 +16915,7 @@ export const cssData: CSSDataV1 = {
 			"references": [
 				{
 					"name": "MDN Reference",
-					"url": "https://developer.mozilla.org/docs/Web/CSS/animation-range-start",
+					"url": "HTTPS://developer.mozilla.org/docs/Web/CSS/animation-range-start",
 				},
 			],
 			"description":
@@ -16930,7 +16930,7 @@ export const cssData: CSSDataV1 = {
 			"references": [
 				{
 					"name": "MDN Reference",
-					"url": "https://developer.mozilla.org/docs/Web/CSS/animation-timeline",
+					"url": "HTTPS://developer.mozilla.org/docs/Web/CSS/animation-timeline",
 				},
 			],
 			"description":
@@ -16945,7 +16945,7 @@ export const cssData: CSSDataV1 = {
 			"references": [
 				{
 					"name": "MDN Reference",
-					"url": "https://developer.mozilla.org/docs/Web/CSS/appearance",
+					"url": "HTTPS://developer.mozilla.org/docs/Web/CSS/appearance",
 				},
 			],
 			"description":
@@ -16959,7 +16959,7 @@ export const cssData: CSSDataV1 = {
 			"references": [
 				{
 					"name": "MDN Reference",
-					"url": "https://developer.mozilla.org/docs/Web/CSS/aspect-ratio",
+					"url": "HTTPS://developer.mozilla.org/docs/Web/CSS/aspect-ratio",
 				},
 			],
 			"description":
@@ -16982,7 +16982,7 @@ export const cssData: CSSDataV1 = {
 			"references": [
 				{
 					"name": "MDN Reference",
-					"url": "https://developer.mozilla.org/docs/Web/CSS/backdrop-filter",
+					"url": "HTTPS://developer.mozilla.org/docs/Web/CSS/backdrop-filter",
 				},
 			],
 			"description":
@@ -16996,7 +16996,7 @@ export const cssData: CSSDataV1 = {
 			"references": [
 				{
 					"name": "MDN Reference",
-					"url": "https://developer.mozilla.org/docs/Web/CSS/border-block",
+					"url": "HTTPS://developer.mozilla.org/docs/Web/CSS/border-block",
 				},
 			],
 			"description":
@@ -17010,7 +17010,7 @@ export const cssData: CSSDataV1 = {
 			"references": [
 				{
 					"name": "MDN Reference",
-					"url": "https://developer.mozilla.org/docs/Web/CSS/border-block-color",
+					"url": "HTTPS://developer.mozilla.org/docs/Web/CSS/border-block-color",
 				},
 			],
 			"description":
@@ -17024,7 +17024,7 @@ export const cssData: CSSDataV1 = {
 			"references": [
 				{
 					"name": "MDN Reference",
-					"url": "https://developer.mozilla.org/docs/Web/CSS/border-block-style",
+					"url": "HTTPS://developer.mozilla.org/docs/Web/CSS/border-block-style",
 				},
 			],
 			"description":
@@ -17038,7 +17038,7 @@ export const cssData: CSSDataV1 = {
 			"references": [
 				{
 					"name": "MDN Reference",
-					"url": "https://developer.mozilla.org/docs/Web/CSS/border-block-width",
+					"url": "HTTPS://developer.mozilla.org/docs/Web/CSS/border-block-width",
 				},
 			],
 			"description":
@@ -17052,7 +17052,7 @@ export const cssData: CSSDataV1 = {
 			"references": [
 				{
 					"name": "MDN Reference",
-					"url": "https://developer.mozilla.org/docs/Web/CSS/border-end-end-radius",
+					"url": "HTTPS://developer.mozilla.org/docs/Web/CSS/border-end-end-radius",
 				},
 			],
 			"description":
@@ -17066,7 +17066,7 @@ export const cssData: CSSDataV1 = {
 			"references": [
 				{
 					"name": "MDN Reference",
-					"url": "https://developer.mozilla.org/docs/Web/CSS/border-end-start-radius",
+					"url": "HTTPS://developer.mozilla.org/docs/Web/CSS/border-end-start-radius",
 				},
 			],
 			"description":
@@ -17080,7 +17080,7 @@ export const cssData: CSSDataV1 = {
 			"references": [
 				{
 					"name": "MDN Reference",
-					"url": "https://developer.mozilla.org/docs/Web/CSS/border-inline",
+					"url": "HTTPS://developer.mozilla.org/docs/Web/CSS/border-inline",
 				},
 			],
 			"description":
@@ -17094,7 +17094,7 @@ export const cssData: CSSDataV1 = {
 			"references": [
 				{
 					"name": "MDN Reference",
-					"url": "https://developer.mozilla.org/docs/Web/CSS/border-inline-color",
+					"url": "HTTPS://developer.mozilla.org/docs/Web/CSS/border-inline-color",
 				},
 			],
 			"description":
@@ -17108,7 +17108,7 @@ export const cssData: CSSDataV1 = {
 			"references": [
 				{
 					"name": "MDN Reference",
-					"url": "https://developer.mozilla.org/docs/Web/CSS/border-inline-style",
+					"url": "HTTPS://developer.mozilla.org/docs/Web/CSS/border-inline-style",
 				},
 			],
 			"description":
@@ -17122,7 +17122,7 @@ export const cssData: CSSDataV1 = {
 			"references": [
 				{
 					"name": "MDN Reference",
-					"url": "https://developer.mozilla.org/docs/Web/CSS/border-inline-width",
+					"url": "HTTPS://developer.mozilla.org/docs/Web/CSS/border-inline-width",
 				},
 			],
 			"description":
@@ -17136,7 +17136,7 @@ export const cssData: CSSDataV1 = {
 			"references": [
 				{
 					"name": "MDN Reference",
-					"url": "https://developer.mozilla.org/docs/Web/CSS/border-start-end-radius",
+					"url": "HTTPS://developer.mozilla.org/docs/Web/CSS/border-start-end-radius",
 				},
 			],
 			"description":
@@ -17150,7 +17150,7 @@ export const cssData: CSSDataV1 = {
 			"references": [
 				{
 					"name": "MDN Reference",
-					"url": "https://developer.mozilla.org/docs/Web/CSS/border-start-start-radius",
+					"url": "HTTPS://developer.mozilla.org/docs/Web/CSS/border-start-start-radius",
 				},
 			],
 			"description":
@@ -17182,7 +17182,7 @@ export const cssData: CSSDataV1 = {
 			"references": [
 				{
 					"name": "MDN Reference",
-					"url": "https://developer.mozilla.org/docs/Web/CSS/box-align",
+					"url": "HTTPS://developer.mozilla.org/docs/Web/CSS/box-align",
 				},
 			],
 			"description":
@@ -17208,7 +17208,7 @@ export const cssData: CSSDataV1 = {
 			"references": [
 				{
 					"name": "MDN Reference",
-					"url": "https://developer.mozilla.org/docs/Web/CSS/box-direction",
+					"url": "HTTPS://developer.mozilla.org/docs/Web/CSS/box-direction",
 				},
 			],
 			"description":
@@ -17223,7 +17223,7 @@ export const cssData: CSSDataV1 = {
 			"references": [
 				{
 					"name": "MDN Reference",
-					"url": "https://developer.mozilla.org/docs/Web/CSS/box-flex",
+					"url": "HTTPS://developer.mozilla.org/docs/Web/CSS/box-flex",
 				},
 			],
 			"description":
@@ -17238,7 +17238,7 @@ export const cssData: CSSDataV1 = {
 			"references": [
 				{
 					"name": "MDN Reference",
-					"url": "https://developer.mozilla.org/docs/Web/CSS/box-flex-group",
+					"url": "HTTPS://developer.mozilla.org/docs/Web/CSS/box-flex-group",
 				},
 			],
 			"description":
@@ -17261,7 +17261,7 @@ export const cssData: CSSDataV1 = {
 			"references": [
 				{
 					"name": "MDN Reference",
-					"url": "https://developer.mozilla.org/docs/Web/CSS/box-lines",
+					"url": "HTTPS://developer.mozilla.org/docs/Web/CSS/box-lines",
 				},
 			],
 			"description":
@@ -17276,7 +17276,7 @@ export const cssData: CSSDataV1 = {
 			"references": [
 				{
 					"name": "MDN Reference",
-					"url": "https://developer.mozilla.org/docs/Web/CSS/box-ordinal-group",
+					"url": "HTTPS://developer.mozilla.org/docs/Web/CSS/box-ordinal-group",
 				},
 			],
 			"description":
@@ -17309,7 +17309,7 @@ export const cssData: CSSDataV1 = {
 			"references": [
 				{
 					"name": "MDN Reference",
-					"url": "https://developer.mozilla.org/docs/Web/CSS/box-orient",
+					"url": "HTTPS://developer.mozilla.org/docs/Web/CSS/box-orient",
 				},
 			],
 			"description":
@@ -17338,7 +17338,7 @@ export const cssData: CSSDataV1 = {
 			"references": [
 				{
 					"name": "MDN Reference",
-					"url": "https://developer.mozilla.org/docs/Web/CSS/box-pack",
+					"url": "HTTPS://developer.mozilla.org/docs/Web/CSS/box-pack",
 				},
 			],
 			"description":
@@ -17379,7 +17379,7 @@ export const cssData: CSSDataV1 = {
 			"references": [
 				{
 					"name": "MDN Reference",
-					"url": "https://developer.mozilla.org/docs/Web/CSS/color-scheme",
+					"url": "HTTPS://developer.mozilla.org/docs/Web/CSS/color-scheme",
 				},
 			],
 			"description":
@@ -17393,7 +17393,7 @@ export const cssData: CSSDataV1 = {
 			"references": [
 				{
 					"name": "MDN Reference",
-					"url": "https://developer.mozilla.org/docs/Web/CSS/contain-intrinsic-size",
+					"url": "HTTPS://developer.mozilla.org/docs/Web/CSS/contain-intrinsic-size",
 				},
 			],
 			"description":
@@ -17407,7 +17407,7 @@ export const cssData: CSSDataV1 = {
 			"references": [
 				{
 					"name": "MDN Reference",
-					"url": "https://developer.mozilla.org/docs/Web/CSS/contain-intrinsic-block-size",
+					"url": "HTTPS://developer.mozilla.org/docs/Web/CSS/contain-intrinsic-block-size",
 				},
 			],
 			"description":
@@ -17421,7 +17421,7 @@ export const cssData: CSSDataV1 = {
 			"references": [
 				{
 					"name": "MDN Reference",
-					"url": "https://developer.mozilla.org/docs/Web/CSS/contain-intrinsic-height",
+					"url": "HTTPS://developer.mozilla.org/docs/Web/CSS/contain-intrinsic-height",
 				},
 			],
 			"description":
@@ -17435,7 +17435,7 @@ export const cssData: CSSDataV1 = {
 			"references": [
 				{
 					"name": "MDN Reference",
-					"url": "https://developer.mozilla.org/docs/Web/CSS/contain-intrinsic-inline-size",
+					"url": "HTTPS://developer.mozilla.org/docs/Web/CSS/contain-intrinsic-inline-size",
 				},
 			],
 			"description":
@@ -17449,7 +17449,7 @@ export const cssData: CSSDataV1 = {
 			"references": [
 				{
 					"name": "MDN Reference",
-					"url": "https://developer.mozilla.org/docs/Web/CSS/contain-intrinsic-width",
+					"url": "HTTPS://developer.mozilla.org/docs/Web/CSS/contain-intrinsic-width",
 				},
 			],
 			"description":
@@ -17463,7 +17463,7 @@ export const cssData: CSSDataV1 = {
 			"references": [
 				{
 					"name": "MDN Reference",
-					"url": "https://developer.mozilla.org/docs/Web/CSS/container",
+					"url": "HTTPS://developer.mozilla.org/docs/Web/CSS/container",
 				},
 			],
 			"description":
@@ -17477,7 +17477,7 @@ export const cssData: CSSDataV1 = {
 			"references": [
 				{
 					"name": "MDN Reference",
-					"url": "https://developer.mozilla.org/docs/Web/CSS/container-name",
+					"url": "HTTPS://developer.mozilla.org/docs/Web/CSS/container-name",
 				},
 			],
 			"description":
@@ -17502,7 +17502,7 @@ export const cssData: CSSDataV1 = {
 			"references": [
 				{
 					"name": "MDN Reference",
-					"url": "https://developer.mozilla.org/docs/Web/CSS/container-type",
+					"url": "HTTPS://developer.mozilla.org/docs/Web/CSS/container-type",
 				},
 			],
 			"description":
@@ -17527,7 +17527,7 @@ export const cssData: CSSDataV1 = {
 			"references": [
 				{
 					"name": "MDN Reference",
-					"url": "https://developer.mozilla.org/docs/Web/CSS/content-visibility",
+					"url": "HTTPS://developer.mozilla.org/docs/Web/CSS/content-visibility",
 				},
 			],
 			"description":
@@ -17541,7 +17541,7 @@ export const cssData: CSSDataV1 = {
 			"references": [
 				{
 					"name": "MDN Reference",
-					"url": "https://developer.mozilla.org/docs/Web/CSS/counter-set",
+					"url": "HTTPS://developer.mozilla.org/docs/Web/CSS/counter-set",
 				},
 			],
 			"description":
@@ -17555,7 +17555,7 @@ export const cssData: CSSDataV1 = {
 			"references": [
 				{
 					"name": "MDN Reference",
-					"url": "https://developer.mozilla.org/docs/Web/CSS/d",
+					"url": "HTTPS://developer.mozilla.org/docs/Web/CSS/d",
 				},
 			],
 			"description":
@@ -17569,7 +17569,7 @@ export const cssData: CSSDataV1 = {
 			"references": [
 				{
 					"name": "MDN Reference",
-					"url": "https://developer.mozilla.org/docs/Web/CSS/cx",
+					"url": "HTTPS://developer.mozilla.org/docs/Web/CSS/cx",
 				},
 			],
 			"description":
@@ -17583,7 +17583,7 @@ export const cssData: CSSDataV1 = {
 			"references": [
 				{
 					"name": "MDN Reference",
-					"url": "https://developer.mozilla.org/docs/Web/CSS/cy",
+					"url": "HTTPS://developer.mozilla.org/docs/Web/CSS/cy",
 				},
 			],
 			"description":
@@ -17627,7 +17627,7 @@ export const cssData: CSSDataV1 = {
 			"references": [
 				{
 					"name": "MDN Reference",
-					"url": "https://developer.mozilla.org/docs/Web/CSS/dominant-baseline",
+					"url": "HTTPS://developer.mozilla.org/docs/Web/CSS/dominant-baseline",
 				},
 			],
 			"description":
@@ -17649,7 +17649,7 @@ export const cssData: CSSDataV1 = {
 			"references": [
 				{
 					"name": "MDN Reference",
-					"url": "https://developer.mozilla.org/docs/Web/CSS/field-sizing",
+					"url": "HTTPS://developer.mozilla.org/docs/Web/CSS/field-sizing",
 				},
 			],
 			"description":
@@ -17671,7 +17671,7 @@ export const cssData: CSSDataV1 = {
 			"references": [
 				{
 					"name": "MDN Reference",
-					"url": "https://developer.mozilla.org/docs/Web/CSS/font-optical-sizing",
+					"url": "HTTPS://developer.mozilla.org/docs/Web/CSS/font-optical-sizing",
 				},
 			],
 			"description":
@@ -17685,7 +17685,7 @@ export const cssData: CSSDataV1 = {
 			"references": [
 				{
 					"name": "MDN Reference",
-					"url": "https://developer.mozilla.org/docs/Web/CSS/font-palette",
+					"url": "HTTPS://developer.mozilla.org/docs/Web/CSS/font-palette",
 				},
 			],
 			"description":
@@ -17700,7 +17700,7 @@ export const cssData: CSSDataV1 = {
 			"references": [
 				{
 					"name": "MDN Reference",
-					"url": "https://developer.mozilla.org/docs/Web/CSS/font-variation-settings",
+					"url": "HTTPS://developer.mozilla.org/docs/Web/CSS/font-variation-settings",
 				},
 			],
 			"description":
@@ -17715,7 +17715,7 @@ export const cssData: CSSDataV1 = {
 			"references": [
 				{
 					"name": "MDN Reference",
-					"url": "https://developer.mozilla.org/docs/Web/CSS/font-smooth",
+					"url": "HTTPS://developer.mozilla.org/docs/Web/CSS/font-smooth",
 				},
 			],
 			"description":
@@ -17737,7 +17737,7 @@ export const cssData: CSSDataV1 = {
 			"references": [
 				{
 					"name": "MDN Reference",
-					"url": "https://developer.mozilla.org/docs/Web/CSS/font-synthesis-position",
+					"url": "HTTPS://developer.mozilla.org/docs/Web/CSS/font-synthesis-position",
 				},
 			],
 			"description":
@@ -17759,7 +17759,7 @@ export const cssData: CSSDataV1 = {
 			"references": [
 				{
 					"name": "MDN Reference",
-					"url": "https://developer.mozilla.org/docs/Web/CSS/font-synthesis-small-caps",
+					"url": "HTTPS://developer.mozilla.org/docs/Web/CSS/font-synthesis-small-caps",
 				},
 			],
 			"description":
@@ -17781,7 +17781,7 @@ export const cssData: CSSDataV1 = {
 			"references": [
 				{
 					"name": "MDN Reference",
-					"url": "https://developer.mozilla.org/docs/Web/CSS/font-synthesis-style",
+					"url": "HTTPS://developer.mozilla.org/docs/Web/CSS/font-synthesis-style",
 				},
 			],
 			"description":
@@ -17803,7 +17803,7 @@ export const cssData: CSSDataV1 = {
 			"references": [
 				{
 					"name": "MDN Reference",
-					"url": "https://developer.mozilla.org/docs/Web/CSS/font-synthesis-weight",
+					"url": "HTTPS://developer.mozilla.org/docs/Web/CSS/font-synthesis-weight",
 				},
 			],
 			"description":
@@ -17831,7 +17831,7 @@ export const cssData: CSSDataV1 = {
 			"references": [
 				{
 					"name": "MDN Reference",
-					"url": "https://developer.mozilla.org/docs/Web/CSS/font-variant-emoji",
+					"url": "HTTPS://developer.mozilla.org/docs/Web/CSS/font-variant-emoji",
 				},
 			],
 			"description":
@@ -17856,7 +17856,7 @@ export const cssData: CSSDataV1 = {
 			"references": [
 				{
 					"name": "MDN Reference",
-					"url": "https://developer.mozilla.org/docs/Web/CSS/forced-color-adjust",
+					"url": "HTTPS://developer.mozilla.org/docs/Web/CSS/forced-color-adjust",
 				},
 			],
 			"description":
@@ -17870,7 +17870,7 @@ export const cssData: CSSDataV1 = {
 			"references": [
 				{
 					"name": "MDN Reference",
-					"url": "https://developer.mozilla.org/docs/Web/CSS/gap",
+					"url": "HTTPS://developer.mozilla.org/docs/Web/CSS/gap",
 				},
 			],
 			"description":
@@ -17884,7 +17884,7 @@ export const cssData: CSSDataV1 = {
 			"references": [
 				{
 					"name": "MDN Reference",
-					"url": "https://developer.mozilla.org/docs/Web/CSS/hanging-punctuation",
+					"url": "HTTPS://developer.mozilla.org/docs/Web/CSS/hanging-punctuation",
 				},
 			],
 			"description":
@@ -17898,7 +17898,7 @@ export const cssData: CSSDataV1 = {
 			"references": [
 				{
 					"name": "MDN Reference",
-					"url": "https://developer.mozilla.org/docs/Web/CSS/hyphenate-character",
+					"url": "HTTPS://developer.mozilla.org/docs/Web/CSS/hyphenate-character",
 				},
 			],
 			"description": "A hyphenate character used at the end of a line.",
@@ -17911,7 +17911,7 @@ export const cssData: CSSDataV1 = {
 			"references": [
 				{
 					"name": "MDN Reference",
-					"url": "https://developer.mozilla.org/docs/Web/CSS/hyphenate-limit-chars",
+					"url": "HTTPS://developer.mozilla.org/docs/Web/CSS/hyphenate-limit-chars",
 				},
 			],
 			"description":
@@ -17933,7 +17933,7 @@ export const cssData: CSSDataV1 = {
 			"references": [
 				{
 					"name": "MDN Reference",
-					"url": "https://developer.mozilla.org/docs/Web/CSS/initial-letter",
+					"url": "HTTPS://developer.mozilla.org/docs/Web/CSS/initial-letter",
 				},
 			],
 			"description":
@@ -17970,7 +17970,7 @@ export const cssData: CSSDataV1 = {
 			"references": [
 				{
 					"name": "MDN Reference",
-					"url": "https://developer.mozilla.org/docs/Web/CSS/inset",
+					"url": "HTTPS://developer.mozilla.org/docs/Web/CSS/inset",
 				},
 			],
 			"description":
@@ -17984,7 +17984,7 @@ export const cssData: CSSDataV1 = {
 			"references": [
 				{
 					"name": "MDN Reference",
-					"url": "https://developer.mozilla.org/docs/Web/CSS/inset-block",
+					"url": "HTTPS://developer.mozilla.org/docs/Web/CSS/inset-block",
 				},
 			],
 			"description":
@@ -17998,7 +17998,7 @@ export const cssData: CSSDataV1 = {
 			"references": [
 				{
 					"name": "MDN Reference",
-					"url": "https://developer.mozilla.org/docs/Web/CSS/inset-block-end",
+					"url": "HTTPS://developer.mozilla.org/docs/Web/CSS/inset-block-end",
 				},
 			],
 			"description":
@@ -18012,7 +18012,7 @@ export const cssData: CSSDataV1 = {
 			"references": [
 				{
 					"name": "MDN Reference",
-					"url": "https://developer.mozilla.org/docs/Web/CSS/inset-block-start",
+					"url": "HTTPS://developer.mozilla.org/docs/Web/CSS/inset-block-start",
 				},
 			],
 			"description":
@@ -18026,7 +18026,7 @@ export const cssData: CSSDataV1 = {
 			"references": [
 				{
 					"name": "MDN Reference",
-					"url": "https://developer.mozilla.org/docs/Web/CSS/inset-inline",
+					"url": "HTTPS://developer.mozilla.org/docs/Web/CSS/inset-inline",
 				},
 			],
 			"description":
@@ -18040,7 +18040,7 @@ export const cssData: CSSDataV1 = {
 			"references": [
 				{
 					"name": "MDN Reference",
-					"url": "https://developer.mozilla.org/docs/Web/CSS/inset-inline-end",
+					"url": "HTTPS://developer.mozilla.org/docs/Web/CSS/inset-inline-end",
 				},
 			],
 			"description":
@@ -18054,7 +18054,7 @@ export const cssData: CSSDataV1 = {
 			"references": [
 				{
 					"name": "MDN Reference",
-					"url": "https://developer.mozilla.org/docs/Web/CSS/inset-inline-start",
+					"url": "HTTPS://developer.mozilla.org/docs/Web/CSS/inset-inline-start",
 				},
 			],
 			"description":
@@ -18076,7 +18076,7 @@ export const cssData: CSSDataV1 = {
 			"references": [
 				{
 					"name": "MDN Reference",
-					"url": "https://developer.mozilla.org/docs/Web/CSS/interpolate-size",
+					"url": "HTTPS://developer.mozilla.org/docs/Web/CSS/interpolate-size",
 				},
 			],
 			"description":
@@ -18099,7 +18099,7 @@ export const cssData: CSSDataV1 = {
 			"references": [
 				{
 					"name": "MDN Reference",
-					"url": "https://developer.mozilla.org/docs/Web/CSS/-webkit-line-clamp",
+					"url": "HTTPS://developer.mozilla.org/docs/Web/CSS/-webkit-line-clamp",
 				},
 			],
 			"description":
@@ -18114,7 +18114,7 @@ export const cssData: CSSDataV1 = {
 			"references": [
 				{
 					"name": "MDN Reference",
-					"url": "https://developer.mozilla.org/docs/Web/CSS/line-height-step",
+					"url": "HTTPS://developer.mozilla.org/docs/Web/CSS/line-height-step",
 				},
 			],
 			"description":
@@ -18128,7 +18128,7 @@ export const cssData: CSSDataV1 = {
 			"references": [
 				{
 					"name": "MDN Reference",
-					"url": "https://developer.mozilla.org/docs/Web/CSS/margin-block",
+					"url": "HTTPS://developer.mozilla.org/docs/Web/CSS/margin-block",
 				},
 			],
 			"description":
@@ -18142,7 +18142,7 @@ export const cssData: CSSDataV1 = {
 			"references": [
 				{
 					"name": "MDN Reference",
-					"url": "https://developer.mozilla.org/docs/Web/CSS/margin-inline",
+					"url": "HTTPS://developer.mozilla.org/docs/Web/CSS/margin-inline",
 				},
 			],
 			"description":
@@ -18168,7 +18168,7 @@ export const cssData: CSSDataV1 = {
 			"references": [
 				{
 					"name": "MDN Reference",
-					"url": "https://developer.mozilla.org/docs/Web/CSS/margin-trim",
+					"url": "HTTPS://developer.mozilla.org/docs/Web/CSS/margin-trim",
 				},
 			],
 			"description":
@@ -18182,7 +18182,7 @@ export const cssData: CSSDataV1 = {
 			"references": [
 				{
 					"name": "MDN Reference",
-					"url": "https://developer.mozilla.org/docs/Web/CSS/mask",
+					"url": "HTTPS://developer.mozilla.org/docs/Web/CSS/mask",
 				},
 			],
 			"description":
@@ -18197,7 +18197,7 @@ export const cssData: CSSDataV1 = {
 			"references": [
 				{
 					"name": "MDN Reference",
-					"url": "https://developer.mozilla.org/docs/Web/CSS/mask-border",
+					"url": "HTTPS://developer.mozilla.org/docs/Web/CSS/mask-border",
 				},
 			],
 			"description":
@@ -18226,7 +18226,7 @@ export const cssData: CSSDataV1 = {
 			"references": [
 				{
 					"name": "MDN Reference",
-					"url": "https://developer.mozilla.org/docs/Web/CSS/mask-border-outset",
+					"url": "HTTPS://developer.mozilla.org/docs/Web/CSS/mask-border-outset",
 				},
 			],
 			"description":
@@ -18240,7 +18240,7 @@ export const cssData: CSSDataV1 = {
 			"references": [
 				{
 					"name": "MDN Reference",
-					"url": "https://developer.mozilla.org/docs/Web/CSS/mask-border-repeat",
+					"url": "HTTPS://developer.mozilla.org/docs/Web/CSS/mask-border-repeat",
 				},
 			],
 			"description":
@@ -18254,7 +18254,7 @@ export const cssData: CSSDataV1 = {
 			"references": [
 				{
 					"name": "MDN Reference",
-					"url": "https://developer.mozilla.org/docs/Web/CSS/mask-border-slice",
+					"url": "HTTPS://developer.mozilla.org/docs/Web/CSS/mask-border-slice",
 				},
 			],
 			"description":
@@ -18268,7 +18268,7 @@ export const cssData: CSSDataV1 = {
 			"references": [
 				{
 					"name": "MDN Reference",
-					"url": "https://developer.mozilla.org/docs/Web/CSS/mask-border-source",
+					"url": "HTTPS://developer.mozilla.org/docs/Web/CSS/mask-border-source",
 				},
 			],
 			"description":
@@ -18282,7 +18282,7 @@ export const cssData: CSSDataV1 = {
 			"references": [
 				{
 					"name": "MDN Reference",
-					"url": "https://developer.mozilla.org/docs/Web/CSS/mask-border-width",
+					"url": "HTTPS://developer.mozilla.org/docs/Web/CSS/mask-border-width",
 				},
 			],
 			"description":
@@ -18296,7 +18296,7 @@ export const cssData: CSSDataV1 = {
 			"references": [
 				{
 					"name": "MDN Reference",
-					"url": "https://developer.mozilla.org/docs/Web/CSS/mask-clip",
+					"url": "HTTPS://developer.mozilla.org/docs/Web/CSS/mask-clip",
 				},
 			],
 			"description":
@@ -18310,7 +18310,7 @@ export const cssData: CSSDataV1 = {
 			"references": [
 				{
 					"name": "MDN Reference",
-					"url": "https://developer.mozilla.org/docs/Web/CSS/mask-composite",
+					"url": "HTTPS://developer.mozilla.org/docs/Web/CSS/mask-composite",
 				},
 			],
 			"description":
@@ -18332,7 +18332,7 @@ export const cssData: CSSDataV1 = {
 			"references": [
 				{
 					"name": "MDN Reference",
-					"url": "https://developer.mozilla.org/docs/Web/CSS/math-depth",
+					"url": "HTTPS://developer.mozilla.org/docs/Web/CSS/math-depth",
 				},
 			],
 			"description":
@@ -18354,7 +18354,7 @@ export const cssData: CSSDataV1 = {
 			"references": [
 				{
 					"name": "MDN Reference",
-					"url": "https://developer.mozilla.org/docs/Web/CSS/math-shift",
+					"url": "HTTPS://developer.mozilla.org/docs/Web/CSS/math-shift",
 				},
 			],
 			"description":
@@ -18376,7 +18376,7 @@ export const cssData: CSSDataV1 = {
 			"references": [
 				{
 					"name": "MDN Reference",
-					"url": "https://developer.mozilla.org/docs/Web/CSS/math-style",
+					"url": "HTTPS://developer.mozilla.org/docs/Web/CSS/math-style",
 				},
 			],
 			"description":
@@ -18399,7 +18399,7 @@ export const cssData: CSSDataV1 = {
 			"references": [
 				{
 					"name": "MDN Reference",
-					"url": "https://developer.mozilla.org/docs/Web/CSS/offset",
+					"url": "HTTPS://developer.mozilla.org/docs/Web/CSS/offset",
 				},
 			],
 			"description":
@@ -18413,7 +18413,7 @@ export const cssData: CSSDataV1 = {
 			"references": [
 				{
 					"name": "MDN Reference",
-					"url": "https://developer.mozilla.org/docs/Web/CSS/offset-anchor",
+					"url": "HTTPS://developer.mozilla.org/docs/Web/CSS/offset-anchor",
 				},
 			],
 			"description":
@@ -18427,7 +18427,7 @@ export const cssData: CSSDataV1 = {
 			"references": [
 				{
 					"name": "MDN Reference",
-					"url": "https://developer.mozilla.org/docs/Web/CSS/offset-distance",
+					"url": "HTTPS://developer.mozilla.org/docs/Web/CSS/offset-distance",
 				},
 			],
 			"description":
@@ -18441,7 +18441,7 @@ export const cssData: CSSDataV1 = {
 			"references": [
 				{
 					"name": "MDN Reference",
-					"url": "https://developer.mozilla.org/docs/Web/CSS/offset-path",
+					"url": "HTTPS://developer.mozilla.org/docs/Web/CSS/offset-path",
 				},
 			],
 			"description":
@@ -18455,7 +18455,7 @@ export const cssData: CSSDataV1 = {
 			"references": [
 				{
 					"name": "MDN Reference",
-					"url": "https://developer.mozilla.org/docs/Web/CSS/offset-position",
+					"url": "HTTPS://developer.mozilla.org/docs/Web/CSS/offset-position",
 				},
 			],
 			"description":
@@ -18469,7 +18469,7 @@ export const cssData: CSSDataV1 = {
 			"references": [
 				{
 					"name": "MDN Reference",
-					"url": "https://developer.mozilla.org/docs/Web/CSS/offset-rotate",
+					"url": "HTTPS://developer.mozilla.org/docs/Web/CSS/offset-rotate",
 				},
 			],
 			"description":
@@ -18491,7 +18491,7 @@ export const cssData: CSSDataV1 = {
 			"references": [
 				{
 					"name": "MDN Reference",
-					"url": "https://developer.mozilla.org/docs/Web/CSS/overflow-anchor",
+					"url": "HTTPS://developer.mozilla.org/docs/Web/CSS/overflow-anchor",
 				},
 			],
 			"description":
@@ -18522,7 +18522,7 @@ export const cssData: CSSDataV1 = {
 			"references": [
 				{
 					"name": "MDN Reference",
-					"url": "https://developer.mozilla.org/docs/Web/CSS/overflow-block",
+					"url": "HTTPS://developer.mozilla.org/docs/Web/CSS/overflow-block",
 				},
 			],
 			"description":
@@ -18552,7 +18552,7 @@ export const cssData: CSSDataV1 = {
 			"references": [
 				{
 					"name": "MDN Reference",
-					"url": "https://developer.mozilla.org/docs/Web/CSS/overflow-clip-margin",
+					"url": "HTTPS://developer.mozilla.org/docs/Web/CSS/overflow-clip-margin",
 				},
 			],
 			"description":
@@ -18583,7 +18583,7 @@ export const cssData: CSSDataV1 = {
 			"references": [
 				{
 					"name": "MDN Reference",
-					"url": "https://developer.mozilla.org/docs/Web/CSS/overflow-inline",
+					"url": "HTTPS://developer.mozilla.org/docs/Web/CSS/overflow-inline",
 				},
 			],
 			"description":
@@ -18606,7 +18606,7 @@ export const cssData: CSSDataV1 = {
 			"references": [
 				{
 					"name": "MDN Reference",
-					"url": "https://developer.mozilla.org/docs/Web/CSS/overlay",
+					"url": "HTTPS://developer.mozilla.org/docs/Web/CSS/overlay",
 				},
 			],
 			"description":
@@ -18620,7 +18620,7 @@ export const cssData: CSSDataV1 = {
 			"references": [
 				{
 					"name": "MDN Reference",
-					"url": "https://developer.mozilla.org/docs/Web/CSS/overscroll-behavior",
+					"url": "HTTPS://developer.mozilla.org/docs/Web/CSS/overscroll-behavior",
 				},
 			],
 			"description":
@@ -18645,7 +18645,7 @@ export const cssData: CSSDataV1 = {
 			"references": [
 				{
 					"name": "MDN Reference",
-					"url": "https://developer.mozilla.org/docs/Web/CSS/overscroll-behavior-block",
+					"url": "HTTPS://developer.mozilla.org/docs/Web/CSS/overscroll-behavior-block",
 				},
 			],
 			"description":
@@ -18670,7 +18670,7 @@ export const cssData: CSSDataV1 = {
 			"references": [
 				{
 					"name": "MDN Reference",
-					"url": "https://developer.mozilla.org/docs/Web/CSS/overscroll-behavior-inline",
+					"url": "HTTPS://developer.mozilla.org/docs/Web/CSS/overscroll-behavior-inline",
 				},
 			],
 			"description":
@@ -18695,7 +18695,7 @@ export const cssData: CSSDataV1 = {
 			"references": [
 				{
 					"name": "MDN Reference",
-					"url": "https://developer.mozilla.org/docs/Web/CSS/overscroll-behavior-x",
+					"url": "HTTPS://developer.mozilla.org/docs/Web/CSS/overscroll-behavior-x",
 				},
 			],
 			"description":
@@ -18720,7 +18720,7 @@ export const cssData: CSSDataV1 = {
 			"references": [
 				{
 					"name": "MDN Reference",
-					"url": "https://developer.mozilla.org/docs/Web/CSS/overscroll-behavior-y",
+					"url": "HTTPS://developer.mozilla.org/docs/Web/CSS/overscroll-behavior-y",
 				},
 			],
 			"description":
@@ -18734,7 +18734,7 @@ export const cssData: CSSDataV1 = {
 			"references": [
 				{
 					"name": "MDN Reference",
-					"url": "https://developer.mozilla.org/docs/Web/CSS/padding-block",
+					"url": "HTTPS://developer.mozilla.org/docs/Web/CSS/padding-block",
 				},
 			],
 			"description":
@@ -18748,7 +18748,7 @@ export const cssData: CSSDataV1 = {
 			"references": [
 				{
 					"name": "MDN Reference",
-					"url": "https://developer.mozilla.org/docs/Web/CSS/padding-inline",
+					"url": "HTTPS://developer.mozilla.org/docs/Web/CSS/padding-inline",
 				},
 			],
 			"description":
@@ -18762,7 +18762,7 @@ export const cssData: CSSDataV1 = {
 			"references": [
 				{
 					"name": "MDN Reference",
-					"url": "https://developer.mozilla.org/docs/Web/CSS/page",
+					"url": "HTTPS://developer.mozilla.org/docs/Web/CSS/page",
 				},
 			],
 			"description":
@@ -18776,7 +18776,7 @@ export const cssData: CSSDataV1 = {
 			"references": [
 				{
 					"name": "MDN Reference",
-					"url": "https://developer.mozilla.org/docs/Web/CSS/place-content",
+					"url": "HTTPS://developer.mozilla.org/docs/Web/CSS/place-content",
 				},
 			],
 			"description":
@@ -18790,7 +18790,7 @@ export const cssData: CSSDataV1 = {
 			"references": [
 				{
 					"name": "MDN Reference",
-					"url": "https://developer.mozilla.org/docs/Web/CSS/place-items",
+					"url": "HTTPS://developer.mozilla.org/docs/Web/CSS/place-items",
 				},
 			],
 			"description":
@@ -18804,7 +18804,7 @@ export const cssData: CSSDataV1 = {
 			"references": [
 				{
 					"name": "MDN Reference",
-					"url": "https://developer.mozilla.org/docs/Web/CSS/place-self",
+					"url": "HTTPS://developer.mozilla.org/docs/Web/CSS/place-self",
 				},
 			],
 			"description":
@@ -18819,7 +18819,7 @@ export const cssData: CSSDataV1 = {
 			"references": [
 				{
 					"name": "MDN Reference",
-					"url": "https://developer.mozilla.org/docs/Web/CSS/position-anchor",
+					"url": "HTTPS://developer.mozilla.org/docs/Web/CSS/position-anchor",
 				},
 			],
 			"description":
@@ -18833,7 +18833,7 @@ export const cssData: CSSDataV1 = {
 			"references": [
 				{
 					"name": "MDN Reference",
-					"url": "https://developer.mozilla.org/docs/Web/CSS/position-area",
+					"url": "HTTPS://developer.mozilla.org/docs/Web/CSS/position-area",
 				},
 			],
 			"description":
@@ -18848,7 +18848,7 @@ export const cssData: CSSDataV1 = {
 			"references": [
 				{
 					"name": "MDN Reference",
-					"url": "https://developer.mozilla.org/docs/Web/CSS/position-try",
+					"url": "HTTPS://developer.mozilla.org/docs/Web/CSS/position-try",
 				},
 			],
 			"description":
@@ -18864,7 +18864,7 @@ export const cssData: CSSDataV1 = {
 			"references": [
 				{
 					"name": "MDN Reference",
-					"url": "https://developer.mozilla.org/docs/Web/CSS/position-try-fallbacks",
+					"url": "HTTPS://developer.mozilla.org/docs/Web/CSS/position-try-fallbacks",
 				},
 			],
 			"description":
@@ -18879,7 +18879,7 @@ export const cssData: CSSDataV1 = {
 			"references": [
 				{
 					"name": "MDN Reference",
-					"url": "https://developer.mozilla.org/docs/Web/CSS/position-try-order",
+					"url": "HTTPS://developer.mozilla.org/docs/Web/CSS/position-try-order",
 				},
 			],
 			"description":
@@ -18895,7 +18895,7 @@ export const cssData: CSSDataV1 = {
 			"references": [
 				{
 					"name": "MDN Reference",
-					"url": "https://developer.mozilla.org/docs/Web/CSS/position-visibility",
+					"url": "HTTPS://developer.mozilla.org/docs/Web/CSS/position-visibility",
 				},
 			],
 			"description":
@@ -18917,7 +18917,7 @@ export const cssData: CSSDataV1 = {
 			"references": [
 				{
 					"name": "MDN Reference",
-					"url": "https://developer.mozilla.org/docs/Web/CSS/print-color-adjust",
+					"url": "HTTPS://developer.mozilla.org/docs/Web/CSS/print-color-adjust",
 				},
 			],
 			"description":
@@ -18931,7 +18931,7 @@ export const cssData: CSSDataV1 = {
 			"references": [
 				{
 					"name": "MDN Reference",
-					"url": "https://developer.mozilla.org/docs/Web/CSS/r",
+					"url": "HTTPS://developer.mozilla.org/docs/Web/CSS/r",
 				},
 			],
 			"description":
@@ -18945,7 +18945,7 @@ export const cssData: CSSDataV1 = {
 			"references": [
 				{
 					"name": "MDN Reference",
-					"url": "https://developer.mozilla.org/docs/Web/CSS/rotate",
+					"url": "HTTPS://developer.mozilla.org/docs/Web/CSS/rotate",
 				},
 			],
 			"description":
@@ -18959,7 +18959,7 @@ export const cssData: CSSDataV1 = {
 			"references": [
 				{
 					"name": "MDN Reference",
-					"url": "https://developer.mozilla.org/docs/Web/CSS/row-gap",
+					"url": "HTTPS://developer.mozilla.org/docs/Web/CSS/row-gap",
 				},
 			],
 			"description":
@@ -18992,7 +18992,7 @@ export const cssData: CSSDataV1 = {
 			"references": [
 				{
 					"name": "MDN Reference",
-					"url": "https://developer.mozilla.org/docs/Web/CSS/rx",
+					"url": "HTTPS://developer.mozilla.org/docs/Web/CSS/rx",
 				},
 			],
 			"description":
@@ -19006,7 +19006,7 @@ export const cssData: CSSDataV1 = {
 			"references": [
 				{
 					"name": "MDN Reference",
-					"url": "https://developer.mozilla.org/docs/Web/CSS/ry",
+					"url": "HTTPS://developer.mozilla.org/docs/Web/CSS/ry",
 				},
 			],
 			"description":
@@ -19020,7 +19020,7 @@ export const cssData: CSSDataV1 = {
 			"references": [
 				{
 					"name": "MDN Reference",
-					"url": "https://developer.mozilla.org/docs/Web/CSS/scale",
+					"url": "HTTPS://developer.mozilla.org/docs/Web/CSS/scale",
 				},
 			],
 			"description":
@@ -19034,7 +19034,7 @@ export const cssData: CSSDataV1 = {
 			"references": [
 				{
 					"name": "MDN Reference",
-					"url": "https://developer.mozilla.org/docs/Web/CSS/scrollbar-color",
+					"url": "HTTPS://developer.mozilla.org/docs/Web/CSS/scrollbar-color",
 				},
 			],
 			"description":
@@ -19048,7 +19048,7 @@ export const cssData: CSSDataV1 = {
 			"references": [
 				{
 					"name": "MDN Reference",
-					"url": "https://developer.mozilla.org/docs/Web/CSS/scrollbar-gutter",
+					"url": "HTTPS://developer.mozilla.org/docs/Web/CSS/scrollbar-gutter",
 				},
 			],
 			"description":
@@ -19073,7 +19073,7 @@ export const cssData: CSSDataV1 = {
 			"references": [
 				{
 					"name": "MDN Reference",
-					"url": "https://developer.mozilla.org/docs/Web/CSS/scrollbar-width",
+					"url": "HTTPS://developer.mozilla.org/docs/Web/CSS/scrollbar-width",
 				},
 			],
 			"description":
@@ -19087,7 +19087,7 @@ export const cssData: CSSDataV1 = {
 			"references": [
 				{
 					"name": "MDN Reference",
-					"url": "https://developer.mozilla.org/docs/Web/CSS/scroll-margin",
+					"url": "HTTPS://developer.mozilla.org/docs/Web/CSS/scroll-margin",
 				},
 			],
 			"description":
@@ -19101,7 +19101,7 @@ export const cssData: CSSDataV1 = {
 			"references": [
 				{
 					"name": "MDN Reference",
-					"url": "https://developer.mozilla.org/docs/Web/CSS/scroll-margin-block",
+					"url": "HTTPS://developer.mozilla.org/docs/Web/CSS/scroll-margin-block",
 				},
 			],
 			"description":
@@ -19115,7 +19115,7 @@ export const cssData: CSSDataV1 = {
 			"references": [
 				{
 					"name": "MDN Reference",
-					"url": "https://developer.mozilla.org/docs/Web/CSS/scroll-margin-block-start",
+					"url": "HTTPS://developer.mozilla.org/docs/Web/CSS/scroll-margin-block-start",
 				},
 			],
 			"description":
@@ -19129,7 +19129,7 @@ export const cssData: CSSDataV1 = {
 			"references": [
 				{
 					"name": "MDN Reference",
-					"url": "https://developer.mozilla.org/docs/Web/CSS/scroll-margin-block-end",
+					"url": "HTTPS://developer.mozilla.org/docs/Web/CSS/scroll-margin-block-end",
 				},
 			],
 			"description":
@@ -19143,7 +19143,7 @@ export const cssData: CSSDataV1 = {
 			"references": [
 				{
 					"name": "MDN Reference",
-					"url": "https://developer.mozilla.org/docs/Web/CSS/scroll-margin-bottom",
+					"url": "HTTPS://developer.mozilla.org/docs/Web/CSS/scroll-margin-bottom",
 				},
 			],
 			"description":
@@ -19157,7 +19157,7 @@ export const cssData: CSSDataV1 = {
 			"references": [
 				{
 					"name": "MDN Reference",
-					"url": "https://developer.mozilla.org/docs/Web/CSS/scroll-margin-inline",
+					"url": "HTTPS://developer.mozilla.org/docs/Web/CSS/scroll-margin-inline",
 				},
 			],
 			"description":
@@ -19171,7 +19171,7 @@ export const cssData: CSSDataV1 = {
 			"references": [
 				{
 					"name": "MDN Reference",
-					"url": "https://developer.mozilla.org/docs/Web/CSS/scroll-margin-inline-start",
+					"url": "HTTPS://developer.mozilla.org/docs/Web/CSS/scroll-margin-inline-start",
 				},
 			],
 			"description":
@@ -19185,7 +19185,7 @@ export const cssData: CSSDataV1 = {
 			"references": [
 				{
 					"name": "MDN Reference",
-					"url": "https://developer.mozilla.org/docs/Web/CSS/scroll-margin-inline-end",
+					"url": "HTTPS://developer.mozilla.org/docs/Web/CSS/scroll-margin-inline-end",
 				},
 			],
 			"description":
@@ -19199,7 +19199,7 @@ export const cssData: CSSDataV1 = {
 			"references": [
 				{
 					"name": "MDN Reference",
-					"url": "https://developer.mozilla.org/docs/Web/CSS/scroll-margin-left",
+					"url": "HTTPS://developer.mozilla.org/docs/Web/CSS/scroll-margin-left",
 				},
 			],
 			"description":
@@ -19213,7 +19213,7 @@ export const cssData: CSSDataV1 = {
 			"references": [
 				{
 					"name": "MDN Reference",
-					"url": "https://developer.mozilla.org/docs/Web/CSS/scroll-margin-right",
+					"url": "HTTPS://developer.mozilla.org/docs/Web/CSS/scroll-margin-right",
 				},
 			],
 			"description":
@@ -19227,7 +19227,7 @@ export const cssData: CSSDataV1 = {
 			"references": [
 				{
 					"name": "MDN Reference",
-					"url": "https://developer.mozilla.org/docs/Web/CSS/scroll-margin-top",
+					"url": "HTTPS://developer.mozilla.org/docs/Web/CSS/scroll-margin-top",
 				},
 			],
 			"description":
@@ -19241,7 +19241,7 @@ export const cssData: CSSDataV1 = {
 			"references": [
 				{
 					"name": "MDN Reference",
-					"url": "https://developer.mozilla.org/docs/Web/CSS/scroll-padding",
+					"url": "HTTPS://developer.mozilla.org/docs/Web/CSS/scroll-padding",
 				},
 			],
 			"description":
@@ -19255,7 +19255,7 @@ export const cssData: CSSDataV1 = {
 			"references": [
 				{
 					"name": "MDN Reference",
-					"url": "https://developer.mozilla.org/docs/Web/CSS/scroll-padding-block",
+					"url": "HTTPS://developer.mozilla.org/docs/Web/CSS/scroll-padding-block",
 				},
 			],
 			"description":
@@ -19269,7 +19269,7 @@ export const cssData: CSSDataV1 = {
 			"references": [
 				{
 					"name": "MDN Reference",
-					"url": "https://developer.mozilla.org/docs/Web/CSS/scroll-padding-block-start",
+					"url": "HTTPS://developer.mozilla.org/docs/Web/CSS/scroll-padding-block-start",
 				},
 			],
 			"description":
@@ -19283,7 +19283,7 @@ export const cssData: CSSDataV1 = {
 			"references": [
 				{
 					"name": "MDN Reference",
-					"url": "https://developer.mozilla.org/docs/Web/CSS/scroll-padding-block-end",
+					"url": "HTTPS://developer.mozilla.org/docs/Web/CSS/scroll-padding-block-end",
 				},
 			],
 			"description":
@@ -19297,7 +19297,7 @@ export const cssData: CSSDataV1 = {
 			"references": [
 				{
 					"name": "MDN Reference",
-					"url": "https://developer.mozilla.org/docs/Web/CSS/scroll-padding-bottom",
+					"url": "HTTPS://developer.mozilla.org/docs/Web/CSS/scroll-padding-bottom",
 				},
 			],
 			"description":
@@ -19311,7 +19311,7 @@ export const cssData: CSSDataV1 = {
 			"references": [
 				{
 					"name": "MDN Reference",
-					"url": "https://developer.mozilla.org/docs/Web/CSS/scroll-padding-inline",
+					"url": "HTTPS://developer.mozilla.org/docs/Web/CSS/scroll-padding-inline",
 				},
 			],
 			"description":
@@ -19325,7 +19325,7 @@ export const cssData: CSSDataV1 = {
 			"references": [
 				{
 					"name": "MDN Reference",
-					"url": "https://developer.mozilla.org/docs/Web/CSS/scroll-padding-inline-start",
+					"url": "HTTPS://developer.mozilla.org/docs/Web/CSS/scroll-padding-inline-start",
 				},
 			],
 			"description":
@@ -19339,7 +19339,7 @@ export const cssData: CSSDataV1 = {
 			"references": [
 				{
 					"name": "MDN Reference",
-					"url": "https://developer.mozilla.org/docs/Web/CSS/scroll-padding-inline-end",
+					"url": "HTTPS://developer.mozilla.org/docs/Web/CSS/scroll-padding-inline-end",
 				},
 			],
 			"description":
@@ -19353,7 +19353,7 @@ export const cssData: CSSDataV1 = {
 			"references": [
 				{
 					"name": "MDN Reference",
-					"url": "https://developer.mozilla.org/docs/Web/CSS/scroll-padding-left",
+					"url": "HTTPS://developer.mozilla.org/docs/Web/CSS/scroll-padding-left",
 				},
 			],
 			"description":
@@ -19367,7 +19367,7 @@ export const cssData: CSSDataV1 = {
 			"references": [
 				{
 					"name": "MDN Reference",
-					"url": "https://developer.mozilla.org/docs/Web/CSS/scroll-padding-right",
+					"url": "HTTPS://developer.mozilla.org/docs/Web/CSS/scroll-padding-right",
 				},
 			],
 			"description":
@@ -19381,7 +19381,7 @@ export const cssData: CSSDataV1 = {
 			"references": [
 				{
 					"name": "MDN Reference",
-					"url": "https://developer.mozilla.org/docs/Web/CSS/scroll-padding-top",
+					"url": "HTTPS://developer.mozilla.org/docs/Web/CSS/scroll-padding-top",
 				},
 			],
 			"description":
@@ -19395,7 +19395,7 @@ export const cssData: CSSDataV1 = {
 			"references": [
 				{
 					"name": "MDN Reference",
-					"url": "https://developer.mozilla.org/docs/Web/CSS/scroll-snap-align",
+					"url": "HTTPS://developer.mozilla.org/docs/Web/CSS/scroll-snap-align",
 				},
 			],
 			"description":
@@ -19417,7 +19417,7 @@ export const cssData: CSSDataV1 = {
 			"references": [
 				{
 					"name": "MDN Reference",
-					"url": "https://developer.mozilla.org/docs/Web/CSS/scroll-snap-stop",
+					"url": "HTTPS://developer.mozilla.org/docs/Web/CSS/scroll-snap-stop",
 				},
 			],
 			"description":
@@ -19470,7 +19470,7 @@ export const cssData: CSSDataV1 = {
 			"references": [
 				{
 					"name": "MDN Reference",
-					"url": "https://developer.mozilla.org/docs/Web/CSS/scroll-timeline",
+					"url": "HTTPS://developer.mozilla.org/docs/Web/CSS/scroll-timeline",
 				},
 			],
 			"description":
@@ -19485,7 +19485,7 @@ export const cssData: CSSDataV1 = {
 			"references": [
 				{
 					"name": "MDN Reference",
-					"url": "https://developer.mozilla.org/docs/Web/CSS/scroll-timeline-axis",
+					"url": "HTTPS://developer.mozilla.org/docs/Web/CSS/scroll-timeline-axis",
 				},
 			],
 			"description":
@@ -19500,7 +19500,7 @@ export const cssData: CSSDataV1 = {
 			"references": [
 				{
 					"name": "MDN Reference",
-					"url": "https://developer.mozilla.org/docs/Web/CSS/scroll-timeline-name",
+					"url": "HTTPS://developer.mozilla.org/docs/Web/CSS/scroll-timeline-name",
 				},
 			],
 			"description":
@@ -19514,7 +19514,7 @@ export const cssData: CSSDataV1 = {
 			"references": [
 				{
 					"name": "MDN Reference",
-					"url": "https://developer.mozilla.org/docs/Web/CSS/text-combine-upright",
+					"url": "HTTPS://developer.mozilla.org/docs/Web/CSS/text-combine-upright",
 				},
 			],
 			"description":
@@ -19530,7 +19530,7 @@ export const cssData: CSSDataV1 = {
 			"references": [
 				{
 					"name": "MDN Reference",
-					"url": "https://developer.mozilla.org/docs/Web/CSS/text-decoration-skip",
+					"url": "HTTPS://developer.mozilla.org/docs/Web/CSS/text-decoration-skip",
 				},
 			],
 			"description":
@@ -19555,7 +19555,7 @@ export const cssData: CSSDataV1 = {
 			"references": [
 				{
 					"name": "MDN Reference",
-					"url": "https://developer.mozilla.org/docs/Web/CSS/text-decoration-skip-ink",
+					"url": "HTTPS://developer.mozilla.org/docs/Web/CSS/text-decoration-skip-ink",
 				},
 			],
 			"description":
@@ -19569,7 +19569,7 @@ export const cssData: CSSDataV1 = {
 			"references": [
 				{
 					"name": "MDN Reference",
-					"url": "https://developer.mozilla.org/docs/Web/CSS/text-decoration-thickness",
+					"url": "HTTPS://developer.mozilla.org/docs/Web/CSS/text-decoration-thickness",
 				},
 			],
 			"description":
@@ -19583,7 +19583,7 @@ export const cssData: CSSDataV1 = {
 			"references": [
 				{
 					"name": "MDN Reference",
-					"url": "https://developer.mozilla.org/docs/Web/CSS/text-emphasis",
+					"url": "HTTPS://developer.mozilla.org/docs/Web/CSS/text-emphasis",
 				},
 			],
 			"description":
@@ -19597,7 +19597,7 @@ export const cssData: CSSDataV1 = {
 			"references": [
 				{
 					"name": "MDN Reference",
-					"url": "https://developer.mozilla.org/docs/Web/CSS/text-emphasis-color",
+					"url": "HTTPS://developer.mozilla.org/docs/Web/CSS/text-emphasis-color",
 				},
 			],
 			"description":
@@ -19611,7 +19611,7 @@ export const cssData: CSSDataV1 = {
 			"references": [
 				{
 					"name": "MDN Reference",
-					"url": "https://developer.mozilla.org/docs/Web/CSS/text-emphasis-position",
+					"url": "HTTPS://developer.mozilla.org/docs/Web/CSS/text-emphasis-position",
 				},
 			],
 			"description":
@@ -19626,7 +19626,7 @@ export const cssData: CSSDataV1 = {
 			"references": [
 				{
 					"name": "MDN Reference",
-					"url": "https://developer.mozilla.org/docs/Web/CSS/text-emphasis-style",
+					"url": "HTTPS://developer.mozilla.org/docs/Web/CSS/text-emphasis-style",
 				},
 			],
 			"description":
@@ -19641,7 +19641,7 @@ export const cssData: CSSDataV1 = {
 			"references": [
 				{
 					"name": "MDN Reference",
-					"url": "https://developer.mozilla.org/docs/Web/CSS/text-size-adjust",
+					"url": "HTTPS://developer.mozilla.org/docs/Web/CSS/text-size-adjust",
 				},
 			],
 			"description":
@@ -19680,7 +19680,7 @@ export const cssData: CSSDataV1 = {
 			"references": [
 				{
 					"name": "MDN Reference",
-					"url": "https://developer.mozilla.org/docs/Web/CSS/text-spacing-trim",
+					"url": "HTTPS://developer.mozilla.org/docs/Web/CSS/text-spacing-trim",
 				},
 			],
 			"description":
@@ -19694,7 +19694,7 @@ export const cssData: CSSDataV1 = {
 			"references": [
 				{
 					"name": "MDN Reference",
-					"url": "https://developer.mozilla.org/docs/Web/CSS/text-underline-offset",
+					"url": "HTTPS://developer.mozilla.org/docs/Web/CSS/text-underline-offset",
 				},
 			],
 			"description":
@@ -19708,7 +19708,7 @@ export const cssData: CSSDataV1 = {
 			"references": [
 				{
 					"name": "MDN Reference",
-					"url": "https://developer.mozilla.org/docs/Web/CSS/text-wrap",
+					"url": "HTTPS://developer.mozilla.org/docs/Web/CSS/text-wrap",
 				},
 			],
 			"description":
@@ -19733,7 +19733,7 @@ export const cssData: CSSDataV1 = {
 			"references": [
 				{
 					"name": "MDN Reference",
-					"url": "https://developer.mozilla.org/docs/Web/CSS/text-wrap-mode",
+					"url": "HTTPS://developer.mozilla.org/docs/Web/CSS/text-wrap-mode",
 				},
 			],
 			"description":
@@ -19761,7 +19761,7 @@ export const cssData: CSSDataV1 = {
 			"references": [
 				{
 					"name": "MDN Reference",
-					"url": "https://developer.mozilla.org/docs/Web/CSS/text-wrap-style",
+					"url": "HTTPS://developer.mozilla.org/docs/Web/CSS/text-wrap-style",
 				},
 			],
 			"description":
@@ -19776,7 +19776,7 @@ export const cssData: CSSDataV1 = {
 			"references": [
 				{
 					"name": "MDN Reference",
-					"url": "https://developer.mozilla.org/docs/Web/CSS/timeline-scope",
+					"url": "HTTPS://developer.mozilla.org/docs/Web/CSS/timeline-scope",
 				},
 			],
 			"description":
@@ -19808,7 +19808,7 @@ export const cssData: CSSDataV1 = {
 			"references": [
 				{
 					"name": "MDN Reference",
-					"url": "https://developer.mozilla.org/docs/Web/CSS/transform-box",
+					"url": "HTTPS://developer.mozilla.org/docs/Web/CSS/transform-box",
 				},
 			],
 			"description":
@@ -19822,7 +19822,7 @@ export const cssData: CSSDataV1 = {
 			"references": [
 				{
 					"name": "MDN Reference",
-					"url": "https://developer.mozilla.org/docs/Web/CSS/transition-behavior",
+					"url": "HTTPS://developer.mozilla.org/docs/Web/CSS/transition-behavior",
 				},
 			],
 			"description":
@@ -19837,7 +19837,7 @@ export const cssData: CSSDataV1 = {
 			"references": [
 				{
 					"name": "MDN Reference",
-					"url": "https://developer.mozilla.org/docs/Web/CSS/translate",
+					"url": "HTTPS://developer.mozilla.org/docs/Web/CSS/translate",
 				},
 			],
 			"description":
@@ -19869,7 +19869,7 @@ export const cssData: CSSDataV1 = {
 			"references": [
 				{
 					"name": "MDN Reference",
-					"url": "https://developer.mozilla.org/docs/Web/CSS/vector-effect",
+					"url": "HTTPS://developer.mozilla.org/docs/Web/CSS/vector-effect",
 				},
 			],
 			"description":
@@ -19884,7 +19884,7 @@ export const cssData: CSSDataV1 = {
 			"references": [
 				{
 					"name": "MDN Reference",
-					"url": "https://developer.mozilla.org/docs/Web/CSS/view-timeline",
+					"url": "HTTPS://developer.mozilla.org/docs/Web/CSS/view-timeline",
 				},
 			],
 			"description":
@@ -19899,7 +19899,7 @@ export const cssData: CSSDataV1 = {
 			"references": [
 				{
 					"name": "MDN Reference",
-					"url": "https://developer.mozilla.org/docs/Web/CSS/view-timeline-axis",
+					"url": "HTTPS://developer.mozilla.org/docs/Web/CSS/view-timeline-axis",
 				},
 			],
 			"description":
@@ -19914,7 +19914,7 @@ export const cssData: CSSDataV1 = {
 			"references": [
 				{
 					"name": "MDN Reference",
-					"url": "https://developer.mozilla.org/docs/Web/CSS/view-timeline-inset",
+					"url": "HTTPS://developer.mozilla.org/docs/Web/CSS/view-timeline-inset",
 				},
 			],
 			"description":
@@ -19929,7 +19929,7 @@ export const cssData: CSSDataV1 = {
 			"references": [
 				{
 					"name": "MDN Reference",
-					"url": "https://developer.mozilla.org/docs/Web/CSS/view-timeline-name",
+					"url": "HTTPS://developer.mozilla.org/docs/Web/CSS/view-timeline-name",
 				},
 			],
 			"description":
@@ -19943,7 +19943,7 @@ export const cssData: CSSDataV1 = {
 			"references": [
 				{
 					"name": "MDN Reference",
-					"url": "https://developer.mozilla.org/docs/Web/CSS/view-transition-name",
+					"url": "HTTPS://developer.mozilla.org/docs/Web/CSS/view-transition-name",
 				},
 			],
 			"description":
@@ -19958,7 +19958,7 @@ export const cssData: CSSDataV1 = {
 			"references": [
 				{
 					"name": "MDN Reference",
-					"url": "https://developer.mozilla.org/docs/Web/CSS/white-space",
+					"url": "HTTPS://developer.mozilla.org/docs/Web/CSS/white-space",
 				},
 			],
 			"description": "Specifies how whitespace is handled in an element.",
@@ -19992,7 +19992,7 @@ export const cssData: CSSDataV1 = {
 			"references": [
 				{
 					"name": "MDN Reference",
-					"url": "https://developer.mozilla.org/docs/Web/CSS/white-space-collapse",
+					"url": "HTTPS://developer.mozilla.org/docs/Web/CSS/white-space-collapse",
 				},
 			],
 			"description":
@@ -20006,7 +20006,7 @@ export const cssData: CSSDataV1 = {
 			"references": [
 				{
 					"name": "MDN Reference",
-					"url": "https://developer.mozilla.org/docs/Web/CSS/x",
+					"url": "HTTPS://developer.mozilla.org/docs/Web/CSS/x",
 				},
 			],
 			"description":
@@ -20020,7 +20020,7 @@ export const cssData: CSSDataV1 = {
 			"references": [
 				{
 					"name": "MDN Reference",
-					"url": "https://developer.mozilla.org/docs/Web/CSS/y",
+					"url": "HTTPS://developer.mozilla.org/docs/Web/CSS/y",
 				},
 			],
 			"description":
@@ -20161,7 +20161,7 @@ export const cssData: CSSDataV1 = {
 			"references": [
 				{
 					"name": "MDN Reference",
-					"url": "https://developer.mozilla.org/docs/Web/CSS/@charset",
+					"url": "HTTPS://developer.mozilla.org/docs/Web/CSS/@charset",
 				},
 			],
 			"description": "Defines character set of the document.",
@@ -20172,7 +20172,7 @@ export const cssData: CSSDataV1 = {
 			"references": [
 				{
 					"name": "MDN Reference",
-					"url": "https://developer.mozilla.org/docs/Web/CSS/@counter-style",
+					"url": "HTTPS://developer.mozilla.org/docs/Web/CSS/@counter-style",
 				},
 			],
 			"description": "Defines a custom counter style.",
@@ -20183,7 +20183,7 @@ export const cssData: CSSDataV1 = {
 			"references": [
 				{
 					"name": "MDN Reference",
-					"url": "https://developer.mozilla.org/docs/Web/CSS/@font-face",
+					"url": "HTTPS://developer.mozilla.org/docs/Web/CSS/@font-face",
 				},
 			],
 			"description":
@@ -20195,7 +20195,7 @@ export const cssData: CSSDataV1 = {
 			"references": [
 				{
 					"name": "MDN Reference",
-					"url": "https://developer.mozilla.org/docs/Web/CSS/@font-feature-values",
+					"url": "HTTPS://developer.mozilla.org/docs/Web/CSS/@font-feature-values",
 				},
 			],
 			"description":
@@ -20207,7 +20207,7 @@ export const cssData: CSSDataV1 = {
 			"references": [
 				{
 					"name": "MDN Reference",
-					"url": "https://developer.mozilla.org/docs/Web/CSS/@import",
+					"url": "HTTPS://developer.mozilla.org/docs/Web/CSS/@import",
 				},
 			],
 			"description": "Includes content of another file.",
@@ -20218,7 +20218,7 @@ export const cssData: CSSDataV1 = {
 			"references": [
 				{
 					"name": "MDN Reference",
-					"url": "https://developer.mozilla.org/docs/Web/CSS/@keyframes",
+					"url": "HTTPS://developer.mozilla.org/docs/Web/CSS/@keyframes",
 				},
 			],
 			"description": "Defines set of animation key frames.",
@@ -20229,7 +20229,7 @@ export const cssData: CSSDataV1 = {
 			"references": [
 				{
 					"name": "MDN Reference",
-					"url": "https://developer.mozilla.org/docs/Web/CSS/@layer",
+					"url": "HTTPS://developer.mozilla.org/docs/Web/CSS/@layer",
 				},
 			],
 			"description":
@@ -20241,7 +20241,7 @@ export const cssData: CSSDataV1 = {
 			"references": [
 				{
 					"name": "MDN Reference",
-					"url": "https://developer.mozilla.org/docs/Web/CSS/@media",
+					"url": "HTTPS://developer.mozilla.org/docs/Web/CSS/@media",
 				},
 			],
 			"description": "Defines a stylesheet for a particular media type.",
@@ -20269,7 +20269,7 @@ export const cssData: CSSDataV1 = {
 			"references": [
 				{
 					"name": "MDN Reference",
-					"url": "https://developer.mozilla.org/docs/Web/CSS/@namespace",
+					"url": "HTTPS://developer.mozilla.org/docs/Web/CSS/@namespace",
 				},
 			],
 			"description":
@@ -20292,7 +20292,7 @@ export const cssData: CSSDataV1 = {
 			"references": [
 				{
 					"name": "MDN Reference",
-					"url": "https://developer.mozilla.org/docs/Web/CSS/@page",
+					"url": "HTTPS://developer.mozilla.org/docs/Web/CSS/@page",
 				},
 			],
 			"description": "Directive defines various page parameters.",
@@ -20303,7 +20303,7 @@ export const cssData: CSSDataV1 = {
 			"references": [
 				{
 					"name": "MDN Reference",
-					"url": "https://developer.mozilla.org/docs/Web/CSS/@property",
+					"url": "HTTPS://developer.mozilla.org/docs/Web/CSS/@property",
 				},
 			],
 			"description":
@@ -20315,7 +20315,7 @@ export const cssData: CSSDataV1 = {
 			"references": [
 				{
 					"name": "MDN Reference",
-					"url": "https://developer.mozilla.org/docs/Web/CSS/@supports",
+					"url": "HTTPS://developer.mozilla.org/docs/Web/CSS/@supports",
 				},
 			],
 			"description":
@@ -20334,7 +20334,7 @@ export const cssData: CSSDataV1 = {
 			"references": [
 				{
 					"name": "MDN Reference",
-					"url": "https://developer.mozilla.org/docs/Web/CSS/:active",
+					"url": "HTTPS://developer.mozilla.org/docs/Web/CSS/:active",
 				},
 			],
 			"description":
@@ -20346,7 +20346,7 @@ export const cssData: CSSDataV1 = {
 			"references": [
 				{
 					"name": "MDN Reference",
-					"url": "https://developer.mozilla.org/docs/Web/CSS/:any-link",
+					"url": "HTTPS://developer.mozilla.org/docs/Web/CSS/:any-link",
 				},
 			],
 			"description":
@@ -20358,7 +20358,7 @@ export const cssData: CSSDataV1 = {
 			"references": [
 				{
 					"name": "MDN Reference",
-					"url": "https://developer.mozilla.org/docs/Web/CSS/:checked",
+					"url": "HTTPS://developer.mozilla.org/docs/Web/CSS/:checked",
 				},
 			],
 			"description":
@@ -20382,7 +20382,7 @@ export const cssData: CSSDataV1 = {
 			"references": [
 				{
 					"name": "MDN Reference",
-					"url": "https://developer.mozilla.org/docs/Web/CSS/:default",
+					"url": "HTTPS://developer.mozilla.org/docs/Web/CSS/:default",
 				},
 			],
 			"description":
@@ -20394,7 +20394,7 @@ export const cssData: CSSDataV1 = {
 			"references": [
 				{
 					"name": "MDN Reference",
-					"url": "https://developer.mozilla.org/docs/Web/CSS/:disabled",
+					"url": "HTTPS://developer.mozilla.org/docs/Web/CSS/:disabled",
 				},
 			],
 			"description":
@@ -20412,7 +20412,7 @@ export const cssData: CSSDataV1 = {
 			"references": [
 				{
 					"name": "MDN Reference",
-					"url": "https://developer.mozilla.org/docs/Web/CSS/:empty",
+					"url": "HTTPS://developer.mozilla.org/docs/Web/CSS/:empty",
 				},
 			],
 			"description": "Represents an element that has no children at all.",
@@ -20423,7 +20423,7 @@ export const cssData: CSSDataV1 = {
 			"references": [
 				{
 					"name": "MDN Reference",
-					"url": "https://developer.mozilla.org/docs/Web/CSS/:enabled",
+					"url": "HTTPS://developer.mozilla.org/docs/Web/CSS/:enabled",
 				},
 			],
 			"description":
@@ -20441,7 +20441,7 @@ export const cssData: CSSDataV1 = {
 			"references": [
 				{
 					"name": "MDN Reference",
-					"url": "https://developer.mozilla.org/docs/Web/CSS/:first",
+					"url": "HTTPS://developer.mozilla.org/docs/Web/CSS/:first",
 				},
 			],
 			"description":
@@ -20453,7 +20453,7 @@ export const cssData: CSSDataV1 = {
 			"references": [
 				{
 					"name": "MDN Reference",
-					"url": "https://developer.mozilla.org/docs/Web/CSS/:first-child",
+					"url": "HTTPS://developer.mozilla.org/docs/Web/CSS/:first-child",
 				},
 			],
 			"description":
@@ -20465,7 +20465,7 @@ export const cssData: CSSDataV1 = {
 			"references": [
 				{
 					"name": "MDN Reference",
-					"url": "https://developer.mozilla.org/docs/Web/CSS/:first-of-type",
+					"url": "HTTPS://developer.mozilla.org/docs/Web/CSS/:first-of-type",
 				},
 			],
 			"description":
@@ -20477,7 +20477,7 @@ export const cssData: CSSDataV1 = {
 			"references": [
 				{
 					"name": "MDN Reference",
-					"url": "https://developer.mozilla.org/docs/Web/CSS/:focus",
+					"url": "HTTPS://developer.mozilla.org/docs/Web/CSS/:focus",
 				},
 			],
 			"description":
@@ -20489,7 +20489,7 @@ export const cssData: CSSDataV1 = {
 			"references": [
 				{
 					"name": "MDN Reference",
-					"url": "https://developer.mozilla.org/docs/Web/CSS/:fullscreen",
+					"url": "HTTPS://developer.mozilla.org/docs/Web/CSS/:fullscreen",
 				},
 			],
 			"description":
@@ -20501,7 +20501,7 @@ export const cssData: CSSDataV1 = {
 			"references": [
 				{
 					"name": "MDN Reference",
-					"url": "https://developer.mozilla.org/docs/Web/CSS/:future",
+					"url": "HTTPS://developer.mozilla.org/docs/Web/CSS/:future",
 				},
 			],
 			"description":
@@ -20519,7 +20519,7 @@ export const cssData: CSSDataV1 = {
 			"references": [
 				{
 					"name": "MDN Reference",
-					"url": "https://developer.mozilla.org/docs/Web/CSS/:host",
+					"url": "HTTPS://developer.mozilla.org/docs/Web/CSS/:host",
 				},
 			],
 			"description":
@@ -20543,7 +20543,7 @@ export const cssData: CSSDataV1 = {
 			"references": [
 				{
 					"name": "MDN Reference",
-					"url": "https://developer.mozilla.org/docs/Web/CSS/:hover",
+					"url": "HTTPS://developer.mozilla.org/docs/Web/CSS/:hover",
 				},
 			],
 			"description":
@@ -20561,7 +20561,7 @@ export const cssData: CSSDataV1 = {
 			"references": [
 				{
 					"name": "MDN Reference",
-					"url": "https://developer.mozilla.org/docs/Web/CSS/:indeterminate",
+					"url": "HTTPS://developer.mozilla.org/docs/Web/CSS/:indeterminate",
 				},
 			],
 			"description":
@@ -20573,7 +20573,7 @@ export const cssData: CSSDataV1 = {
 			"references": [
 				{
 					"name": "MDN Reference",
-					"url": "https://developer.mozilla.org/docs/Web/CSS/:in-range",
+					"url": "HTTPS://developer.mozilla.org/docs/Web/CSS/:in-range",
 				},
 			],
 			"description":
@@ -20585,7 +20585,7 @@ export const cssData: CSSDataV1 = {
 			"references": [
 				{
 					"name": "MDN Reference",
-					"url": "https://developer.mozilla.org/docs/Web/CSS/:invalid",
+					"url": "HTTPS://developer.mozilla.org/docs/Web/CSS/:invalid",
 				},
 			],
 			"description":
@@ -20603,7 +20603,7 @@ export const cssData: CSSDataV1 = {
 			"references": [
 				{
 					"name": "MDN Reference",
-					"url": "https://developer.mozilla.org/docs/Web/CSS/:last-child",
+					"url": "HTTPS://developer.mozilla.org/docs/Web/CSS/:last-child",
 				},
 			],
 			"description":
@@ -20615,7 +20615,7 @@ export const cssData: CSSDataV1 = {
 			"references": [
 				{
 					"name": "MDN Reference",
-					"url": "https://developer.mozilla.org/docs/Web/CSS/:last-of-type",
+					"url": "HTTPS://developer.mozilla.org/docs/Web/CSS/:last-of-type",
 				},
 			],
 			"description":
@@ -20627,7 +20627,7 @@ export const cssData: CSSDataV1 = {
 			"references": [
 				{
 					"name": "MDN Reference",
-					"url": "https://developer.mozilla.org/docs/Web/CSS/:left",
+					"url": "HTTPS://developer.mozilla.org/docs/Web/CSS/:left",
 				},
 			],
 			"description":
@@ -20639,7 +20639,7 @@ export const cssData: CSSDataV1 = {
 			"references": [
 				{
 					"name": "MDN Reference",
-					"url": "https://developer.mozilla.org/docs/Web/CSS/:link",
+					"url": "HTTPS://developer.mozilla.org/docs/Web/CSS/:link",
 				},
 			],
 			"description": "Applies to links that have not yet been visited.",
@@ -20668,7 +20668,7 @@ export const cssData: CSSDataV1 = {
 			"references": [
 				{
 					"name": "MDN Reference",
-					"url": "https://developer.mozilla.org/docs/Web/CSS/:-moz-broken",
+					"url": "HTTPS://developer.mozilla.org/docs/Web/CSS/:-moz-broken",
 				},
 			],
 			"description":
@@ -20686,7 +20686,7 @@ export const cssData: CSSDataV1 = {
 			"references": [
 				{
 					"name": "MDN Reference",
-					"url": "https://developer.mozilla.org/docs/Web/CSS/:-moz-first-node",
+					"url": "HTTPS://developer.mozilla.org/docs/Web/CSS/:-moz-first-node",
 				},
 			],
 			"description":
@@ -20710,7 +20710,7 @@ export const cssData: CSSDataV1 = {
 			"references": [
 				{
 					"name": "MDN Reference",
-					"url": "https://developer.mozilla.org/docs/Web/CSS/:-moz-last-node",
+					"url": "HTTPS://developer.mozilla.org/docs/Web/CSS/:-moz-last-node",
 				},
 			],
 			"description":
@@ -20728,7 +20728,7 @@ export const cssData: CSSDataV1 = {
 			"references": [
 				{
 					"name": "MDN Reference",
-					"url": "https://developer.mozilla.org/docs/Web/CSS/:-moz-only-whitespace",
+					"url": "HTTPS://developer.mozilla.org/docs/Web/CSS/:-moz-only-whitespace",
 				},
 			],
 			"description":
@@ -20746,7 +20746,7 @@ export const cssData: CSSDataV1 = {
 			"references": [
 				{
 					"name": "MDN Reference",
-					"url": "https://developer.mozilla.org/docs/Web/CSS/:-moz-submit-invalid",
+					"url": "HTTPS://developer.mozilla.org/docs/Web/CSS/:-moz-submit-invalid",
 				},
 			],
 			"description":
@@ -20782,7 +20782,7 @@ export const cssData: CSSDataV1 = {
 			"references": [
 				{
 					"name": "MDN Reference",
-					"url": "https://developer.mozilla.org/docs/Web/CSS/:-moz-window-inactive",
+					"url": "HTTPS://developer.mozilla.org/docs/Web/CSS/:-moz-window-inactive",
 				},
 			],
 			"description":
@@ -20854,7 +20854,7 @@ export const cssData: CSSDataV1 = {
 			"references": [
 				{
 					"name": "MDN Reference",
-					"url": "https://developer.mozilla.org/docs/Web/CSS/:only-child",
+					"url": "HTTPS://developer.mozilla.org/docs/Web/CSS/:only-child",
 				},
 			],
 			"description":
@@ -20866,7 +20866,7 @@ export const cssData: CSSDataV1 = {
 			"references": [
 				{
 					"name": "MDN Reference",
-					"url": "https://developer.mozilla.org/docs/Web/CSS/:only-of-type",
+					"url": "HTTPS://developer.mozilla.org/docs/Web/CSS/:only-of-type",
 				},
 			],
 			"description":
@@ -20878,7 +20878,7 @@ export const cssData: CSSDataV1 = {
 			"references": [
 				{
 					"name": "MDN Reference",
-					"url": "https://developer.mozilla.org/docs/Web/CSS/:optional",
+					"url": "HTTPS://developer.mozilla.org/docs/Web/CSS/:optional",
 				},
 			],
 			"description":
@@ -20890,7 +20890,7 @@ export const cssData: CSSDataV1 = {
 			"references": [
 				{
 					"name": "MDN Reference",
-					"url": "https://developer.mozilla.org/docs/Web/CSS/:out-of-range",
+					"url": "HTTPS://developer.mozilla.org/docs/Web/CSS/:out-of-range",
 				},
 			],
 			"description":
@@ -20902,7 +20902,7 @@ export const cssData: CSSDataV1 = {
 			"references": [
 				{
 					"name": "MDN Reference",
-					"url": "https://developer.mozilla.org/docs/Web/CSS/:past",
+					"url": "HTTPS://developer.mozilla.org/docs/Web/CSS/:past",
 				},
 			],
 			"description":
@@ -20914,7 +20914,7 @@ export const cssData: CSSDataV1 = {
 			"references": [
 				{
 					"name": "MDN Reference",
-					"url": "https://developer.mozilla.org/docs/Web/CSS/:read-only",
+					"url": "HTTPS://developer.mozilla.org/docs/Web/CSS/:read-only",
 				},
 			],
 			"description":
@@ -20926,7 +20926,7 @@ export const cssData: CSSDataV1 = {
 			"references": [
 				{
 					"name": "MDN Reference",
-					"url": "https://developer.mozilla.org/docs/Web/CSS/:read-write",
+					"url": "HTTPS://developer.mozilla.org/docs/Web/CSS/:read-write",
 				},
 			],
 			"description":
@@ -20938,7 +20938,7 @@ export const cssData: CSSDataV1 = {
 			"references": [
 				{
 					"name": "MDN Reference",
-					"url": "https://developer.mozilla.org/docs/Web/CSS/:required",
+					"url": "HTTPS://developer.mozilla.org/docs/Web/CSS/:required",
 				},
 			],
 			"description":
@@ -20950,7 +20950,7 @@ export const cssData: CSSDataV1 = {
 			"references": [
 				{
 					"name": "MDN Reference",
-					"url": "https://developer.mozilla.org/docs/Web/CSS/:right",
+					"url": "HTTPS://developer.mozilla.org/docs/Web/CSS/:right",
 				},
 			],
 			"description":
@@ -20962,7 +20962,7 @@ export const cssData: CSSDataV1 = {
 			"references": [
 				{
 					"name": "MDN Reference",
-					"url": "https://developer.mozilla.org/docs/Web/CSS/:root",
+					"url": "HTTPS://developer.mozilla.org/docs/Web/CSS/:root",
 				},
 			],
 			"description":
@@ -20974,7 +20974,7 @@ export const cssData: CSSDataV1 = {
 			"references": [
 				{
 					"name": "MDN Reference",
-					"url": "https://developer.mozilla.org/docs/Web/CSS/:scope",
+					"url": "HTTPS://developer.mozilla.org/docs/Web/CSS/:scope",
 				},
 			],
 			"description":
@@ -20998,7 +20998,7 @@ export const cssData: CSSDataV1 = {
 			"references": [
 				{
 					"name": "MDN Reference",
-					"url": "https://developer.mozilla.org/docs/Web/CSS/:target",
+					"url": "HTTPS://developer.mozilla.org/docs/Web/CSS/:target",
 				},
 			],
 			"description":
@@ -21010,7 +21010,7 @@ export const cssData: CSSDataV1 = {
 			"references": [
 				{
 					"name": "MDN Reference",
-					"url": "https://developer.mozilla.org/docs/Web/CSS/:valid",
+					"url": "HTTPS://developer.mozilla.org/docs/Web/CSS/:valid",
 				},
 			],
 			"description":
@@ -21028,7 +21028,7 @@ export const cssData: CSSDataV1 = {
 			"references": [
 				{
 					"name": "MDN Reference",
-					"url": "https://developer.mozilla.org/docs/Web/CSS/:visited",
+					"url": "HTTPS://developer.mozilla.org/docs/Web/CSS/:visited",
 				},
 			],
 			"description":
@@ -21064,7 +21064,7 @@ export const cssData: CSSDataV1 = {
 			"references": [
 				{
 					"name": "MDN Reference",
-					"url": "https://developer.mozilla.org/docs/Web/CSS/:blank",
+					"url": "HTTPS://developer.mozilla.org/docs/Web/CSS/:blank",
 				},
 			],
 			"description":
@@ -21077,7 +21077,7 @@ export const cssData: CSSDataV1 = {
 			"references": [
 				{
 					"name": "MDN Reference",
-					"url": "https://developer.mozilla.org/docs/Web/CSS/:defined",
+					"url": "HTTPS://developer.mozilla.org/docs/Web/CSS/:defined",
 				},
 			],
 			"description":
@@ -21089,7 +21089,7 @@ export const cssData: CSSDataV1 = {
 			"references": [
 				{
 					"name": "MDN Reference",
-					"url": "https://developer.mozilla.org/docs/Web/CSS/:dir",
+					"url": "HTTPS://developer.mozilla.org/docs/Web/CSS/:dir",
 				},
 			],
 			"description":
@@ -21101,7 +21101,7 @@ export const cssData: CSSDataV1 = {
 			"references": [
 				{
 					"name": "MDN Reference",
-					"url": "https://developer.mozilla.org/docs/Web/CSS/:focus-visible",
+					"url": "HTTPS://developer.mozilla.org/docs/Web/CSS/:focus-visible",
 				},
 			],
 			"description":
@@ -21113,7 +21113,7 @@ export const cssData: CSSDataV1 = {
 			"references": [
 				{
 					"name": "MDN Reference",
-					"url": "https://developer.mozilla.org/docs/Web/CSS/:focus-within",
+					"url": "HTTPS://developer.mozilla.org/docs/Web/CSS/:focus-within",
 				},
 			],
 			"description":
@@ -21126,7 +21126,7 @@ export const cssData: CSSDataV1 = {
 			"references": [
 				{
 					"name": "MDN Reference",
-					"url": "https://developer.mozilla.org/docs/Web/CSS/:has",
+					"url": "HTTPS://developer.mozilla.org/docs/Web/CSS/:has",
 				},
 			],
 			"description":
@@ -21139,7 +21139,7 @@ export const cssData: CSSDataV1 = {
 			"references": [
 				{
 					"name": "MDN Reference",
-					"url": "https://developer.mozilla.org/docs/Web/CSS/:is",
+					"url": "HTTPS://developer.mozilla.org/docs/Web/CSS/:is",
 				},
 			],
 			"description":
@@ -21158,7 +21158,7 @@ export const cssData: CSSDataV1 = {
 			"references": [
 				{
 					"name": "MDN Reference",
-					"url": "https://developer.mozilla.org/docs/Web/CSS/:paused",
+					"url": "HTTPS://developer.mozilla.org/docs/Web/CSS/:paused",
 				},
 			],
 			"description":
@@ -21171,7 +21171,7 @@ export const cssData: CSSDataV1 = {
 			"references": [
 				{
 					"name": "MDN Reference",
-					"url": "https://developer.mozilla.org/docs/Web/CSS/:placeholder-shown",
+					"url": "HTTPS://developer.mozilla.org/docs/Web/CSS/:placeholder-shown",
 				},
 			],
 			"description":
@@ -21184,7 +21184,7 @@ export const cssData: CSSDataV1 = {
 			"references": [
 				{
 					"name": "MDN Reference",
-					"url": "https://developer.mozilla.org/docs/Web/CSS/:playing",
+					"url": "HTTPS://developer.mozilla.org/docs/Web/CSS/:playing",
 				},
 			],
 			"description":
@@ -21196,7 +21196,7 @@ export const cssData: CSSDataV1 = {
 			"references": [
 				{
 					"name": "MDN Reference",
-					"url": "https://developer.mozilla.org/docs/Web/CSS/:target-within",
+					"url": "HTTPS://developer.mozilla.org/docs/Web/CSS/:target-within",
 				},
 			],
 			"description":
@@ -21209,7 +21209,7 @@ export const cssData: CSSDataV1 = {
 			"references": [
 				{
 					"name": "MDN Reference",
-					"url": "https://developer.mozilla.org/docs/Web/CSS/:user-invalid",
+					"url": "HTTPS://developer.mozilla.org/docs/Web/CSS/:user-invalid",
 				},
 			],
 			"description":
@@ -21222,7 +21222,7 @@ export const cssData: CSSDataV1 = {
 			"references": [
 				{
 					"name": "MDN Reference",
-					"url": "https://developer.mozilla.org/docs/Web/CSS/:user-valid",
+					"url": "HTTPS://developer.mozilla.org/docs/Web/CSS/:user-valid",
 				},
 			],
 			"description":
@@ -21235,7 +21235,7 @@ export const cssData: CSSDataV1 = {
 			"references": [
 				{
 					"name": "MDN Reference",
-					"url": "https://developer.mozilla.org/docs/Web/CSS/:where",
+					"url": "HTTPS://developer.mozilla.org/docs/Web/CSS/:where",
 				},
 			],
 			"description":
@@ -21248,7 +21248,7 @@ export const cssData: CSSDataV1 = {
 			"references": [
 				{
 					"name": "MDN Reference",
-					"url": "https://developer.mozilla.org/docs/Web/CSS/:picture-in-picture",
+					"url": "HTTPS://developer.mozilla.org/docs/Web/CSS/:picture-in-picture",
 				},
 			],
 			"description":
@@ -21262,7 +21262,7 @@ export const cssData: CSSDataV1 = {
 			"references": [
 				{
 					"name": "MDN Reference",
-					"url": "https://developer.mozilla.org/docs/Web/CSS/::after",
+					"url": "HTTPS://developer.mozilla.org/docs/Web/CSS/::after",
 				},
 			],
 			"description":
@@ -21274,7 +21274,7 @@ export const cssData: CSSDataV1 = {
 			"references": [
 				{
 					"name": "MDN Reference",
-					"url": "https://developer.mozilla.org/docs/Web/CSS/::backdrop",
+					"url": "HTTPS://developer.mozilla.org/docs/Web/CSS/::backdrop",
 				},
 			],
 			"description":
@@ -21286,7 +21286,7 @@ export const cssData: CSSDataV1 = {
 			"references": [
 				{
 					"name": "MDN Reference",
-					"url": "https://developer.mozilla.org/docs/Web/CSS/::before",
+					"url": "HTTPS://developer.mozilla.org/docs/Web/CSS/::before",
 				},
 			],
 			"description":
@@ -21304,7 +21304,7 @@ export const cssData: CSSDataV1 = {
 			"references": [
 				{
 					"name": "MDN Reference",
-					"url": "https://developer.mozilla.org/docs/Web/CSS/::cue",
+					"url": "HTTPS://developer.mozilla.org/docs/Web/CSS/::cue",
 				},
 			],
 		},
@@ -21326,7 +21326,7 @@ export const cssData: CSSDataV1 = {
 			"references": [
 				{
 					"name": "MDN Reference",
-					"url": "https://developer.mozilla.org/docs/Web/CSS/::first-letter",
+					"url": "HTTPS://developer.mozilla.org/docs/Web/CSS/::first-letter",
 				},
 			],
 			"description":
@@ -21338,7 +21338,7 @@ export const cssData: CSSDataV1 = {
 			"references": [
 				{
 					"name": "MDN Reference",
-					"url": "https://developer.mozilla.org/docs/Web/CSS/::first-line",
+					"url": "HTTPS://developer.mozilla.org/docs/Web/CSS/::first-line",
 				},
 			],
 			"description":
@@ -21350,7 +21350,7 @@ export const cssData: CSSDataV1 = {
 			"references": [
 				{
 					"name": "MDN Reference",
-					"url": "https://developer.mozilla.org/docs/Web/CSS/::-moz-focus-inner",
+					"url": "HTTPS://developer.mozilla.org/docs/Web/CSS/::-moz-focus-inner",
 				},
 			],
 		},
@@ -21364,7 +21364,7 @@ export const cssData: CSSDataV1 = {
 			"references": [
 				{
 					"name": "MDN Reference",
-					"url": "https://developer.mozilla.org/docs/Web/CSS/::-moz-list-bullet",
+					"url": "HTTPS://developer.mozilla.org/docs/Web/CSS/::-moz-list-bullet",
 				},
 			],
 			"description":
@@ -21376,7 +21376,7 @@ export const cssData: CSSDataV1 = {
 			"references": [
 				{
 					"name": "MDN Reference",
-					"url": "https://developer.mozilla.org/docs/Web/CSS/::-moz-list-number",
+					"url": "HTTPS://developer.mozilla.org/docs/Web/CSS/::-moz-list-number",
 				},
 			],
 			"description":
@@ -21393,7 +21393,7 @@ export const cssData: CSSDataV1 = {
 			"references": [
 				{
 					"name": "MDN Reference",
-					"url": "https://developer.mozilla.org/docs/Web/CSS/::-moz-progress-bar",
+					"url": "HTTPS://developer.mozilla.org/docs/Web/CSS/::-moz-progress-bar",
 				},
 			],
 			"description": "Represents the bar portion of a progress bar.",
@@ -21498,7 +21498,7 @@ export const cssData: CSSDataV1 = {
 			"references": [
 				{
 					"name": "MDN Reference",
-					"url": "https://developer.mozilla.org/docs/Web/CSS/::selection",
+					"url": "HTTPS://developer.mozilla.org/docs/Web/CSS/::selection",
 				},
 			],
 			"description":
@@ -21520,7 +21520,7 @@ export const cssData: CSSDataV1 = {
 			"references": [
 				{
 					"name": "MDN Reference",
-					"url": "https://developer.mozilla.org/docs/Web/CSS/::-webkit-inner-spin-button",
+					"url": "HTTPS://developer.mozilla.org/docs/Web/CSS/::-webkit-inner-spin-button",
 				},
 			],
 		},
@@ -21538,7 +21538,7 @@ export const cssData: CSSDataV1 = {
 			"references": [
 				{
 					"name": "MDN Reference",
-					"url": "https://developer.mozilla.org/docs/Web/CSS/::-webkit-meter-bar",
+					"url": "HTTPS://developer.mozilla.org/docs/Web/CSS/::-webkit-meter-bar",
 				},
 			],
 		},
@@ -21548,7 +21548,7 @@ export const cssData: CSSDataV1 = {
 			"references": [
 				{
 					"name": "MDN Reference",
-					"url": "https://developer.mozilla.org/docs/Web/CSS/::-webkit-meter-even-less-good-value",
+					"url": "HTTPS://developer.mozilla.org/docs/Web/CSS/::-webkit-meter-even-less-good-value",
 				},
 			],
 		},
@@ -21558,7 +21558,7 @@ export const cssData: CSSDataV1 = {
 			"references": [
 				{
 					"name": "MDN Reference",
-					"url": "https://developer.mozilla.org/docs/Web/CSS/::-webkit-meter-optimum-value",
+					"url": "HTTPS://developer.mozilla.org/docs/Web/CSS/::-webkit-meter-optimum-value",
 				},
 			],
 		},
@@ -21568,7 +21568,7 @@ export const cssData: CSSDataV1 = {
 			"references": [
 				{
 					"name": "MDN Reference",
-					"url": "https://developer.mozilla.org/docs/Web/CSS/::-webkit-meter-suboptimum-value",
+					"url": "HTTPS://developer.mozilla.org/docs/Web/CSS/::-webkit-meter-suboptimum-value",
 				},
 			],
 		},
@@ -21582,7 +21582,7 @@ export const cssData: CSSDataV1 = {
 			"references": [
 				{
 					"name": "MDN Reference",
-					"url": "https://developer.mozilla.org/docs/Web/CSS/::-webkit-progress-bar",
+					"url": "HTTPS://developer.mozilla.org/docs/Web/CSS/::-webkit-progress-bar",
 				},
 			],
 		},
@@ -21592,7 +21592,7 @@ export const cssData: CSSDataV1 = {
 			"references": [
 				{
 					"name": "MDN Reference",
-					"url": "https://developer.mozilla.org/docs/Web/CSS/::-webkit-progress-inner-element",
+					"url": "HTTPS://developer.mozilla.org/docs/Web/CSS/::-webkit-progress-inner-element",
 				},
 			],
 		},
@@ -21602,7 +21602,7 @@ export const cssData: CSSDataV1 = {
 			"references": [
 				{
 					"name": "MDN Reference",
-					"url": "https://developer.mozilla.org/docs/Web/CSS/::-webkit-progress-value",
+					"url": "HTTPS://developer.mozilla.org/docs/Web/CSS/::-webkit-progress-value",
 				},
 			],
 		},
@@ -21612,7 +21612,7 @@ export const cssData: CSSDataV1 = {
 			"references": [
 				{
 					"name": "MDN Reference",
-					"url": "https://developer.mozilla.org/docs/Web/CSS/::-webkit-scrollbar",
+					"url": "HTTPS://developer.mozilla.org/docs/Web/CSS/::-webkit-scrollbar",
 				},
 			],
 		},
@@ -21622,7 +21622,7 @@ export const cssData: CSSDataV1 = {
 			"references": [
 				{
 					"name": "MDN Reference",
-					"url": "https://developer.mozilla.org/docs/Web/CSS/::-webkit-scrollbar",
+					"url": "HTTPS://developer.mozilla.org/docs/Web/CSS/::-webkit-scrollbar",
 				},
 			],
 		},
@@ -21632,7 +21632,7 @@ export const cssData: CSSDataV1 = {
 			"references": [
 				{
 					"name": "MDN Reference",
-					"url": "https://developer.mozilla.org/docs/Web/CSS/::-webkit-scrollbar",
+					"url": "HTTPS://developer.mozilla.org/docs/Web/CSS/::-webkit-scrollbar",
 				},
 			],
 		},
@@ -21642,7 +21642,7 @@ export const cssData: CSSDataV1 = {
 			"references": [
 				{
 					"name": "MDN Reference",
-					"url": "https://developer.mozilla.org/docs/Web/CSS/::-webkit-scrollbar",
+					"url": "HTTPS://developer.mozilla.org/docs/Web/CSS/::-webkit-scrollbar",
 				},
 			],
 		},
@@ -21652,7 +21652,7 @@ export const cssData: CSSDataV1 = {
 			"references": [
 				{
 					"name": "MDN Reference",
-					"url": "https://developer.mozilla.org/docs/Web/CSS/::-webkit-scrollbar",
+					"url": "HTTPS://developer.mozilla.org/docs/Web/CSS/::-webkit-scrollbar",
 				},
 			],
 		},
@@ -21662,7 +21662,7 @@ export const cssData: CSSDataV1 = {
 			"references": [
 				{
 					"name": "MDN Reference",
-					"url": "https://developer.mozilla.org/docs/Web/CSS/::-webkit-scrollbar",
+					"url": "HTTPS://developer.mozilla.org/docs/Web/CSS/::-webkit-scrollbar",
 				},
 			],
 		},
@@ -21672,7 +21672,7 @@ export const cssData: CSSDataV1 = {
 			"references": [
 				{
 					"name": "MDN Reference",
-					"url": "https://developer.mozilla.org/docs/Web/CSS/::-webkit-scrollbar",
+					"url": "HTTPS://developer.mozilla.org/docs/Web/CSS/::-webkit-scrollbar",
 				},
 			],
 		},
@@ -21682,7 +21682,7 @@ export const cssData: CSSDataV1 = {
 			"references": [
 				{
 					"name": "MDN Reference",
-					"url": "https://developer.mozilla.org/docs/Web/CSS/::-webkit-search-cancel-button",
+					"url": "HTTPS://developer.mozilla.org/docs/Web/CSS/::-webkit-search-cancel-button",
 				},
 			],
 		},
@@ -21696,7 +21696,7 @@ export const cssData: CSSDataV1 = {
 			"references": [
 				{
 					"name": "MDN Reference",
-					"url": "https://developer.mozilla.org/docs/Web/CSS/::-webkit-search-results-button",
+					"url": "HTTPS://developer.mozilla.org/docs/Web/CSS/::-webkit-search-results-button",
 				},
 			],
 		},
@@ -21710,7 +21710,7 @@ export const cssData: CSSDataV1 = {
 			"references": [
 				{
 					"name": "MDN Reference",
-					"url": "https://developer.mozilla.org/docs/Web/CSS/::-webkit-slider-runnable-track",
+					"url": "HTTPS://developer.mozilla.org/docs/Web/CSS/::-webkit-slider-runnable-track",
 				},
 			],
 		},
@@ -21720,7 +21720,7 @@ export const cssData: CSSDataV1 = {
 			"references": [
 				{
 					"name": "MDN Reference",
-					"url": "https://developer.mozilla.org/docs/Web/CSS/::-webkit-slider-thumb",
+					"url": "HTTPS://developer.mozilla.org/docs/Web/CSS/::-webkit-slider-thumb",
 				},
 			],
 		},
@@ -21759,7 +21759,7 @@ export const cssData: CSSDataV1 = {
 			"references": [
 				{
 					"name": "MDN Reference",
-					"url": "https://developer.mozilla.org/docs/Web/CSS/::target-text",
+					"url": "HTTPS://developer.mozilla.org/docs/Web/CSS/::target-text",
 				},
 			],
 			"description":
@@ -21772,7 +21772,7 @@ export const cssData: CSSDataV1 = {
 			"references": [
 				{
 					"name": "MDN Reference",
-					"url": "https://developer.mozilla.org/docs/Web/CSS/::-moz-range-progress",
+					"url": "HTTPS://developer.mozilla.org/docs/Web/CSS/::-moz-range-progress",
 				},
 			],
 			"description":
@@ -21785,7 +21785,7 @@ export const cssData: CSSDataV1 = {
 			"references": [
 				{
 					"name": "MDN Reference",
-					"url": "https://developer.mozilla.org/docs/Web/CSS/::-moz-range-thumb",
+					"url": "HTTPS://developer.mozilla.org/docs/Web/CSS/::-moz-range-thumb",
 				},
 			],
 			"description":
@@ -21798,7 +21798,7 @@ export const cssData: CSSDataV1 = {
 			"references": [
 				{
 					"name": "MDN Reference",
-					"url": "https://developer.mozilla.org/docs/Web/CSS/::-moz-range-track",
+					"url": "HTTPS://developer.mozilla.org/docs/Web/CSS/::-moz-range-track",
 				},
 			],
 			"description":
@@ -21817,7 +21817,7 @@ export const cssData: CSSDataV1 = {
 			"references": [
 				{
 					"name": "MDN Reference",
-					"url": "https://developer.mozilla.org/docs/Web/CSS/::grammar-error",
+					"url": "HTTPS://developer.mozilla.org/docs/Web/CSS/::grammar-error",
 				},
 			],
 			"description":
@@ -21829,7 +21829,7 @@ export const cssData: CSSDataV1 = {
 			"references": [
 				{
 					"name": "MDN Reference",
-					"url": "https://developer.mozilla.org/docs/Web/CSS/::marker",
+					"url": "HTTPS://developer.mozilla.org/docs/Web/CSS/::marker",
 				},
 			],
 			"description":
@@ -21842,7 +21842,7 @@ export const cssData: CSSDataV1 = {
 			"references": [
 				{
 					"name": "MDN Reference",
-					"url": "https://developer.mozilla.org/docs/Web/CSS/::part",
+					"url": "HTTPS://developer.mozilla.org/docs/Web/CSS/::part",
 				},
 			],
 			"description":
@@ -21854,7 +21854,7 @@ export const cssData: CSSDataV1 = {
 			"references": [
 				{
 					"name": "MDN Reference",
-					"url": "https://developer.mozilla.org/docs/Web/CSS/::placeholder",
+					"url": "HTTPS://developer.mozilla.org/docs/Web/CSS/::placeholder",
 				},
 			],
 			"description":
@@ -21866,7 +21866,7 @@ export const cssData: CSSDataV1 = {
 			"references": [
 				{
 					"name": "MDN Reference",
-					"url": "https://developer.mozilla.org/docs/Web/CSS/::slotted",
+					"url": "HTTPS://developer.mozilla.org/docs/Web/CSS/::slotted",
 				},
 			],
 			"description":
@@ -21879,7 +21879,7 @@ export const cssData: CSSDataV1 = {
 			"references": [
 				{
 					"name": "MDN Reference",
-					"url": "https://developer.mozilla.org/docs/Web/CSS/::spelling-error",
+					"url": "HTTPS://developer.mozilla.org/docs/Web/CSS/::spelling-error",
 				},
 			],
 			"description":
@@ -21892,7 +21892,7 @@ export const cssData: CSSDataV1 = {
 			"references": [
 				{
 					"name": "MDN Reference",
-					"url": "https://developer.mozilla.org/docs/Web/CSS/::view-transition",
+					"url": "HTTPS://developer.mozilla.org/docs/Web/CSS/::view-transition",
 				},
 			],
 			"description":
@@ -21905,7 +21905,7 @@ export const cssData: CSSDataV1 = {
 			"references": [
 				{
 					"name": "MDN Reference",
-					"url": "https://developer.mozilla.org/docs/Web/CSS/::view-transition-group",
+					"url": "HTTPS://developer.mozilla.org/docs/Web/CSS/::view-transition-group",
 				},
 			],
 			"description":
@@ -21918,7 +21918,7 @@ export const cssData: CSSDataV1 = {
 			"references": [
 				{
 					"name": "MDN Reference",
-					"url": "https://developer.mozilla.org/docs/Web/CSS/::view-transition-image-pair",
+					"url": "HTTPS://developer.mozilla.org/docs/Web/CSS/::view-transition-image-pair",
 				},
 			],
 			"description":
@@ -21931,7 +21931,7 @@ export const cssData: CSSDataV1 = {
 			"references": [
 				{
 					"name": "MDN Reference",
-					"url": "https://developer.mozilla.org/docs/Web/CSS/::view-transition-new",
+					"url": "HTTPS://developer.mozilla.org/docs/Web/CSS/::view-transition-new",
 				},
 			],
 			"description":
@@ -21944,7 +21944,7 @@ export const cssData: CSSDataV1 = {
 			"references": [
 				{
 					"name": "MDN Reference",
-					"url": "https://developer.mozilla.org/docs/Web/CSS/::view-transition-old",
+					"url": "HTTPS://developer.mozilla.org/docs/Web/CSS/::view-transition-old",
 				},
 			],
 			"description":
